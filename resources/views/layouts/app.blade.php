@@ -12,12 +12,35 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style type="text/css">
+        @font-face {
+            font-family:'Font';
+            src: url( {{asset('fonts/'.config('app.font'))}} );
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        /*TODO background*/
+        /*.bg {*/
+            /*!* The image used *!*/
+            /*background-image: url("/img/bg.png");*/
+
+            /*!* Full height *!*/
+            /*height: 100%;*/
+
+            /*!* Center and scale the image nicely *!*/
+            /*background-position: center;*/
+            /*background-repeat: repeat-y;*/
+            /*background-size: cover;*/
+        /*}*/
+    </style>
 
 </head>
-<body>
+<body style="font-family:'Font'" class="bg">
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top ">
-            <div style="font-family: B mitra" class="container">
+            <div class="container">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -41,20 +64,32 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul style="font-family: B mitra" class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right">
                         @guest
                             <li><a href="{{ route('login') }}">ورود</a></li>
                         @else
                             @if (Auth::user()->is_admin==1)
+                                <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >دانلود دیتابیس</a></li>
+
                                 <li><a href="{{ route('register') }}">ثبت نام</a></li>
-                                <li><a href="{{ route('notes') }}">یادداشت مدیریت</a></li>
+
+                                <li><a href="{{ route('notes') }}">
+                                        <div class="badge">
+                                            {{ App\User::where('note','!=',null)->count() }}
+                                        </div>
+                                        یادداشت مدیریت
+                                    </a>
+                                </li>
+
                                 <li><a href="{{ route('not_proved') }}">
                                         <div class="badge">
                                             {{App\Payment::where('is_proved','=','0')->count('payment')
                                             +App\Loan::where('is_proved','=','0')->count('Loan')}}
                                         </div>
                                         تایید تراکنش ها
-                                    </a></li>
+                                    </a>
+                                </li>
+
                                 <li><a href="{{ route('admin') }}">صفحه مدیریت</a></li>
                             @endif
 
@@ -66,18 +101,18 @@
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
+                                    <li class="text-center">
 
-                                            <a href="#"><h4>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</h4></a>
+                                            <a href="#">{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</a>
 
-                                        <a href="#"><h4><img src="/img/ip.png" height="25">{{Request::getClientIp()}}</h4></a>
+                                        <a href="#"><img src="/img/ip.png" height="25">{{Request::getClientIp()}}</a>
 
                                         <a style="color: red" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();"><h4>
+                                       document.getElementById('logout-form').submit();">
                                             <img src="/img/exit.png" height="23">
                                             خروج
-                                                </h4></a>
+                                                </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         {{ csrf_field() }}
                                         </form>
@@ -92,9 +127,8 @@
         </nav>
 
         @yield('content')
-    </div>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+</div>
 </body>
 </html>

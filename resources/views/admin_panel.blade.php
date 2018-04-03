@@ -47,16 +47,18 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
-                        لیست کاربران
+                        ( لیست کاربران
+                        ( کاربران فعال
+                        {{ $users->count() }}
                     </div>
                     <div class="panel-body bg-success">
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-info">
-                                <th class="text-center">نام کاربر</th>
                                 <th class="text-center">نام و نام خانوادگی</th>
+                                <th class="text-center">نام کاربری</th>
                                 <th class="text-center">شماره حساب</th>
-                                <th class="text-center">دسترسی بازرس</th>
+                                <th class="text-center">دسترسی بازرسی</th>
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">اصلاح کاربر</th>
                                 <th class="text-center">ارتباط با کاربر دیگر</th>
@@ -84,11 +86,8 @@
                                     </th>
 
                                     <th class="text-center">
-<<<<<<< HEAD
-                                    <a href="{{route('reregister',['id' => $user->id])}}">
-=======
+
                                     <a href="{{route('user_edit',['id' => $user->id])}}">
->>>>>>> 500300597e62df47342387725d630275237a66a1
                                     <img src="/img/user-edit.png" alt="key" height="7%"></a>
                                     </th>
 
@@ -97,6 +96,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <div class="text-center"> {{$users->links()}} </div>
                     </div>
                 </div>
             </div>

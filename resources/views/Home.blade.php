@@ -2,13 +2,21 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container text-center">
+
+        @if (!is_null(Auth::User()->note))
+        <div class="alert alert-info alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             پیام مدیر برای شما:
+            <strong> {{Auth::User()->note}} </strong>
+        </div>
+        @endif
 
         <div class="col-md-6">
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">درج پرداخت</div>
+                <div class="panel-heading">درج پرداخت</div>
                 <div class="panel-body bg-success">
-                    <form class="form" method="POST" action="{{ route('home') }}">
+                    <form class="form" method="POST" action="{{ route('payment_create') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('payment') ? ' has-error' : '' }}">
@@ -86,9 +94,16 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="">
-                                <button type="submit" class="btn btn-primary">
+                            <div>
+                                <button name="online_payment" value="0" type="submit" class="btn btn-primary">
                                     ثبت پرداخت
+                                </button>
+                                {{--TODO downloading these--}}
+                                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+                                <button name="online_payment" value="1" type="submit" class="btn btn-success" disabled="">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                    پرداخت اینترنتی
                                 </button>
                             </div>
                         </div>
@@ -102,7 +117,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">درج درخواست قرض الحسنه</div>
                 <div class="panel-body bg-success">
-                    <form class="form" method="POST" action="{{ route('home') }}">
+                    <form class="form" method="POST" action="{{ route('loan_create') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('loan') ? ' has-error' : '' }}">
@@ -198,9 +213,10 @@
     </div>
 
     <div class="container">
-        <div class="col-md-13">
+        <div class="col-md-12">
+
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">خلاصه وضعیت</div>
+                <div class="panel-heading text-center">خلاصه وضعیت با احتساب تراکنش های تایید شده</div>
                 <div class="panel-body">
                     <table class="table">
                         <thead>
@@ -225,16 +241,14 @@
                 </div>
             </div>
 
-
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">تراکنش ها</div>
+                <div class="panel-heading text-center">پرداخت ها</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">تاریخ</th>
                             <th class="text-center">افزایش سرمایه</th>
-                            <th class="text-center">قرض الحسنه</th>
                             <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">آخرین تایید توسط</th>
@@ -245,20 +259,64 @@
                             <tr>
                                 <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
+                                <th class="text-center">{{$payment->loan_payment}}</th>
+                                <th class="text-center">{{$payment->description}}</th>
                                 <th class="text-center">
+                                    {{$payment->proved_by}}
                                     @if ($payment->is_proved==0)
                                         { تایید نشده }
                                     @endif
-                                    {{$payment->loan}}</th>
-                                <th class="text-center">{{$payment->loan_payment}}</th>
-                                <th class="text-center">{{$payment->description}}</th>
-                                <th class="text-center">{{$payment->proved_by}}</th>
+                                </th>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="text-center"> {{$payments->links()}} </div>
                 </div>
             </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">قرض الحسنه ها</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr class="bg-info">
+                            <th class="text-center">تاریخ</th>
+                            <th class="text-center">قرض الحسنه</th>
+                            <th class="text-center">توضیحات</th>
+                            <th class="text-center">نوع قرض الحسنه</th>
+                            <th class="text-center">آخرین تایید توسط</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($loans as $loan)
+                            <tr>
+                                <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
+                                <th class="text-center">{{$loan->loan}}</th>
+                                <th class="text-center">{{$loan->description}}</th>
+
+                                <th class="text-center">
+                                    @if ($loan->force==0)
+                                        عادی
+                                    @else
+                                        <span class="text-danger" >فوری</span>
+                                    @endif
+                                </th>
+
+                                <th class="text-center">
+                                    {{$loan->proved_by}}
+                                    @if ($loan->is_proved==0)
+                                        { تایید نشده }
+                                    @endif
+                                </th>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="text-center"> {{$loans->links()}} </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

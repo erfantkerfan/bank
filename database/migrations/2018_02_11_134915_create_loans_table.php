@@ -28,6 +28,7 @@ class CreateLoansTable extends Migration
             $table->boolean('is_proved')->default('0');
             $table->string('proved_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

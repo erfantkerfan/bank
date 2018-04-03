@@ -14,7 +14,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::FindOrFail($id);
-        return view('user_edit',compact('user'));
+        return view('user_edit')->with(['user' => $user]);
     }
 
     public function user_edit($id , request $request)
@@ -27,8 +27,8 @@ class UserController extends Controller
             'is_super_admin' => 'required|boolean',
             'name' => ['required','string','max:225',Rule::unique('users')->ignore($id)],
             'phone_number' => 'required|digits:11',
-            'faculty_number' => 'digits:4',
-            'home_number' => 'digits:11',
+            'faculty_number' => 'nullable|digits:4',
+            'home_number' => 'nullable|digits:11',
             'email' => 'nullable|string|email|max:255',
             'relation' => 'nullable|string',
             'note' => 'nullable|string',

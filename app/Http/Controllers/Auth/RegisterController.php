@@ -74,7 +74,8 @@ class RegisterController extends Controller
             'faculty_number' => 'nullable|digits:11',
             'home_number' => 'nullable|digits:11',
             'email' => 'nullable|string|email|max:255',
-            'relation' => '|nullable|string',
+            'relation' => 'nullable|string',
+            'note' => 'Nullable|string',
         ]);
     }
 
@@ -97,7 +98,8 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'faculty_number' => $data['faculty_number'],
             'home_number' => $data['home_number'],
-            'relation' => $data['relation']
+            'relation' => $data['relation'],
+            'note' => $data['note']
         ]);
     }
 }

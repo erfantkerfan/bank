@@ -12,28 +12,28 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <style type="text/css">
+            @font-face {
+                font-family:'Font';
+                src: url( {{asset('fonts/'.config('app.font'))}} );
             }
 
-            .full-height {
-                height: 95vh;
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: black;
+                color: white;
+                text-align: center;
             }
+
 
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
             }
 
             .top-right {
@@ -42,13 +42,6 @@
                 top: 18px;
             }
 
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 60px;
-            }
 
             .links > a {
                 color: #636b6f;
@@ -59,12 +52,12 @@
                 text-decoration: none;
             }
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
+            /*.m-b-md {*/
+                /*margin-bottom: 30px;*/
+            /*}*/
         </style>
     </head>
-    <body>
+    <body style="font-family:'Font'">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -77,14 +70,14 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md" style="font-family:b mitra">
+                <div class="title m-b-md">
                     <h2>
                         صندوق قرض الحسنه قائم
                     </h2>
                 </div>
             </div>
         </div>
-
+        <div class="container col-md-7">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -106,16 +99,24 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+        </div>
 
-        <footer class="botom flex-center position-ref links" style="font-family:b mitra">
+        <div class="panel panel-primary col-md-5 text-center">
+            <div class="panel-heading">پیام های عمومی مدیران</div>
+            <div class="panel-body">یه چیزی</div>
+        </div>
+
+        <footer class="footer" style="font-family:b mitra">
             <strong>
                 طراحی توسط
                 <a  href="http://t.me/er_gholizade" style="text-decoration:none">
-                عرفان قلی زاده
+                    © عرفان قلی زاده
                 </a>
                 2017
             </strong>
         </footer>
+
+        {{--TODO downloading these files--}}
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

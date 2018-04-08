@@ -19,10 +19,10 @@ class AdminController extends Controller
     public function user($id)
     {
         $user = User::FindOrFail($id);
-        $payments = $user->Payment()->get()->SortByDesc('date_time');
-        $loans = $user->Loan()->get()->SortByDesc('date_time');
+        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         $summary = User::FindOrFail($id)->summary();
-        return view('admin_user')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$loans, 'loans'=>$summary]);
+        return view('admin_user')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans]);
     }
 
     public function not_proved()

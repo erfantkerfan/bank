@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading text-center">لیست پرداخت های تایید نشده</div>
+                    <div class="panel-heading text-center">لیست قرض الحسنه های تایید نشده</div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>

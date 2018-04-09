@@ -4,11 +4,11 @@
 
     <div class="container text-center">
 
-        @if (!is_null(Auth::User()->note))
+        @if (!is_null($user->note))
             <div class="alert alert-info alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 پیام مدیر برای شما:
-                <strong> {{Auth::User()->note}} </strong>
+                <strong> {{$user->note}} </strong>
             </div>
         @endif
 
@@ -252,6 +252,7 @@
                             <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">آخرین تایید توسط</th>
+                            <th class="text-center">حذف پرداخت</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -266,6 +267,12 @@
                                     @if ($payment->is_proved==0)
                                         { تایید نشده }
                                     @endif
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
+                                       onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
+                                        <img src="/img/delete.png" alt="DELETE" height="7%">
+                                    </a>
                                 </th>
                             </tr>
                         @endforeach
@@ -286,6 +293,7 @@
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">نوع قرض الحسنه</th>
                             <th class="text-center">آخرین تایید توسط</th>
+                            <th class="text-center">حذف قرض الحسنه</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -308,6 +316,13 @@
                                     @if ($loan->is_proved==0)
                                         { تایید نشده }
                                     @endif
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
+                                       onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
+                                        <img src="/img/delete.png" alt="DELETE" height="7%">
+
+                                    </a>
                                 </th>
                             </tr>
                         @endforeach

@@ -72,6 +72,7 @@
                                 <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >دانلود دیتابیس</a></li>
 
                                 <li><a href="{{ route('register') }}">ثبت نام</a></li>
+                                <li><a href="{{ route('notification') }}">اعلان ها</a></li>
 
                                 <li><a href="{{ route('notes') }}">
                                         <div class="badge">

@@ -42,3 +42,6 @@ Route::get('/loan/delete/{id}', 'LoanController@delete')->name('loan_delete')   
 Route::get('/loan/confirm/{id}', 'LoanController@confirm')->name('loan_confirm')                       ->middleware('SuperAdminAuth');
 Route::get('/payment/delete/{id}', 'PaymentController@delete')->name('payment_delete')                 ->middleware('SuperAdminAuth');
 Route::get('/payment/confirm/{id}', 'PaymentController@confirm')->name('payment_confirm')              ->middleware('SuperAdminAuth');
+Route::get('/notification', 'NotificationController@index')->name('notification')                      ->middleware('AdminAuth');
+Route::get('/notification/delete/{id}', 'NotificationController@delete')->name('notification_delete')  ->middleware('SuperAdminAuth');
+Route::post('/notification/create', 'NotificationController@create')->name('notification_create')       ->middleware('SuperAdminAuth');

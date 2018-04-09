@@ -73,40 +73,42 @@
                 <div class="title m-b-md">
                     <h2>
                         صندوق قرض الحسنه قائم
+                        <br>
+                        <br>
                     </h2>
                 </div>
             </div>
         </div>
-        <div class="container col-md-7">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="/img/sl1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/sl2.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/sl3.jpg" alt="Third slide">
+        <div class="container">
+            <div class="col-lg-7">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="/img/ghaem.jpg" alt="GHAEM">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
+
+            <div class="col-lg-5 panel panel-primary text-center">
+                <div class="panel-heading">اعلان های عمومی</div>
+                @forelse (\App\Notification::all() as $notification)
+                    <div class="panel-body">{{ $notification->text }}</div>
+                @empty
+                    <div class="panel-body">اعلانی برای نمایش وجود ندارد</div>
+                @endforelse
+            </div>
         </div>
 
-        <div class="panel panel-primary col-md-5 text-center">
-            <div class="panel-heading">پیام های عمومی مدیران</div>
-            <div class="panel-body">یه چیزی</div>
-        </div>
-
-        <footer class="footer" style="font-family:b mitra">
+        <footer class="footer">
             <strong>
                 طراحی توسط
                 <a  href="http://t.me/er_gholizade" style="text-decoration:none">

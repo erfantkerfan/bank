@@ -22,7 +22,7 @@
 
                         <th class="text-center">
                             <a onclick="return confirm('از پاک کردن این یادداشت اطمینان دارید؟')" href="{{route('delete_notes',['id' => $user->id])}}">
-                                <img src="/img/delete.png" alt="edit" height="6%"></a>
+                                <img src="/img/delete.png" alt="DELETE" height="6%"></a>
                         </th>
                     </tr>
                     @endforeach

@@ -98,8 +98,7 @@
                                 <button name="online_payment" value="0" type="submit" class="btn btn-primary">
                                     ثبت پرداخت
                                 </button>
-                                {{--TODO downloading these--}}
-                                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                                <link rel="stylesheet" href="/css/bootstrap.min.css">
 
                                 <button name="online_payment" value="1" type="submit" class="btn btn-success" disabled="">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>

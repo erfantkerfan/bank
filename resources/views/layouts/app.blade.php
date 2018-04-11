@@ -22,18 +22,18 @@
             margin: 0;
         }
         /*TODO background*/
-        /*.bg {*/
-            /*!* The image used *!*/
-            /*background-image: url("/img/bg.png");*/
+        .bg {
+            /* The image used */
+            background-image: url("/img/bg.png");
 
-            /*!* Full height *!*/
-            /*height: 100%;*/
+            /* Full height */
+            height: 100%;
 
-            /*!* Center and scale the image nicely *!*/
-            /*background-position: center;*/
-            /*background-repeat: repeat-y;*/
-            /*background-size: cover;*/
-        /*}*/
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: repeat-y;
+            background-size: cover;
+        }
     </style>
 
 </head>

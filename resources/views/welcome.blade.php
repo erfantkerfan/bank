@@ -51,6 +51,18 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
             }
+            .bg {
+                /* The image used */
+                background-image: url("/img/bg.png");
+
+                /* Full height */
+                height: 100%;
+
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: repeat-y;
+                background-size: cover;
+            }
 
             /*.m-b-md {*/
                 /*margin-bottom: 30px;*/
@@ -85,6 +97,8 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img class="d-block w-100" src="/img/ghaem.jpg" alt="GHAEM">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#" role="button" data-slide="prev">

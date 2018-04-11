@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ پرداخت یا درخواست</label>
+                            <label for="date_time" class="control-label">:تاریخ پرداخت</label>
                             <div class="col-md-4">
                                 <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
 
@@ -149,7 +149,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ پرداخت یا درخواست</label>
+                            <label for="date_time" class="control-label">:تاریخ درخواست</label>
                             <div class="col-md-4">
                                 <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
 

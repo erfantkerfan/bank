@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <style type="text/css">
         @font-face {
             font-family:'Font';

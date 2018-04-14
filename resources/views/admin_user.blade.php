@@ -58,19 +58,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ پرداخت</label>
-                            <div class="col-md-4">
-                                <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
-
-                                @if ($errors->has('date_time'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('date_time') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('is_proved') ? ' has-error' : '' }}">
                             <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
                             <div class="col-md-4">
@@ -147,19 +134,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ درخواست</label>
-                            <div class="col-md-4">
-                                <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
-
-                                @if ($errors->has('date_time'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('date_time') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('force') ? ' has-error' : '' }}">
                             <label for="force" class="control-label">:نوع قرض الحسنه</label>
                             <div class="col-md-4">
@@ -220,16 +194,16 @@
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">افزایش سرمایه</th>
-                            <th class="text-center">پرداخت اقساط</th>
-                            <th class="text-center">آخرین قرض الحسنه</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
+                            <th class="text-center">مبلغ آخرین قرض الحسنه</th>
+                            <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">بدهی</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
                             <th class="text-center">{{$summary->payments}}</th>
-                            <th class="text-center">{{$summary->loan_payments}}</th>
+                            <th class="text-center">{{$summary->loans}}</th>
                             <th class="text-center">
                                 @if($summary->loans-$summary->loan_payments==0)
                                     تسویه شده
@@ -237,7 +211,7 @@
                                     {{$summary->loan}}
                                 @endif
                             </th>
-                            <th class="text-center">{{$summary->loans}}</th>
+                            <th class="text-center">{{$summary->loan_payments}}</th>
                             <th class="text-center">{{$summary->loans-$summary->loan_payments}}</th>
                         </tr>
                         </tbody>
@@ -311,7 +285,7 @@
                                     @if ($loan->force==0)
                                         عادی
                                     @else
-                                        <span class="text-danger" >فوری</span>
+                                        <span class="text-danger" >ضروری</span>
                                     @endif
                                 </th>
 

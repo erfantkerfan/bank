@@ -21,7 +21,7 @@ class CreateLoansTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onupdate('cascade');
-            $table->unsignedInteger('loan')->nullable();
+            $table->BigInteger('loan')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('date_time');
             $table->boolean('force')->default('0');

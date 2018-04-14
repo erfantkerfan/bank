@@ -72,23 +72,23 @@
                                     <th class="text-center">{{$user->acc_id}}</th>
                                     <th class="text-center">
                                         @if ($user->is_admin==0)
-                                            <img src="/img/0.png" alt="NO" height="7%">
+                                            <img src="/img/0.png" alt="NO">
                                         @elseif ($user->is_admin==1)
-                                            <img src="/img/1.png" alt="Yes" height="7%">
+                                            <img src="/img/1.png" alt="Yes">
                                         @endif
                                     </th>
                                     <th class="text-center">
                                         @if ($user->is_super_admin==0)
-                                            <img src="/img/0.png" alt="NO" height="7%">
+                                            <img src="/img/0.png" alt="NO">
                                         @elseif ($user->is_super_admin==1)
-                                            <img src="/img/1.png" alt="Yes" height="7%">
+                                            <img src="/img/1.png" alt="Yes">
                                         @endif
                                     </th>
 
                                     <th class="text-center">
 
                                     <a href="{{route('user_edit',['id' => $user->id])}}">
-                                    <img src="/img/user-edit.png" alt="key" height="7%"></a>
+                                    <img src="/img/user-edit.png" alt="key"></a>
                                     </th>
 
                                     <th class="text-center">{{$user->relation}}</th>

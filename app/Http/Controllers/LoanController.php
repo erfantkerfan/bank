@@ -40,21 +40,29 @@ class LoanController extends Controller
             abort(500);
         };
 
+        if(($request->has('is_proved'))){
+            $is_proved = $request->is_proved;
+        }
+        else{
+            $is_proved=0;
+        }
+
+        $date_time = verta()->formatdate();
+
         $this->Validate($request, [
             'loan' => 'nullable|integer',
             'description' => 'nullable|string',
-            'date_time' => 'required',
-            'is_proved' => 'boolean',
+            'is_proved' => 'nullable|boolean',
             'force' => 'boolean',
         ]);
 
         Loan::create([
             'user_id' => $user_id,
+            'date_time' => $date_time,
+            'is_proved' => $is_proved,
+            'proved_by' => $proved_by,
             'loan' => $request['loan'],
             'description' => $request['description'],
-            'date_time' => $request['date_time'],
-            'is_proved' => $request['is_proved'],
-            'proved_by' => $proved_by,
             'force' => $request['force'],
         ]);
 

@@ -43,23 +43,30 @@ class PaymentController extends Controller
                 if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$user_id){
                     abort(500);
                 };
+                if(($request->has('is_proved'))){
+                    $is_proved = $request->is_proved;
+                }
+                else{
+                    $is_proved=0;
+                }
+
+                $date_time = verta()->formatdate();
 
                 $this->Validate($request,[
                     'payment' => 'required|integer',
                     'loan_payment'=> 'nullable|integer',
                     'description' => 'nullable|string',
-                    'date_time' => 'required',
-                    'is_proved' => 'nullable',
+                    'is_proved' => 'nullable|boolean',
                 ]);
 
                 Payment::create([
                     'user_id' => $user_id,
+                    'date_time' => $date_time,
+                    'is_proved' => $is_proved,
+                    'proved_by' => $proved_by,
                     'payment' => $request['payment'],
                     'loan_payment'=> $request['loan_payment'],
                     'description' => $request['description'],
-                    'date_time' => $request['date_time'],
-                    'is_proved' => $request['is_proved'],
-                    'proved_by' => $proved_by,
                 ]);
                 break;
 

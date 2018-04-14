@@ -58,47 +58,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ پرداخت</label>
-                            <div class="col-md-4">
-                                <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
-
-                                @if ($errors->has('date_time'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('date_time') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('is_proved') ? ' has-error' : '' }}">
-                            <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
-                            <div class="col-md-4">
-                                <label class="radio-inline"><input type="radio" name="is_proved" value="0"
-                                                                   @if (Auth::User()->is_super_admin==0)
-                                                                   checked
-                                            @endif>خیر</label>
-                                <label class="radio-inline"><input type="radio" name="is_proved" value="1"
-                                                                   @if(Auth::User()->is_super_admin==0)
-                                                                   disabled
-                                                                   @else
-                                                                   checked
-                                            @endif>بله</label>
-
-                                @if ($errors->has('is_proved'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('is_proved') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div>
                                 <button name="online_payment" value="0" type="submit" class="btn btn-primary">
                                     ثبت پرداخت
                                 </button>
-                                <link rel="stylesheet" href="/css/bootstrap.min.css">
 
                                 <button name="online_payment" value="1" type="submit" class="btn btn-success" disabled="">
                                     <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -148,19 +112,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('date_time') ? ' has-error' : '' }}">
-                            <label for="date_time" class="control-label">:تاریخ درخواست</label>
-                            <div class="col-md-4">
-                                <input id="date_time" type="text" class="form-control" name="date_time" value="{{ verta()->formatdate() }}" required autofocus>
-
-                                @if ($errors->has('date_time'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('date_time') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('force') ? ' has-error' : '' }}">
                             <label for="force" class="control-label">:نوع قرض الحسنه</label>
                             <div class="col-md-4">
@@ -170,28 +121,6 @@
                                 @if ($errors->has('force'))
                                     <span class="help-block">
                                 <strong>{{ $errors->first('force') }}</strong>
-                            </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('is_proved') ? ' has-error' : '' }}">
-                            <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
-                            <div class="col-md-4">
-                                <label class="radio-inline"><input type="radio" name="is_proved" value="0"
-                                                                   @if (Auth::User()->is_super_admin==0)
-                                                                   checked
-                                            @endif>خیر</label>
-                                <label class="radio-inline"><input type="radio" name="is_proved" value="1"
-                                                                   @if(Auth::User()->is_super_admin==0)
-                                                                   disabled
-                                                                   @else
-                                                                   checked
-                                            @endif>بله</label>
-
-                                @if ($errors->has('is_proved'))
-                                    <span class="help-block">
-                                <strong>{{ $errors->first('is_proved') }}</strong>
                             </span>
                                 @endif
                             </div>
@@ -221,16 +150,16 @@
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">افزایش سرمایه</th>
-                            <th class="text-center">پرداخت اقساط</th>
-                            <th class="text-center">آخرین قرض الحسنه</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
+                            <th class="text-center">مبلغ آخرین قرض الحسنه</th>
+                            <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">بدهی</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
                             <th class="text-center">{{$summary->payments}}</th>
-                            <th class="text-center">{{$summary->loan_payments}}</th>
+                            <th class="text-center">{{$summary->loans}}</th>
                             <th class="text-center">
                                 @if($summary->loans-$summary->loan_payments==0)
                                     تسویه شده
@@ -238,7 +167,7 @@
                                     {{$summary->loan}}
                                 @endif
                             </th>
-                            <th class="text-center">{{$summary->loans}}</th>
+                            <th class="text-center">{{$summary->loan_payments}}</th>
                             <th class="text-center">{{$summary->loans-$summary->loan_payments}}</th>
                         </tr>
                         </tbody>
@@ -304,7 +233,7 @@
                                     @if ($loan->force==0)
                                         عادی
                                     @else
-                                        <span class="text-danger" >فوری</span>
+                                        <span class="text-danger" >ضروری</span>
                                     @endif
                                 </th>
 

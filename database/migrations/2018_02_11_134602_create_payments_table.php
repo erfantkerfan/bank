@@ -21,8 +21,8 @@ class CreatePaymentsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onupdate('cascade');
-            $table->unsignedInteger('payment');
-            $table->unsignedInteger('loan_payment')->nullable();
+            $table->BigInteger('payment');
+            $table->BigInteger('loan_payment')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('date_time');
             $table->boolean('is_proved')->default('0');

@@ -21,15 +21,10 @@
             height: 100%;
             margin: 0;
         }
-        /*TODO background*/
+
         .bg {
-            /* The image used */
             background-image: url("/img/bg.png");
-
-            /* Full height */
             height: 100%;
-
-            /* Center and scale the image nicely */
             background-position: center;
             background-repeat: repeat-y;
             background-size: cover;
@@ -39,7 +34,7 @@
 </head>
 <body style="font-family:'Font'" class="bg">
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top ">
+        <nav class="navbar navbar-inverse navbar-static-top ">
             <div class="container">
                 <div class="navbar-header">
 
@@ -69,7 +64,10 @@
                             <li><a href="{{ route('login') }}">ورود</a></li>
                         @else
                             @if (Auth::user()->is_admin==1)
-                                <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >دانلود دیتابیس</a></li>
+                                <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
+                                        <span class="glyphicon glyphicon-hdd"></span>
+                                        دانلود دیتابیس
+                                    </a></li>
 
                                 <li><a href="{{ route('register') }}">ثبت نام</a></li>
                                 <li><a href="{{ route('notification') }}">اعلان ها</a></li>
@@ -104,7 +102,7 @@
                                 <ul class="dropdown-menu">
                                     <li class="text-center">
 
-                                            <a href="#">{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</a>
+                                        <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</a>
 
                                         <a href="#"><img src="/img/ip.png" height="25">{{Request::getClientIp()}}</a>
 

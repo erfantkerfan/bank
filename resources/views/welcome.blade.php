@@ -18,7 +18,6 @@
                 font-family:'Font';
                 src: url( {{asset('fonts/'.config('app.font'))}} );
             }
-
             .footer {
                 position: fixed;
                 left: 0;
@@ -28,21 +27,16 @@
                 color: white;
                 text-align: center;
             }
-
-
             .flex-center {
                 align-items: center;
                 display: flex;
                 justify-content: center;
             }
-
             .top-right {
                 position: absolute;
                 right: 10px;
                 top: 18px;
             }
-
-
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
@@ -51,26 +45,14 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
             }
-            .bg {
-                /* The image used */
-                background-image: url("/img/bg.png");
-
-                /* Full height */
-                height: 100%;
-
-                /* Center and scale the image nicely */
-                background-position: center;
-                background-repeat: repeat-y;
-                background-size: cover;
+            .title {
+                font-size: 84px;
             }
 
-            /*.m-b-md {*/
-                /*margin-bottom: 30px;*/
-            /*}*/
         </style>
     </head>
     <body style="font-family:'Font'">
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -82,9 +64,9 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title">
                     <h2>
-                        صندوق قرض الحسنه قائم
+                        (صندوق قرض الحسنه حضرت قائم (عج
                         <br>
                         <br>
                     </h2>
@@ -128,7 +110,7 @@
                 <a  href="http://t.me/er_gholizade" style="text-decoration:none">
                     © عرفان قلی زاده
                 </a>
-                2017
+                1397
             </strong>
         </footer>
 

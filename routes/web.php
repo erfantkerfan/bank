@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//ToDo add cron job to server
+//ToDo add cron job to server & storage:link
 
 Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
 Route::Post('/login','Auth\LoginController@login');

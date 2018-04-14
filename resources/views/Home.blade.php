@@ -22,7 +22,7 @@
                         <div class="form-group{{ $errors->has('payment') ? ' has-error' : '' }}">
                             <label for="payment" class="control-label">:افزایش سرمایه</label>
                             <div class="col-md-4">
-                                <input id="payment" type="text" class="form-control" name="payment" value="{{ old('payment') }}" placeholder="مبلغ به ریال" required autofocus>
+                                <input id="payment" type="text" class="form-control" name="payment" value="{{ old('payment') }}" placeholder="صفر یا مبلغ به ریال" required autofocus>
 
                                 @if ($errors->has('payment'))
                                     <span class="help-block">
@@ -162,10 +162,10 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('force') ? ' has-error' : '' }}">
-                            <label for="force" class="control-label">:قرض الحسنه ضروری</label>
+                            <label for="force" class="control-label">:نوع قرض الحسنه</label>
                             <div class="col-md-4">
-                                <label class="radio-inline"><input type="radio" name="force" value="0" checked>خیر</label>
-                                <label class="radio-inline"><input type="radio" name="force" value="1">بله</label>
+                                <label class="radio-inline"><input type="radio" name="force" value="0" checked>عادی</label>
+                                <label class="radio-inline"><input type="radio" name="force" value="1">ضروری</label>
 
                                 @if ($errors->has('force'))
                                     <span class="help-block">
@@ -223,7 +223,7 @@
                             <th class="text-center">افزایش سرمایه</th>
                             <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">آخرین قرض الحسنه</th>
-                            <th class="text-center">قرض الحسنه دریافتی</th>
+                            <th class="text-center">کل قرض الحسنه دریافتی</th>
                             <th class="text-center">بدهی</th>
                         </tr>
                         </thead>
@@ -231,7 +231,13 @@
                         <tr class="bg-warning">
                             <th class="text-center">{{$summary->payments}}</th>
                             <th class="text-center">{{$summary->loan_payments}}</th>
-                            <th class="text-center">{{$summary->loan}}</th>
+                            <th class="text-center">
+                                @if($summary->loans-$summary->loan_payments==0)
+                                    تسویه شده
+                                @else
+                                    {{$summary->loan}}
+                                @endif
+                            </th>
                             <th class="text-center">{{$summary->loans}}</th>
                             <th class="text-center">{{$summary->loans-$summary->loan_payments}}</th>
                         </tr>

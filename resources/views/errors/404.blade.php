@@ -73,21 +73,15 @@
 <div class="flex-center position-ref full-height">
     @if (Route::has('login'))
         <div class="top-right links">
-            @auth
-                <a href="{{ url('/home') }}">{{Auth::user()->username}}</a>
-            @else
-                <a href="{{ route('login') }}">ورود</a>
-            @endauth
+                <a href="{{ url('/home') }}">بازگشت</a>
         </div>
     @endif
 
     <div class="content">
         <div class="title m-b-md">
-            {{Auth::user()->name}}
-            <br>
-            شما دسترسی به این بخش را ندارید
+            این صفحه وجود ندارد
         </div>
-        <div class="number font-red"> 500 </div>
+        <div class="number font-red"> 404 </div>
     </div>
 
 </div>

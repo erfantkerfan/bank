@@ -74,7 +74,7 @@
             </div>
         </div>
         <div class="container">
-            <div class="col-lg-7">
+            <div class="col-md-7 col-sm-7">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -107,8 +107,9 @@
         <footer class="footer">
             <strong>
                 طراحی توسط
+                <span class="glyphicon glyphicon-copyright-mark"></span>
                 <a  href="http://t.me/er_gholizade" style="text-decoration:none">
-                    © عرفان قلی زاده
+                    عرفان قلی زاده
                 </a>
                 1397
             </strong>

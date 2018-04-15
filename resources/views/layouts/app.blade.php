@@ -66,7 +66,7 @@
                         @else
                             @if (Auth::user()->is_admin==1)
                                 <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
-                                        <span class="glyphicon glyphicon-hdd"></span>
+                                        <span class="glyphicon glyphicon-download-alt"></span>
                                         دانلود دیتابیس
                                     </a></li>
 
@@ -113,12 +113,12 @@
 
                                         <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</a>
 
-                                        <a href="#"><img src="/img/ip.png" height="25">{{Request::getClientIp()}}</a>
+                                        <a href="#"><span class="glyphicon glyphicon-map-marker"></span>{{Request::getClientIp()}}</a>
 
                                         <a style="color: red" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
-                                            <img src="/img/exit.png" height="23">
+                                            <span class="glyphicon glyphicon-log-out"></span>
                                             خروج
                                                 </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -149,7 +149,7 @@
                             <label for="instalment" class="col-md-4 control-label">مبلغ اقساط</label>
 
                             <div class="col-md-6">
-                                <textarea id="instalment" class="form-control" name="instalment" >{{ $user->instalment }}</textarea>
+                                <input id="instalment" type="text" class="form-control" name="instalment" value=" {{ $user->instalment }}" >
 
                                 @if ($errors->has('instalment'))
                                     <span class="help-block">

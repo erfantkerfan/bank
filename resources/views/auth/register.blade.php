@@ -148,7 +148,8 @@
                             <label for="instalment" class="col-md-4 control-label">مبلغ هر قسط</label>
 
                             <div class="col-md-6">
-                                <textarea id="instalment" class="form-control" name="instalment" autofocus placeholder="مبلغ قسط یا خالی" >{{ old('instalment') }}</textarea>
+                                <input id="instalment" class="form-control" type="text" name="instalment" autofocus placeholder="مبلغ قسط یا خالی"
+                                       value="{{ old('instalment') }}">
 
                                 @if ($errors->has('instalment'))
                                     <span class="help-block">
@@ -159,7 +160,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
-                            <label for="is_admin" class="col-md-4 control-label">دسترسی مدیریتی</label>
+                            <label for="is_admin" class="col-md-4 control-label">دسترسی بازرس</label>
                             <div class="col-md-6">
                                 <label class="radio-inline"><input type="radio" name="is_admin" value="0" checked>خیر</label>
                                 <label class="radio-inline"><input type="radio" name="is_admin" value="1" onclick="return confirm('از دادن سطح مدیریتی اطمینان دارید؟')" >بله</label>
@@ -173,7 +174,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('is_super_admin') ? ' has-error' : '' }}">
-                            <label for="is_super_admin" class="col-md-4 control-label">دسترسی مدیریتی سطح بالا</label>
+                            <label for="is_super_admin" class="col-md-4 control-label">دسترسی مدیریتی</label>
                             <div class="col-md-6">
                                 <label class="radio-inline"><input type="radio" name="is_super_admin" value="0" checked>خیر</label>
                                 <label class="radio-inline"><input type="radio" name="is_super_admin" value="1" onclick="return confirm('از دادن سطح مدیریتی اطمینان دارید؟')" >بله</label>

@@ -55,7 +55,8 @@
                                 <th class="text-center">
                                     <a onclick="return confirm('از پاک کردن این اعلان اطمینان دارید؟')"
                                        href="{{route('notification_delete',['id' => $notification->id])}}">
-                                        <img src="/img/delete.png" alt="DELETE" height="6%"></a>
+                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                    </a>
                                 </th>
                             </tr>
                         @endforeach

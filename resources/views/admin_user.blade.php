@@ -4,13 +4,27 @@
 
     <div class="container text-center">
 
-        @if (!is_null($user->note))
-            <div class="alert alert-info alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                پیام مدیر برای شما:
-                <strong> {{$user->note}} </strong>
-            </div>
-        @endif
+        <div class="col-md-12">
+            @if (!is_null($user->note))
+                <div class="alert alert-info alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                        <span class="glyphicon glyphicon-remove-sign"></span>
+                    </a>
+                    پیام مدیر برای شما:
+                    <strong> {{$user->note}} </strong>
+                </div>
+            @endif
+
+            @if (!is_null($user->instalment))
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                        <span class="glyphicon glyphicon-remove-sign"></span>
+                    </a>
+                    مبلغ اقساط قابل پرداخت:
+                    <strong> {{$user->instalment}} </strong>
+                </div>
+            @endif
+        </div>
 
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -224,7 +238,7 @@
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">تاریخ</th>
-                            <th class="text-center">افزایش سرمایه</th>
+                            <th class="text-center">سرمایه</th>
                             <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">آخرین تایید توسط</th>
@@ -247,7 +261,7 @@
                                 <th class="text-center">
                                     <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
                                        onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
-                                        <img src="/img/delete.png" alt="DELETE" height="7%">
+                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                     </a>
                                 </th>
                             </tr>
@@ -296,8 +310,7 @@
                                 <th class="text-center">
                                     <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
                                        onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
-                                        <img src="/img/delete.png" alt="DELETE" height="7%">
-
+                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                     </a>
                                 </th>
                             </tr>

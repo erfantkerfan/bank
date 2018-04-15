@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class payment extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'user_id','payment','loan_payment','description','date_time','is_proved','proved_by'

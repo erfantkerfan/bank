@@ -20,7 +20,8 @@ class PaymentController extends Controller
 
     public function delete($id)
     {
-        Payment::destroy($id);
+        $payment = Payment::FindOrFail($id);
+        $payment -> delete();
         return redirect()->back();
     }
 

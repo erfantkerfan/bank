@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Loan;
 
+
 class LoanController extends Controller
 {
     public function confirm($id)
@@ -19,7 +20,8 @@ class LoanController extends Controller
 
     public function delete($id)
     {
-        Loan::destroy($id);
+        $loan = Loan::FindOrFail($id);
+        $loan -> delete();
         return redirect()->back();
     }
 

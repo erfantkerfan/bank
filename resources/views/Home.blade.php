@@ -4,21 +4,27 @@
 
     <div class="container text-center">
 
-        @if (!is_null(Auth::User()->note))
-        <div class="alert alert-info alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-             پیام مدیر برای شما:
-            <strong> {{Auth::User()->note}} </strong>
-        </div>
-        @endif
+        <div class="col-md-12">
+            @if (!is_null(Auth::User()->note))
+            <div class="alert alert-info alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                </a>
+                 پیام مدیر برای شما:
+                <strong> {{Auth::User()->note}} </strong>
+            </div>
+            @endif
 
-        @if (!is_null(Auth::User()->instalment))
-        <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-             مبلغ اقساط قابل پرداخت:
-            <strong> {{Auth::User()->instalment}} </strong>
+            @if (!is_null(Auth::User()->instalment))
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                    <span class="glyphicon glyphicon-remove-sign"></span>
+                </a>
+                 مبلغ اقساط قابل پرداخت:
+                <strong> {{Auth::User()->instalment}} </strong>
+            </div>
+            @endif
         </div>
-        @endif
 
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -157,7 +163,7 @@
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">افزایش سرمایه</th>
+                            <th class="text-center">سرمایه</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
                             <th class="text-center">مبلغ آخرین قرض الحسنه</th>
                             <th class="text-center">بدهی</th>

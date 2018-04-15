@@ -58,10 +58,10 @@
                                 <th class="text-center">نام و نام خانوادگی</th>
                                 <th class="text-center">نام کاربری</th>
                                 <th class="text-center">شماره حساب</th>
+                                <th class="text-center">ارتباط با کاربر دیگر</th>
                                 <th class="text-center">دسترسی بازرسی</th>
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">اصلاح کاربر</th>
-                                <th class="text-center">ارتباط با کاربر دیگر</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -70,28 +70,29 @@
                                     <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->name}}</a></th>
                                     <th class="text-center">{{$user->username}}</th>
                                     <th class="text-center">{{$user->acc_id}}</th>
+                                    <th class="text-center">{{$user->relation}}</th>
                                     <th class="text-center">
                                         @if ($user->is_admin==0)
-                                            <img src="/img/0.png" alt="NO">
+                                            <span class="glyphicon glyphicon-remove" style="color:red"></span>
                                         @elseif ($user->is_admin==1)
-                                            <img src="/img/1.png" alt="Yes">
+                                            <span class="glyphicon glyphicon-ok" style="color:green"></span>
                                         @endif
                                     </th>
                                     <th class="text-center">
                                         @if ($user->is_super_admin==0)
-                                            <img src="/img/0.png" alt="NO">
+                                            <span class="glyphicon glyphicon-remove" style="color:red"></span>
                                         @elseif ($user->is_super_admin==1)
-                                            <img src="/img/1.png" alt="Yes">
+                                            <span class="glyphicon glyphicon-ok" style="color:green"></span>
                                         @endif
                                     </th>
 
                                     <th class="text-center">
-
-                                    <a href="{{route('user_edit',['id' => $user->id])}}">
-                                    <img src="/img/user-edit.png" alt="key"></a>
+                                        <a href="{{route('user_edit',['id' => $user->id])}}">
+                                            <button type="button" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-cog"></span>
+                                             </button>
+                                        </a>
                                     </th>
-
-                                    <th class="text-center">{{$user->relation}}</th>
                                 </tr>
                             @endforeach
                             </tbody>

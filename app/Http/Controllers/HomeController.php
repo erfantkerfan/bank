@@ -20,10 +20,4 @@ class HomeController extends Controller
         $summary = Auth::user()->summary();
         return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary]);
     }
-
-    public function delete($id)
-    {
-        Transaction::delete($id);
-        return redirect()->back();
-    }
 }

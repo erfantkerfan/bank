@@ -207,7 +207,7 @@
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">افزایش سرمایه</th>
+                            <th class="text-center">سرمایه</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
                             <th class="text-center">مبلغ آخرین قرض الحسنه</th>
                             <th class="text-center">بدهی</th>
@@ -238,7 +238,7 @@
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">تاریخ</th>
-                            <th class="text-center">سرمایه</th>
+                            <th class="text-center">افزایش سرمایه</th>
                             <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">آخرین تایید توسط</th>

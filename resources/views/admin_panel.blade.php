@@ -12,7 +12,7 @@
                             <thead>
                                 <tr class="bg-info">
                                     <th class="text-center">افزایش سرمایه تایید شده</th>
-                                    <th class="text-center">پرداخت اقسط تایید شده</th>
+                                    <th class="text-center">اقساط پرداختی تایید شده</th>
                                     <th class="text-center">قرض الحسنه های تایید شده</th>
                                     <th class="text-center">بدهی به صندوق تایید شده</th>
                                 </tr>
@@ -28,7 +28,7 @@
                             <thead>
                             <tr class="bg-info">
                                 <th class="text-center">افزایش سرمایه تایید نشده</th>
-                                <th class="text-center">پرداخت اقسط تایید نشده</th>
+                                <th class="text-center">اقساط پرداختی تایید نشده</th>
                                 <th class="text-center">قرض الحسنه های تاییده نشده</th>
                                 <th class="text-center">بدهی به صندوق تایید نشده</th>
                             </tr>

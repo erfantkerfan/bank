@@ -15,7 +15,7 @@
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control" name="username" value="{{ $user->username }}"
-                                       required autofocus placeholder="Erfan_Gholizade  از نام کاربری انگلیسی استفاده شود مانند">
+                                       required autofocus>
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">
@@ -30,7 +30,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}"
-                                       required autofocus placeholder="عرفان قلی زاده">
+                                       required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
                                 <input id="acc_id" type="text" class="form-control" name="acc_id" value="{{ $user->acc_id }}"
-                                       required autofocus placeholder="12345">
+                                       required autofocus>
 
                                 @if ($errors->has('acc_id'))
                                     <span class="help-block">
@@ -60,7 +60,7 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}"
-                                       required autofocus placeholder="erfantkerfan@yahoo.com">
+                                       required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -75,7 +75,7 @@
 
                             <div class="col-md-6">
                                 <input id="phone_number" type="text" class="form-control" name="phone_number" value="{{ $user->phone_number }}"
-                                       required autofocus placeholder="09125555555">
+                                       required autofocus>
 
                                 @if ($errors->has('phone_number'))
                                     <span class="help-block">
@@ -86,11 +86,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('faculty_number') ? ' has-error' : '' }}">
-                            <label for="faculty_number" class="col-md-4 control-label">شماره داخلی دانشگاه</label>
+                            <label for="faculty_number" class="col-md-4 control-label">شماره داخلی یا محل کار</label>
 
                             <div class="col-md-6">
                                 <input id="faculty_number" type="text" class="form-control" name="faculty_number" value="{{ $user->faculty_number }}"
-                                       autofocus placeholder="73932344">
+                                       autofocus>
 
                                 @if ($errors->has('faculty_number'))
                                     <span class="help-block">
@@ -105,7 +105,7 @@
 
                             <div class="col-md-6">
                                 <input id="home_number" type="text" class="form-control" name="home_number" value="{{ $user->home_number }}"
-                                       autofocus placeholder="02155555555">
+                                       autofocus>
 
                                 @if ($errors->has('home_number'))
                                     <span class="help-block">
@@ -120,7 +120,7 @@
 
                             <div class="col-md-6">
                                 <input id="relation" type="text" class="form-control" name="relation" value="{{ $user->relation }}"
-                                       autofocus placeholder="پسر عرفان قلی زاده">
+                                       autofocus>
 
                                 @if ($errors->has('relation'))
                                     <span class="help-block">
@@ -135,7 +135,7 @@
 
                             <div class="col-md-6">
                                 <textarea id="note" class="form-control" name="note"
-                                          autofocus placeholder="متن برای مشاهده کاربر">{{ $user->note }}</textarea>
+                                          autofocus>{{ $user->note }}</textarea>
 
                                 @if ($errors->has('note'))
                                     <span class="help-block">
@@ -192,7 +192,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password"
-                                       autofocus placeholder="قابلیت بازیابی ندارد و فقط توسط مدیران تجدید میشود">
+                                       autofocus>
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

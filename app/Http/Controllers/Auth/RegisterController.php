@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'email' => 'nullable|string|email|max:255',
             'relation' => 'nullable|string',
             'note' => 'Nullable|string',
+            'instalment' => 'nullable|integer'
         ]);
     }
 
@@ -99,7 +100,8 @@ class RegisterController extends Controller
             'faculty_number' => $data['faculty_number'],
             'home_number' => $data['home_number'],
             'relation' => $data['relation'],
-            'note' => $data['note']
+            'note' => $data['note'],
+            'instalment' => $data['instalment']
         ]);
     }
 }

@@ -27,6 +27,8 @@ Route::Post('/user/register','Auth\RegisterController@register')                
 
 Route::get('/user/edit/{id}','UserController@edit')->name('user_edit')                                 ->middleware('SuperAdminAuth');
 Route::Post('/user/edit/{id}','UserController@user_edit')                                              ->middleware('SuperAdminAuth');
+Route::get('/user/instalment','UserController@instalments')->name('instalment')                                             ->middleware('SuperAdminAuth');
+Route::get('/user/instalment/{id}','UserController@delete_instalment')->name('delete_instalment')     ->middleware('SuperAdminAuth');
 
 Route::get('/home', 'HomeController@index')->name('home')                                              ->middleware('auth');
 Route::post('/payment/create', 'PaymentController@create')->name('payment_create')                     ->middleware('auth');
@@ -44,4 +46,4 @@ Route::get('/payment/delete/{id}', 'PaymentController@delete')->name('payment_de
 Route::get('/payment/confirm/{id}', 'PaymentController@confirm')->name('payment_confirm')              ->middleware('SuperAdminAuth');
 Route::get('/notification', 'NotificationController@index')->name('notification')                      ->middleware('AdminAuth');
 Route::get('/notification/delete/{id}', 'NotificationController@delete')->name('notification_delete')  ->middleware('SuperAdminAuth');
-Route::post('/notification/create', 'NotificationController@create')->name('notification_create')       ->middleware('SuperAdminAuth');
+Route::post('/notification/create', 'NotificationController@create')->name('notification_create')      ->middleware('SuperAdminAuth');

@@ -81,12 +81,20 @@
                                     </a>
                                 </li>
 
+                                <li><a href="{{ route('instalment') }}">
+                                        <div class="badge">
+                                            {{ App\User::where('instalment','!=',null)->count() }}
+                                        </div>
+                                        اقساط فعال
+                                    </a>
+                                </li>
+
                                 <li><a href="{{ route('not_proved') }}">
                                         <div class="badge">
                                             {{App\Payment::where('is_proved','=','0')->count('payment')
                                             +App\Loan::where('is_proved','=','0')->count('Loan')}}
                                         </div>
-                                        تایید تراکنش ها
+                                        تایید تراکنش
                                     </a>
                                 </li>
 

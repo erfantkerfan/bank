@@ -196,7 +196,6 @@
                             <th class="text-center">افزایش سرمایه</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
                             <th class="text-center">مبلغ آخرین قرض الحسنه</th>
-                            <th class="text-center">پرداخت اقساط</th>
                             <th class="text-center">بدهی</th>
                         </tr>
                         </thead>
@@ -211,7 +210,6 @@
                                     {{$summary->loan}}
                                 @endif
                             </th>
-                            <th class="text-center">{{$summary->loan_payments}}</th>
                             <th class="text-center">{{$summary->loans-$summary->loan_payments}}</th>
                         </tr>
                         </tbody>

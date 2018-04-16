@@ -145,6 +145,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('instalment') ? ' has-error' : '' }}">
+                            <label for="instalment" class="col-md-4 control-label">مبلغ اقساط</label>
+
+                            <div class="col-md-6">
+                                <textarea id="instalment" class="form-control" name="instalment" >{{ $user->instalment }}</textarea>
+
+                                @if ($errors->has('instalment'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('instalment') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('is_admin') ? ' has-error' : '' }}">
                             <label for="is_admin" class="col-md-4 control-label">دسترسی بازرس</label>
                             <div class="col-md-6">

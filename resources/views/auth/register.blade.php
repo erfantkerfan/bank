@@ -3,7 +3,7 @@
 @section('content')
 <div class="container text-center">
     <div class="row">
-        <div class="col-md-7 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">ثبت نام</div>
                 <div class="panel-body bg-success">
@@ -139,6 +139,20 @@
                                 @if ($errors->has('note'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('note') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('instalment') ? ' has-error' : '' }}">
+                            <label for="instalment" class="col-md-4 control-label">مبلغ هر قسط</label>
+
+                            <div class="col-md-6">
+                                <textarea id="instalment" class="form-control" name="instalment" autofocus placeholder="مبلغ قسط یا خالی" >{{ old('instalment') }}</textarea>
+
+                                @if ($errors->has('instalment'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('instalment') }}</strong>
                                     </span>
                                 @endif
                             </div>

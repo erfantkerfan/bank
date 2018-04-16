@@ -17,6 +17,20 @@ class UserController extends Controller
         return view('user_edit')->with(['user' => $user]);
     }
 
+    public function instalments()
+    {
+        $users = User::where('instalment', '!=', null)->paginate(30);
+        return view('instalments')->with('users',$users);
+    }
+
+    public function delete_instalment($id)
+    {
+        $user = User::FindOrFail($id);
+        $user->instalment = null;
+        $user->save();
+        return redirect()->back();
+    }
+
     public function user_edit($id , request $request)
     {
         $this->Validate($request,[
@@ -32,6 +46,7 @@ class UserController extends Controller
             'email' => 'nullable|string|email|max:255',
             'relation' => 'nullable|string',
             'note' => 'nullable|string',
+            'instalment' => 'nullable|integer'
         ]);
 
         $data = User::FindOrFail($id);
@@ -50,6 +65,7 @@ class UserController extends Controller
         $data->relation = $request['relation'];
         $data->email = $request['email'];
         $data->note = $request['note'];
+        $data->instalment = $request['instalment'];
 
         $data->save();
 

@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username','password','acc_id','is_admin','is_super_admin','phone_number','faculty_number','home_number',
-        'name','email','relation','note'
+        'name','email','relation','note','instalment'
     ];
 
     /**
@@ -62,5 +62,4 @@ class User extends Authenticatable
 
         return $summary;
     }
-
 }

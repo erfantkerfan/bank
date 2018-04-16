@@ -15,7 +15,7 @@
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control" name="username" value="{{ old('username') }}"
-                                       required autofocus placeholder="از نام کاربری انگلیسی استفاده شود شامل حروف، اعداد و زیرخط">
+                                       required autofocus placeholder="نام کاربری انگلیسی شامل حروف، اعداد و زیرخط">
 
                                 @if ($errors->has('username'))
                                     <span class="help-block">

@@ -39,20 +39,30 @@ class UserController extends Controller
             'acc_id'=> ['required','integer',Rule::unique('users')->ignore($id)],
             'is_admin' => 'required|boolean',
             'is_super_admin' => 'required|boolean',
-            'name' => ['required','string','max:225',Rule::unique('users')->ignore($id)],
+            'f_name' => 'required','string','max:225',
+            'l_name' => 'required','string','max:225',
             'phone_number' => 'required|digits:11',
             'faculty_number' => 'nullable|integer',
             'home_number' => 'nullable|integer',
             'email' => 'nullable|string|email|max:255',
             'relation' => 'nullable|string',
             'note' => 'nullable|string',
-            'instalment' => 'nullable|integer'
+            'user_note' => 'nullable|string',
+            'instalment' => 'nullable|integer',
+            'instalment_force' => 'nullable|integer',
+            'period' => 'nullable|string',
+            'period_force' => 'nullable|string',
+            'loan_row' => 'nullable|string',
+            'loan_row_force' => 'nullable|string',
+            'Cheque' => 'nullable|string',
+            'Cheque_force' => 'nullable|string',
         ]);
 
         $data = User::FindOrFail($id);
 
         $data->username = $request['username'];
-        $data->name = $request['name'];
+        $data->f_name = $request['f_name'];
+        $data->l_name = $request['l_name'];
         $data->acc_id = $request['acc_id'];
         if (isset($request->password)){
             $data->password = bcrypt($request['password']);
@@ -65,7 +75,15 @@ class UserController extends Controller
         $data->relation = $request['relation'];
         $data->email = $request['email'];
         $data->note = $request['note'];
+        $data->user_note = $request['user_note'];
         $data->instalment = $request['instalment'];
+        $data->instalment_force = $request['instalment_force'];
+        $data->period = $request['period'];
+        $data->period_force = $request['period_force'];
+        $data->loan_row = $request['loan_row'];
+        $data->loan_row_force = $request['loan_row_force'];
+        $data->Cheque = $request['Cheque'];
+        $data->Cheque_force = $request['Cheque_force'];
 
         $data->save();
 

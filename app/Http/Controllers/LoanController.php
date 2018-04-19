@@ -15,7 +15,7 @@ class LoanController extends Controller
         $loan->proved_by = Auth::User()->name;
         $loan-> save();
 
-        return redirect()->back();
+        return redirect()->route('user_edit',['id'=>$loan->user->id]);
     }
 
     public function delete($id)

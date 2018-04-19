@@ -21,7 +21,7 @@
                             <tbody>
                             @foreach($payments as $payment)
                             <tr class="bg-warning">
-                                <th class="text-center"><a href="{{ route('user',['id'=>$payment->id]) }}">{{$payment->user->name}}</a></th>
+                                <th class="text-center"><a href="{{ route('user',['id'=>$payment->id]) }}">{{$payment->user->f_name." ".$payment->user->l_name}}</a></th>
                                 <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
@@ -54,7 +54,7 @@
                             <tbody>
                             @foreach($loans as $loan)
                             <tr class="bg-warning">
-                                <th class="text-center"><a href="{{ route('user',['id'=>$loan->id]) }}">{{$loan->user->name}}</a></th>
+                                <th class="text-center"><a href="{{ route('user',['id'=>$loan->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">

@@ -17,7 +17,7 @@
                     <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->name}}</a></th>
+                        <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
                         <th class="text-center">{{$user->note}}</th>
 
                         <th class="text-center">

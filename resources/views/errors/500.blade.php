@@ -83,7 +83,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            {{Auth::user()->name}}
+            {{Auth::user()->f_name." ".Auth::user()->L_name}}
             <br>
             شما دسترسی به این بخش را ندارید
         </div>

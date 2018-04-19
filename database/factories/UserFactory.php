@@ -18,7 +18,8 @@ $factory->define(App\User::class, function (Faker $faker) {
 
     return [
         'username' => $faker->unique()->userName,
-        'name' => $faker->unique()->name,
+        'f_name' => $faker->unique()->name,
+        'l_name' => $faker->unique()->name,
         'acc_id' => $faker->randomDigitNotNull.$faker->randomDigitNotNull.$faker->randomDigitNotNull,
         'phone_number' => $faker->randomDigitNotNull.$faker->randomDigitNotNull.$faker->randomDigitNotNull.$faker->randomDigitNotNull.
             $faker->randomDigitNotNull.$faker->randomDigitNotNull.$faker->randomDigitNotNull.$faker->randomDigitNotNull.

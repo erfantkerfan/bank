@@ -19,7 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username','password','acc_id','is_admin','is_super_admin','phone_number','faculty_number','home_number',
-        'name','email','relation','note','instalment'
+        'f_name','l_name','email','relation','note'.'user_note','instalment','instalment_force','period','period_force',
+        'loan_row','loan_row_force','Cheque','Cheque_force'
     ];
 
     /**

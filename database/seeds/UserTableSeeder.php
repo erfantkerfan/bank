@@ -11,7 +11,8 @@ class UserTableSeeder extends Seeder
         // Seeding for not traping outside
         \App\User::create([
             'username' => 'erfan',
-            'name' =>'عرفان قلی زاده',
+            'f_name' =>'عرفان',
+            'l_name' =>'قلی زاده',
             'acc_id' => '10000',
             'phone_number' => '09305551082',
             'email' => 'erfantkerfan@yahoo.com',

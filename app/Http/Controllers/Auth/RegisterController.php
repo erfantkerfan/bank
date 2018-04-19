@@ -76,7 +76,14 @@ class RegisterController extends Controller
             'email' => 'nullable|string|email|max:255',
             'relation' => 'nullable|string',
             'note' => 'Nullable|string',
-            'instalment' => 'nullable|integer'
+            'instalment' => 'nullable|integer',
+            'instalment_force' => 'nullable|integer',
+            'period' => 'nullable|string',
+            'period_force' => 'nullable|string',
+            'loan_row' => 'nullable|string',
+            'loan_row_force' => 'nullable|string',
+            'Cheque' => 'nullable|string',
+            'Cheque_force' => 'nullable|string',
         ]);
     }
 
@@ -101,7 +108,14 @@ class RegisterController extends Controller
             'home_number' => $data['home_number'],
             'relation' => $data['relation'],
             'note' => $data['note'],
-            'instalment' => $data['instalment']
+            'instalment' => $data['instalment'],
+            'instalment_force' => $data['instalment_force'],
+            'period' => $data['period'],
+            'period_force' => $data['period_force'],
+            'loan_row' => $data['loan_row'],
+            'loan_row_force' => $data['loan_row_force'],
+            'Cheque' => $data['Cheque'],
+            'Cheque_force' => $data['Cheque_force'],
         ]);
     }
 }

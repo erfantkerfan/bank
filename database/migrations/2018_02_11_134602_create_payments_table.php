@@ -21,8 +21,10 @@ class CreatePaymentsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onupdate('cascade');
+            $table->BigInteger('static_pay')->nullable();
             $table->BigInteger('payment');
             $table->BigInteger('loan_payment')->nullable();
+            $table->BigInteger('loan_payment_force')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('date_time');
             $table->boolean('is_proved')->default('0');

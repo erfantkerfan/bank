@@ -35,8 +35,8 @@ class CreateUsersTable extends Migration
             $table->string('period_force')->nullable();
             $table->string('loan_row')->nullable();
             $table->string('loan_row_force')->nullable();
-            $table->string('Cheque')->nullable();
-            $table->string('Cheque_force')->nullable();
+            $table->string('cheque')->nullable();
+            $table->string('cheque_force')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -274,15 +274,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('Cheque') ? ' has-error' : '' }}">
-                                <label for="Cheque" class="col-md-4 control-label">شماره چک عادی</label>
+                            <div class="form-group{{ $errors->has('cheque') ? ' has-error' : '' }}">
+                                <label for="cheque" class="col-md-4 control-label">شماره چک عادی</label>
 
                                 <div class="col-md-6">
-                                    <input id="Cheque" type="text" class="form-control" name="Cheque" value=" {{ $user->Cheque }}" >
+                                    <input id="cheque" type="text" class="form-control" name="cheque" value=" {{ $user->cheque }}" >
 
-                                    @if ($errors->has('Cheque'))
+                                    @if ($errors->has('cheque'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('Cheque') }}</strong>
+                                            <strong>{{ $errors->first('cheque') }}</strong>
                                         </span>
                                     @endif
                                 </div>

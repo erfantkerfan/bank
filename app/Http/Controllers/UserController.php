@@ -54,8 +54,8 @@ class UserController extends Controller
             'period_force' => 'nullable|string',
             'loan_row' => 'nullable|string',
             'loan_row_force' => 'nullable|string',
-            'Cheque' => 'nullable|string',
-            'Cheque_force' => 'nullable|string',
+            'cheque' => 'nullable|string',
+            'cheque_force' => 'nullable|string',
         ]);
 
         $data = User::FindOrFail($id);
@@ -82,8 +82,8 @@ class UserController extends Controller
         $data->period_force = $request['period_force'];
         $data->loan_row = $request['loan_row'];
         $data->loan_row_force = $request['loan_row_force'];
-        $data->Cheque = $request['Cheque'];
-        $data->Cheque_force = $request['Cheque_force'];
+        $data->cheque = $request['cheque'];
+        $data->cheque_force = $request['cheque_force'];
 
         $data->save();
 

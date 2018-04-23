@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLoansTable extends Migration
+class CreateExpensesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLoansTable extends Migration
      */
     public function up()
     {
-        Schema::create('loans', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
@@ -21,14 +21,11 @@ class CreateLoansTable extends Migration
                 ->on('users')
                 ->onDelete('cascade')
                 ->onupdate('cascade');
-            $table->BigInteger('loan');
-            $table->string('description')->nullable();
+            $table->BigInteger('expense');
+            $table->string('description');
             $table->dateTime('date_time');
-            $table->boolean('force')->default('0');
-            $table->boolean('is_proved')->default('0');
-            $table->string('proved_by')->nullable();
-            $table->timestamps();
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -39,6 +36,6 @@ class CreateLoansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('expenses');
     }
 }

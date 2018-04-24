@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
              ->timezone('Asia/Tehran')
 //             ->everyMinute()
              ->dailyAt('2:00')
-             ->appendOutputTo(\storage_path('app/public/log.txt'));
+             ->appendOutputTo('/public/log.txt');
     }
 
     /**

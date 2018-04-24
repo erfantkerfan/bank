@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">ثبت نام</div>
+                <div class="panel-heading">ثبت اطلاعات کاربر</div>
                 <div class="panel-body bg-success">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -347,7 +347,7 @@
                         </div>
                         <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
-                                    ثبت نام
+                                    ثبت اطلاعات
                                 </button>
                         </div>
                     </form>

@@ -65,13 +65,24 @@
                             <li><a href="{{ route('login') }}">ورود</a></li>
                         @else
                             @if (Auth::user()->is_admin==1)
-                                <li><a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
-                                        <span class="glyphicon glyphicon-download-alt"></span>
-                                        دانلود دیتابیس
-                                    </a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                        ابزارها <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="text-center">
 
-                                <li><a href="{{ route('register') }}">ثبت نام</a></li>
-                                <li><a href="{{ route('notification') }}">اعلان ها</a></li>
+                                            <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
+
+                                            <a href="{{ route('notification') }}">اعلان ها</a>
+
+                                            <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
+                                                <span class="glyphicon glyphicon-download-alt"></span>
+                                                دانلود دیتابیس
+                                            </a>
+
+                                        </li>
+                                    </ul>
 
                                 <li><a href="{{ route('notes') }}">
                                         <div class="badge">

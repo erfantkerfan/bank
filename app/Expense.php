@@ -13,4 +13,9 @@ class Expense extends Model
     protected $fillable = [
         'user_id','expense','description','date_time',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
 }

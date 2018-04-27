@@ -12,7 +12,7 @@ class LoanController extends Controller
     {
         $loan = Loan::FindOrFail($id);
         $loan->is_proved = 1;
-        $loan->proved_by = Auth::User()->name;
+        $loan->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
         $loan-> save();
 
         return redirect()->route('user_edit',['id'=>$loan->user->id]);
@@ -28,8 +28,8 @@ class LoanController extends Controller
     public function create(request $request)
     {
         $proved_by = null;
-        if ($request->is_proved == 1) {
-            $proved_by = Auth::user()->name;
+        if($request->is_proved==1){
+            $proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
         };
 
         $user_id = basename(url()->previous());

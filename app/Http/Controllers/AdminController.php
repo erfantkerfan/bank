@@ -22,12 +22,13 @@ class AdminController extends Controller
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         $summary = User::FindOrFail($id)->summary();
-        return view('admin_user')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans]);
+        $permission = 1;
+        return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,'permission'=>$permission]);
     }
 
     public function not_proved()
     {
-        $payments = Payment::where('is_proved', '=', '0')->with('user')->get();
+        $payments = Payment::with('user')->where('is_proved', '=', '0')->with('user')->get();
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();
         return view('unproved')->with(['payments'=>$payments, 'loans'=>$loans]);
     }

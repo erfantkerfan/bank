@@ -97,7 +97,8 @@
             <div class="col-lg-5 panel panel-primary text-center">
                 <div class="panel-heading">اعلان های عمومی</div>
                 @forelse (\App\Notification::all() as $notification)
-                    <div class="panel-body">{{ $notification->text }}</div>
+                    <div class="panel-body">{!! nl2br(e($notification->text)) !!}</div>
+                    <hr style="background-color:darkseagreen; height:2px;">
                 @empty
                     <div class="panel-body">اعلانی برای نمایش وجود ندارد</div>
                 @endforelse

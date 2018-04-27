@@ -32,10 +32,31 @@
         }
     </style>
 
+    {{--TODo adding camma with these--}}
+    {{--<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>--}}
+    {{--<script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>--}}
+    {{--<script type='text/javascript'>--}}
+        {{--$(function($) {--}}
+            {{--$('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
+        {{--});--}}
+        {{--$(function($) {--}}
+            {{--$('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
+        {{--});--}}
+        {{--$(function($) {--}}
+            {{--$('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
+        {{--});--}}
+        {{--$(function($) {--}}
+            {{--$('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
+        {{--});--}}
+        {{--$(function($) {--}}
+            {{--$('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
+        {{--});--}}
+    {{--</script>--}}
+
 </head>
 <body style="font-family:'Font'" class="bg">
     <div id="app">
-        <nav class="navbar navbar-inverse navbar-static-top ">
+        <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -72,9 +93,9 @@
                                     <ul class="dropdown-menu">
                                         <li class="text-center">
 
-                                            <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
-
                                             <a href="{{ route('notification') }}">اعلان ها</a>
+
+                                            <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
 
                                             <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
                                                 <span class="glyphicon glyphicon-download-alt"></span>
@@ -86,7 +107,7 @@
 
                                 <li><a href="{{ route('notes') }}">
                                         <div class="badge">
-                                            {{ App\User::where('note','!=',null)->count() }}
+                                            {{App\User::where('note','!=',null)->count()+App\User::where('user_note','!=',null)->count()}}
                                         </div>
                                         یادداشت مدیریت
                                     </a>
@@ -94,7 +115,7 @@
 
                                 <li><a href="{{ route('instalment') }}">
                                         <div class="badge">
-                                            {{ App\User::where('instalment','!=',null)->count() }}
+                                            {{App\User::where('instalment','!=',null)->count()+App\User::where('instalment_force','!=',null)->count()}}
                                         </div>
                                         اقساط فعال
                                     </a>
@@ -102,8 +123,7 @@
 
                                 <li><a href="{{ route('not_proved') }}">
                                         <div class="badge">
-                                            {{App\Payment::where('is_proved','=','0')->count('payment')
-                                            +App\Loan::where('is_proved','=','0')->count('Loan')}}
+                                            {{App\Payment::where('is_proved','=','0')->count()+App\Loan::where('is_proved','=','0')->count()}}
                                         </div>
                                         تایید تراکنش
                                     </a>
@@ -147,7 +167,8 @@
 
         @yield('content')
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+
 </div>
 </body>
 </html>

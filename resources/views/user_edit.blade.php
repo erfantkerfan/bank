@@ -204,7 +204,7 @@
                                 <label for="note" class="col-md-4 control-label">یادداشت مدیریت</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="note" class="form-control" name="note"
+                                    <textarea dir="rtl" style="resize: vertical" id="note" class="form-control" name="note"
                                               autofocus>{{ $user->note }}</textarea>
 
                                     @if ($errors->has('note'))
@@ -219,7 +219,7 @@
                                 <label for="user_note" class="col-md-4 control-label">یادداشت کاربر</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="user_note" class="form-control" name="user_note"
+                                    <textarea dir="rtl" style="resize: vertical" id="user_note" class="form-control" name="user_note"
                                               autofocus>{{ $user->user_note }}</textarea>
 
                                     @if ($errors->has('user_note'))

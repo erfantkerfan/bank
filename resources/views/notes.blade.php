@@ -9,22 +9,25 @@
                 <table class="table table-striped">
                     <thead>
                     <tr class="bg-info">
-                        <th class="col-md-2 text-center">نام کاربر</th>
-                        <th class="text-center">متن یادداشت</th>
-                        <th class="col-md-2 text-center">حذف یادداشت</th>
+                        <th class="text-center">اصلاح کاربر</th>
+                        <th class="text-center">متن یادداشت کاربر</th>
+                        <th class="text-center">متن یادداشت مدیر</th>
+                        <th class="text-center">نام کاربر</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
-                        <th class="text-center">{{$user->note}}</th>
-
                         <th class="text-center">
-                            <a onclick="return confirm('از پاک کردن این یادداشت اطمینان دارید؟')" href="{{route('delete_notes',['id' => $user->id])}}">
-                                <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                            <a href="{{route('user_edit',['id' => $user->id])}}">
+                                <button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-cog" style="color:darkblue"></span>
+                                </button>
                             </a>
                         </th>
+                        <th class="text-center">{{$user->user_note}}</th>
+                        <th class="text-center">{{$user->note}}</th>
+                        <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
                     </tr>
                     @endforeach
                     </tbody>

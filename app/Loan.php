@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class loan extends Model
 {
@@ -22,8 +23,11 @@ class loan extends Model
 
     public static function all_loan_summary()
     {
-        $all_loan_summary['loans_p']= self::where('is_proved','=','1')->sum('loan');
-        $all_loan_summary['loans_np']= self::where('is_proved','=','0')->sum('loan');
+        $all_loan_summary['loans_p']= self::where('is_proved','=','1')->where('force','=','0')->sum('loan');
+        $all_loan_summary['loans_np']= self::where('is_proved','=','0')->where('force','=','0')->sum('loan');
+        $all_loan_summary['loans_force_p']= self::where('is_proved','=','1')->where('force','=','1')->sum('loan');
+        $all_loan_summary['loans_force_np']= self::where('is_proved','=','0')->where('force','=','1')->sum('loan');
+
         $all_loan_summary=(object)$all_loan_summary;
 
         return $all_loan_summary;

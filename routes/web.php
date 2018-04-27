@@ -24,19 +24,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home','HomeController@index')->name('home');
     Route::post('/payment/create','PaymentController@create')->name('payment_create');
     Route::post('/loan/create','LoanController@create')->name('loan_create');
+    Route::post('/user_note','NoteController@user_note')->name('user_note');
     });
 Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/admin','AdminController@index')->name('admin');
     Route::get('/admin/{id}','AdminController@user')->name('user');
     Route::get('/not_proved','AdminController@not_proved')->name('not_proved');
     Route::get('/notes','NoteController@index')->name('notes');
-    Route::get('/notes/delete/{id}','NoteController@delete')->name('delete_notes');
     Route::get('/notification','NotificationController@index')->name('notification');
+    Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');
 });
 Route::middleware(['SuperAdminAuth'])->group(function () {
     Route::get('/user/register','Auth\RegisterController@showRegistrationForm')->name('register');
     Route::Post('/user/register','Auth\RegisterController@register');
-    Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');
     Route::Post('/user/edit/{id}','UserController@user_edit');
     Route::get('/user/instalment','UserController@instalments')->name('instalment');
     Route::get('/user/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');

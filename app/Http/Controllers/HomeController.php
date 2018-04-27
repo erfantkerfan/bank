@@ -18,6 +18,8 @@ class HomeController extends Controller
         $payments = Auth::user()->Payment()->OrderByDesc('date_time')->paginate(12);
         $loans = Auth::user()->Loan()->OrderByDesc('date_time')->paginate(12);
         $summary = Auth::user()->summary();
-        return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary]);
+        $user = Auth::User();
+        $permission = 0;
+        return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,'permission'=>$permission]);
     }
 }

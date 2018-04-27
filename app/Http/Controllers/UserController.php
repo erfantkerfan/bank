@@ -20,7 +20,8 @@ class UserController extends Controller
     public function instalments()
     {
         $users = User::where('instalment', '!=', null)->paginate(30);
-        return view('instalments')->with('users',$users);
+        $users_force = User::where('instalment_force', '!=', null)->paginate(30);
+        return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
     }
 
     public function delete_instalment($id)

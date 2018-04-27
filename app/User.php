@@ -46,20 +46,58 @@ class User extends Authenticatable
     public function summary()
     {
         $summary['payments']= $this->hasMany(Payment::class)
-            ->where('is_proved','=','1')->sum('payment');
-        $summary['loans']= $this->hasMany(Loan::class)
-            ->where('is_proved','=','1')->sum('loan');
-        $summary['loan_payments']= $this->hasMany(Payment::class)
-            ->where('is_proved','=','1')->sum('loan_payment');
-        $summary['loan']= $this->hasMany(Loan::class)
-            ->where('loan','!=',null)
             ->where('is_proved','=','1')
+            ->sum('payment');
+        $summary['payments_cost']= $this->hasMany(Payment::class)
+            ->where('is_proved','=','1')
+            ->sum('payment_cost');
+        $summary['loans_all']= $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->sum('loan');
+        $summary['loan']= $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->where('force','=','0')
             ->latest()->get()->first();
-        
+        $summary['loan_force']= $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
+            ->latest()->get()->first();
+        $summary['debt']=
+            $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->where('force','=','0')
+            ->sum('loan')
+            -
+            $this->hasMany(Payment::class)
+            ->where('is_proved','=','1')
+            ->sum('loan_payment');
+        $summary['debt_force']=
+            $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
+            ->sum('loan')
+            -
+            $this->hasMany(Payment::class)
+            ->where('is_proved','=','1')
+            ->sum('loan_payment_force');
+
         if ($summary['loan'] == null){
             $summary['loan']=0;
         }else{
             $summary['loan'] = $summary['loan']->loan;
+        }
+        if($summary['debt']==0){
+            $summary['loan']='تسویه شده';
+        }
+
+
+        if ($summary['loan_force'] == null){
+            $summary['loan_force']=0;
+        }else{
+            $summary['loan_force'] = $summary['loan_force']->loan;
+        }
+        if($summary['debt_force']==0){
+            $summary['loan_force']='تسویه شده';
         }
 
         $summary=(object)$summary;

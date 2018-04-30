@@ -11,12 +11,12 @@
                         <table class="table">
                             <thead>
                                 <tr class="bg-info">
-                                    <th class="text-center">بدهی کل</th>
+                                    <th class="text-center">کل بدهی</th>
                                     <th class="text-center">بدهی قرض الحسنه ضروری</th>
                                     <th class="text-center">قرض الحسنه ضروری</th>
                                     <th class="text-center">بدهی قرض الحسنه عادی</th>
                                     <th class="text-center">قرض الحسنه عادی</th>
-                                    <th class="text-center">هزینه های پرداختی</th>
+                                    <th class="text-center">باقیمانده هزینه ها</th>
                                     <th class="text-center">افزایش سرمایه</th>
                                 </tr>
                             </thead>
@@ -27,13 +27,13 @@
                                     <th class="text-center">{{$all_loan_summary->loans_force_p}}</th>
                                     <th class="text-center">{{$all_payment_summary->loan_payments_p-$all_loan_summary->loans_p}}</th>
                                     <th class="text-center">{{$all_loan_summary->loans_p}}</th>
-                                    <th class="text-center">{{$all_payment_summary->payments_p}}</th>
+                                    <th class="text-center">{{$all_payment_summary->payments_p-$expenses}}</th>
                                     <th class="text-center">{{$all_payment_summary->payments_cost_p}}</th>
                                 </tr>
                             </tbody>
                             <thead>
                             <tr class="bg-info">
-                                <th class="text-center">بدهی کل</th>
+                                <th class="text-center">کل بدهی</th>
                                 <th class="text-center">بدهی قرض الحسنه ضروری</th>
                                 <th class="text-center">قرض الحسنه ضروری</th>
                                 <th class="text-center">بدهی قرض الحسنه عادی</th>
@@ -43,7 +43,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="bg-warning">
+                            <tr class="bg-danger">
                                 <th class="text-center">{{$all_payment_summary->loan_payments_np-$all_loan_summary->loans_np+$all_payment_summary->loan_payments_force_np-$all_loan_summary->loans_force_np}}</th>
                                 <th class="text-center">{{$all_payment_summary->loan_payments_force_np-$all_loan_summary->loans_force_np}}</th>
                                 <th class="text-center">{{$all_loan_summary->loans_force_np}}</th>

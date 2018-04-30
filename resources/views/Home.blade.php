@@ -3,17 +3,6 @@
 @section('content')
     <div class="container text-center">
         <div class="row">
-            <div class="col-md-4">
-                @if (!is_null($user->instalment))
-                    <div class="alert alert-warning alert-dismissible">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">
-                            <span class="glyphicon glyphicon-remove-sign"></span>
-                        </a>
-                        مبلغ اقساط قابل پرداخت عادی:
-                        <strong> {{$user->instalment}} </strong>
-                    </div>
-                @endif
-            </div>
 
             <div class="col-md-4">
                 @if (!is_null($user->instalment_force))
@@ -21,8 +10,32 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">
                             <span class="glyphicon glyphicon-remove-sign"></span>
                         </a>
-                        مبلغ اقساط قابل پرداخت ضروری:
+                        مبلغ اقساط قابل پرداخت (ضروری):
                         <strong> {{$user->instalment_force}} </strong>
+                        <br>
+                        تاریخ شروع:
+                        <strong> {{$user->start_date_force}} </strong>
+                        <br>
+                        تاریخ پایان:
+                        <strong> {{$user->end_date_force}} </strong>
+                    </div>
+                @endif
+            </div>
+
+            <div class="col-md-4">
+                @if (!is_null($user->instalment))
+                    <div class="alert alert-warning alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                            <span class="glyphicon glyphicon-remove-sign"></span>
+                        </a>
+                        مبلغ اقساط قابل پرداخت (عادی):
+                        <strong> {{$user->instalment}} </strong>
+                        <br>
+                        تاریخ شروع:
+                        <strong> {{$user->start_date}} </strong>
+                        <br>
+                        تاریخ پایان:
+                        <strong> {{$user->end_date}} </strong>
                     </div>
                 @endif
             </div>
@@ -283,10 +296,22 @@
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">سرمایه</th>
                             <th class="text-center">کل پرداخت هزینه صندوق</th>
+                            <th class="text-center">کل بدهی</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
-                            <th class="text-center">بدهی</th>
+                            <th class="text-center">سرمایه</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="bg-warning">
+                            <th class="text-center">{{$summary->payments_cost}}</th>
+                            <th class="text-center">{{$summary->debt_force+$summary->debt}}
+                            <th class="text-center">{{$summary->loans_all}}</th>
+                            <th class="text-center">{{$summary->payments}}</th>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr class="bg-info">
                             <th class="text-center">بدهی قرض الحسنه جاری ضروری</th>
                             <th class="text-center">قرض الحسنه جاری ضروری</th>
                             <th class="text-center">بدهی قرض الحسنه جاری عادی</th>
@@ -295,10 +320,6 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="text-center">{{$summary->payments}}</th>
-                            <th class="text-center">{{$summary->payments_cost}}</th>
-                            <th class="text-center">{{$summary->loans_all}}</th>
-                            <th class="text-center">{{$summary->debt_force+$summary->debt}}</th>
                             <th class="text-center">{{$summary->debt_force}}</th>
                             <th class="text-center">{{$summary->loan_force}}</th>
                             <th class="text-center">{{$summary->debt}}</th>

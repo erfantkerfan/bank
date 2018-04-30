@@ -28,8 +28,26 @@ class UserController extends Controller
     {
         $user = User::FindOrFail($id);
         $user->instalment = null;
+        $user->period = null;
+        $user->loan_row = null;
+        $user->cheque = null;
+        $user->start_date = null;
+        $user->end_date = null;
         $user->save();
-        return redirect()->back();
+        return back();
+    }
+
+    public function delete_instalment_force($id)
+    {
+        $user = User::FindOrFail($id);
+        $user->instalment_force = null;
+        $user->period_force = null;
+        $user->loan_row_force = null;
+        $user->cheque_force = null;
+        $user->start_date_force = null;
+        $user->end_date_force = null;
+        $user->save();
+        return back();
     }
 
     public function user_edit($id , request $request)
@@ -57,6 +75,10 @@ class UserController extends Controller
             'loan_row_force' => 'nullable|string',
             'cheque' => 'nullable|string',
             'cheque_force' => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'end_date' => 'nullable|string',
+            'start_date_force' => 'nullable|string',
+            'end_date_force' => 'nullable|string',
         ]);
 
         $data = User::FindOrFail($id);
@@ -85,6 +107,10 @@ class UserController extends Controller
         $data->loan_row_force = $request['loan_row_force'];
         $data->cheque = $request['cheque'];
         $data->cheque_force = $request['cheque_force'];
+        $data->start_date = $request['start_date'];
+        $data->end_date = $request['end_date'];
+        $data->start_date_force = $request['start_date_force'];
+        $data->end_date_force = $request['end_date_force'];
 
         $data->save();
 

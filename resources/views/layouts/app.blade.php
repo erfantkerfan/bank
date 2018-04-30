@@ -90,22 +90,29 @@
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                         ابزارها <span class="caret"></span>
                                     </a>
-                                    <ul class="dropdown-menu">
-                                        <li class="text-center">
+                                <ul class="dropdown-menu">
 
-                                            <a href="{{ route('notification') }}">اعلان ها</a>
+                                    <li class="text-center">
 
-                                            <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
+                                        <a href="{{ route('notification') }}">اعلان ها</a>
 
-                                            <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
-                                                <span class="glyphicon glyphicon-download-alt"></span>
-                                                دانلود دیتابیس
-                                            </a>
+                                        <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
 
-                                        </li>
-                                    </ul>
+                                        <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
+                                            <span class="glyphicon glyphicon-download-alt"></span>
+                                            دانلود دیتابیس
+                                        </a>
 
-                                <li><a href="{{ route('notes') }}">
+                                    </li>
+                                </ul>
+
+
+                                <li>
+                                    <a href="{{ route('expense') }}">هزینه های صندوق</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ route('notes') }}">
                                         <div class="badge">
                                             {{App\User::where('note','!=',null)->count()+App\User::where('user_note','!=',null)->count()}}
                                         </div>
@@ -113,7 +120,8 @@
                                     </a>
                                 </li>
 
-                                <li><a href="{{ route('instalment') }}">
+                                <li>
+                                    <a href="{{ route('instalment') }}">
                                         <div class="badge">
                                             {{App\User::where('instalment','!=',null)->count()+App\User::where('instalment_force','!=',null)->count()}}
                                         </div>
@@ -121,7 +129,8 @@
                                     </a>
                                 </li>
 
-                                <li><a href="{{ route('not_proved') }}">
+                                <li>
+                                    <a href="{{ route('not_proved') }}">
                                         <div class="badge">
                                             {{App\Payment::where('is_proved','=','0')->count()+App\Loan::where('is_proved','=','0')->count()}}
                                         </div>

@@ -67,7 +67,6 @@ class PaymentController extends Controller
                     'is_proved' => 'nullable|boolean',
                 ]);
 
-                dd($proved_by);
                 Payment::create([
                     'user_id' => $user_id,
                     'date_time' => $date_time,

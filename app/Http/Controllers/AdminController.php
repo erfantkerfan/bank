@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Expense;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Payment;
@@ -13,7 +14,8 @@ class AdminController extends Controller
         $users = User::orderBy('acc_id')->paginate(300);
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
-        return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary]);
+        $expenses = Expense::all()->sum('expense');
+        return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary,'expenses'=>$expenses]);
     }
 
     public function user($id)
@@ -28,7 +30,7 @@ class AdminController extends Controller
 
     public function not_proved()
     {
-        $payments = Payment::with('user')->where('is_proved', '=', '0')->with('user')->get();
+        $payments = Payment::with('user')->where('is_proved', '=', '0')->get();
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();
         return view('unproved')->with(['payments'=>$payments, 'loans'=>$loans]);
     }

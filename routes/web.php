@@ -39,11 +39,15 @@ Route::middleware(['SuperAdminAuth'])->group(function () {
     Route::Post('/user/register','Auth\RegisterController@register');
     Route::Post('/user/edit/{id}','UserController@user_edit');
     Route::get('/user/instalment','UserController@instalments')->name('instalment');
-    Route::get('/user/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');
+    Route::get('/user/delete/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');
+    Route::get('/user/delete/instalment_force/{id}','UserController@delete_instalment_force')->name('delete_instalment_force');
     Route::get('/loan/delete/{id}','LoanController@delete')->name('loan_delete');
     Route::get('/loan/confirm/{id}','LoanController@confirm')->name('loan_confirm');
     Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
     Route::get('/payment/confirm/{id}','PaymentController@confirm')->name('payment_confirm');
     Route::get('/notification/delete/{id}','NotificationController@delete')->name('notification_delete');
     Route::post('/notification/create','NotificationController@create')->name('notification_create');
+    Route::get('/expense','ExpenseController@index')->name('expense');
+    Route::get('/expense/delete/{id}','ExpenseController@delete')->name('expense_delete');
+    Route::post('/expense/create','ExpenseController@create')->name('expense_create');
 });

@@ -2,27 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Expense;
+use App\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
     public function index()
     {
-        return 'index';
+        $expenses = Expense::with('user')->OrderByDesc('date_time')->paginate(20);
+        $expense = Expense::all()->sum('expense');
+        $payments_cost = Payment::where('is_proved','=','1')->sum('payment_cost');
+        return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return 'create';
+
+        $user_id = Auth::User()->id;
+
+        $date_time = verta()->formatdate();
+
+        $this->Validate($request, [
+            'expense' => 'required|integer',
+            'description' => 'nullable|string',
+        ]);
+
+        Expense::create([
+            'user_id' => $user_id,
+            'date_time' => $date_time,
+            'expense' => $request['expense'],
+            'description' => $request['description'],
+        ]);
+
+        return back();
     }
 
-    public function delete()
+    public function delete($id)
     {
-        return 'delete';
-    }
-
-    public function expense()
-    {
-        return 'expense';
+        $expense = Expense::FindOrFail($id);
+        $expense -> delete();
+        return redirect()->back();
     }
 }

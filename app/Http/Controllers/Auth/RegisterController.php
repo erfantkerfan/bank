@@ -84,6 +84,10 @@ class RegisterController extends Controller
             'loan_row_force' => 'nullable|string',
             'Cheque' => 'nullable|string',
             'Cheque_force' => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'end_date' => 'nullable|string',
+            'start_date_force' => 'nullable|string',
+            'end_date_force' => 'nullable|string',
         ]);
     }
 
@@ -116,6 +120,10 @@ class RegisterController extends Controller
             'loan_row_force' => $data['loan_row_force'],
             'Cheque' => $data['Cheque'],
             'Cheque_force' => $data['Cheque_force'],
+            'start_date' => $data['start_date'],
+            'end_date' => $data['end_date'],
+            'start_date_force' => $data['start_date_force'],
+            'end_date_force' => $data['end_date_force'],
         ]);
     }
 }

@@ -10,12 +10,12 @@ class UserTableSeeder extends Seeder
         //ToDo altering for live site
         // Seeding for not traping outside
         \App\User::create([
-            'username' => 'erfan',
-            'f_name' =>'عرفان',
-            'l_name' =>'قلی زاده',
-            'acc_id' => '10000',
-            'phone_number' => '09305551082',
-            'email' => 'erfantkerfan@yahoo.com',
+            'username' => 'Ghoreishi',
+            'f_name' =>'سید حسین',
+            'l_name' =>'قریشی',
+            'acc_id' => '102',
+            'phone_number' => '09126226459',
+            'email' => 'h_ghoreishi@sbu.ac.ir',
             'is_admin' => '1',
             'is_super_admin' => '1',
             'password' => bcrypt('12589'),
@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
 
         //ToDo commenting after going live
         // Seeding User Table for testing app
-        factory(\App\User::class,10)->create();
+//        factory(\App\User::class,10)->create();
 
 
     }

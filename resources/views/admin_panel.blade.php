@@ -27,8 +27,8 @@
                                     <th class="text-center">{{$all_loan_summary->loans_force_p}}</th>
                                     <th class="text-center">{{$all_payment_summary->loan_payments_p-$all_loan_summary->loans_p}}</th>
                                     <th class="text-center">{{$all_loan_summary->loans_p}}</th>
-                                    <th class="text-center">{{5}}</th>
-                                    <th class="text-center">{{$all_payment_summary->payments_cost_p}}</th>
+                                    <th class="text-center">{{$all_payment_summary->payments_cost_p-($all_payment_summary->loan_payments_p-$all_loan_summary->loans_p+$all_payment_summary->loan_payments_force_p-$all_loan_summary->loans_force_p}}</th>
+                                    <th class="text-center">{{$all_payment_summary->payments_cost_p)}}</th>
                                 </tr>
                             </tbody>
                             <thead>

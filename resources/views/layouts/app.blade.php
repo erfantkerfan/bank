@@ -116,7 +116,7 @@
                                         <div class="badge">
                                             {{App\User::where('note','!=',null)->count()+App\User::where('user_note','!=',null)->count()}}
                                         </div>
-                                        یادداشت مدیریت
+                                        پیام ها
                                     </a>
                                 </li>
 

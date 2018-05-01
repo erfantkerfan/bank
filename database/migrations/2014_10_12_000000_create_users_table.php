@@ -23,8 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('faculty_number')->nullable();
             $table->string('home_number')->nullable();
             $table->string('email')->nullable();
-            $table->boolean('is_admin');
-            $table->boolean('is_super_admin');
+            $table->boolean('is_admin')->default('0');
+            $table->boolean('is_super_admin')->default('0');
             $table->string('password');
             $table->string('relation')->nullable();
             $table->text('note')->nullable();

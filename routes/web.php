@@ -11,8 +11,6 @@
 |
 */
 
-//ToDo add cron job to server & storage:link
-
 Route::get('/', function () {
     return view('welcome');
 });

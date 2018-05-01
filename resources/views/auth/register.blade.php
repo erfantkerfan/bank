@@ -270,34 +270,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('loan_row') ? ' has-error' : '' }}">
-                                <label for="loan_row" class="col-md-4 control-label">شماره ردیف</label>
-
-                                <div class="col-md-6">
-                                    <input id="loan_row" class="form-control" type="text" name="loan_row" autofocus value="{{ old('loan_row') }}">
-
-                                    @if ($errors->has('loan_row'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('loan_row') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('Cheque') ? ' has-error' : '' }}">
-                                <label for="Cheque" class="col-md-4 control-label">شماره چک</label>
-
-                                <div class="col-md-6">
-                                    <input id="Cheque" class="form-control" type="text" name="Cheque" autofocus value="{{ old('Cheque') }}">
-
-                                    @if ($errors->has('Cheque'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('Cheque') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
                                 <label for="start_date" class="col-md-4 control-label">تاریخ شروع</label>
 
@@ -321,6 +293,34 @@
                                     @if ($errors->has('end_date'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('end_date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('loan_row') ? ' has-error' : '' }}">
+                                <label for="loan_row" class="col-md-4 control-label">شماره ردیف</label>
+
+                                <div class="col-md-6">
+                                    <input id="loan_row" class="form-control" type="text" name="loan_row" autofocus value="{{ old('loan_row') }}">
+
+                                    @if ($errors->has('loan_row'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('loan_row') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('Cheque') ? ' has-error' : '' }}">
+                                <label for="Cheque" class="col-md-4 control-label">شماره چک</label>
+
+                                <div class="col-md-6">
+                                    <input id="Cheque" class="form-control" type="text" name="Cheque" autofocus value="{{ old('Cheque') }}">
+
+                                    @if ($errors->has('Cheque'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('Cheque') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -362,34 +362,6 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('loan_row_force') ? ' has-error' : '' }}">
-                                <label for="loan_row_force" class="col-md-4 control-label">شماره ردیف</label>
-
-                                <div class="col-md-6">
-                                    <input id="loan_row_force" class="form-control" type="text" name="loan_row_force" autofocus value="{{ old('loan_row_force') }}">
-
-                                    @if ($errors->has('loan_row_force'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('loan_row_force') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('Cheque_force') ? ' has-error' : '' }}">
-                                <label for="Cheque_force" class="col-md-4 control-label">شماره چک</label>
-
-                                <div class="col-md-6">
-                                    <input id="Cheque_force" class="form-control" type="text" name="Cheque_force" autofocus value="{{ old('Cheque_force') }}">
-
-                                    @if ($errors->has('Cheque_force'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('Cheque_force') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
                                 <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع</label>
 
@@ -413,6 +385,34 @@
                                     @if ($errors->has('end_date_force'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('end_date_force') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('loan_row_force') ? ' has-error' : '' }}">
+                                <label for="loan_row_force" class="col-md-4 control-label">شماره ردیف</label>
+
+                                <div class="col-md-6">
+                                    <input id="loan_row_force" class="form-control" type="text" name="loan_row_force" autofocus value="{{ old('loan_row_force') }}">
+
+                                    @if ($errors->has('loan_row_force'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('loan_row_force') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('Cheque_force') ? ' has-error' : '' }}">
+                                <label for="Cheque_force" class="col-md-4 control-label">شماره چک</label>
+
+                                <div class="col-md-6">
+                                    <input id="Cheque_force" class="form-control" type="text" name="Cheque_force" autofocus value="{{ old('Cheque_force') }}">
+
+                                    @if ($errors->has('Cheque_force'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('Cheque_force') }}</strong>
                                         </span>
                                     @endif
                                 </div>

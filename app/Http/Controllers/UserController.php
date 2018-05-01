@@ -19,8 +19,8 @@ class UserController extends Controller
 
     public function instalments()
     {
-        $users = User::where('instalment', '!=', null)->paginate(30);
-        $users_force = User::where('instalment_force', '!=', null)->paginate(30);
+        $users = User::where('instalment', '!=', null)->OrderBy('acc_id')->paginate(30);
+        $users_force = User::where('instalment_force', '!=', null)->OrderBy('acc_id')->paginate(30);
         return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
     }
 
@@ -115,6 +115,42 @@ class UserController extends Controller
         $data->save();
 
         return redirect(route('admin'));
+
+
+    }
+
+    public function show_form()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $this->Validate($request,['username' => 'required|string|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'acc_id'=> 'required|integer|unique:users',
+            'is_admin' => 'required|boolean',
+            'is_super_admin' => 'required|boolean',
+            'name' => 'required|string|max:225|unique:users',
+            'phone_number' => 'required|digits:11',
+            'faculty_number' => 'nullable|integer',
+            'home_number' => 'nullable|integer',
+            'email' => 'nullable|string|email|max:255',
+            'relation' => 'nullable|string',
+            'note' => 'Nullable|string',
+            'instalment' => 'nullable|integer',
+            'instalment_force' => 'nullable|integer',
+            'period' => 'nullable|string',
+            'period_force' => 'nullable|string',
+            'loan_row' => 'nullable|string',
+            'loan_row_force' => 'nullable|string',
+            'Cheque' => 'nullable|string',
+            'Cheque_force' => 'nullable|string',
+            'start_date' => 'nullable|string',
+            'end_date' => 'nullable|string',
+            'start_date_force' => 'nullable|string',
+            'end_date_force' => 'nullable|string',
+        ]);
 
 
     }

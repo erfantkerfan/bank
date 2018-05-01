@@ -6,7 +6,7 @@
 
         <div class="col-md-4">
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">درج مبلغ هزینه</div>
+                <div class="panel-heading text-center">درج مخارج صندوق</div>
 
                 <div class="panel-body bg-success">
                     <form class="form" method="POST" action="{{ route('expense_create') }}">
@@ -55,13 +55,13 @@
 
         <div class="col-md-8">
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">لیست مخارج صندوق</div>
+                <div class="panel-heading text-center">هزینه، مخارج صندوق</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">باقیمانده هزینه ها</th>
-                            <th class="text-center">هزینه های پرداختی تایید شده</th>
+                            <th class="text-center">موجودی</th>
+                            <th class="text-center">(جمع دریافتی هزینه های صندوق(تایید شده</th>
                             <th class="text-center">مجموع مخارج</th>
                         </tr>
                         </thead>

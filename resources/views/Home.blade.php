@@ -4,6 +4,12 @@
     <div class="container text-center">
         <div class="row">
 
+            <div class="text-center">
+                حساب قرض الحسنه
+                {{$user->f_name.' '.$user->l_name}}
+            </div>
+            <br>
+
             <div class="col-md-4">
                 @if (!is_null($user->instalment_force))
                     <div class="alert alert-warning alert-dismissible">

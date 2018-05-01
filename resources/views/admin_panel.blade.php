@@ -16,7 +16,7 @@
                                     <th class="text-center">قرض الحسنه ضروری</th>
                                     <th class="text-center">بدهی قرض الحسنه عادی</th>
                                     <th class="text-center">قرض الحسنه عادی</th>
-                                    <th class="text-center">باقیمانده هزینه ها</th>
+                                    <th class="text-center">موجودی صندوق</th>
                                     <th class="text-center">افزایش سرمایه</th>
                                 </tr>
                             </thead>
@@ -27,7 +27,7 @@
                                     <th class="text-center">{{$all_loan_summary->loans_force_p}}</th>
                                     <th class="text-center">{{$all_payment_summary->loan_payments_p-$all_loan_summary->loans_p}}</th>
                                     <th class="text-center">{{$all_loan_summary->loans_p}}</th>
-                                    <th class="text-center">{{$all_payment_summary->payments_p-$expenses}}</th>
+                                    <th class="text-center">{{5}}</th>
                                     <th class="text-center">{{$all_payment_summary->payments_cost_p}}</th>
                                 </tr>
                             </tbody>

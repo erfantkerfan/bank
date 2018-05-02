@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     public function unproved()
     {
-        $payments = Payment::with('user')->where('is_proved', '=', '0')->get();
+        $payments = Payment::where('is_proved', '=', '0')->with('user')->get();
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();
         return view('unproved')->with(['payments'=>$payments, 'loans'=>$loans]);
     }

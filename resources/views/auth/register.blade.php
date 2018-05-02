@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">ثبت اطلاعات کاربر</div>
+                <div class="panel-heading">ثبت اطلاعات عضو</div>
                 <div class="panel-body bg-success">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -131,11 +131,11 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('relation') ? ' has-error' : '' }}">
-                                <label for="relation" class="col-md-4 control-label">ارتباط با کاربر دیگر</label>
+                                <label for="relation" class="col-md-4 control-label">ارتباط با عضو دیگر</label>
 
                                 <div class="col-md-6">
                                     <input id="relation" type="text" class="form-control" name="relation" value="{{ old('relation') }}"
-                                           autofocus placeholder="نسبت فامیلی با کاربر اصلی">
+                                           autofocus placeholder="نسبت فامیلی با عضو اصلی">
 
                                     @if ($errors->has('relation'))
                                         <span class="help-block">
@@ -210,7 +210,7 @@
                                 <label for="note" class="col-md-4 control-label">یادداشت مدیریت</label>
 
                                 <div class="col-md-6">
-                                    <textarea id="note" class="form-control" name="note" autofocus placeholder="متن برای مشاهده کاربر" >{{ old('note') }}</textarea>
+                                    <textarea id="note" class="form-control" name="note" autofocus placeholder="متن برای مشاهده عضو" >{{ old('note') }}</textarea>
 
                                     @if ($errors->has('note'))
                                         <span class="help-block">
@@ -221,7 +221,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('user_note') ? ' has-error' : '' }}">
-                                <label for="user_note" class="col-md-4 control-label">یادداشت کاربر</label>
+                                <label for="user_note" class="col-md-4 control-label">یادداشت عضو</label>
 
                                 <div class="col-md-6">
                                     <textarea id="user_note" class="form-control" name="user_note" autofocus>{{ old('user_note') }}</textarea>
@@ -271,7 +271,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
-                                <label for="start_date" class="col-md-4 control-label">تاریخ شروع</label>
+                                <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="start_date" class="form-control" type="text" name="start_date" autofocus value="{{ old('start_date') }}">
@@ -285,7 +285,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
-                                <label for="end_date" class="col-md-4 control-label">تاریخ پایان</label>
+                                <label for="end_date" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="end_date" class="form-control" type="text" name="end_date" autofocus value="{{ old('end_date') }}">
@@ -363,7 +363,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
-                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع</label>
+                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="start_date_force" class="form-control" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}">
@@ -377,7 +377,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('end_date_force') ? ' has-error' : '' }}">
-                                <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان</label>
+                                <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="end_date_force" class="form-control" type="text" name="end_date_force" autofocus value="{{ old('end_date_force') }}">

@@ -13,10 +13,10 @@
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>
-                        <th class="text-center">تاریخ پایان</th>
-                        <th class="text-center">تاریخ شروع</th>
+                        <th class="text-center">تاریخ پایان اقساط</th>
+                        <th class="text-center">تاریخ شروع اقساط</th>
                         <th class="text-center">مبلغ قسط</th>
-                        <th class="text-center">نام کاربر</th>
+                        <th class="text-center">نام عضو</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -59,10 +59,10 @@
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>
-                        <th class="text-center">تاریخ پایان</th>
-                        <th class="text-center">تاریخ شروع</th>
+                        <th class="text-center">تاریخ پایان اقساط</th>
+                        <th class="text-center">تاریخ شروع اقساط</th>
                         <th class="text-center">مبلغ قسط</th>
-                        <th class="text-center">نام کاربر</th>
+                        <th class="text-center">نام عضو</th>
                     </tr>
                     </thead>
                     <tbody>

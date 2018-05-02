@@ -17,7 +17,7 @@
                                 <th class="text-center">پرداخت اقساط عادی</th>
                                 <th class="text-center">افزایش سرمایه</th>
                                 <th class="text-center">تاریخ</th>
-                                <th class="text-center">نام کاربر</th>
+                                <th class="text-center">نام عضو</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -56,7 +56,7 @@
                                 <th class="text-center">مبلغ قرض الحسنه</th>
                                 <th class="text-center">نوع قرض الحسنه</th>
                                 <th class="text-center">تاریخ</th>
-                                <th class="text-center">نام کاربر</th>
+                                <th class="text-center">نام عضو</th>
                             </tr>
                             </thead>
                             <tbody>

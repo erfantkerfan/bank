@@ -5,8 +5,10 @@
         <div class="row">
 
             <div class="text-center">
-                حساب قرض الحسنه
+                (حساب قرض الحسنه
                 {{$user->f_name.' '.$user->l_name}}
+                (شماره حساب:
+                {{$user->acc_id}}
             </div>
             <br>
 
@@ -19,10 +21,10 @@
                         مبلغ اقساط قابل پرداخت (ضروری):
                         <strong> {{$user->instalment_force}} </strong>
                         <br>
-                        تاریخ شروع:
+                        تاریخ شروع اقساط:
                         <strong> {{$user->start_date_force}} </strong>
                         <br>
-                        تاریخ پایان:
+                        تاریخ پایان اقساط:
                         <strong> {{$user->end_date_force}} </strong>
                     </div>
                 @endif
@@ -37,10 +39,10 @@
                         مبلغ اقساط قابل پرداخت (عادی):
                         <strong> {{$user->instalment}} </strong>
                         <br>
-                        تاریخ شروع:
+                        تاریخ شروع اقساط:
                         <strong> {{$user->start_date}} </strong>
                         <br>
-                        تاریخ پایان:
+                        تاریخ پایان اقساط:
                         <strong> {{$user->end_date}} </strong>
                     </div>
                 @endif

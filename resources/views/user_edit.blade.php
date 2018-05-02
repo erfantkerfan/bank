@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">اصلاح اطلاعات کاربر</div>
+                <div class="panel-heading">اصلاح اطلاعات عضو</div>
                 <div class="panel-body bg-success">
                     <form class="form-horizontal" method="POST" action="{{ route('user_edit',['id' => $user->id]) }}">
                         {{ csrf_field() }}
@@ -131,7 +131,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('relation') ? ' has-error' : '' }}">
-                                <label for="relation" class="col-md-4 control-label">ارتباط با کاربر دیگر</label>
+                                <label for="relation" class="col-md-4 control-label">ارتباط با عضو دیگر</label>
 
                                 <div class="col-md-6">
                                     <input id="relation" type="text" class="form-control" name="relation" value="{{ $user->relation }}"
@@ -222,7 +222,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('user_note') ? ' has-error' : '' }}">
-                                <label for="user_note" class="col-md-4 control-label">یادداشت کاربر</label>
+                                <label for="user_note" class="col-md-4 control-label">یادداشت عضو</label>
 
                                 <div class="col-md-6">
                                     <textarea dir="rtl" style="resize: vertical" id="user_note" class="form-control" name="user_note"
@@ -273,7 +273,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('cheque') ? ' has-error' : '' }}">
-                                <label for="cheque" class="col-md-4 control-label">تاریخ شروع</label>
+                                <label for="cheque" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="cheque" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}" >
@@ -287,7 +287,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
-                                <label for="end_date" class="col-md-4 control-label">تاریخ پایان</label>
+                                <label for="end_date" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="end_date" type="text" class="form-control" name="end_date" value=" {{ $user->end_date }}" >
@@ -365,7 +365,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
-                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع</label>
+                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="start_date_force" type="text" class="form-control" name="start_date_force" value=" {{ $user->start_date_force }}" >
@@ -379,7 +379,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('end_date_force') ? ' has-error' : '' }}">
-                                <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان</label>
+                                <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
                                     <input id="end_date_force" type="text" class="form-control" name="end_date_force" value=" {{ $user->end_date_force }}" >

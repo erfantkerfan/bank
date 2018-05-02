@@ -9,10 +9,10 @@
                 <table class="table table-striped">
                     <thead>
                     <tr class="bg-info">
-                        <th class="text-center">اصلاح کاربر</th>
-                        <th class="text-center">متن یادداشت کاربر</th>
+                        <th class="text-center">اصلاح عضو</th>
+                        <th class="text-center">متن یادداشت عضو</th>
                         <th class="text-center">متن یادداشت مدیر</th>
-                        <th class="text-center">نام کاربر</th>
+                        <th class="text-center">نام عضو</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <style type="text/css">
         @font-face {
             font-family:'Font';
@@ -96,7 +96,9 @@
 
                                         <a href="{{ route('notification') }}">اعلان ها</a>
 
-                                        <a href="{{ route('register') }}">ثبت اطلاعات کاربر</a>
+                                        <a href="{{ route('expense') }}">هزینه های صندوق</a>
+
+                                        <a href="{{ route('register') }}">ثبت اطلاعات عضو</a>
 
                                         <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
                                             <span class="glyphicon glyphicon-download-alt"></span>
@@ -105,11 +107,6 @@
 
                                     </li>
                                 </ul>
-
-
-                                <li>
-                                    <a href="{{ route('expense') }}">هزینه های صندوق</a>
-                                </li>
 
                                 <li>
                                     <a href="{{ route('notes') }}">

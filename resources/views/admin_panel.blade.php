@@ -60,18 +60,18 @@
 
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
-                        ( لیست کاربران
-                        ( کاربران فعال
+                        ( لیست اعضا
+                        ( اعضای فعال
                         {{ $users->count() }}
                     </div>
                     <div class="panel-body bg-success">
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-info">
-                                <th class="text-center">اصلاح کاربر</th>
+                                <th class="text-center">اصلاح عضو</th>
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">دسترسی بازرسی</th>
-                                <th class="text-center">ارتباط با کاربر دیگر</th>
+                                <th class="text-center">ارتباط با عضو دیگر</th>
                                 <th class="text-center">شماره حساب</th>
                                 <th class="text-center">نام کاربری</th>
                                 <th class="text-center">نام خانوادگی</th>

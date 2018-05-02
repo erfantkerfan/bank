@@ -22,12 +22,12 @@
                             </thead>
                             <tbody>
                                 <tr class="bg-success">
-                                    <th class="text-center">{{$all_payment_summary->loan_payments_p-$all_loan_summary->loans_p+$all_payment_summary->loan_payments_force_p-$all_loan_summary->loans_force_p}}</th>
-                                    <th class="text-center">{{$all_payment_summary->loan_payments_force_p-$all_loan_summary->loans_force_p}}</th>
+                                    <th class="text-center">{{$all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p}}</th>
+                                    <th class="text-center">{{$all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p}}</th>
                                     <th class="text-center">{{$all_loan_summary->loans_force_p}}</th>
-                                    <th class="text-center">{{$all_payment_summary->loan_payments_p-$all_loan_summary->loans_p}}</th>
+                                    <th class="text-center">{{$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p}}</th>
                                     <th class="text-center">{{$all_loan_summary->loans_p}}</th>
-                                    <th class="text-center">{{$all_payment_summary->payments_p-($all_payment_summary->loan_payments_p-$all_loan_summary->loans_p+$all_payment_summary->loan_payments_force_p-$all_loan_summary->loans_force_p)}}</th>
+                                    <th class="text-center">{{$all_payment_summary->payments_p-($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p)}}</th>
                                     <th class="text-center">{{$all_payment_summary->payments_p}}</th>
                                 </tr>
                             </tbody>
@@ -44,11 +44,11 @@
                             </thead>
                             <tbody>
                             <tr class="bg-danger">
-                                <th class="text-center">{{$all_payment_summary->loan_payments_np-$all_loan_summary->loans_np+$all_payment_summary->loan_payments_force_np-$all_loan_summary->loans_force_np}}</th>
-                                <th class="text-center">{{$all_payment_summary->loan_payments_force_np-$all_loan_summary->loans_force_np}}</th>
+                                <th class="text-center">{{$all_loan_summary->loans_force_np-$all_payment_summary->loan_payments_force_np+$all_loan_summary->loans_np-$all_payment_summary->loan_payments_np}}</th>
+                                <th class="text-center">{{$all_loan_summary->loans_force_np-$all_payment_summary->loan_payments_force_np}}</th>
                                 <th class="text-center">{{$all_loan_summary->loans_force_np}}</th>
-                                <th class="text-center">{{$all_payment_summary->loan_payments_np-$all_loan_summary->loans_np}}</th>
-                                <th class="text-center">{{$all_loan_summary->loans_p}}</th>
+                                <th class="text-center">{{$all_loan_summary->loans_np-$all_payment_summary->loan_payments_np}}</th>
+                                <th class="text-center">{{$all_loan_summary->loans_np}}</th>
                                 <th class="text-center">{{$all_payment_summary->payments_cost_np}}</th>
                                 <th class="text-center">{{$all_payment_summary->payments_np}}</th>
 

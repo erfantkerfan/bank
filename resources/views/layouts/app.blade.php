@@ -130,7 +130,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="{{ route('not_proved') }}">
+                                    <a href="{{ route('unproved') }}">
                                         <div class="badge">
                                             {{App\Payment::where('is_proved','=','0')->count()+App\Loan::where('is_proved','=','0')->count()}}
                                         </div>

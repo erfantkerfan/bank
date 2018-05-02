@@ -27,7 +27,7 @@ class AdminController extends Controller
         return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,'permission'=>$permission]);
     }
 
-    public function not_proved()
+    public function unproved()
     {
         $payments = Payment::with('user')->where('is_proved', '=', '0')->get();
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();

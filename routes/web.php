@@ -27,7 +27,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/admin','AdminController@index')->name('admin');
     Route::get('/admin/{id}','AdminController@user')->name('user');
-    Route::get('/unproved','AdminController@not_proved')->name('unproved');
+    Route::get('/unproved','AdminController@unproved')->name('unproved');
     Route::get('/notes','NoteController@index')->name('notes');
     Route::get('/notification','NotificationController@index')->name('notification');
     Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');

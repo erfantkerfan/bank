@@ -83,11 +83,11 @@
 
     <div class="content">
         <div class="title m-b-md">
-            {{Auth::user()->f_name." ".Auth::user()->L_name}}
+            {{Auth::user()->f_name." ".Auth::user()->l_name}}
             <br>
             شما دسترسی به این بخش را ندارید
         </div>
-        <div class="number font-red"> 500 </div>
+        <div class="number font-red"> 403 </div>
     </div>
 
 </div>

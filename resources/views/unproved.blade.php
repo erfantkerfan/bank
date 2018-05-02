@@ -74,7 +74,7 @@
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">@if ($loan->force==0)عادی@else<span style="color:red" >ضروری</span>@endif</th>
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
-                                <th class="text-center"><a href="{{ route('user',['id'=>$payment->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
+                                <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
                             </tr>
                             @endforeach
                             </tbody>

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{config('app.name')}}</title>
         <link rel="stylesheet" href="{{ asset('css/car-bootstrap.css') }}">
+        <link rel="icon" href="/img/icon.gif" type="image/gif">
 
         <!-- Fonts -->
         <link href="{{ asset('css/googleapis.css') }}" rel="stylesheet" type="text/css">

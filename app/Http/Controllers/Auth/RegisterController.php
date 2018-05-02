@@ -35,7 +35,7 @@ class RegisterController extends Controller
         $user = $this->create($request->all());
 
         return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+            ?: redirect($this->redirectPath($user));
     }
 
     /**
@@ -43,7 +43,21 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+
+    public function redirectPath($user)
+    {
+        if (method_exists($this, 'redirectTo')) {
+            return $this->redirectTo($user);
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+    }
+
+    public function redirectTo($user)
+    {
+        $id = $user->id;
+        return '/admin/'.$id;
+    }
 
     /**
      * Create a new controller instance.
@@ -100,7 +114,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'username' => $data['username'],
             'acc_id' => $data{'acc_id'},
             'password' => bcrypt($data['password']),
@@ -127,5 +141,6 @@ class RegisterController extends Controller
             'start_date_force' => $data['start_date_force'],
             'end_date_force' => $data['end_date_force'],
         ]);
+        return ($user);
     }
 }

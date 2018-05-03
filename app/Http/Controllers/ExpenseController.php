@@ -19,6 +19,9 @@ class ExpenseController extends Controller
 
     public function create(Request $request)
     {
+        $input = $request->all();
+        if($input["expense"]!=null){$input["expense"] = str_replace(",","",$input["expense"]);}
+        $request->replace((array)$input);
 
         $user_id = Auth::User()->id;
 

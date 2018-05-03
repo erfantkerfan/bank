@@ -27,10 +27,12 @@ class PaymentController extends Controller
 
     public function create(request $request)
     {
-//        $request->payment = str_replace(',','',$request->payment);
-//        $request->loan_payment = str_replace(',','',$request->loan_payment);
-//        $request->loan_payment_force = str_replace(',','',$request->loan_payment_force);
-//        $request->payment_cost = str_replace(',','',$request->payment_cost);
+        $input = $request->all();
+        if($input["payment"]!=null){$input["payment"] = str_replace(",","",$input["payment"]);}
+        if($input["loan_payment"]!=null){$input["loan_payment"] = str_replace(",","",$input["loan_payment"]);}
+        if($input["loan_payment_force"]!=null){$input["loan_payment_force"] = str_replace(",","",$input["loan_payment_force"]);}
+        if($input["payment_cost"]!=null){$input["payment_cost"] = str_replace(',','',$input['payment_cost']);}
+        $request->replace((array)$input);
 
         switch($request->online_payment) {
 

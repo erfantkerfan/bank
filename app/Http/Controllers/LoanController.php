@@ -27,6 +27,10 @@ class LoanController extends Controller
 
     public function create(request $request)
     {
+        $input = $request->all();
+        if($input["loan"]!=null){$input["loan"] = str_replace(",","",$input["loan"]);}
+        $request->replace((array)$input);
+
         $proved_by = null;
         if($request->is_proved==1){
             $proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;

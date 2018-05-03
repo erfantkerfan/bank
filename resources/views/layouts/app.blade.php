@@ -32,26 +32,28 @@
         }
     </style>
 
-    {{--TODo adding camma with these--}}
-    {{--<script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>--}}
-    {{--<script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>--}}
-    {{--<script type='text/javascript'>--}}
-        {{--$(function($) {--}}
-            {{--$('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
-        {{--});--}}
-        {{--$(function($) {--}}
-            {{--$('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
-        {{--});--}}
-        {{--$(function($) {--}}
-            {{--$('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
-        {{--});--}}
-        {{--$(function($) {--}}
-            {{--$('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
-        {{--});--}}
-        {{--$(function($) {--}}
-            {{--$('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });--}}
-        {{--});--}}
-    {{--</script>--}}
+    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>
+    <script type='text/javascript'>
+        $(function($) {
+            $('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+        $(function($) {
+            $('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+        $(function($) {
+            $('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+        $(function($) {
+            $('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+        $(function($) {
+            $('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+        $(function($) {
+            $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
+    </script>
 
 </head>
 <body style="font-family:'Font'" class="bg">

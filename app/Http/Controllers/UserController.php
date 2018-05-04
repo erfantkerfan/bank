@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -114,7 +115,12 @@ class UserController extends Controller
 
         $data->save();
 
-        return redirect(route('admin'));
+        if($request['url2']=='admin'){
+            return redirect(route('admin'));
+        }
+        else{
+            return redirect('/admin/'.$id);
+        }
 
 
     }

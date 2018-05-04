@@ -54,7 +54,9 @@
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">
                             <span class="glyphicon glyphicon-remove-sign"></span>
                         </a>
-                        پیام مدیر برای شما
+                        <span style="color:rgb(65, 150, 19)">
+                            :پیام مدیریت صندوق برای شما
+                        </span>
                         <br>
                         <strong> {!! nl2br(e($user->note)) !!} </strong>
                     </div>
@@ -330,7 +332,7 @@
                         <tr class="bg-warning">
                             <th class="text-center">{{number_format($summary->debt_force)}}</th>
                             <th class="text-center">
-                                @if(is_float($summary->loan_force))
+                                @if(is_int($summary->loan_force))
                                     {{number_format($summary->loan_force)}}
                                 @else
                                     {{$summary->loan_force}}
@@ -338,7 +340,7 @@
                             </th>
                             <th class="text-center">{{number_format($summary->debt)}}</th>
                             <th class="text-center">
-                                @if(is_float($summary->loan))
+                                @if(is_int($summary->loan))
                                     {{number_format($summary->loan)}}
                                 @else
                                     {{$summary->loan}}

@@ -10,6 +10,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('user_edit',['id' => $user->id]) }}">
                         {{ csrf_field() }}
                         <div class="col-md-6">
+                            <input name="url2" type="hidden" value="{{basename(url()->previous())}}">
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label for="username" class="col-md-4 control-label">نام کاربری</label>
 
@@ -272,11 +273,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('cheque') ? ' has-error' : '' }}">
-                                <label for="cheque" class="col-md-4 control-label">تاریخ شروع اقساط</label>
+                            <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                                <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="cheque" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}" >
+                                    <input id="start_date" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}" >
 
                                     @if ($errors->has('start_date'))
                                         <span class="help-block">

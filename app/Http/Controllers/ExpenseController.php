@@ -12,6 +12,7 @@ class ExpenseController extends Controller
     public function index()
     {
         $expenses = Expense::with('user')->OrderByDesc('date_time')->paginate(20);
+        Controller::NumberFormat($expenses);
         $expense = Expense::all()->sum('expense');
         $payments_cost = Payment::where('is_proved','=','1')->sum('payment_cost');
         return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost]);

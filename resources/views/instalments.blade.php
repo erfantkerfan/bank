@@ -39,7 +39,7 @@
                         <th class="text-center">{{$user->loan_row}}</th>
                         <th class="text-center">{{$user->end_date}}</th>
                         <th class="text-center">{{$user->start_date}}</th>
-                        <th class="text-center">{{$user->instalment}}</th>
+                        <th class="text-center">{{number_format($user->instalment)}}</th>
                         <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
                     </tr>
                     @endforeach
@@ -85,7 +85,7 @@
                             <th class="text-center">{{$user_force->loan_row_force}}</th>
                             <th class="text-center">{{$user_force->end_date_force}}</th>
                             <th class="text-center">{{$user_force->start_date_force}}</th>
-                            <th class="text-center">{{$user_force->instalment_force}}</th>
+                            <th class="text-center">{{number_format($user_force->instalment_force)}}</th>
                             <th class="text-center"><a href="{{ route('user',['id'=>$user_force->id]) }}">{{$user_force->f_name." ".$user_force->l_name}}</a></th>
                         </tr>
                     @endforeach

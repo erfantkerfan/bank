@@ -19,7 +19,7 @@
                             <span class="glyphicon glyphicon-remove-sign"></span>
                         </a>
                         مبلغ اقساط قابل پرداخت (ضروری):
-                        <strong> {{$user->instalment_force}} </strong>
+                        <strong> {{number_format($user->instalment_force)}} </strong>
                         <br>
                         تاریخ شروع اقساط:
                         <strong> {{$user->start_date_force}} </strong>
@@ -37,7 +37,7 @@
                             <span class="glyphicon glyphicon-remove-sign"></span>
                         </a>
                         مبلغ اقساط قابل پرداخت (عادی):
-                        <strong> {{$user->instalment}} </strong>
+                        <strong> {{number_format($user->instalment)}} </strong>
                         <br>
                         تاریخ شروع اقساط:
                         <strong> {{$user->start_date}} </strong>
@@ -233,7 +233,7 @@
                                 <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
                                 <div class="col-md-7">
                                     <label class="radio-inline"><input type="radio" name="is_proved" value="0">خیر</label>
-                                    <label class="radio-inline"><input type="radio" name="is_proved" value="1"checked>بله</label>
+                                    <label class="radio-inline"><input type="radio" name="is_proved" value="1" checked>بله</label>
 
                                     @if ($errors->has('is_proved'))
                                         <span class="help-block">
@@ -312,10 +312,10 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="text-center">{{$summary->payments_cost}}</th>
-                            <th class="text-center">{{$summary->debt_force+$summary->debt}}
-                            <th class="text-center">{{$summary->loans_all}}</th>
-                            <th class="text-center">{{$summary->payments}}</th>
+                            <th class="text-center">{{number_format($summary->payments_cost)}}</th>
+                            <th class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
+                            <th class="text-center">{{number_format($summary->loans_all)}}</th>
+                            <th class="text-center">{{number_format($summary->payments)}}</th>
                         </tr>
                         </tbody>
                         <thead>
@@ -328,10 +328,22 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="text-center">{{$summary->debt_force}}</th>
-                            <th class="text-center">{{$summary->loan_force}}</th>
-                            <th class="text-center">{{$summary->debt}}</th>
-                            <th class="text-center">{{$summary->loan}}</th>
+                            <th class="text-center">{{number_format($summary->debt_force)}}</th>
+                            <th class="text-center">
+                                @if(is_float($summary->loan_force))
+                                    {{number_format($summary->loan_force)}}
+                                @else
+                                    {{$summary->loan_force}}
+                                @endif
+                            </th>
+                            <th class="text-center">{{number_format($summary->debt)}}</th>
+                            <th class="text-center">
+                                @if(is_float($summary->loan))
+                                    {{number_format($summary->loan)}}
+                                @else
+                                    {{$summary->loan}}
+                                @endif
+                            </th>
                         </tr>
                         </tbody>
                     </table>

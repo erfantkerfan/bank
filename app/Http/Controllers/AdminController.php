@@ -21,7 +21,9 @@ class AdminController extends Controller
     {
         $user = User::FindOrFail($id);
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        Controller::NumberFormat($payments);
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
+        Controller::NumberFormat($loans);
         $summary = User::FindOrFail($id)->summary();
         $permission = 1;
         return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,'permission'=>$permission]);
@@ -30,7 +32,9 @@ class AdminController extends Controller
     public function unproved()
     {
         $payments = Payment::where('is_proved', '=', '0')->with('user')->get();
+        Controller::NumberFormat($payments);
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();
+        Controller::NumberFormat($loans);
         return view('unproved')->with(['payments'=>$payments, 'loans'=>$loans]);
     }
 }

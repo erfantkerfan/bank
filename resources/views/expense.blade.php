@@ -67,9 +67,9 @@
                         </thead>
                         <tbody>
                         <tr class="text-center">
-                            <th class="text-center">{{$payments_cost-$expense}}</th>
-                            <th class="text-center">{{$payments_cost}}</th>
-                            <th class="text-center">{{$expense}}</th>
+                            <th class="text-center">{{number_format($payments_cost-$expense)}}</th>
+                            <th class="text-center">{{number_format($payments_cost)}}</th>
+                            <th class="text-center">{{number_format($expense)}}</th>
                         </tr>
                         </tbody>
                     </table>

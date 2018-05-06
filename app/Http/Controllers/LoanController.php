@@ -53,7 +53,7 @@ class LoanController extends Controller
             $is_proved=0;
         }
 
-        $date_time = verta()->formatdate();
+        $date_time = verta();
 
         $this->Validate($request, [
             'loan' => 'nullable|integer',

@@ -26,7 +26,7 @@ class ExpenseController extends Controller
 
         $user_id = Auth::User()->id;
 
-        $date_time = verta()->formatdate();
+        $date_time = verta();
 
         $this->Validate($request, [
             'expense' => 'required|integer',

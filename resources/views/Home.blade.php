@@ -406,6 +406,7 @@
                             @if($permission==1)
                                 <th class="text-center">حذف قرض الحسنه</th>
                             @endif
+                            <th class="text-center">تاریخ تایید</th>
                             <th class="text-center">آخرین تایید توسط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مبلغ قرض الحسنه</th>
@@ -424,6 +425,7 @@
                                         </a>
                                     </th>
                                 @endif
+                                <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
                                 <th class="text-center">{{$loan->description}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>

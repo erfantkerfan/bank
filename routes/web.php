@@ -36,6 +36,8 @@ Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['SuperAdminAuth'])->group(function () {
+    Route::get('/notes/delete/{id}','NoteController@delete')->name('delete_note');
+    Route::get('/user_notes/delete/{id}','NoteController@delete_user')->name('delete_user_note');
     Route::get('/user/register','Auth\RegisterController@showRegistrationForm')->name('register');
     Route::Post('/user/register','Auth\RegisterController@register');
     Route::Post('/user/edit/{id}','UserController@user_edit');

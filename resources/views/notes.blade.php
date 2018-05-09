@@ -10,7 +10,9 @@
                     <thead>
                     <tr class="bg-info">
                         <th class="text-center">اصلاح عضو</th>
+                        <th class="text-center">حذف یادداشت عضو</th>
                         <th class="text-center">متن یادداشت عضو</th>
+                        <th class="text-center">حذف یادداشت مدیر</th>
                         <th class="text-center">متن یادداشت مدیر</th>
                         <th class="text-center">نام عضو</th>
                     </tr>
@@ -25,7 +27,19 @@
                                 </button>
                             </a>
                         </th>
+                        <th class="text-center">
+                            <a onclick="return confirm('از پاک کردن این پیام اطمینان دارید؟')"
+                               href="{{route('delete_user_note',['id' => $user->id])}}">
+                                <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                            </a>
+                        </th>
                         <th class="text-center">{{$user->user_note}}</th>
+                        <th class="text-center">
+                            <a onclick="return confirm('از پاک کردن این پیام اطمینان دارید؟')"
+                               href="{{route('delete_note',['id' => $user->id])}}">
+                                <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                            </a>
+                        </th>
                         <th class="text-center">{{$user->note}}</th>
                         <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
                     </tr>

@@ -28,4 +28,20 @@ class NoteController extends Controller
         $user -> save();
         return back();
     }
+
+    public function delete($id)
+    {
+        $user = User::FindOrFail($id);
+        $user -> note = null;
+        $user -> save();
+        return back();
+    }
+
+    public function delete_user($id)
+    {
+        $user = User::FindOrFail($id);
+        $user -> user_note = null;
+        $user -> save();
+        return back();
+    }
 }

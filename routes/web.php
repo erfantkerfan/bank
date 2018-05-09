@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','Controller@welcome')->name('welcome');
 Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
 Route::Post('/login','Auth\LoginController@login');
 Route::Post('/logout','Auth\LoginController@logout')->name('logout');
@@ -25,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user_note','NoteController@user_note')->name('user_note');
     });
 Route::middleware(['AdminAuth'])->group(function () {
+    Route::get('/slider','SliderController@index')->name('slider');
     Route::get('/admin','AdminController@index')->name('admin');
     Route::get('/admin/{id}','AdminController@user')->name('user');
     Route::get('/unproved','AdminController@unproved')->name('unproved');
@@ -36,6 +35,8 @@ Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['SuperAdminAuth'])->group(function () {
+    Route::get('/slider/delete/{id}','SliderController@delete')->name('delete_slider');
+    Route::Post('/slider/create','SliderController@create')->name('create_slider');
     Route::get('/notes/delete/{id}','NoteController@delete')->name('delete_note');
     Route::get('/user_notes/delete/{id}','NoteController@delete_user')->name('delete_user_note');
     Route::get('/user/register','Auth\RegisterController@showRegistrationForm')->name('register');

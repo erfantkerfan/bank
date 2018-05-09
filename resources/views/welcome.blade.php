@@ -50,9 +50,8 @@
             }
 
         </style>
-        {{--<script src="/js/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>--}}
-        {{--<script src="/js/popper.min.js" crossorigin="anonymous"></script>--}}
-        {{--<script src="/js/bootstrap.min.js" crossorigin="anonymous"></script>--}}
+        {{--<script src="/js/jquery-3.2.1.slim.min.js"></script>--}}
+        {{--<script src="/js/popper.min.js"></script>--}}
     </head>
     <body style="font-family:'Font'">
         <div class="flex-center">
@@ -81,24 +80,26 @@
                 <div id="myCarousel" data-interval="2500" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        @foreach($sliders as $slider)
+                        <li data-target="#myCarousel" data-slide-to="{{$slider->id}}"></li>
+                        @endforeach
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="/img/ghaem1.jpg" alt="GHAEM" style="width:100%;">
-                        </div>
-
-                        <div class="item">
-                            <img src="/img/ghaem2.jpg" alt="GHAEM" style="width:100%;">
-                        </div>
-
-                        <div class="item">
-                            <img src="/img/ghaem3.jpg" alt="GHAEM" style="width:100%;">
-                        </div>
+                        @forelse($sliders as $slider)
+                            <div class="item {{ $loop->first ? ' active' : '' }}">
+                                <img src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width:100%;">
+                                <div class="carousel-caption" style="color: black">
+                                    <h3>{{$slider->head}}</h3>
+                                    <p>{{$slider->body}}</p>
+                                </div>
+                            </div>
+                        @empty
+                            <div class="item active">
+                                <img src="/img/empty.jpg" alt="empty" style="width:100%;">
+                            </div>
+                        @endforelse
                     </div>
 
                     <!-- Left and right controls -->
@@ -113,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 panel panel-primary text-center">
+            <div class="col-md-5 panel panel-primary text-center">
                 <div class="panel-heading">اعلان های عمومی</div>
                 @forelse (\App\Notification::all() as $notification)
                     <div class="panel-body">{!! nl2br(e($notification->text)) !!}</div>

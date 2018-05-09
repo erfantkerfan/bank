@@ -98,6 +98,8 @@
 
                                     <a href="{{ route('notification') }}">اعلان ها</a>
 
+                                    <a href="{{ route('slider') }}">اسلایدر</a>
+
                                     <a href="{{ route('expense') }}">هزینه های صندوق</a>
 
                                     <a href="{{ route('register') }}">ثبت اطلاعات عضو</a>

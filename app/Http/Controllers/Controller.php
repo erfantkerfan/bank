@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Slider;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,5 +22,11 @@ class Controller extends BaseController
             }
         }
         return $vars;
+    }
+
+    public function welcome()
+    {
+        $sliders = Slider::all();
+        return view('welcome')->with(['sliders'=>$sliders]);
     }
 }

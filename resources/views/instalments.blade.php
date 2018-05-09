@@ -13,7 +13,22 @@
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>
-                        <th class="text-center">تاریخ پایان اقساط</th>
+                        <th class="text-center">
+                            @if(basename(URL::current())=='acc_id')
+                                <a href="{{ route('instalment_end_date') }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                    </button>
+                                </a>
+                            @elseif(basename(URL::current())=='end_date')
+                                <a href="{{ route('instalment') }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-sort-by-order"></span>
+                                    </button>
+                                </a>
+                            @endif
+                            تاریخ پایان اقساط
+                        </th>
                         <th class="text-center">تاریخ شروع اقساط</th>
                         <th class="text-center">مبلغ قسط</th>
                         <th class="text-center">نام عضو</th>
@@ -59,7 +74,22 @@
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>
-                        <th class="text-center">تاریخ پایان اقساط</th>
+                        <th class="text-center">
+                            @if(basename(URL::current())=='acc_id')
+                                <a href="{{ route('instalment_end_date') }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                    </button>
+                                </a>
+                            @elseif(basename(URL::current())=='end_date')
+                                <a href="{{ route('instalment') }}">
+                                    <button type="button" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-sort-by-order"></span>
+                                    </button>
+                                </a>
+                            @endif
+                            تاریخ پایان اقساط
+                        </th>
                         <th class="text-center">تاریخ شروع اقساط</th>
                         <th class="text-center">مبلغ قسط</th>
                         <th class="text-center">نام عضو</th>

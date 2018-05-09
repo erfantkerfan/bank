@@ -31,15 +31,16 @@ Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/notes','NoteController@index')->name('notes');
     Route::get('/notification','NotificationController@index')->name('notification');
     Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');
-    Route::get('/user/instalment','UserController@instalments')->name('instalment');
+    Route::get('/user/instalment/acc_id','UserController@instalments')->name('instalment');
+    Route::get('/user/instalment/end_date','UserController@instalments_end_date')->name('instalment_end_date');
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['SuperAdminAuth'])->group(function () {
     Route::get('/user/register','Auth\RegisterController@showRegistrationForm')->name('register');
     Route::Post('/user/register','Auth\RegisterController@register');
     Route::Post('/user/edit/{id}','UserController@user_edit');
-    Route::get('/user/delete/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');
-    Route::get('/user/delete/instalment_force/{id}','UserController@delete_instalment_force')->name('delete_instalment_force');
+    Route::get('/user/delete/acc_id/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');
+    Route::get('/user/delete/acc_id/instalment_force/{id}','UserController@delete_instalment_force')->name('delete_instalment_force');
     Route::get('/loan/delete/{id}','LoanController@delete')->name('loan_delete');
     Route::get('/loan/confirm/{id}','LoanController@confirm')->name('loan_confirm');
     Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');

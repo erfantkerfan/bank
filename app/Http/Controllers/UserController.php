@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -22,6 +23,13 @@ class UserController extends Controller
     {
         $users = User::where('instalment', '!=', null)->OrderBy('acc_id')->paginate(30);
         $users_force = User::where('instalment_force', '!=', null)->OrderBy('acc_id')->paginate(30);
+        return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
+    }
+
+    public function instalments_end_date()
+    {
+        $users = User::where('instalment', '!=', null)->OrderBy('end_date')->paginate(30);
+        $users_force = User::where('instalment_force', '!=', null)->OrderBy('end_date')->paginate(30);
         return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
     }
 

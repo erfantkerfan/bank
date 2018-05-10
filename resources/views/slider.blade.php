@@ -54,7 +54,7 @@
 
                         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                             <div class="col-md-9">
-                                <input id="image" type="file" class="form-control-file" name="image" required>
+                                <input id="image" type="file" class="form-control-file" name="image" required accept=".jpg, .jpeg">
 
                                 @if ($errors->has('image'))
                                     <span class="help-block">

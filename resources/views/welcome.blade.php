@@ -7,6 +7,7 @@
         <title>{{config('app.name')}}</title>
         <link rel="stylesheet" href="{{ asset('css/car-bootstrap.css') }}">
         <link rel="icon" href="/img/icon.gif" type="image/gif">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
 
         <!-- Fonts -->
         <link href="{{ asset('css/googleapis.css') }}" rel="stylesheet" type="text/css">
@@ -18,12 +19,36 @@
                 font-family:'Font';
                 src: url( {{asset('fonts/'.config('app.font'))}} );
             }
+            .fa {
+                padding: 20px;
+                font-size: 30px;
+                width: 30px;
+                text-align: center;
+                text-decoration: none;
+                margin: 10px 10px;
+                border-radius: 50%;
+            }
+            .fa:hover {
+                opacity: 0.7;
+            }
+            .fa-telegram {
+                background: white;
+                color: #55ACEE;
+            }
+            .fa-twitter {
+                background: white;
+                color: #55ACEE;
+            }
+            .fa-yahoo {
+                background: white;
+                color: #430297;
+            }
             .footer {
                 position: fixed;
                 left: 0;
                 bottom: 0;
                 width: 100%;
-                background-color: black;
+                background: grey;
                 color: white;
                 text-align: center;
             }
@@ -54,6 +79,8 @@
         {{--<script src="/js/popper.min.js"></script>--}}
     </head>
     <body style="font-family:'Font'">
+    <div class="container">
+
         <div class="flex-center">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -75,66 +102,100 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="col-md-7 col-sm-7">
-                <div id="myCarousel" data-interval="2500" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        @foreach($sliders as $slider)
-                        <li data-target="#myCarousel" data-slide-to="{{$slider->id}}"></li>
-                        @endforeach
-                    </ol>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                        @forelse($sliders as $slider)
-                            <div class="item {{ $loop->first ? ' active' : '' }}">
-                                <img src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width:100%;">
-                                <div class="carousel-caption" style="color: black">
-                                    <h3>{{$slider->head}}</h3>
-                                    <p>{{$slider->body}}</p>
-                                </div>
-                            </div>
-                        @empty
-                            <div class="item active">
-                                <img src="/img/empty.jpg" alt="empty" style="width:100%;">
-                            </div>
-                        @endforelse
-                    </div>
+        <div class="col-md-7">
+            <div id="myCarousel" data-interval="2500" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    @foreach($sliders as $slider)
+                    <li data-target="#myCarousel" data-slide-to="{{$slider->id}}"></li>
+                    @endforeach
+                </ol>
 
-                    <!-- Left and right controls -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left"></span>
-                        <span class="sr-only">قبلی</span>
-                    </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        <span class="sr-only">بعدی</span>
-                    </a>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    @forelse($sliders as $slider)
+                        <div class="item {{ $loop->first ? ' active' : '' }}">
+                            <img src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width:100%;">
+                            <div class="carousel-caption" style="color: black">
+                                <h3>{{$slider->head}}</h3>
+                                <p>{{$slider->body}}</p>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="item active">
+                            <img src="/img/empty.jpg" alt="empty" style="width:100%;">
+                        </div>
+                    @endforelse
                 </div>
-            </div>
 
-            <div class="col-md-5 panel panel-primary text-center">
-                <div class="panel-heading">اعلان های عمومی</div>
-                @forelse (\App\Notification::all() as $notification)
-                    <div class="panel-body">{!! nl2br(e($notification->text)) !!}</div>
-                    <hr style="background-color:darkseagreen; height:2px;">
-                @empty
-                    <div class="panel-body">اعلانی برای نمایش وجود ندارد</div>
-                @endforelse
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">قبلی</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">بعدی</span>
+                </a>
             </div>
+        </div>
+
+        <div class="col-md-5 panel panel-primary text-center">
+            <div class="panel-heading">اعلان های عمومی</div>
+            @forelse (\App\Notification::all() as $notification)
+                <div class="panel-body">{!! nl2br(e($notification->text)) !!}</div>
+                <hr style="background-color:darkseagreen; height:2px;">
+            @empty
+                <div class="panel-body">اعلانی برای نمایش وجود ندارد</div>
+            @endforelse
         </div>
 
         <footer class="footer">
             <strong>
                 طراحی توسط
                 <span class="glyphicon glyphicon-copyright-mark"></span>
-                <a  href="http://t.me/er_gholizade" style="text-decoration:none">
-                    عرفان قلی زاده
-                </a>
+                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#Erfan_Gholizade">عرفان قلی زاده</button>
                 1397
             </strong>
         </footer>
+
+        <!-- Modal -->
+        <div class="modal fade" id="Erfan_Gholizade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">تماس با من</h4>
+                    </div>
+                    <div style="font-family:'Font'" class="modal-body">
+                        <p>
+                        <span class="fa fa-telegram"></span>
+                        <a style="text-decoration: none" href="https://t.me/er_gholizade">تلگرام</a>
+                        t.me/er_gholizade
+                        </p>
+
+                        <p>
+                        <span class="fa fa-twitter"></span>
+                        <a style="text-decoration: none" href="https://twitter.com/erfantkerfan">توییتر</a>
+                        twitter.com/erfantkerfan
+                        </p>
+
+                        <p>
+                        <span class="fa fa-yahoo"></span>
+                        <a style="text-decoration: none" href="mailto:erfantkerfan@yahoo.com?subject=طراحی سایت">ایمیل</a>
+                        erfantkerfan@yahoo.com
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     </body>
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.min.js')}}"></script>

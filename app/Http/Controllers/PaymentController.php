@@ -88,4 +88,39 @@ class PaymentController extends Controller
         }
         return back();
     }
+
+    public function show_edit($id)
+    {
+        $payment = Payment::FindOrFail($id);
+        return view('payment_edit')->with(['payment'=>$payment]);
+    }
+    public function edit(request $request , $id)
+    {
+        $payment = Payment::FindOrFail($id);
+
+        $input = $request->all();
+        if($input["payment"]!=null){$input["payment"] = str_replace(",","",$input["payment"]);}
+        if($input["loan_payment"]!=null){$input["loan_payment"] = str_replace(",","",$input["loan_payment"]);}
+        if($input["loan_payment_force"]!=null){$input["loan_payment_force"] = str_replace(",","",$input["loan_payment_force"]);}
+        if($input["payment_cost"]!=null){$input["payment_cost"] = str_replace(',','',$input['payment_cost']);}
+        $request->replace((array)$input);
+
+        $this->Validate($request,[
+            'payment' => 'required|integer',
+            'payment_cost' => 'nullable|integer',
+            'loan_payment'=> 'nullable|integer',
+            'loan_payment_force'=> 'nullable|integer',
+            'description' => 'nullable|string',
+        ]);
+
+        $payment->payment = $request->payment;
+        $payment->payment_cost = $request->payment_cost;
+        $payment->loan_payment = $request->loan_payment;
+        $payment->loan_payment_force = $request->loan_payment_force;
+        $payment->description = $request->description;
+
+        $payment->save();
+
+        return redirect(route('user',['id'=>$payment->user_id]));
+    }
 }

@@ -360,6 +360,7 @@
                         <tr class="bg-info">
                             @if($permission==1)
                                 <th class="text-center">حذف پرداخت</th>
+                                <th class="text-center">اصلاح پرداخت</th>
                             @endif
                             <th class="text-center">آخرین تایید توسط</th>
                             <th class="text-center">توضیحات</th>
@@ -374,12 +375,17 @@
                         @foreach($payments as $payment)
                             <tr>
                                 @if($permission==1)
-                                <th class="text-center">
-                                    <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
-                                       onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
-                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                    </a>
-                                </th>
+                                    <th class="text-center">
+                                        <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
+                                           onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </a>
+                                    </th>
+                                    <th class="text-center">
+                                        <a href="{{ route('edit_payment_form',['id'=>$payment->id]) }}">
+                                            <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                        </a>
+                                    </th>
                                 @endif
                                 <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
                                 <th class="text-center">{{$payment->description}}</th>
@@ -425,11 +431,11 @@
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </a>
                                     </th>
-                                <th class="text-center">
-                                    <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
-                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
-                                    </a>
-                                </th>
+                                    <th class="text-center">
+                                        <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
+                                            <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                        </a>
+                                    </th>
                                 @endif
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>

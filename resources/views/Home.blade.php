@@ -159,7 +159,8 @@
 
                         <div class="form-group">
                             <div>
-                                <button name="online_payment" value="0" type="submit" class="btn btn-primary">
+                                <button name="online_payment" value="0" type="submit" class="btn btn-primary"
+                                        onclick="return confirm('آیا از درج پرداخت اطمینان دارید؟')" >
                                     ثبت پرداخت
                                 </button>
 
@@ -364,6 +365,7 @@
                             @endif
                             <th class="text-center">آخرین تایید توسط</th>
                             <th class="text-center">توضیحات</th>
+                            <th class="text-center">مجموع پرداختی</th>
                             <th class="text-center">پرداخت هزینه صندوق</th>
                             <th class="text-center">پرداخت اقساط ضروری</th>
                             <th class="text-center">پرداخت اقساط عادی</th>
@@ -389,6 +391,7 @@
                                 @endif
                                 <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
                                 <th class="text-center">{{$payment->description}}</th>
+                                <th class="text-center">{{$payment->sum}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>

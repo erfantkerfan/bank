@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     static function NumberFormat($vars)
     {
-        $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force'];
+        $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force','sum'];
         foreach ($array as $par){
             foreach ($vars as $var) {
                 if (isset($var->$par)) {

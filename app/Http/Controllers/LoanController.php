@@ -75,4 +75,31 @@ class LoanController extends Controller
         return back();
 
     }
+
+    public function show_edit($id)
+    {
+        $loan = Loan::FindOrFail($id);
+        return view('loan_edit')->with(['loan'=>$loan]);
+    }
+
+    public function edit(request $request , $id)
+    {
+        $loan = Loan::FindOrFail($id);
+
+        $input = $request->all();
+        if($input["loan"]!=null){$input["loan"] = str_replace(",","",$input["loan"]);}
+        $request->replace((array)$input);
+
+        $this->Validate($request, [
+            'loan' => 'nullable|integer',
+            'description' => 'nullable|string',
+        ]);
+
+        $loan->loan = $request->loan;
+        $loan->description = $request->description;
+
+        $loan->save();
+
+        return redirect(route('user',['id'=>$loan->user_id]));
+    }
 }

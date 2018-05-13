@@ -405,6 +405,7 @@
                         <tr class="bg-info">
                             @if($permission==1)
                                 <th class="text-center">حذف قرض الحسنه</th>
+                                <th class="text-center">اصلاح قرض الحسنه</th>
                             @endif
                             <th class="text-center">تاریخ تایید</th>
                             <th class="text-center">آخرین تایید توسط</th>
@@ -424,6 +425,11 @@
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </a>
                                     </th>
+                                <th class="text-center">
+                                    <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
+                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                    </a>
+                                </th>
                                 @endif
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>

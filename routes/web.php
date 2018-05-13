@@ -35,6 +35,8 @@ Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['SuperAdminAuth'])->group(function () {
+    Route::get('/loan/edit/{id}','LoanController@show_edit')->name('edit_loan_form');
+    Route::Post('/loan/edit/{id}','LoanController@edit')->name('edit_loan');
     Route::get('/slider/delete/{id}','SliderController@delete')->name('delete_slider');
     Route::Post('/slider/create','SliderController@create')->name('create_slider');
     Route::get('/notes/delete/{id}','NoteController@delete')->name('delete_note');

@@ -161,6 +161,8 @@
                             <div>
                                 <button name="online_payment" value="0" type="submit" class="btn btn-primary"
                                         onclick="return confirm('آیا از درج پرداخت اطمینان دارید؟')" >
+                                    {{--onclick="return confirm('Are you sure you want to deploy to ' +--}}
+                                    {{--document.getElementsByClassName('environment-name')[0].value + '?');"--}}
                                     ثبت پرداخت
                                 </button>
 

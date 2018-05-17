@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        function numberWithCommas() {
+            var1 = parseInt(document.getElementById('payment').value.replace(/[^0-9]/, ''))||0 ;
+            var2 = parseInt(document.getElementById('loan_payment').value.replace(/[^0-9]/, ''))||0 ;
+            var3 = parseInt(document.getElementById('loan_payment_force').value.replace(/[^0-9]/, ''))||0 ;
+            var4 = parseInt(document.getElementById('payment_cost').value.replace(/[^0-9]/, ''))||0 ;
+            x = var1 + var2 + var3 + var4
+            x = x.toString();
+            var pattern = /(-?\d+)(\d{3})/;
+            while (pattern.test(x))
+                x = x.replace(pattern, "$1,$2");
+            return x;
+        }
+    </script>
     <div class="container text-center">
         <div class="row">
 
@@ -159,14 +173,12 @@
 
                         <div class="form-group">
                             <div>
-                                <button name="online_payment" value="0" type="submit" class="btn btn-primary">
-                                        {{--onclick="return confirm(' مجموع مبلغ پرداختی صحیح است؟ ' +--}}
-                                        {{--parseInt(--}}
-                                            {{--parseInt(document.getElementById('payment').value)|0 +--}}
-                                            {{--parseInt(document.getElementById('loan_payment').value)|0 +--}}
-                                            {{--parseInt(document.getElementById('loan_payment_force').value)|0 +--}}
-                                            {{--parseInt(document.getElementById('payment_cost').value)|0--}}
-                                            {{--) )">--}}
+                                <button name="online_payment" value="0" type="submit" class="btn btn-primary"
+                                        onclick="return confirm
+                                        (' مجموع مبلغ پرداختی صحیح است؟ ' +
+                                        numberWithCommas()+
+                                        ' ریال '
+                                        )">
                                     ثبت پرداخت
                                 </button>
 

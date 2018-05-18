@@ -29,7 +29,7 @@ class UserController extends Controller
     public function instalments_end_date()
     {
         $users = User::where('instalment', '!=', null)->OrderBy('end_date')->paginate(30);
-        $users_force = User::where('instalment_force', '!=', null)->OrderBy('end_date')->paginate(30);
+        $users_force = User::where('instalment_force', '!=', null)->OrderBy('end_date_force')->paginate(30);
         return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
     }
 

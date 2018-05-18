@@ -25,10 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
          $schedule->command('backup:mysql-dump Mysql_Backup_Ghaem')
-             ->timezone('Asia/Tehran')
-//             ->everyMinute()
-             ->dailyAt('2:00')
-             ->appendOutputTo('/public/log.txt');
+             ->everyMinute()
+//             ->dailyAt('2:00')
+             ->appendOutputTo('/public/log.txt')
+             ->timezone('Asia/Tehran');
     }
 
     /**

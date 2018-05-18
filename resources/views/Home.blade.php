@@ -3,10 +3,13 @@
 @section('content')
     <script>
         function numberWithCommas() {
-            var1 = parseInt(document.getElementById('payment').value.replace(/[^0-9]/, ''))||0 ;
-            var2 = parseInt(document.getElementById('loan_payment').value.replace(/[^0-9]/, ''))||0 ;
-            var3 = parseInt(document.getElementById('loan_payment_force').value.replace(/[^0-9]/, ''))||0 ;
-            var4 = parseInt(document.getElementById('payment_cost').value.replace(/[^0-9]/, ''))||0 ;
+            var1 = parseInt(document.getElementById('payment').value.replace(/,/g, ''))||0 ;
+            if(document.getElementById('negative').checked){
+                var1 = -var1
+            }
+            var2 = parseInt(document.getElementById('loan_payment').value.replace(/,/g, ''))||0 ;
+            var3 = parseInt(document.getElementById('loan_payment_force').value.replace(/,/g, ''))||0 ;
+            var4 = parseInt(document.getElementById('payment_cost').value.replace(/,/g, ''))||0 ;
             x = var1 + var2 + var3 + var4
             x = x.toString();
             var pattern = /(-?\d+)(\d{3})/;
@@ -101,6 +104,7 @@
                                 </span>
                                     @endif
                                 </div>
+
                             </div>
 
                             <div class="form-group{{ $errors->has('loan_payment') ? ' has-error' : '' }}">
@@ -155,37 +159,47 @@
                                 </div>
                             </div>
 
-                        @if($permission==1)
-                            <div class="form-group{{ $errors->has('is_proved') ? ' has-error' : '' }}">
-                                <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
-                                <div class="col-md-7">
-                                    <label class="radio-inline"><input type="radio" name="is_proved" value="0">خیر</label>
-                                    <label class="radio-inline"><input type="radio" name="is_proved" value="1" checked>بله</label>
+                            @if($permission==1)
+                                <div class="form-group{{ $errors->has('is_proved') ? ' has-error' : '' }}">
+                                    <label for="is_proved" class="control-label">:تایید شدن مدیریت</label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline"><input type="radio" name="is_proved" value="0">خیر</label>
+                                        <label class="radio-inline"><input type="radio" name="is_proved" value="1" checked>بله</label>
 
-                                    @if ($errors->has('is_proved'))
-                                        <span class="help-block">
-                                    <strong>{{ $errors->first('is_proved') }}</strong>
-                                </span>
-                                    @endif
+                                        @if ($errors->has('is_proved'))
+                                            <span class="help-block">
+                                        <strong>{{ $errors->first('is_proved') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
 
-                        <div class="form-group">
-                            <div>
-                                <button name="online_payment" value="0" type="submit" class="btn btn-primary"
-                                        onclick="return confirm
-                                        (' مجموع مبلغ پرداختی صحیح است؟ ' +
-                                        numberWithCommas()+
-                                        ' ریال '
-                                        )">
-                                    ثبت پرداخت
-                                </button>
+
+                            <div class="form-group">
+                                <div>
+                                    <span class="col-md-8">
+                                    <button name="online_payment" value="0" type="submit" class="btn btn-primary"
+                                            onclick="return confirm
+                                            (' مجموع مبلغ پرداختی صحیح است؟ ' +
+                                            numberWithCommas()+
+                                            ' ریال '
+                                            )">
+                                        ثبت پرداخت
+                                    </button>
 
                                     <button name="online_payment" value="1" type="submit" class="btn btn-success" disabled="">
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                         پرداخت اینترنتی
                                     </button>
+                                    </span>
+
+                                    @if($permission==1)
+                                        <div class="checkbox col-md-4">
+                                            <label><input  name="negative" id="negative" type="checkbox" value="1">کسر از سرمایه</label>
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
 

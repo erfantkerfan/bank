@@ -29,6 +29,7 @@ class PaymentController extends Controller
     {
         $input = $request->all();
         if($input["payment"]!=null){$input["payment"] = str_replace(",","",$input["payment"]);}
+        if(isset($input["negative"]) and $input["negative"]==1){$input["payment"] = -$input["payment"];}
         if($input["loan_payment"]!=null){$input["loan_payment"] = str_replace(",","",$input["loan_payment"]);}
         if($input["loan_payment_force"]!=null){$input["loan_payment_force"] = str_replace(",","",$input["loan_payment_force"]);}
         if($input["payment_cost"]!=null){$input["payment_cost"] = str_replace(',','',$input['payment_cost']);}

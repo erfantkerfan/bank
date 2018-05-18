@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/loan/create','LoanController@create')->name('loan_create');
     Route::post('/user_note','NoteController@user_note')->name('user_note');
     });
-Route::middleware(['AdminAuth'])->group(function () {
+Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');
     Route::get('/admin','AdminController@index')->name('admin');
     Route::get('/admin/{id}','AdminController@user')->name('user');
@@ -34,7 +34,7 @@ Route::middleware(['AdminAuth'])->group(function () {
     Route::get('/user/instalment/end_date','UserController@instalments_end_date')->name('instalment_end_date');
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
-Route::middleware(['SuperAdminAuth'])->group(function () {
+Route::middleware(['auth','SuperAdminAuth'])->group(function () {
     Route::get('/loan/edit/{id}','LoanController@show_edit')->name('edit_loan_form');
     Route::get('/payment/edit/{id}','PaymentController@show_edit')->name('edit_payment_form');
     Route::Post('/loan/edit/{id}','LoanController@edit')->name('edit_loan');

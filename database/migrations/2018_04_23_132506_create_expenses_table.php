@@ -23,7 +23,7 @@ class CreateExpensesTable extends Migration
                 ->onupdate('cascade');
             $table->BigInteger('expense');
             $table->string('description')->nullable();
-            $table->dateTime('date_time');
+            $table->text('date_time');
             $table->softDeletes();
             $table->timestamps();
         });

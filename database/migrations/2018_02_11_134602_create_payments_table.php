@@ -26,7 +26,7 @@ class CreatePaymentsTable extends Migration
             $table->BigInteger('loan_payment_force')->nullable();
             $table->BigInteger('payment_cost')->nullable();
             $table->string('description')->nullable();
-            $table->dateTime('date_time');
+            $table->text('date_time');
             $table->boolean('is_proved')->default('0');
             $table->string('proved_by')->nullable();
             $table->timestamps();

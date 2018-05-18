@@ -23,7 +23,7 @@ class CreateLoansTable extends Migration
                 ->onupdate('cascade');
             $table->BigInteger('loan');
             $table->string('description')->nullable();
-            $table->dateTime('date_time');
+            $table->text('date_time');
             $table->boolean('force')->default('0');
             $table->boolean('is_proved')->default('0');
             $table->string('proved_by')->nullable();

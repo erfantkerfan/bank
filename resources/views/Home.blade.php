@@ -23,8 +23,12 @@
 
             <div class="text-center">
                 (حساب قرض الحسنه
-                {{$user->f_name.' '.$user->l_name}}
-                (شماره حساب:
+                @if($permission==1)
+                    <a href="{{ route('user_edit',['id'=>$user->id]) }}">{{$user->f_name.' '.$user->l_name}}</a>
+                @elseif($permission==0)
+                    {{$user->f_name.' '.$user->l_name}}
+                @endif
+                شماره حساب:(
                 {{$user->acc_id}}
             </div>
             <br>

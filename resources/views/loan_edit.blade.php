@@ -41,6 +41,20 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('force') ? ' has-error' : '' }}">
+                                    <label for="force" class="control-label">:نوع قرض الحسنه</label>
+                                    <div class="col-md-7">
+                                        <label class="radio-inline"><input type="radio" name="force" value="0" @if($loan->force==0)checked @endif>عادی</label>
+                                        <label class="radio-inline"><input type="radio" name="force" value="1" @if($loan->force==1)checked @endif>ضروری</label>
+
+                                        @if ($errors->has('force'))
+                                            <span class="help-block">
+                                    <strong>{{ $errors->first('force') }}</strong>
+                                </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="">
                                         <button type="submit" class="btn btn-primary">

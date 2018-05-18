@@ -106,6 +106,7 @@ class PaymentController extends Controller
         if($input["payment_cost"]!=null){$input["payment_cost"] = str_replace(',','',$input['payment_cost']);}
         $request->replace((array)$input);
 
+
         $this->Validate($request,[
             'payment' => 'required|integer',
             'payment_cost' => 'nullable|integer',
@@ -114,6 +115,9 @@ class PaymentController extends Controller
             'description' => 'nullable|string',
         ]);
 
+        if ($payment->is_proved==1){
+            $payment->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+        }
         $payment->payment = $request->payment;
         $payment->payment_cost = $request->payment_cost;
         $payment->loan_payment = $request->loan_payment;

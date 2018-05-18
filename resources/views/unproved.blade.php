@@ -11,6 +11,8 @@
                             <thead>
                             <tr class="bg-info">
                                 <th class="text-center">تایید پرداخت</th>
+                                <th class="text-center">حذف</th>
+                                <th class="text-center">اصلاح</th>
                                 <th class="text-center">توضیحات</th>
                                 <th class="text-center">هزینه صندوق</th>
                                 <th class="text-center">پرداخت اقساط ضروری</th>
@@ -29,6 +31,17 @@
                                                 onclick="return confirm('از تایید کردن این پرداخت اطمینان دارید؟')"
                                         >تایید
                                         </button>
+                                    </a>
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
+                                       onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
+                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                    </a>
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('edit_payment_form',['id'=>$payment->id]) }}">
+                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                     </a>
                                 </th>
                                 <th class="text-center">{{$payment->description}}</th>
@@ -52,6 +65,8 @@
                             <thead>
                             <tr class="bg-info">
                                 <th class="text-center">تایید قرض الحسنه</th>
+                                <th class="text-center">حذف</th>
+                                <th class="text-center">اصلاح</th>
                                 <th class="text-center">توضیحات</th>
                                 <th class="text-center">مبلغ قرض الحسنه</th>
                                 <th class="text-center">نوع قرض الحسنه</th>
@@ -68,6 +83,17 @@
                                             onclick="return confirm('از تایید کردن این قرض الحسنه اطمینان دارید؟')">
                                             تایید
                                         </button>
+                                    </a>
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
+                                       onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
+                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                    </a>
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
+                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                     </a>
                                 </th>
                                 <th class="text-center">{{$loan->description}}</th>

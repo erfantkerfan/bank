@@ -86,6 +86,10 @@ class LoanController extends Controller
     {
         $loan = Loan::FindOrFail($id);
 
+        if ($loan->is_proved==1){
+            $loan->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+        }
+
         $input = $request->all();
         if($input["loan"]!=null){$input["loan"] = str_replace(",","",$input["loan"]);}
         $request->replace((array)$input);
@@ -97,6 +101,7 @@ class LoanController extends Controller
 
         $loan->loan = $request->loan;
         $loan->description = $request->description;
+        $loan->force = $request->force;
 
         $loan->save();
 

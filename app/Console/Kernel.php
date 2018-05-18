@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('backup:mysql-dump Mysql_Backup_Ghaem')
              ->everyMinute()
 //             ->dailyAt('2:00')
-             ->appendOutputTo('/public/log.txt')
+//             ->appendOutputTo('/public/log.txt')
              ->timezone('Asia/Tehran');
     }
 

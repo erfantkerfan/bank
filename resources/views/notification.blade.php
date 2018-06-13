@@ -58,7 +58,7 @@
                                         <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                     </a>
                                 </th>
-                                <th class="text-center">{!! nl2br(e($notification->text)) !!}</th>
+                                <th dir="rtl" class="text-center">{!! nl2br(e($notification->text)) !!}</th>
                             </tr>
                         @endforeach
                         </tbody>

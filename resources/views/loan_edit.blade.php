@@ -6,7 +6,7 @@
 
             <div class="col-md-4 col-md-offset-4">
                 <div class="panel panel-primary">
-                    <div class="panel-heading text-center">اصلاح قرض الحسنه</div>
+                    <div class="panel-heading text-center">ویرایش قرض الحسنه</div>
 
                         <div class="panel-body bg-success">
                             <form class="form" method="POST" action="{{ route('edit_loan',['id'=>$loan->id]) }}">
@@ -58,7 +58,7 @@
                                 <div class="form-group">
                                     <div class="">
                                         <button type="submit" class="btn btn-primary">
-                                            اصلاح
+                                            ویرایش
                                         </button>
                                     </div>
                                 </div>

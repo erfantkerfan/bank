@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -103,6 +104,7 @@ class RegisterController extends Controller
             'end_date' => 'nullable|string',
             'start_date_force' => 'nullable|string',
             'end_date_force' => 'nullable|string',
+            'active' => 'nullable|boolean',
         ]);
     }
 
@@ -140,6 +142,8 @@ class RegisterController extends Controller
             'end_date' => $data['end_date'],
             'start_date_force' => $data['start_date_force'],
             'end_date_force' => $data['end_date_force'],
+            'active' => $data['active'],
+            'note_date' => Verta::now(),
         ]);
         return ($user);
     }

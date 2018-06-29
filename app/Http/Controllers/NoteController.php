@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -10,7 +11,7 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $users = User::where('note', '!=', null)->orwhere('user_note', '!=', null)->OrderBy('acc_id')->paginate(20);
+        $users = User::where('note', '!=', null)->orwhere('user_note', '!=', null)->OrderBy('user_note_date')->paginate(20);
         return view('notes')->with(['users'=>$users]);
 
     }
@@ -25,6 +26,7 @@ class NoteController extends Controller
 
         $user = User::FindOrFail($user_id);
         $user -> user_note = $request -> user_note;
+        $user -> user_note_date = Verta::now();
         $user -> save();
         return back();
     }

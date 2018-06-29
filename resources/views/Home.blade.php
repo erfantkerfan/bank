@@ -20,18 +20,22 @@
             return x;
         }
     </script>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
         <div class="row">
 
-            <div class="text-center">
-                (حساب قرض الحسنه
+            <div dir="rtl" class="text-center">
+                حساب قرض الحسنه
                 @if($permission==1)
                     <a href="{{ route('user_edit',['id'=>$user->id]) }}">{{$user->f_name.' '.$user->l_name}}</a>
                 @elseif($permission==0)
                     {{$user->f_name.' '.$user->l_name}}
                 @endif
-                شماره حساب:(
+                <span class="glyphicon glyphicon glyphicon-minus"></span>
+                شماره حساب:
                 {{$user->acc_id}}
+                <span class="glyphicon glyphicon glyphicon-minus"></span>
+                آخرین ورود:
+                {{str_replace(' ','   ',str_replace('-','/',$user->old_login))}}
             </div>
             <br>
 
@@ -73,12 +77,13 @@
 
             <div class="col-md-4">
                 @if (!is_null($user->note))
-                    <div class="alert alert-info alert-dismissible text-center">
+                    <div dir="rtl" class="alert alert-info alert-dismissible text-center">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">
                             <span class="glyphicon glyphicon-remove-sign"></span>
                         </a>
                         <span style="color:rgb(65, 150, 19)">
-                            :پیام مدیریت صندوق برای شما
+                            پیام مدیریت صندوق برای شما در تاریخ
+                            {{str_replace(' ','   ',str_replace('-','/',$user->note_date))}}
                         </span>
                         <br>
                         <strong> {!! nl2br(e($user->note)) !!} </strong>
@@ -155,7 +160,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="control-label">:توضیحات</label>
                                 <div class="col-md-7">
-                                    <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
+                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
@@ -245,7 +250,7 @@
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="control-label">:توضیحات</label>
                                 <div class="col-md-7">
-                                    <input id="description" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
+                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
@@ -336,7 +341,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="col-md-12">
 
             <div class="panel panel-primary">
@@ -356,7 +361,7 @@
                             <th class="text-center">{{number_format($summary->payments_cost)}}</th>
                             <th class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
                             <th class="text-center">{{number_format($summary->loans_all)}}</th>
-                            <th class="text-center">{{number_format($summary->payments)}}</th>
+                            <th class="bg-success text-center">{{number_format($summary->payments)}}</th>
                         </tr>
                         </tbody>
                         <thead>
@@ -369,8 +374,8 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="text-center">{{number_format($summary->debt_force)}}</th>
-                            <th class="text-center">
+                            <th class="bg-danger text-center">{{number_format($summary->debt_force)}}</th>
+                            <th class="bg-danger text-center">
                                 @if(is_int($summary->loan_force))
                                     {{number_format($summary->loan_force)}}
                                 @else
@@ -398,16 +403,18 @@
                         <thead>
                         <tr class="bg-info">
                             @if($permission==1)
-                                <th class="text-center">حذف پرداخت</th>
-                                <th class="text-center">اصلاح پرداخت</th>
+                                <th class="text-center">تایید پرداخت</th>
+                                <th class="text-center">ویرایش پرداخت</th>
                             @endif
-                            <th class="text-center">آخرین تایید توسط</th>
+                            <th class="text-center">حذف پرداخت</th>
+                            <th class="text-center">تایید توسط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مجموع پرداختی</th>
                             <th class="text-center">پرداخت هزینه صندوق</th>
                             <th class="text-center">پرداخت اقساط ضروری</th>
                             <th class="text-center">پرداخت اقساط عادی</th>
                             <th class="text-center">افزایش سرمایه</th>
+                            <th class="text-center">ثبت کننده</th>
                             <th class="text-center">تاریخ</th>
                         </tr>
                         </thead>
@@ -416,10 +423,16 @@
                             <tr>
                                 @if($permission==1)
                                     <th class="text-center">
-                                        <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
-                                           onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
-                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                        </a>
+                                        @if($payment->is_proved==0)
+                                            <a href="{{ route('payment_confirm',['id'=>$payment->id]) }}">
+                                                <button type="button" class="btn btn-sm btn-success"
+                                                        onclick="return confirm('از تایید کردن این پرداخت اطمینان دارید؟')"
+                                                >تایید
+                                                </button>
+                                            </a>
+                                        @else
+                                            تایید شده
+                                        @endif
                                     </th>
                                     <th class="text-center">
                                         <a href="{{ route('edit_payment_form',['id'=>$payment->id]) }}">
@@ -427,6 +440,18 @@
                                         </a>
                                     </th>
                                 @endif
+
+                                <th class="text-center">
+                                    @if($permission==1 || $payment->is_proved==0)
+                                        <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
+                                           onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </a>
+                                    @else
+                                         تایید شده
+                                    @endif
+                                </th>
+
                                 <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
                                 <th class="text-center">{{$payment->description}}</th>
                                 <th class="text-center">{{$payment->sum}}</th>
@@ -434,6 +459,7 @@
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
+                                <th class="text-center">{{$payment->creator}}</th>
                                 <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
 
                             </tr>
@@ -451,14 +477,16 @@
                         <thead>
                         <tr class="bg-info">
                             @if($permission==1)
-                                <th class="text-center">حذف قرض الحسنه</th>
-                                <th class="text-center">اصلاح قرض الحسنه</th>
+                                <th class="text-center">تایید قرض الحسنه</th>
+                                <th class="text-center">ویرایش قرض الحسنه</th>
                             @endif
+                            <th class="text-center">حذف قرض الحسنه</th>
                             <th class="text-center">تاریخ تایید</th>
-                            <th class="text-center">آخرین تایید توسط</th>
+                            <th class="text-center">تایید توسط</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مبلغ قرض الحسنه</th>
                             <th class="text-center">نوع قرض الحسنه</th>
+                            <th class="text-center">ثبت کننده</th>
                             <th class="text-center">تاریخ</th>
                         </tr>
                         </thead>
@@ -467,10 +495,16 @@
                             <tr class="text-center">
                                 @if($permission==1)
                                     <th class="text-center">
-                                        <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
-                                           onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
-                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                    @if($loan->is_proved==0)
+                                        <a href="{{ route('loan_confirm',['id'=>$loan->id]) }}">
+                                            <button type="button" class="btn btn-sm btn-success"
+                                                    onclick="return confirm('از تایید کردن این قرض الحسنه اطمینان دارید؟')">
+                                                تایید
+                                            </button>
                                         </a>
+                                    @else
+                                        تایید شده
+                                    @endif
                                     </th>
                                     <th class="text-center">
                                         <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
@@ -478,11 +512,22 @@
                                         </a>
                                     </th>
                                 @endif
+                                <th class="text-center">
+                                    @if($permission==1 || $loan->is_proved==0)
+                                        <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
+                                           onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </a>
+                                    @else
+                                        تایید شده
+                                    @endif
+                                </th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
                                 <th class="text-center">{{$loan->description}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">@if ($loan->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
+                                <th class="text-center">{{$payment->creator}}</th>
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
                             </tr>
                         @endforeach

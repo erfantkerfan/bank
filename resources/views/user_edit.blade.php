@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
-                <div class="panel-heading">اصلاح اطلاعات عضو</div>
+                <div class="panel-heading">ویرایش اطلاعات عضو</div>
                 <div class="panel-body bg-success">
                     <form class="form-horizontal" method="POST" action="{{ route('user_edit',['id' => $user->id]) }}">
                         {{ csrf_field() }}
@@ -150,7 +150,7 @@
                                 <label for="is_admin" class="col-md-4 control-label">دسترسی بازرس</label>
                                 <div class="col-md-6">
                                     <label class="radio-inline"><input type="radio" name="is_admin" value="0" @if($user->is_admin==0)checked @endif>خیر</label>
-                                    <label class="radio-inline"><input type="radio" name="is_admin" value="1"  onclick="return confirm('از دادن سطح مدیریتی اطمینان دارید؟')" @if($user->is_admin==1)checked @endif>بله</label>
+                                    <label class="radio-inline"><input type="radio" name="is_admin" value="1"  onclick="return confirm('از دادن سطح بازرسی اطمینان دارید؟')" @if($user->is_admin==1)checked @endif>بله</label>
 
                                     @if ($errors->has('is_admin'))
                                         <span class="help-block">
@@ -169,6 +169,20 @@
                                     @if ($errors->has('is_super_admin'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('is_super_admin') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
+                                <label for="active" class="col-md-4 control-label">عضو فعال است</label>
+                                <div class="col-md-6">
+                                    <label class="radio-inline"><input type="radio" name="active" value="0" @if($user->active==0)checked @endif>خیر</label>
+                                    <label class="radio-inline"><input type="radio" name="active" value="1" @if($user->active==1)checked @endif>بله</label>
+
+                                    @if ($errors->has('active'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('active') }}</strong>
                                         </span>
                                     @endif
                                 </div>

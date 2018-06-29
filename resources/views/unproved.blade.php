@@ -12,13 +12,14 @@
                             <tr class="bg-info">
                                 <th class="text-center">تایید پرداخت</th>
                                 <th class="text-center">حذف</th>
-                                <th class="text-center">اصلاح</th>
+                                <th class="text-center">ویراش</th>
                                 <th class="text-center">توضیحات</th>
                                 <th class="text-center">هزینه صندوق</th>
                                 <th class="text-center">پرداخت اقساط ضروری</th>
                                 <th class="text-center">پرداخت اقساط عادی</th>
                                 <th class="text-center">افزایش سرمایه</th>
                                 <th class="text-center">تاریخ</th>
+                                <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
                             </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                 <th class="text-center">{{$payment->loan_payment}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
                                 <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
+                                <th class="text-center">{{$payment->creator}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$payment->user->id]) }}">{{$payment->user->f_name." ".$payment->user->l_name}}</a></th>
                             </tr>
                             @endforeach
@@ -66,11 +68,12 @@
                             <tr class="bg-info">
                                 <th class="text-center">تایید قرض الحسنه</th>
                                 <th class="text-center">حذف</th>
-                                <th class="text-center">اصلاح</th>
+                                <th class="text-center">ویرایش</th>
                                 <th class="text-center">توضیحات</th>
                                 <th class="text-center">مبلغ قرض الحسنه</th>
                                 <th class="text-center">نوع قرض الحسنه</th>
                                 <th class="text-center">تاریخ</th>
+                                <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
                             </tr>
                             </thead>
@@ -100,6 +103,7 @@
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">@if ($loan->force==0)عادی@else<span style="color:red" >ضروری</span>@endif</th>
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
+                                <th class="text-center">{{$loan->creator}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
                             </tr>
                             @endforeach

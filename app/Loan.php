@@ -9,10 +9,11 @@ use Illuminate\Support\Facades\DB;
 class loan extends Model
 {
     use SoftDeletes;
+    protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'user_id','loan','description','date_time','force','is_proved','proved_by'
+        'user_id','loan','description','date_time','force','is_proved','proved_by','creator'
     ];
 
 

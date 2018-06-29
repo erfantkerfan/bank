@@ -149,7 +149,7 @@
                                 <label for="is_admin" class="col-md-4 control-label">دسترسی بازرس</label>
                                 <div class="col-md-6">
                                     <label class="radio-inline"><input type="radio" name="is_admin" value="0" checked>خیر</label>
-                                    <label class="radio-inline"><input type="radio" name="is_admin" value="1" onclick="return confirm('از دادن سطح مدیریتی اطمینان دارید؟')" >بله</label>
+                                    <label class="radio-inline"><input type="radio" name="is_admin" value="1" onclick="return confirm('از دادن سطح بازرسی اطمینان دارید؟')" >بله</label>
 
                                     @if ($errors->has('is_admin'))
                                         <span class="help-block">
@@ -168,6 +168,20 @@
                                     @if ($errors->has('is_super_admin'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('is_super_admin') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('active') ? ' has-error' : '' }}">
+                                <label for="active" class="col-md-4 control-label">عضو فعال است</label>
+                                <div class="col-md-6">
+                                    <label class="radio-inline"><input type="radio" name="active" value="0">خیر</label>
+                                    <label class="radio-inline"><input type="radio" name="active" value="1" checked>بله</label>
+
+                                    @if ($errors->has('active'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('active') }}</strong>
                                         </span>
                                     @endif
                                 </div>

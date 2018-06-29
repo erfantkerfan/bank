@@ -22,36 +22,33 @@
                             </thead>
                             <tbody>
                                 <tr class="bg-success">
-                                    <th class="text-center">{{number_format($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p)}}</th>
-                                    <th class="text-center">{{number_format($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p)}}</th>
-                                    <th class="text-center">{{number_format($all_loan_summary->loans_force_p)}}</th>
-                                    <th class="text-center">{{number_format($all_loan_summary->loans_p-$all_payment_summary->loan_payments_p)}}</th>
-                                    <th class="text-center">{{number_format($all_loan_summary->loans_p)}}</th>
-                                    <th class="text-center">{{number_format($all_payment_summary->payments_p-($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p))}}</th>
-                                    <th class="text-center">{{number_format($all_payment_summary->payments_p)}}</th>
+                                    <td class="text-center">{{number_format($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p)}}</td>
+                                    <td class="text-center">{{number_format($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p)}}</td>
+                                    <td class="text-center">{{number_format($all_loan_summary->loans_force_p)}}</td>
+                                    <td class="text-center">{{number_format($all_loan_summary->loans_p-$all_payment_summary->loan_payments_p)}}</td>
+                                    <td class="text-center">{{number_format($all_loan_summary->loans_p)}}</td>
+                                    <td class="text-center">{{number_format($all_payment_summary->payments_p-($all_loan_summary->loans_force_p-$all_payment_summary->loan_payments_force_p+$all_loan_summary->loans_p-$all_payment_summary->loan_payments_p))}}</td>
+                                    <td class="text-center">{{number_format($all_payment_summary->payments_p)}}</th>
                                 </tr>
                             </tbody>
                             <thead>
                             <tr class="bg-info">
-                                <th class="text-center">کل بدهی</th>
-                                <th class="text-center">بدهی قرض الحسنه ضروری</th>
-                                <th class="text-center">قرض الحسنه ضروری</th>
-                                <th class="text-center">بدهی قرض الحسنه عادی</th>
-                                <th class="text-center">قرض الحسنه عادی</th>
+                                <th class="text-center">قرض الحسنه ضروری درخواستی</th>
+                                <th class="text-center">قرض الحسنه عادی درخواستی</th>
                                 <th class="text-center">هزینه های پرداختی</th>
-                                <th class="text-center">افزایش سرمایه</th>
+                                <th class="text-center">واریز اقساط ضروری</th>
+                                <th class="text-center">واریز اقساط عادی</th>
+                                <th colspan="2" class="text-center">افزایش سرمایه</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr class="bg-danger">
-                                <th class="text-center">{{number_format($all_loan_summary->loans_force_np-$all_payment_summary->loan_payments_force_np+$all_loan_summary->loans_np-$all_payment_summary->loan_payments_np)}}</th>
-                                <th class="text-center">{{number_format($all_loan_summary->loans_force_np-$all_payment_summary->loan_payments_force_np)}}</th>
-                                <th class="text-center">{{number_format($all_loan_summary->loans_force_np)}}</th>
-                                <th class="text-center">{{number_format($all_loan_summary->loans_np-$all_payment_summary->loan_payments_np)}}</th>
-                                <th class="text-center">{{number_format($all_loan_summary->loans_np)}}</th>
-                                <th class="text-center">{{number_format($all_payment_summary->payments_cost_np)}}</th>
-                                <th class="text-center">{{number_format($all_payment_summary->payments_np)}}</th>
-
+                                <td class="text-center">{{number_format($all_loan_summary->loans_force_np)}}</td>
+                                <td class="text-center">{{number_format($all_loan_summary->loans_np)}}</td>
+                                <td class="text-center">{{number_format($all_payment_summary->payments_cost_np)}}</td>
+                                <td class="text-center">{{number_format($all_payment_summary->loan_payments_force_np)}}</td>
+                                <td class="text-center">{{number_format($all_payment_summary->loan_payments_np)}}</td>
+                                <td colspan="2" class="text-center">{{number_format($all_payment_summary->payments_np)}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -61,21 +58,27 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">
                         ( لیست اعضا
-                        ( اعضای فعال
+                        ( تعداد اعضا
                         {{ $users->count() }}
+                        <span class="glyphicon glyphicon glyphicon-minus"></span>
+                        تعداد اعضای فعال
+                        {{ $users->where('active','==','1')->count() }}
                     </div>
                     <div class="panel-body bg-success">
                         <table class="table table-striped">
                             <thead>
                             <tr class="bg-info">
-                                <th class="text-center">اصلاح عضو</th>
+                                <th class="text-center">ویرایش اطلاعات</th>
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">دسترسی بازرسی</th>
+                                <th class="text-center">عضو فعال</th>
+                                <th class="text-center">آخرین ورود</th>
                                 <th class="text-center">ارتباط با عضو دیگر</th>
                                 <th class="text-center">شماره حساب</th>
                                 <th class="text-center">نام کاربری</th>
                                 <th class="text-center">نام خانوادگی</th>
                                 <th class="text-center">نام</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -102,11 +105,20 @@
                                             <span class="glyphicon glyphicon-ok" style="color:green"></span>
                                         @endif
                                     </th>
+                                    <th class="text-center">
+                                        @if ($user->active==0)
+                                            <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                                        @elseif ($user->active==1)
+                                            <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                                        @endif
+                                    </th>
+                                    <th class="text-center">{{str_replace(' ','   ',str_replace('-','/',$user->new_login))}}</th>
                                     <th class="text-center">{{$user->relation}}</th>
                                     <th class="text-center">{{$user->acc_id}}</th>
                                     <th class="text-center">{{$user->username}}</th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->l_name}}</a></th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name}}</a></th>
+                                    <th class="text-center">{{$loop->iteration}}</th>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notification;
 use App\Slider;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -27,6 +28,7 @@ class Controller extends BaseController
     public function welcome()
     {
         $sliders = Slider::all();
-        return view('welcome')->with(['sliders'=>$sliders]);
+        $notifications = Notification::all();
+        return view('welcome')->with(['sliders'=>$sliders,'notifications'=>$notifications]);
     }
 }

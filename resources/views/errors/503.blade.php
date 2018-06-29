@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
     <title>{{config('app.name')}}</title>
 
@@ -72,10 +74,11 @@
 <body style="font-family:'Font'">
 <div class="flex-center position-ref full-height">
 
-
     <div class="content">
-        <div class="title m-b-md">
-            .سایت در حال به روزرسانی یا تعمیر می باشد
+        <img class="col-md-6" src="{{asset('img/maintenance boy.gif')}}">
+        <div dir="rtl" class="title m-b-md">
+            سایت در حال بروزرسانی یا تعمیر    می باشد
+            .
         </div>
         <div class="number font-red"> 503 </div>
     </div>

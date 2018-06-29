@@ -12,7 +12,7 @@ class LoanController extends Controller
     {
         $loan = Loan::FindOrFail($id);
         $loan->is_proved = 1;
-        $loan->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+        $loan->proved_by = Auth::User()->l_name;
         $loan-> save();
 
         return redirect()->route('user_edit',['id'=>$loan->user->id]);
@@ -21,8 +21,12 @@ class LoanController extends Controller
     public function delete($id)
     {
         $loan = Loan::FindOrFail($id);
-        $loan -> delete();
-        return redirect()->back();
+        if (Auth::user()->is_super_admin == 1 || ($loan->user_id==Auth::user()->id && $loan->isproved==0)) {
+            $loan->delete();
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
     }
 
     public function create(request $request)
@@ -33,7 +37,7 @@ class LoanController extends Controller
 
         $proved_by = null;
         if($request->is_proved==1){
-            $proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+            $proved_by = Auth::User()->l_name;
         };
 
         $user_id = basename(url()->previous());
@@ -53,6 +57,8 @@ class LoanController extends Controller
             $is_proved=0;
         }
 
+        $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
+
         $date_time = verta();
 
         $this->Validate($request, [
@@ -70,6 +76,7 @@ class LoanController extends Controller
             'loan' => $request['loan'],
             'description' => $request['description'],
             'force' => $request['force'],
+            'creator' => $creator,
         ]);
 
         return back();

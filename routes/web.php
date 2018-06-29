@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/payment/create','PaymentController@create')->name('payment_create');
     Route::post('/loan/create','LoanController@create')->name('loan_create');
     Route::post('/user_note','NoteController@user_note')->name('user_note');
+    Route::get('/loan/delete/{id}','LoanController@delete')->name('loan_delete');
+    Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
     });
 Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');
@@ -48,9 +50,7 @@ Route::middleware(['auth','SuperAdminAuth'])->group(function () {
     Route::Post('/user/edit/{id}','UserController@user_edit');
     Route::get('/user/delete/acc_id/instalment/{id}','UserController@delete_instalment')->name('delete_instalment');
     Route::get('/user/delete/acc_id/instalment_force/{id}','UserController@delete_instalment_force')->name('delete_instalment_force');
-    Route::get('/loan/delete/{id}','LoanController@delete')->name('loan_delete');
     Route::get('/loan/confirm/{id}','LoanController@confirm')->name('loan_confirm');
-    Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
     Route::get('/payment/confirm/{id}','PaymentController@confirm')->name('payment_confirm');
     Route::get('/notification/delete/{id}','NotificationController@delete')->name('notification_delete');
     Route::post('/notification/create','NotificationController@create')->name('notification_create');

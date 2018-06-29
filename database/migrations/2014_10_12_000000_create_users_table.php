@@ -28,7 +28,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('relation')->nullable();
             $table->text('note')->nullable();
+            $table->text('note_date')->nullable();
             $table->text('user_note')->nullable();
+            $table->text('user_note_date')->nullable();
             $table->BigInteger('instalment')->nullable();
             $table->string('period')->nullable();
             $table->string('loan_row')->nullable();
@@ -41,6 +43,9 @@ class CreateUsersTable extends Migration
             $table->string('cheque_force')->nullable();
             $table->string('start_date_force')->nullable();
             $table->string('end_date_force')->nullable();
+            $table->text('new_login')->nullable();
+            $table->text('old_login')->nullable();
+            $table->boolean('active')->default('1');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

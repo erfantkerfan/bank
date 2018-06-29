@@ -12,7 +12,7 @@ class PaymentController extends Controller
     {
         $payment = Payment::FindOrFail($id);
         $payment->is_proved = 1;
-        $payment->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+        $payment->proved_by = Auth::User()->l_name;
         $payment-> save();
 
         return redirect()->back();
@@ -21,8 +21,12 @@ class PaymentController extends Controller
     public function delete($id)
     {
         $payment = Payment::FindOrFail($id);
-        $payment -> delete();
-        return redirect()->back();
+        if (Auth::user()->is_super_admin == 1 || ($payment->user_id==Auth::user()->id && $payment->isproved==0)) {
+            $payment->delete();
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
     }
 
     public function create(request $request)
@@ -40,7 +44,7 @@ class PaymentController extends Controller
             case '0':
                 $proved_by = null;
                 if($request->is_proved==1){
-                    $proved_by =Auth::User()->f_name.' '.Auth::User()->l_name;
+                    $proved_by = Auth::User()->l_name;
                 };
 
                 $user_id= basename(url()->previous());
@@ -58,6 +62,8 @@ class PaymentController extends Controller
                 else{
                     $is_proved=0;
                 }
+
+                $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
 
                 $date_time = verta();
 
@@ -80,6 +86,7 @@ class PaymentController extends Controller
                     'loan_payment'=> $request['loan_payment'],
                     'loan_payment_force'=> $request['loan_payment_force'],
                     'description' => $request['description'],
+                    'creator' => $creator,
                 ]);
                 break;
 

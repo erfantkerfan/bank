@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
     <title>{{config('app.name')}}</title>
 
@@ -78,8 +80,10 @@
     @endif
 
     <div class="content">
-        <div class="title m-b-md">
+        <img class="col-md-6" src="{{asset('img/maintenance boy.gif')}}">
+        <div dir="rtl" class="title m-b-md">
             این صفحه وجود ندارد
+            .
         </div>
         <div class="number font-red"> 404 </div>
     </div>

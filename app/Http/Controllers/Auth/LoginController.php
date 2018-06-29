@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -24,6 +25,7 @@ class LoginController extends Controller
     {
         return 'username';
     }
+
     /**
      * Where to redirect users after login.
      *
@@ -32,6 +34,9 @@ class LoginController extends Controller
 //    protected $redirectTo = '/home';
     public function redirectTo()
     {
+        auth()->user()->old_login = auth()->user()->new_login;
+        auth()->user()->new_login = Verta::now();
+        auth()->user()->save();
         if (auth()->user()->is_admin==1) {
             return '/admin';
         } else {

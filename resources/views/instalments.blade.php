@@ -9,7 +9,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr class="bg-info">
-                        <th class="text-center">اصلاح</th>
+                        <th class="text-center">ویرایش</th>
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>
@@ -70,7 +70,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr class="bg-info">
-                        <th class="text-center">اصلاح</th>
+                        <th class="text-center">ویرایش</th>
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">شماره ردیف</th>

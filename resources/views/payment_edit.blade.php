@@ -6,7 +6,7 @@
             <div class="col-md-5 col-md-offset-3">
                 <div class="panel panel-primary">
 
-                    <div class="panel-heading">اصلاح پرداخت</div>
+                    <div class="panel-heading">ویرایش پرداخت</div>
 
                     <div class="panel-body bg-success">
                         <form class="form" method="POST" action="{{ route('edit_payment',['id'=>$payment->id]) }}">
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <div>
                                     <button name="online_payment" value="0" type="submit" class="btn btn-primary">
-                                        اصلاح پرداخت
+                                        ویرایش پرداخت
                                     </button>
 
                                 </div>

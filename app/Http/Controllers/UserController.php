@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -88,6 +89,7 @@ class UserController extends Controller
             'end_date' => 'nullable|string',
             'start_date_force' => 'nullable|string',
             'end_date_force' => 'nullable|string',
+            'active' => 'nullable|boolean',
         ]);
 
         $data = User::FindOrFail($id);
@@ -106,6 +108,9 @@ class UserController extends Controller
         $data->home_number = $request['home_number'];
         $data->relation = $request['relation'];
         $data->email = $request['email'];
+        if($data->note != $request['note']){
+            $data->note_date = Verta::now();
+        }
         $data->note = $request['note'];
         $data->user_note = $request['user_note'];
         $data->instalment = $request['instalment'];
@@ -120,6 +125,7 @@ class UserController extends Controller
         $data->end_date = $request['end_date'];
         $data->start_date_force = $request['start_date_force'];
         $data->end_date_force = $request['end_date_force'];
+        $data->active = $request['active'];
 
         $data->save();
 
@@ -136,36 +142,5 @@ class UserController extends Controller
     public function show_form()
     {
         return view('auth.register');
-    }
-
-    public function register(Request $request)
-    {
-        $this->Validate($request,['username' => 'required|string|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'acc_id'=> 'required|integer|unique:users',
-            'is_admin' => 'required|boolean',
-            'is_super_admin' => 'required|boolean',
-            'name' => 'required|string|max:225|unique:users',
-            'phone_number' => 'required|digits:11',
-            'faculty_number' => 'nullable|integer',
-            'home_number' => 'nullable|integer',
-            'email' => 'nullable|string|email|max:255',
-            'relation' => 'nullable|string',
-            'note' => 'Nullable|string',
-            'instalment' => 'nullable|integer',
-            'instalment_force' => 'nullable|integer',
-            'period' => 'nullable|string',
-            'period_force' => 'nullable|string',
-            'loan_row' => 'nullable|string',
-            'loan_row_force' => 'nullable|string',
-            'Cheque' => 'nullable|string',
-            'Cheque_force' => 'nullable|string',
-            'start_date' => 'nullable|string',
-            'end_date' => 'nullable|string',
-            'start_date_force' => 'nullable|string',
-            'end_date_force' => 'nullable|string',
-        ]);
-
-
     }
 }

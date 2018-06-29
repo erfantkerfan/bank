@@ -4,10 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{config('app.name')}}</title>
+        <title dir="rtl">{{config('app.name')}}</title>
         <link rel="stylesheet" href="{{ asset('css/car-bootstrap.css') }}">
         <link rel="icon" href="/img/icon.gif" type="image/gif">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
 
         <!-- Fonts -->
         <link href="{{ asset('css/googleapis.css') }}" rel="stylesheet" type="text/css">
@@ -57,17 +59,9 @@
                 display: flex;
                 justify-content: center;
             }
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
             .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
+                font-weight: 900;
+                color: #ffffff;
                 text-decoration: none;
             }
             .title {
@@ -81,18 +75,20 @@
     <body style="font-family:'Font'">
     <div class="container">
 
-        <div class="flex-center">
-            @if (Route::has('login'))
-                <div class="top-right links">
+        <div>
+            <button type="button" class="float-right mt-4 btn btn-primary">
+                <span class="links">
                     @auth
-                        <a href="{{ url('/home') }}">{{Auth::user()->username}}</a>
+                        <a href="{{ route('home') }}">{{Auth::user()->username}}</a>
                     @else
-                        <a href="{{ route('login') }}">ورود</a>
+                        <a href="{{ route('login') }}">ورود اعضا</a>
                     @endauth
-                </div>
-            @endif
+                </span>
+            </button>
+        </div>
 
-            <div class="content">
+        <div class="flex-center">
+            <div class="text-center">
                 <div class="title">
                     <h2>
                         (صندوق قرض الحسنه حضرت قائم (عج
@@ -143,7 +139,7 @@
 
         <div class="col-md-5 panel panel-primary text-center">
             <div class="panel-heading">اعلان های عمومی</div>
-            @forelse (\App\Notification::all() as $notification)
+            @forelse ($notifications as $notification)
                 <div dir="rtl" class="panel-body">{!! nl2br(e($notification->text)) !!}</div>
                 <hr style="background-color:darkseagreen; height:2px;">
             @empty
@@ -155,7 +151,7 @@
             <strong>
                 طراحی توسط
                 <span class="glyphicon glyphicon-copyright-mark"></span>
-                <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#Erfan_Gholizade">عرفان قلی زاده</button>
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Erfan_Gholizade">عرفان قلی زاده</button>
                 1397
             </strong>
         </footer>

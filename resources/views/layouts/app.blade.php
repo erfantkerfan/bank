@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="/img/icon.gif" type="image/gif">
-    <title>{{ config('app.name') }}</title>
+    <title dir="rtl">{{ config('app.name') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -152,9 +152,9 @@
                             <ul class="dropdown-menu">
                                 <li class="text-center">
 
-                                    <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}</a>
+                                    <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}:امروز</a>
 
-                                    <a href="#"><span class="glyphicon glyphicon-map-marker"></span>{{Request::getClientIp()}}</a>
+                                    <a href="#"><span class="glyphicon glyphicon-map-marker"></span>{{Request::getClientIp()}}:IP</a>
 
                                     <a style="color: red" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -30,6 +30,7 @@ class CreatePaymentsTable extends Migration
             $table->boolean('is_proved')->default('0');
             $table->string('proved_by')->nullable();
             $table->string('creator')->nullable();
+            $table->mediumInteger('delay')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -64,6 +64,19 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('delay') ? ' has-error' : '' }}">
+                                <label for="delay" class="control-label">:تعداد روزهای تاخیر</label>
+                                <div class="col-md-7">
+                                    <input id="delay" type="text" class="form-control" name="delay" value="{{ $payment->delay }}" placeholder="مثبت به معنای تاخیر است و بالعکس" autofocus>
+
+                                    @if ($errors->has('delay'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('delay') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                 <label for="description" class="control-label">:توضیحات</label>
                                 <div class="col-md-7">

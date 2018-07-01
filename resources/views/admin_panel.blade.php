@@ -31,6 +31,9 @@
                                     <td class="text-center">{{number_format($all_payment_summary->payments_p)}}</th>
                                 </tr>
                             </tbody>
+                        </table>
+
+                        <table class="table">
                             <thead>
                             <tr class="bg-info">
                                 <th class="text-center">قرض الحسنه ضروری درخواستی</th>
@@ -38,7 +41,7 @@
                                 <th class="text-center">هزینه های پرداختی</th>
                                 <th class="text-center">واریز اقساط ضروری</th>
                                 <th class="text-center">واریز اقساط عادی</th>
-                                <th colspan="2" class="text-center">افزایش سرمایه</th>
+                                <th class="text-center">افزایش سرمایه</th>
                             </tr>
                             </thead>
                             <tbody>

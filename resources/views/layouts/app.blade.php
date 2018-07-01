@@ -71,7 +71,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a dir="rtl" class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name') }}
                 </a>
             </div>

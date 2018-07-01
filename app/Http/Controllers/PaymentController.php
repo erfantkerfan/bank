@@ -120,6 +120,7 @@ class PaymentController extends Controller
             'loan_payment'=> 'nullable|integer',
             'loan_payment_force'=> 'nullable|integer',
             'description' => 'nullable|string',
+            'delay' => 'nullable|integer',
         ]);
 
         if ($payment->is_proved==1){
@@ -130,6 +131,7 @@ class PaymentController extends Controller
         $payment->loan_payment = $request->loan_payment;
         $payment->loan_payment_force = $request->loan_payment_force;
         $payment->description = $request->description;
+        $payment->delay = $request->delay;
 
         $payment->save();
 

@@ -34,6 +34,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function delays()
+    {
+        return $this->hasMany(Payment::class)->sum('delay');
+    }
+
     public function Loan()
     {
         return $this->hasMany(Loan::class)->orderBy('date_time','desc');

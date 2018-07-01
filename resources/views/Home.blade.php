@@ -19,6 +19,9 @@
                 x = x.replace(pattern, "$1,$2");
             return x;
         }
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
     <div class="container-fluid text-center">
         <div class="row">
@@ -350,6 +353,7 @@
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
+                            <th class="text-center">مجموع روز های تاخیر</th>
                             <th class="text-center">کل پرداخت هزینه صندوق</th>
                             <th class="text-center">کل بدهی</th>
                             <th class="text-center">کل قرض الحسنه دریافتی</th>
@@ -358,12 +362,16 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="text-center">{{number_format($summary->payments_cost)}}</th>
-                            <th class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
-                            <th class="text-center">{{number_format($summary->loans_all)}}</th>
-                            <th class="bg-success text-center">{{number_format($summary->payments)}}</th>
+                            <td class="text-center">{{$user->delays()}}</td>
+                            <td class="text-center">{{number_format($summary->payments_cost)}}</td>
+                            <td class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
+                            <td class="text-center">{{number_format($summary->loans_all)}}</td>
+                            <td class="bg-success text-center">{{number_format($summary->payments)}}</td>
                         </tr>
                         </tbody>
+                    </table>
+
+                    <table class="table">
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">بدهی قرض الحسنه جاری ضروری</th>
@@ -374,22 +382,22 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
-                            <th class="bg-danger text-center">{{number_format($summary->debt_force)}}</th>
-                            <th class="bg-danger text-center">
+                            <td class="bg-danger text-center">{{number_format($summary->debt_force)}}</td>
+                            <td class="bg-danger text-center">
                                 @if(is_int($summary->loan_force))
                                     {{number_format($summary->loan_force)}}
                                 @else
                                     {{$summary->loan_force}}
                                 @endif
-                            </th>
-                            <th class="text-center">{{number_format($summary->debt)}}</th>
-                            <th class="text-center">
+                            </td>
+                            <td class="text-center">{{number_format($summary->debt)}}</td>
+                            <td class="text-center">
                                 @if(is_int($summary->loan))
                                     {{number_format($summary->loan)}}
                                 @else
                                     {{$summary->loan}}
                                 @endif
-                            </th>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -409,6 +417,7 @@
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
                             <th class="text-center">توضیحات</th>
+                            <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
                             <th class="text-center">مجموع پرداختی</th>
                             <th class="text-center">پرداخت هزینه صندوق</th>
                             <th class="text-center">پرداخت اقساط ضروری</th>
@@ -454,6 +463,7 @@
 
                                 <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
                                 <th class="text-center">{{$payment->description}}</th>
+                                <th class="text-center">{{$payment->delay}}</th>
                                 <th class="text-center">{{$payment->sum}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>

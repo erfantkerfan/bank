@@ -28,10 +28,23 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('request_date') ? ' has-error' : '' }}">
+                                    <label for="request_date" class="control-label">:تاریخ مورد نیاز</label>
+                                    <div class="col-md-7">
+                                        <input id="request_date" type="text" class="form-control" name="request_date" value="{{ $loan->request_date }}" autofocus>
+
+                                        @if ($errors->has('request_date'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('request_date') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
                                     <label for="description" class="control-label">:توضیحات</label>
                                     <div class="col-md-7">
-                                        <input id="description" type="text" class="form-control" name="description" value="{{ $loan->description }}" placeholder="میتواند خالی باشد" autofocus>
+                                        <input dir="rtl" id="description" type="text" class="form-control" name="description" value="{{ $loan->description }}" placeholder="میتواند خالی باشد" autofocus>
 
                                         @if ($errors->has('description'))
                                             <span class="help-block">

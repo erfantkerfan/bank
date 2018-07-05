@@ -53,6 +53,9 @@
         $(function($) {
             $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
         });
+        $(function($) {
+            $('#withdraw').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+        });
     </script>
 
 </head>

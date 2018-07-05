@@ -95,6 +95,7 @@
             </div>
         </div>
 
+        @if($user->active==1)
         <div class="col-md-5">
             <div class="panel panel-primary">
 
@@ -192,7 +193,7 @@
 
                             <div class="form-group">
                                 <div>
-                                    <span class="col-md-8">
+                                    <span class="col-md-8 col-md-offset-1">
                                     <button name="online_payment" value="0" type="submit" class="btn btn-primary"
                                             onclick="return confirm
                                             (' مجموع مبلغ پرداختی صحیح است؟ ' +
@@ -209,7 +210,7 @@
                                     </span>
 
                                     @if($permission==1)
-                                        <div class="checkbox col-md-4">
+                                        <div class="checkbox col-md-3">
                                             <label><input  name="negative" id="negative" type="checkbox" value="1">کسر از سرمایه</label>
                                         </div>
                                     @endif
@@ -226,7 +227,7 @@
         <div class="col-md-4">
             <div class="panel panel-primary">
                 <a data-toggle="collapse" href="#collapse2">
-                    <div class="panel-heading text-center">درج درخواست قرض الحسنه</div>
+                    <div class="panel-heading text-center">درج درخواست های رسمی</div>
                 </a>
 
                 <div id="collapse2" class="panel-collapse collapse">
@@ -240,7 +241,7 @@
                                     مبلغ قرض الحسنه
                                 </label>
                                 <div class="col-md-7">
-                                    <input id="loan" type="text" class="form-control" name="loan" value="{{ old('loan') }}" placeholder="مبلغ به ریال" autofocus>
+                                    <input id="loan" type="text" class="form-control" name="loan" value="{{ old('loan') }}" required placeholder="مبلغ به ریال" autofocus>
 
                                     @if ($errors->has('loan'))
                                         <span class="help-block">
@@ -250,14 +251,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                                <label for="description" class="control-label">:توضیحات</label>
+                            <div class="form-group{{ $errors->has('request_date') ? ' has-error' : '' }}">
+                                <label for="request_date" class="control-label">
+                                    :
+                                    تاریخ مورد نیاز
+                                </label>
                                 <div class="col-md-7">
-                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
+                                    <input id="request_date" type="text" class="form-control" name="request_date" value="{{ old('request_date') }}" required autofocus>
 
-                                    @if ($errors->has('description'))
+                                    @if ($errors->has('request_date'))
                                         <span class="help-block">
-                                    <strong>{{ $errors->first('description') }}</strong>
+                                    <strong>{{ $errors->first('request_date') }}</strong>
                                 </span>
                                     @endif
                                 </div>
@@ -293,19 +297,118 @@
                             </div>
                         @endif
 
+                            <div dir="rtl">
+                                 متن درخواست:
+                                <br>
+                                اینجانب
+                                {{$user->f_name.' '.$user->l_name}}
+                                در تاریخ فوق و به مبلغ مزبور درخواست قرض الحسنه از نوع مشخص شده را دارم.
+                            </div>
+                            <br>
+
+                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                <label for="description" class="control-label">:سایر توضیحات</label>
+                                <div class="col-md-7">
+                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" value="{{ old('description') }}" placeholder="میتواند خالی باشد" autofocus>
+
+                                    @if ($errors->has('description'))
+                                        <span class="help-block">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="">
                                     <button type="submit" class="btn btn-primary">
-                                        ثبت درخواست
+                                        ثبت درخواست قرض الحسنه
                                     </button>
                                 </div>
                             </div>
 
+                            <div dir="rtl">
+                                سایر درخوست های رسمی:
+                            </div>
+                            <br>
+
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#withdraw_panel">
+                                برداشت موجودی از حساب
+                            </button>
+
+                            <button type="button" class="btn btn-sm btn-outline-primary btn-danger" data-toggle="modal" data-target="#close">
+                                بستن حساب و تسویه
+                            </button>
+
                         </form>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="withdraw_panel" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->+
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">برداشت موجودی از حساب</h4>
+                                    </div>
+
+                                    <div style="font-family:'Font'" class="modal-body">
+                                        <form class="form" method="POST" action="{{ route('loan_create') }}">
+                                            {{ csrf_field() }}
+
+                                            <div class="form-group{{ $errors->has('withdraw') ? ' has-error' : '' }}">
+                                                <label for="withdraw" class="control-label">
+                                                    :
+                                                    مبلغ برداشتی
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <input id="withdraw" type="text" class="form-control" name="withdraw" value="{{ old('withdraw') }}" required placeholder="مبلغ به ریال" autofocus>
+
+                                                    @if ($errors->has('withdraw'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('withdraw') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div dir="rtl">
+                                                متن درخواست
+                                                <br>
+                                                لطفا مبلغ مزبور از محل سرمایه اینجانب پرداخت نمایید.
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                                <label for="description" class="control-label">
+                                                    :
+                                                    توضیحات
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" required autofocus>
+
+                                                    @if ($errors->has('description'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('description') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+
                     </div>
                 </div>
             </div>
         </div>
+        @endif
 
         <div class="col-md-3">
             <div class="panel panel-primary">
@@ -320,7 +423,7 @@
 
                             <div class="form-group{{ $errors->has('user_note') ? ' has-error' : '' }}">
                                 <div class="col-md-12">
-                                    <textarea dir="rtl" style="resize: vertical" class="form-control form-group" name="user_note" rows="5" autofocus>{{ $user->user_note }}</textarea>
+                                    <textarea dir="rtl" style="resize: vertical" class="form-control form-group" name="user_note" rows="7" autofocus>{{ $user->user_note }}</textarea>
 
                                     @if ($errors->has('user_note'))
                                         <span class="help-block">
@@ -494,6 +597,7 @@
                             <th class="text-center">تاریخ تایید</th>
                             <th class="text-center">تایید توسط</th>
                             <th class="text-center">توضیحات</th>
+                            <th class="text-center">تاریخ مورد نیاز</th>
                             <th class="text-center">مبلغ قرض الحسنه</th>
                             <th class="text-center">نوع قرض الحسنه</th>
                             <th class="text-center">ثبت کننده</th>
@@ -535,6 +639,7 @@
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
                                 <th class="text-center">{{$loan->description}}</th>
+                                <th class="text-center">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">@if ($loan->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
                                 <th class="text-center">{{$payment->creator}}</th>

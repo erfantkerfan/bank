@@ -66,6 +66,7 @@ class LoanController extends Controller
             'description' => 'nullable|string',
             'is_proved' => 'nullable|boolean',
             'force' => 'boolean',
+            'request_date' => 'string',
         ]);
 
         Loan::create([
@@ -76,6 +77,7 @@ class LoanController extends Controller
             'loan' => $request['loan'],
             'description' => $request['description'],
             'force' => $request['force'],
+            'request_date' => $request['request_date'],
             'creator' => $creator,
         ]);
 
@@ -104,11 +106,13 @@ class LoanController extends Controller
         $this->Validate($request, [
             'loan' => 'nullable|integer',
             'description' => 'nullable|string',
+            'request_date' => 'string',
         ]);
 
         $loan->loan = $request->loan;
         $loan->description = $request->description;
         $loan->force = $request->force;
+        $loan->request_date = $request->request_date;
 
         $loan->save();
 

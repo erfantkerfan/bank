@@ -336,7 +336,7 @@
                                 برداشت موجودی از حساب
                             </button>
 
-                            <button type="button" class="btn btn-sm btn-outline-primary btn-danger" data-toggle="modal" data-target="#close">
+                            <button type="button" class="btn btn-sm btn-outline-primary btn-danger" data-toggle="modal" data-target="#close_panel">
                                 بستن حساب و تسویه
                             </button>
 
@@ -345,7 +345,7 @@
                         <!-- Modal -->
                         <div class="modal fade" id="withdraw_panel" role="dialog">
                             <div class="modal-dialog">
-                                <!-- Modal content-->+
+                                <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title">برداشت موجودی از حساب</h4>
@@ -372,9 +372,63 @@
                                             </div>
 
                                             <div dir="rtl">
-                                                متن درخواست
+                                                متن درخواست:
                                                 <br>
                                                 لطفا مبلغ مزبور از محل سرمایه اینجانب پرداخت نمایید.
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                                <label for="description" class="control-label">
+                                                    :
+                                                    توضیحات
+                                                </label>
+                                                <div class="col-md-7">
+                                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" autofocus>
+
+                                                    @if ($errors->has('description'))
+                                                        <span class="help-block">
+                                                            <strong>{{ $errors->first('description') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <button type="submit" class="btn btn-warning">
+                                                        ثبت درخواست
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="close_panel" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">بستن حساب و تسویه</h4>
+                                    </div>
+
+                                    <div style="font-family:'Font'" class="modal-body">
+                                        <form class="form" method="POST" action="{{ route('loan_create') }}">
+                                            {{ csrf_field() }}
+
+                                            <div dir="rtl">
+                                                متن درخواست:
+                                                <br>
+                                                لطفا حساب اینجانب بسته شود و تسویه حساب کامل صورت پذیرد.
                                             </div>
                                             <br>
 
@@ -391,6 +445,14 @@
                                                             <strong>{{ $errors->first('description') }}</strong>
                                                         </span>
                                                     @endif
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div>
+                                                    <button type="submit" class="btn btn-danger">
+                                                        ثبت درخواست
+                                                    </button>
                                                 </div>
                                             </div>
 

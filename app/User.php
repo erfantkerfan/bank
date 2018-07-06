@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasMany(Loan::class)->orderBy('date_time','desc');
     }
 
+    public function request()
+    {
+        return $this->hasMany(Request::class)->orderBy('date_time','desc');
+    }
+
     public function Payment()
     {
         return $this->hasMany(Payment::class)->orderBy('date_time','desc');

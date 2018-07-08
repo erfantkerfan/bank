@@ -14,7 +14,7 @@ class payment extends Model
 
     protected $fillable = [
         'user_id','payment','payment_cost','loan_payment','loan_payment_force','description','date_time','is_proved',
-        'proved_by','creator','delay'
+        'proved_by','creator','delay','note'
     ];
 
 

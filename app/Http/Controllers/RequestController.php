@@ -9,7 +9,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $requests = \App\Request::all();
+        $requests = \App\Request::with('user')->get();
         Controller::NumberFormat($requests);
         return view('request')->with(['requests'=>$requests]);
     }
@@ -36,7 +36,7 @@ class RequestController extends Controller
         $this->Validate($request, [
             'type' => 'integer',
             'fee' => 'nullable|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
         ]);
 
         \App\Request::create([
@@ -79,8 +79,7 @@ class RequestController extends Controller
         $this->Validate($request, [
             'loan' => 'nullable|integer',
             'description' => 'nullable|string',
-            'request_date' => 'string',
-            'note' => 'string',
+            'note' => 'nullable|string',
         ]);
 
         $requestfake->fee = $request->fee;

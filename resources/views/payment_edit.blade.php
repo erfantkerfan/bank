@@ -90,6 +90,19 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                                <label for="note" class="control-label">:توضیحات مدیر</label>
+                                <div class="col-md-7">
+                                    <input id="note" type="text" class="form-control" name="note" value="{{ $payment->note }}" placeholder="میتواند خالی باشد" autofocus>
+
+                                    @if ($errors->has('note'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('note') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div>
                                     <button name="online_payment" value="0" type="submit" class="btn btn-primary">

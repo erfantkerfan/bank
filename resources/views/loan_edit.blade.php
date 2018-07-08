@@ -54,6 +54,19 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group{{ $errors->has('note') ? ' has-error' : '' }}">
+                                    <label for="description" class="control-label">:توضیحات مدیر</label>
+                                    <div class="col-md-7">
+                                        <input dir="rtl" id="note" type="text" class="form-control" name="note" value="{{ $loan->note }}" placeholder="میتواند خالی باشد" autofocus>
+
+                                        @if ($errors->has('note'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('note') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
                                 <div class="form-group{{ $errors->has('force') ? ' has-error' : '' }}">
                                     <label for="force" class="control-label">:نوع قرض الحسنه</label>
                                     <div class="col-md-7">

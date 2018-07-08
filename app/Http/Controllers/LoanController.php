@@ -106,11 +106,13 @@ class LoanController extends Controller
         $this->Validate($request, [
             'loan' => 'nullable|integer',
             'description' => 'nullable|string',
-            'request_date' => 'string',
+            'note' => 'nullable|string',
+            'request_date' => 'nullable|string',
         ]);
 
         $loan->loan = $request->loan;
         $loan->description = $request->description;
+        $loan->note = $request->note;
         $loan->force = $request->force;
         $loan->request_date = $request->request_date;
 

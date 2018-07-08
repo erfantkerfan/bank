@@ -29,6 +29,7 @@ class CreateLoansTable extends Migration
             $table->string('proved_by')->nullable();
             $table->string('creator')->nullable();
             $table->string('request_date')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

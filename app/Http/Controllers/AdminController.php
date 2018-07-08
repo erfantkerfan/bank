@@ -28,8 +28,11 @@ class AdminController extends Controller
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);
         $summary = User::FindOrFail($id)->summary();
+        $requests = $user->request()->get();
+        Controller::NumberFormat($requests);
         $permission = 1;
-        return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,'permission'=>$permission]);
+        return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,
+            'permission'=>$permission,'requests'=>$requests]);
     }
 
     public function unproved()

@@ -54,7 +54,7 @@
             $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
         });
         $(function($) {
-            $('#withdraw').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
         });
     </script>
 
@@ -62,7 +62,7 @@
 <body style="font-family:'Font'" class="bg">
     <nav class="navbar navbar-default"></nav>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
@@ -114,6 +114,15 @@
 
                                 </li>
                             </ul>
+
+                            <li>
+                                <a href="{{ route('request') }}">
+                                    <div class="badge">
+                                        {{App\Request::all()->count()}}
+                                    </div>
+                                    درخواست های رسمی
+                                </a>
+                            </li>
 
                             <li>
                                 <a href="{{ route('notes') }}">

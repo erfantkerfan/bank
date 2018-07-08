@@ -24,7 +24,10 @@ class HomeController extends Controller
         Controller::NumberFormat($loans);
         $summary = Auth::user()->summary();
         $user = Auth::User();
+        $requests = Auth::User()->request()->get();
+        Controller::NumberFormat($requests);
         $permission = 0;
-        return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,'permission'=>$permission]);
+        return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,
+            'permission'=>$permission,'requests'=>$requests]);
     }
 }

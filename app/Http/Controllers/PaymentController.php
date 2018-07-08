@@ -76,6 +76,7 @@ class PaymentController extends Controller
                     'is_proved' => 'nullable|boolean',
                 ]);
 
+
                 Payment::create([
                     'user_id' => $user_id,
                     'date_time' => $date_time,
@@ -120,6 +121,7 @@ class PaymentController extends Controller
             'loan_payment'=> 'nullable|integer',
             'loan_payment_force'=> 'nullable|integer',
             'description' => 'nullable|string',
+            'note' => 'nullable|string',
             'delay' => 'nullable|integer',
         ]);
 
@@ -131,6 +133,7 @@ class PaymentController extends Controller
         $payment->loan_payment = $request->loan_payment;
         $payment->loan_payment_force = $request->loan_payment_force;
         $payment->description = $request->description;
+        $payment->note = $request->note;
         $payment->delay = $request->delay;
 
         $payment->save();

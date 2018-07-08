@@ -22,7 +22,7 @@ class CreateRequestsTable extends Migration
                 ->onDelete('cascade')
                 ->onupdate('cascade');
             $table->tinyInteger('type');
-            $table->BigInteger('fee');
+            $table->BigInteger('fee')->nullable();
             $table->string('description')->nullable();
             $table->text('date_time');
             $table->string('creator')->nullable();

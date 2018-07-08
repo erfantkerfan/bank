@@ -352,20 +352,20 @@
                                     </div>
 
                                     <div style="font-family:'Font'" class="modal-body">
-                                        <form class="form" method="POST" action="{{ route('loan_create') }}">
+                                        <form class="form" method="POST" action="{{ route('request_create') }}">
                                             {{ csrf_field() }}
 
-                                            <div class="form-group{{ $errors->has('withdraw') ? ' has-error' : '' }}">
-                                                <label for="withdraw" class="control-label">
+                                            <div class="form-group{{ $errors->has('fee') ? ' has-error' : '' }}">
+                                                <label for="fee" class="control-label">
                                                     :
                                                     مبلغ برداشتی
                                                 </label>
                                                 <div class="col-md-7">
-                                                    <input id="withdraw" type="text" class="form-control" name="withdraw" value="{{ old('withdraw') }}" required placeholder="مبلغ به ریال" autofocus>
+                                                    <input id="fee" type="text" class="form-control" name="fee" value="{{ old('fee') }}" required placeholder="مبلغ به ریال" autofocus>
 
-                                                    @if ($errors->has('withdraw'))
+                                                    @if ($errors->has('fee'))
                                                         <span class="help-block">
-                                                            <strong>{{ $errors->first('withdraw') }}</strong>
+                                                            <strong>{{ $errors->first('fee') }}</strong>
                                                         </span>
                                                     @endif
                                                 </div>
@@ -393,6 +393,8 @@
                                                     @endif
                                                 </div>
                                             </div>
+
+                                            <input id="type" type="hidden" class="form-control" name="type" value="-1">
 
                                             <div class="form-group">
                                                 <div>
@@ -422,7 +424,7 @@
                                     </div>
 
                                     <div style="font-family:'Font'" class="modal-body">
-                                        <form class="form" method="POST" action="{{ route('loan_create') }}">
+                                        <form class="form" method="POST" action="{{ route('request_create') }}">
                                             {{ csrf_field() }}
 
                                             <div dir="rtl">
@@ -447,6 +449,8 @@
                                                     @endif
                                                 </div>
                                             </div>
+
+                                            <input id="type" type="hidden" class="form-control" name="type" value="0">
 
                                             <div class="form-group">
                                                 <div>

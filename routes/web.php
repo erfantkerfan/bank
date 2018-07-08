@@ -23,6 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/user_note','NoteController@user_note')->name('user_note');
     Route::get('/loan/delete/{id}','LoanController@delete')->name('loan_delete');
     Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
+    Route::get('/request/delete/{id}','RequestController@delete')->name('request_delete');#
+    Route::post('/request/create','RequestController@create')->name('request_create');#
     });
 Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');
@@ -56,4 +58,7 @@ Route::middleware(['auth','SuperAdminAuth'])->group(function () {
     Route::post('/notification/create','NotificationController@create')->name('notification_create');
     Route::get('/expense/delete/{id}','ExpenseController@delete')->name('expense_delete');
     Route::post('/expense/create','ExpenseController@create')->name('expense_create');
+    Route::get('/request/edit/{id}','RequestController@form')->name('request_form');#
+    Route::post('/request/edit/{id}','RequestController@edit')->name('request_edit');#
+    Route::get('/request','RequestController@index')->name('request');#
 });

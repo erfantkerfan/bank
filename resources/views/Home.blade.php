@@ -333,7 +333,7 @@
                             <br>
 
                             <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#withdraw_panel">
-                                برداشت موجودی از حساب
+                                برداشت از سرمایه
                             </button>
 
                             <button type="button" class="btn btn-sm btn-outline-primary btn-danger" data-toggle="modal" data-target="#close_panel">
@@ -555,7 +555,7 @@
                                     <th class="text-center">{{ $request->note }}</th>
                                     <th class="text-center">{{ $request->description }}</th>
                                     <th class="text-center">{{ $request->fee }}</th>
-                                    <th class="text-center">@if($request->type==-1)برداشت@elseتسویه حساب@endif</th>
+                                    <th class="text-center">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
                                     <th class="text-center">{{ $request->creator }}</th>
                                     <th class="text-center">{{ Str_before($request->date_time,' ') }}</th>
                             </tr>

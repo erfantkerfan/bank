@@ -12,7 +12,8 @@
                             <tr class="bg-info">
                                 <th class="text-center">تایید پرداخت</th>
                                 <th class="text-center">حذف</th>
-                                <th class="text-center">ویراش</th>
+                                <th class="text-center">ویرایش</th>
+                                <th class="text-center">توضیحات مدیر</th>
                                 <th class="text-center">توضیحات</th>
                                 <th class="text-center">هزینه صندوق</th>
                                 <th class="text-center">پرداخت اقساط ضروری</th>
@@ -45,6 +46,7 @@
                                         <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                     </a>
                                 </th>
+                                <th class="text-center">{{$payment->note}}</th>
                                 <th class="text-center">{{$payment->description}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
@@ -69,10 +71,12 @@
                                 <th class="text-center">تایید قرض الحسنه</th>
                                 <th class="text-center">حذف</th>
                                 <th class="text-center">ویرایش</th>
+                                <th class="text-center">توضیحات مدیر</th>
                                 <th class="text-center">توضیحات</th>
+                                <th class="text-center">تاریخ مورد نیاز</th>
                                 <th class="text-center">مبلغ قرض الحسنه</th>
                                 <th class="text-center">نوع قرض الحسنه</th>
-                                <th class="text-center">تاریخ</th>
+                                <th class="text-center">تاریخ ثبت</th>
                                 <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
                             </tr>
@@ -99,7 +103,9 @@
                                         <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                     </a>
                                 </th>
+                                <th class="text-center">{{$loan->note}}</th>
                                 <th class="text-center">{{$loan->description}}</th>
+                                <th class="text-center">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center">@if ($loan->force==0)عادی@else<span style="color:red" >ضروری</span>@endif</th>
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>

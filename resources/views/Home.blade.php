@@ -254,7 +254,7 @@
                             <div class="form-group{{ $errors->has('request_date') ? ' has-error' : '' }}">
                                 <label for="request_date" class="control-label">
                                     :
-                                    تاریخ مورد نیاز
+                                    تاریخ مورد نیاز قرض الحسنه
                                 </label>
                                 <div class="col-md-7">
                                     <input id="request_date" type="text" class="form-control" name="request_date" value="{{ old('request_date') }}" required autofocus>
@@ -440,7 +440,7 @@
                                                     توضیحات
                                                 </label>
                                                 <div class="col-md-7">
-                                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" required autofocus>
+                                                    <input id="description" dir="rtl" type="text" class="form-control" name="description" placeholder="ورود توضیحات لازم است" required autofocus>
 
                                                     @if ($errors->has('description'))
                                                         <span class="help-block">
@@ -516,57 +516,6 @@
     <div class="container-fluid">
         <div class="col-md-12">
 
-            @if(!$requests->count()==0)
-            <div class="panel panel-danger">
-                <div class="panel-heading text-center">درخواست ها</div>
-                <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr class="bg-info">
-                            @if($permission==1)
-                                <th class="text-center">ویرایش درخواست</th>
-                                <th class="text-center">حذف درخواست</th>
-                            @endif
-                            <th class="text-center">توضیحات مدیر</th>
-                            <th class="text-center">توضیحات</th>
-                            <th class="text-center"><a data-toggle="tooltip" title="در صورت درخواست برداشت از حساب"><span class="glyphicon glyphicon-question-sign"></span></a>مبلغ درخواست</th>
-                            <th class="text-center">نوع درخواست</th>
-                            <th class="text-center">ثبت کننده</th>
-                            <th class="text-center">تاریخ</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($requests as $request)
-                            <tr>
-                                @if($permission==1)
-                                    <th class="text-center">
-                                        <a href="{{ route('request_edit',['id'=>$request->id]) }}">
-                                            <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
-                                        </a>
-                                    </th>
-
-                                    <th class="text-center">
-                                        <a href="{{ route('request_delete',['id'=>$request->id]) }}"
-                                           onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >
-                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                        </a>
-                                    </th>
-                                @endif
-                                    <th class="text-center">{{ $request->note }}</th>
-                                    <th class="text-center">{{ $request->description }}</th>
-                                    <th class="text-center">{{ $request->fee }}</th>
-                                    <th class="text-center">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
-                                    <th class="text-center">{{ $request->creator }}</th>
-                                    <th class="text-center">{{ Str_before($request->date_time,' ') }}</th>
-                            </tr>
-                        @endforeach
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            @endif
-
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">خلاصه وضعیت با احتساب تراکنش های تایید شده</div>
                 <div class="panel-body">
@@ -574,9 +523,10 @@
                         <thead>
                         <tr class="bg-info">
                             <th class="text-center">مجموع روز های تاخیر</th>
-                            <th class="text-center">کل پرداخت هزینه صندوق</th>
+                            <th class="text-center">کل پرداخت بابت هزینه های صندوق</th>
                             <th class="text-center">کل بدهی</th>
-                            <th class="text-center">کل قرض الحسنه دریافتی</th>
+                            <th class="text-center">کل قرض الحسنه ضروری دریافتی</th>
+                            <th class="text-center">کل قرض الحسنه عادی دریافتی</th>
                             <th class="text-center">سرمایه</th>
                         </tr>
                         </thead>
@@ -585,6 +535,7 @@
                             <td class="text-center">{{$user->delays()}}</td>
                             <td class="text-center">{{number_format($summary->payments_cost)}}</td>
                             <td class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
+                            <td class="text-center">{{number_format($summary->loans_force_all)}}</td>
                             <td class="text-center">{{number_format($summary->loans_all)}}</td>
                             <td class="bg-success text-center">{{number_format($summary->payments)}}</td>
                         </tr>
@@ -636,9 +587,9 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
+                                <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
-                            <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
                             <th class="text-center">مجموع پرداختی</th>
                             <th class="text-center">پرداخت هزینه صندوق</th>
                             <th class="text-center">پرداخت اقساط ضروری</th>
@@ -678,14 +629,14 @@
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </a>
                                     @else
-                                         تایید شده
+                                        ممکن نیست
                                     @endif
                                 </th>
 
                                 <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
+                                <th class="text-center">{{$payment->delay}}</th>
                                 <th class="text-center">{{$payment->note}}</th>
                                 <th class="text-center">{{$payment->description}}</th>
-                                <th class="text-center">{{$payment->delay}}</th>
                                 <th class="text-center">{{$payment->sum}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
@@ -717,7 +668,7 @@
                             <th class="text-center">تایید توسط</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
-                            <th class="text-center">تاریخ مورد نیاز</th>
+                            <th class="text-center">تاریخ مورد نیاز قرض الحسنه</th>
                             <th class="text-center">مبلغ قرض الحسنه</th>
                             <th class="text-center">نوع قرض الحسنه</th>
                             <th class="text-center">ثبت کننده</th>
@@ -753,7 +704,7 @@
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </a>
                                     @else
-                                        تایید شده
+                                        ممکن نیست
                                     @endif
                                 </th>
                                 <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
@@ -772,6 +723,63 @@
                     <div class="text-center"> {{$loans->links()}} </div>
                 </div>
             </div>
+
+            @if(!$requests->count()==0)
+                <div class="panel panel-danger">
+                    <div class="panel-heading text-center">درخواست ها</div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr class="bg-info">
+                                @if($permission==1)
+                                    <th class="text-center">ویرایش درخواست</th>
+                                    <th class="text-center">حذف درخواست</th>
+                                @endif
+                                <th class="text-center">توضیحات مدیر</th>
+                                <th class="text-center">متن درخواست - توضیحات</th>
+                                <th class="text-center"><a data-toggle="tooltip" title="در صورت درخواست برداشت از حساب"><span class="glyphicon glyphicon-question-sign"></span></a>مبلغ درخواست</th>
+                                <th class="text-center">نوع درخواست</th>
+                                <th class="text-center">ثبت کننده</th>
+                                <th class="text-center">تاریخ</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($requests as $request)
+                                <tr>
+                                    @if($permission==1)
+                                        <th class="text-center">
+                                            <a href="{{ route('request_edit',['id'=>$request->id]) }}">
+                                                <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                            </a>
+                                        </th>
+
+                                        <th class="text-center">
+                                            <a href="{{ route('request_delete',['id'=>$request->id]) }}"
+                                               onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >
+                                                <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                            </a>
+                                        </th>
+                                    @endif
+                                    <th class="text-center">{{ $request->note }}</th>
+                                    <th dir="rtl" class="text-center">
+                                        @if($request->type==-1)
+                                            {{'لطفا مبلغ مزبور از محل سرمایه اینجانب پرداخت نمایید'.'-'.$request->description }}
+                                        @elseif($request->type==0)
+                                            {{'لطفا حساب اینجانب بسته شود و تسویه حساب کامل صورت پذیرد.'.'-'.$request->description }}
+                                        @endif
+                                    </th>
+                                    <th class="text-center">@if($request->fee!=null){{ $request->fee }}@else - @endif</th>
+                                    <th class="text-center">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
+                                    <th class="text-center">{{ $request->creator }}</th>
+                                    <th class="text-center">{{ Str_before($request->date_time,' ') }}</th>
+                                </tr>
+                            @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
 
         </div>
     </div>

@@ -65,6 +65,7 @@ class RequestController extends Controller
     public function form($id)
     {
         $request = \App\Request::FindOrFail($id);
+        Controller::NumberFormat($requests);
         return view('request_edit')->with(['request'=>$request]);
     }
 

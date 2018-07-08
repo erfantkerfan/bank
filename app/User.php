@@ -64,6 +64,11 @@ class User extends Authenticatable
             ->sum('payment_cost');
         $summary['loans_all']= $this->hasMany(Loan::class)
             ->where('is_proved','=','1')
+            ->where('force','=','0')
+            ->sum('loan');
+        $summary['loans_force_all']= $this->hasMany(Loan::class)
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
             ->sum('loan');
         $summary['loan']= $this->hasMany(Loan::class)
             ->where('is_proved','=','1')

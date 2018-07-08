@@ -17,7 +17,7 @@
                                     <th class="text-center">بدهی قرض الحسنه عادی</th>
                                     <th class="text-center">قرض الحسنه عادی</th>
                                     <th class="text-center">موجودی صندوق</th>
-                                    <th class="text-center">افزایش سرمایه</th>
+                                    <th class="text-center">سرمایه</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -36,6 +36,7 @@ class NoteController extends Controller
     {
         $user = User::FindOrFail($id);
         $user -> note = null;
+        $user -> note_date = null;
         $user -> save();
         return back();
     }
@@ -44,6 +45,7 @@ class NoteController extends Controller
     {
         $user = User::FindOrFail($id);
         $user -> user_note = null;
+        $user -> user_note_date = null;
         $user -> save();
         return back();
     }

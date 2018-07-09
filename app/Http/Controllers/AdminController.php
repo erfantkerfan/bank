@@ -11,7 +11,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('acc_id')->paginate(300);
+        $users = User::orderBy('acc_id')->get();
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
         return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary]);

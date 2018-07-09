@@ -11,7 +11,8 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $users = User::where('note', '!=', null)->orwhere('user_note', '!=', null)->OrderBy('user_note_date')->paginate(20);
+        $users = User::where('note', '!=', null)->orwhere('user_note', '!=', null)->OrderBy('user_note_date','desc')
+            ->orderBy('note_date', 'desc')->paginate(20);
         return view('notes')->with(['users'=>$users]);
 
     }

@@ -9,7 +9,7 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $requests = \App\Request::with('user')->get();
+        $requests = \App\Request::with('user')->OrderBy('date_time','desc')->get();
         Controller::NumberFormat($requests);
         return view('request')->with(['requests'=>$requests]);
     }

@@ -603,7 +603,7 @@
                         @foreach($payments as $payment)
                             <tr>
                                 @if($permission==1)
-                                    <th class="text-center">
+                                    <th class="text-center small">
                                         @if($payment->is_proved==0)
                                             <a href="{{ route('payment_confirm',['id'=>$payment->id]) }}">
                                                 <button type="button" class="btn btn-sm btn-success"
@@ -615,14 +615,14 @@
                                             تایید شده
                                         @endif
                                     </th>
-                                    <th class="text-center">
+                                    <th class="text-center small">
                                         <a href="{{ route('edit_payment_form',['id'=>$payment->id]) }}">
                                             <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                         </a>
                                     </th>
                                 @endif
 
-                                <th class="text-center">
+                                <th class="text-center small">
                                     @if($permission==1 || $payment->is_proved==0)
                                         <a href="{{ route('payment_delete',['id'=>$payment->id]) }}"
                                            onclick="return confirm('آیا از حذف پرداخت اطمینان دارید؟')" >
@@ -633,17 +633,17 @@
                                     @endif
                                 </th>
 
-                                <th class="text-center">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
+                                <th class="text-center small">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
                                 <th class="text-center">{{$payment->delay}}</th>
-                                <th class="text-center">{{$payment->note}}</th>
-                                <th class="text-center">{{$payment->description}}</th>
+                                <th class="text-center small">{{$payment->note}}</th>
+                                <th class="text-center small">{{$payment->description}}</th>
                                 <th class="text-center">{{$payment->sum}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
-                                <th class="text-center">{{$payment->creator}}</th>
-                                <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
+                                <th class="text-center small">{{$payment->creator}}</th>
+                                <th class="text-center small">{{Str_before($payment->date_time,' ')}}</th>
 
                             </tr>
                         @endforeach
@@ -679,7 +679,7 @@
                         @foreach($loans as $loan)
                             <tr class="text-center">
                                 @if($permission==1)
-                                    <th class="text-center">
+                                    <th class="text-center small">
                                     @if($loan->is_proved==0)
                                         <a href="{{ route('loan_confirm',['id'=>$loan->id]) }}">
                                             <button type="button" class="btn btn-sm btn-success"
@@ -691,13 +691,13 @@
                                         تایید شده
                                     @endif
                                     </th>
-                                    <th class="text-center">
+                                    <th class="text-center small">
                                         <a href="{{ route('edit_loan_form',['id'=>$loan->id]) }}">
                                             <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                         </a>
                                     </th>
                                 @endif
-                                <th class="text-center">
+                                <th class="text-center small">
                                     @if($permission==1 || $loan->is_proved==0)
                                         <a href="{{ route('loan_delete',['id'=>$loan->id]) }}"
                                            onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
@@ -707,15 +707,15 @@
                                         ممکن نیست
                                     @endif
                                 </th>
-                                <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
-                                <th class="text-center">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
-                                <th class="text-center">{{$loan->note}}</th>
-                                <th class="text-center">{{$loan->description}}</th>
-                                <th class="text-center">{{$loan->request_date}}</th>
+                                <th class="text-center small">@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
+                                <th class="text-center small">@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
+                                <th class="text-center small">{{$loan->note}}</th>
+                                <th class="text-center small">{{$loan->description}}</th>
+                                <th class="text-center small">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
-                                <th class="text-center">@if ($loan->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
-                                <th class="text-center">{{$payment->creator}}</th>
-                                <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
+                                <th class="text-center small">@if ($loan->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
+                                <th class="text-center small">{{$payment->creator}}</th>
+                                <th class="text-center small">{{Str_before($loan->date_time,' ')}}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -747,21 +747,21 @@
                             @foreach($requests as $request)
                                 <tr>
                                     @if($permission==1)
-                                        <th class="text-center">
+                                        <th class="text-center small">
                                             <a href="{{ route('request_edit',['id'=>$request->id]) }}">
                                                 <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                             </a>
                                         </th>
 
-                                        <th class="text-center">
+                                        <th class="text-center small">
                                             <a href="{{ route('request_delete',['id'=>$request->id]) }}"
                                                onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >
                                                 <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                             </a>
                                         </th>
                                     @endif
-                                    <th class="text-center">{{ $request->note }}</th>
-                                    <th dir="rtl" class="text-center">
+                                    <th class="text-center small">{{ $request->note }}</th>
+                                    <th dir="rtl" class="text-center small">
                                         @if($request->type==-1)
                                             {{'لطفا مبلغ مزبور از محل سرمایه اینجانب پرداخت نمایید'.'-'.$request->description }}
                                         @elseif($request->type==0)
@@ -769,9 +769,9 @@
                                         @endif
                                     </th>
                                     <th class="text-center">@if($request->fee!=null){{ $request->fee }}@else - @endif</th>
-                                    <th class="text-center">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
-                                    <th class="text-center">{{ $request->creator }}</th>
-                                    <th class="text-center">{{ Str_before($request->date_time,' ') }}</th>
+                                    <th class="text-center small">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
+                                    <th class="text-center small">{{ $request->creator }}</th>
+                                    <th class="text-center small">{{ Str_before($request->date_time,' ') }}</th>
                                 </tr>
                             @endforeach
 

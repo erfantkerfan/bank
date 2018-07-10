@@ -9,9 +9,20 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $requests = \App\Request::with('user')->OrderBy('date_time','desc')->get();
+        $requests = \App\Request::with('user')->where('is_proved','=','0')
+            ->OrderBy('date_time','desc')->paginate(10);
         Controller::NumberFormat($requests);
         return view('request')->with(['requests'=>$requests]);
+    }
+
+    public function confirm($id)
+    {
+        $request = \App\Request::FindOrFail($id);
+        $request->is_proved = 1;
+        $request->proved_by = Auth::User()->l_name;
+        $request-> save();
+
+        return redirect()->back();
     }
     public function create(Request $request)
     {
@@ -65,7 +76,7 @@ class RequestController extends Controller
     public function form($id)
     {
         $request = \App\Request::FindOrFail($id);
-        Controller::NumberFormat($requests);
+        Controller::NumberFormat($request);
         return view('request_edit')->with(['request'=>$request]);
     }
 

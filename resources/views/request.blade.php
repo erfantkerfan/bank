@@ -9,8 +9,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">ویرایش درخواست</th>
+                            <th class="text-center">تایید درخواست</th>
                             <th class="text-center">حذف درخواست</th>
+                            <th class="text-center">ویرایش درخواست</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center"><a data-toggle="tooltip" title="در صورت درخواست برداشت از حساب"><span class="glyphicon glyphicon-question-sign"></span></a>مبلغ درخواست</th>
@@ -24,15 +25,22 @@
                         @foreach($requests as $request)
                             <tr>
                                 <th class="text-center">
-                                    <a href="{{ route('request_edit',['id'=>$request->id]) }}">
-                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                    <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
+                                        <button type="button" class="btn btn-success"
+                                                onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
+                                        >تایید
+                                        </button>
                                     </a>
                                 </th>
-
                                 <th class="text-center">
                                     <a href="{{ route('request_delete',['id'=>$request->id]) }}"
                                        onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >
                                         <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                    </a>
+                                </th>
+                                <th class="text-center">
+                                    <a href="{{ route('request_edit',['id'=>$request->id]) }}">
+                                        <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                     </a>
                                 </th>
                                 <th class="text-center">{{ $request->note }}</th>
@@ -46,6 +54,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="text-center"> {{$requests->links()}} </div>
                 </div>
             </div>
         </div>

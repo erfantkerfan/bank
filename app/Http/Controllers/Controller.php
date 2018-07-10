@@ -28,7 +28,7 @@ class Controller extends BaseController
     public function welcome()
     {
         $sliders = Slider::all();
-        $notifications = Notification::all();
+        $notifications = Notification::all()->sortByDesc('created_at');
         return view('welcome')->with(['sliders'=>$sliders,'notifications'=>$notifications]);
     }
 }

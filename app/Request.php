@@ -11,7 +11,7 @@ class Request extends Model
     protected $guarded = ['id'];
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'user_id','type','fee','description','date_time','creator','note'
+        'user_id','type','fee','description','date_time','creator','note','is_proved','proved_by'
     ];
 
     public function user()

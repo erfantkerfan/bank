@@ -61,4 +61,5 @@ Route::middleware(['auth','SuperAdminAuth'])->group(function () {
     Route::get('/request/edit/{id}','RequestController@form')->name('request_form');
     Route::post('/request/edit/{id}','RequestController@edit')->name('request_edit');
     Route::get('/request','RequestController@index')->name('request');
+    Route::get('/request/confirm/{id}','RequestController@confirm')->name('request_confirm');
 });

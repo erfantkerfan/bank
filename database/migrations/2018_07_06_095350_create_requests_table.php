@@ -23,6 +23,8 @@ class CreateRequestsTable extends Migration
                 ->onupdate('cascade');
             $table->tinyInteger('type');
             $table->BigInteger('fee')->nullable();
+            $table->boolean('is_proved')->default('0');
+            $table->string('proved_by')->nullable();
             $table->string('description')->nullable();
             $table->text('date_time');
             $table->string('creator')->nullable();

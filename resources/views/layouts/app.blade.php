@@ -118,7 +118,7 @@
                             <li>
                                 <a href="{{ route('request') }}">
                                     <div class="badge">
-                                        {{App\Request::all()->count()}}
+                                        {{App\Request::where('is_proved','=','0')->count()}}
                                     </div>
                                     درخواست های رسمی
                                 </a>

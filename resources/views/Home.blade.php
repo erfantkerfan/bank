@@ -732,8 +732,9 @@
                             <thead>
                             <tr class="bg-info">
                                 @if($permission==1)
-                                    <th class="text-center">ویرایش درخواست</th>
+                                    <th class="text-center">تایید درخواست</th>
                                     <th class="text-center">حذف درخواست</th>
+                                    <th class="text-center">ویرایش درخواست</th>
                                 @endif
                                 <th class="text-center">توضیحات مدیر</th>
                                 <th class="text-center">متن درخواست - توضیحات</th>
@@ -747,16 +748,23 @@
                             @foreach($requests as $request)
                                 <tr>
                                     @if($permission==1)
-                                        <th class="text-center small">
-                                            <a href="{{ route('request_edit',['id'=>$request->id]) }}">
-                                                <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
+                                        <th class="text-center">
+                                            <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
+                                                <button type="button" class="btn btn-success"
+                                                        onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
+                                                >تایید
+                                                </button>
                                             </a>
                                         </th>
-
                                         <th class="text-center small">
                                             <a href="{{ route('request_delete',['id'=>$request->id]) }}"
                                                onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >
                                                 <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                            </a>
+                                        </th>
+                                        <th class="text-center small">
+                                            <a href="{{ route('request_edit',['id'=>$request->id]) }}">
+                                                <span class="glyphicon glyphicon-pencil" style="color:#6f42c1"></span>
                                             </a>
                                         </th>
                                     @endif

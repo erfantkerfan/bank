@@ -587,7 +587,7 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
-                                <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
+                            <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مجموع پرداختی</th>
@@ -748,14 +748,18 @@
                             @foreach($requests as $request)
                                 <tr>
                                     @if($permission==1)
-                                        <th class="text-center">
-                                            <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
-                                                <button type="button" class="btn btn-success"
-                                                        onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
-                                                >تایید
-                                                </button>
-                                            </a>
-                                        </th>
+                                        @if($payment->is_proved==0)
+                                            <th class="text-center">
+                                                <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
+                                                    <button type="button" class="btn btn-success"
+                                                            onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
+                                                    >تایید
+                                                    </button>
+                                                </a>
+                                            </th>
+                                        @else
+                                            تایید شده
+                                        @endif
                                         <th class="text-center small">
                                             <a href="{{ route('request_delete',['id'=>$request->id]) }}"
                                                onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >

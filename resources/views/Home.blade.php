@@ -748,18 +748,18 @@
                             @foreach($requests as $request)
                                 <tr>
                                     @if($permission==1)
-                                        @if($request->is_proved==0)
-                                            <th class="text-center">
-                                                <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
-                                                    <button type="button" class="btn btn-success"
-                                                            onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
-                                                    >تایید
-                                                    </button>
-                                                </a>
-                                            </th>
-                                        @else
-                                            تایید شده
-                                        @endif
+                                        <th class="text-center">
+                                            @if($request->is_proved==0)
+                                            <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
+                                                <button type="button" class="btn btn-success"
+                                                        onclick="return confirm('از تایید کردن این درخواست اطمینان دارید؟')"
+                                                >تایید
+                                                </button>
+                                            </a>
+                                            @else
+                                                تایید شده
+                                            @endif
+                                        </th>
                                         <th class="text-center small">
                                             <a href="{{ route('request_delete',['id'=>$request->id]) }}"
                                                onclick="return confirm('آیا از حذف درخواست اطمینان دارید؟')" >

@@ -748,7 +748,7 @@
                             @foreach($requests as $request)
                                 <tr>
                                     @if($permission==1)
-                                        @if($payment->is_proved==0)
+                                        @if($request->is_proved==0)
                                             <th class="text-center">
                                                 <a href="{{ route('request_confirm',['id'=>$request->id]) }}">
                                                     <button type="button" class="btn btn-success"

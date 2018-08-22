@@ -576,7 +576,14 @@
             </div>
 
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">پرداخت ها</div>
+                <div class="panel-heading text-center">
+                    <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'payment','date'=>'all']) }}" style="text-decoration:none">
+                        <button type="button" class="btn btn-sm btn-success" dir="rtl">
+                        نسخه pdf
+                        </button>
+                    </a>
+                    پرداخت ها
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
@@ -654,7 +661,14 @@
             </div>
 
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">قرض الحسنه ها</div>
+                <div class="panel-heading text-center">
+                    <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'loan','date'=>'all']) }}" style="text-decoration:none">
+                        <button type="button" class="btn btn-sm btn-success" dir="rtl">
+                            نسخه pdf
+                        </button>
+                    </a>
+                    قرض الحسنه ها
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
@@ -714,7 +728,7 @@
                                 <th class="text-center small">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
                                 <th class="text-center small">@if ($loan->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
-                                <th class="text-center small">{{$payment->creator}}</th>
+                                <th class="text-center small">{{$loan->creator}}</th>
                                 <th class="text-center small">{{Str_before($loan->date_time,' ')}}</th>
                             </tr>
                         @endforeach
@@ -726,7 +740,14 @@
 
             @if(!$requests->count()==0)
                 <div class="panel panel-danger">
-                    <div class="panel-heading text-center">درخواست ها</div>
+                    <div class="panel-heading text-center">
+                        <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'request','date'=>'all']) }}" style="text-decoration:none">
+                            <button type="button" class="btn btn-sm btn-danger" dir="rtl">
+                                نسخه pdf
+                            </button>
+                        </a>
+                        درخواست ها
+                    </div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>

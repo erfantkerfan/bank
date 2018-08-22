@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
     Route::get('/request/delete/{id}','RequestController@delete')->name('request_delete');
     Route::post('/request/create','RequestController@create')->name('request_create');
+    Route::get('/pdf/{id}/{mode}/{date}','PDFController@pdf')->name('pdf');
     });
 Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');

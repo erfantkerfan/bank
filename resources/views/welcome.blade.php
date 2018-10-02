@@ -135,6 +135,9 @@
                     <span class="sr-only">بعدی</span>
                 </a>
             </div>
+            <div class="text-center">
+                <script src="https://cdn.zarinpal.com/trustlogo/v1/trustlogo.js" type="text/javascript"></script>
+            </div>
         </div>
 
         <div class="col-md-5 panel panel-primary text-center">

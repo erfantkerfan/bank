@@ -36,7 +36,7 @@ return [
     ],
 
     'zarinpal' => [
-        'merchantID' => 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX',
+        'merchantID' => '53781e8a-cb9e-11e8-b2d9-000c295eb8fc',
         'zarinGate' => false,
         'sandbox' => false,
     ],

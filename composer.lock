@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04d3ac3d145bb8ef41315c32045c6bbe",
+    "content-hash": "a0deec5d9d4cd0e2a6f74d1e47854060",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -3064,6 +3064,56 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "zarinpal/zarinpal",
+            "version": "v1.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RTLer/zarinpal-composer-library.git",
+                "reference": "16c349c74941d6f49dcb066943ead5432fd62998"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RTLer/zarinpal-composer-library/zipball/16c349c74941d6f49dcb066943ead5432fd62998",
+                "reference": "16c349c74941d6f49dcb066943ead5432fd62998",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "6.3.*",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Zarinpal\\Laravel\\ZarinpalServiceProvider"
+                    ],
+                    "aliases": {
+                        "Zarinpal": "Zarinpal\\Laravel\\Facade\\Zarinpal"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Zarinpal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "hooman naghiee",
+                    "email": "hooman@zarinpal.com"
+                }
+            ],
+            "description": "transaction request system for zarinpal",
+            "time": "2018-01-31T12:55:03+00:00"
         }
     ],
     "packages-dev": [

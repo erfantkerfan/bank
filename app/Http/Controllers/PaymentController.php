@@ -160,7 +160,7 @@ class PaymentController extends Controller
     {
         if ($_GET['Status'] == 'OK') {
             $Authority = $_GET['Authority'];
-            $onlinepayment = Onlinepayment::where('authority','=',$Authority)->fisrtOrFail();
+            $onlinepayment = Onlinepayment::where('authority','=',$Authority)->firstOrFail();
             dd($onlinepayment);
             $result = Zarinpal::verify('OK',($onlinepayment->amount)/10,$onlinepayment->authority);
             if ($result->Status == 100) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Onlinepayment;
+use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -177,6 +178,15 @@ class PaymentController extends Controller
         } else {
             return view('errors.payment');
         }
+    }
+
+    public function unverified()
+    {
+        require_once("PHPZarinpal/src/PHPZarinpal.php");
+        $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
+        $zp = new PHPZarinpal($merchantID);
+        $zp->getUnverifiedTransactions();
+        dd($zp);
     }
 
     public function show_edit($id)

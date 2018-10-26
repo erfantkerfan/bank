@@ -29,6 +29,9 @@ class Kernel extends ConsoleKernel
              ->dailyAt('2:00')
 //             ->appendOutputTo('/public/log.txt')
              ->timezone('Asia/Tehran');
+         // TODO: fix this
+//        $schedule->call('App\Http\Controllers\PaymentController@unverified')
+//            ->everyFiveMinutes();
     }
 
     /**

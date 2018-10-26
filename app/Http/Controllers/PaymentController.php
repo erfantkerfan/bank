@@ -170,6 +170,7 @@ class PaymentController extends Controller
                 $payment->is_proved=1;
                 $payment->proved_by=$result->RefID;
                 $payment->save();
+                redirect(route('home'));
             } else {
                 return view('errors.payment');
             }

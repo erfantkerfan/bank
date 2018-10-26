@@ -216,7 +216,7 @@ class PaymentController extends Controller
             'delay' => 'nullable|integer',
         ]);
 
-        if ($payment->is_proved==1){
+        if ($payment->is_proved==1 && !is_numeric($payment->proved_by)){
             $payment->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
         }
         $payment->payment = $request->payment;

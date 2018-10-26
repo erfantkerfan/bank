@@ -145,7 +145,7 @@ class PaymentController extends Controller
                 if ($results['Authority']!=null){
                     Onlinepayment::create([
                         'payment_id' => $payment_data->id,
-                        'amount' => $amount,
+                        'amount' => $amount*10,
                         'authority' => $results['Authority']
                     ]);
                     Zarinpal::redirect();
@@ -161,9 +161,14 @@ class PaymentController extends Controller
         if ($_GET['Status'] == 'OK') {
             $Authority = $_GET['Authority'];
             $onlinepayment = Onlinepayment::where('authority','=',$Authority)->get();
-            $result = Zarinpal::verify('OK',$onlinepayment->amount,$onlinepayment->authority);
+            $result = Zarinpal::verify('OK',$onlinepayment->amount/10,$onlinepayment->authority);
             if ($result->Status == 100) {
-                $onlinepayment->refid = $result
+                $onlinepayment->refid = $result->RefID;
+                $onlinepayment->save();
+                $payment = $onlinepayment->payment();
+                $payment->is_proved=1;
+                $payment->proved_by=$result->RefID;
+                $payment->save();
             } else {
                 return view('errors.payment');
             }

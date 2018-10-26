@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Onlinepayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\payment;
+use Zarinpal\Laravel\Facade\Zarinpal;
 
 class PaymentController extends Controller
 {
@@ -89,13 +91,85 @@ class PaymentController extends Controller
                     'description' => $request['description'],
                     'creator' => $creator,
                 ]);
+                return back();
                 break;
 
             case '1':
-                //ToDO adding online payment
+                $proved_by = null;
+
+                $user_id= basename(url()->previous());
+
+                if(($user_id)=='home'){
+                    $user_id = Auth::user()->id;
+                }
+
+                if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$user_id){
+                    abort(500);
+                };
+                $is_proved=0;
+
+                $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
+
+                $date_time = verta();
+
+                $this->Validate($request,[
+                    'payment' => 'required|integer',
+                    'payment_cost' => 'nullable|integer',
+                    'loan_payment'=> 'nullable|integer',
+                    'loan_payment_force'=> 'nullable|integer',
+                    'description' => 'nullable|string',
+                    'is_proved' => 'nullable|boolean',
+                ]);
+
+                $payment_data = Payment::create([
+                    'user_id' => $user_id,
+                    'date_time' => $date_time,
+                    'is_proved' => $is_proved,
+                    'proved_by' => $proved_by,
+                    'payment' => $request['payment'],
+                    'payment_cost' => $request['payment_cost'],
+                    'loan_payment'=> $request['loan_payment'],
+                    'loan_payment_force'=> $request['loan_payment_force'],
+                    'description' => $request['description'],
+                    'note' => 'زرین پال',
+                    'creator' => $creator,
+                ]);
+
+                $amount = ($request['payment']+$request['payment_cost']+$request['loan_payment']+$request['loan_payment_force'])/10;
+                $results = Zarinpal::request(
+                    route('verify'),
+                    $amount,
+                    $creator.' '.$date_time
+                );
+
+                if ($results['Authority']!=null){
+                    Onlinepayment::create([
+                        'payment_id' => $payment_data->id,
+                        'amount' => $amount,
+                        'authority' => $results['Authority']
+                    ]);
+                    Zarinpal::redirect();
+                }else{
+                    return view('errors.payment');
+                }
                 break;
         }
-        return back();
+    }
+
+    public function vrify()
+    {
+        if ($_GET['Status'] == 'OK') {
+            $Authority = $_GET['Authority'];
+            $onlinepayment = Onlinepayment::where('authority','=',$Authority)->get();
+            $result = Zarinpal::verify('OK',$onlinepayment->amount,$onlinepayment->authority);
+            if ($result->Status == 100) {
+                $onlinepayment->refid = $result
+            } else {
+                return view('errors.payment');
+            }
+        } else {
+            return view('errors.payment');
+        }
     }
 
     public function show_edit($id)

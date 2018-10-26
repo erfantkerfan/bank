@@ -15,6 +15,7 @@ Route::get('/','Controller@welcome')->name('welcome');
 Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
 Route::Post('/login','Auth\LoginController@login');
 Route::Post('/logout','Auth\LoginController@logout')->name('logout');
+Route::get('/verify','PaymentController@verify')->name('verify');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home','HomeController@index')->name('home');

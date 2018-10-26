@@ -156,7 +156,7 @@ class PaymentController extends Controller
         }
     }
 
-    public function vrify()
+    public function verify()
     {
         if ($_GET['Status'] == 'OK') {
             $Authority = $_GET['Authority'];

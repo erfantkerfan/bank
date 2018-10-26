@@ -166,7 +166,7 @@ class PaymentController extends Controller
             if ($result->Status == '100' || $result->Status ==  'verified_before') {
                 $onlinepayment->refid = $result->RefID;
                 $onlinepayment->save();
-                $payment = Onlinepayment::where('authority','=',$Authority)->payment()->get();
+                $payment = Onlinepayment::where('authority','=',$Authority)->firstOrFail()->payment()->get();
                 $payment->is_proved=1;
                 $payment->proved_by=$result->RefID;
                 $payment->save();

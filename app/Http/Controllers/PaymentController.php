@@ -163,7 +163,7 @@ class PaymentController extends Controller
             $onlinepayment = Onlinepayment::where('authority','=',$Authority)->firstOrFail();
             $result = Zarinpal::verify('OK',($onlinepayment->amount)/10,$onlinepayment->authority);
             $result = (object)$result;
-            if ($result->Status == '100' || $result->Status ==  'verified_before') {
+            if ($result->Status == 'success' || $result->Status ==  'verified_before') {
                 $onlinepayment->refid = $result->RefID;
                 $onlinepayment->save();
                 $payment = Payment::where('id','=',$onlinepayment->payment_id)->first();

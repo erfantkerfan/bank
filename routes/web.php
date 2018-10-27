@@ -28,6 +28,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/request/delete/{id}','RequestController@delete')->name('request_delete');
     Route::post('/request/create','RequestController@create')->name('request_create');
     Route::get('/pdf/{id}/{mode}/{date}','PDFController@pdf')->name('pdf');
+    Route::get('/setpassword','UserController@setpasswordform')->name('setpassword_form');
+    Route::post('/setpassword','UserController@setpassword')->name('setpassword');
     });
 Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');

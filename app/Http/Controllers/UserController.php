@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
@@ -18,6 +20,27 @@ class UserController extends Controller
     {
         $user=User::FindOrFail($id);
         return view('user_edit')->with(['user' => $user]);
+    }
+
+    public function setpasswordform()
+    {
+        return view('setpassword');
+    }
+    public function setpassword(request $request)
+    {
+        Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
+
+            return Hash::check($value, current($parameters));
+
+        });
+        $this->Validate($request,[
+            'oldpassword' => 'required|old_password:' . Auth::user()->password,
+            'password' => 'nullable|string|min:6|confirmed'
+        ]);
+        $user = User::FindOrFail(Auth::user()->id);
+        $user->password = bcrypt($request['password']);
+        $user->save();
+        return redirect(route('home'));
     }
 
     public function instalments()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Onlinepayment;
 use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\payment;
@@ -182,11 +183,32 @@ class PaymentController extends Controller
 
     public function unverified()
     {
-        require_once("PHPZarinpal/src/PHPZarinpal.php");
         $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
-        $zp = new PHPZarinpal($merchantID);
-        $zp->getUnverifiedTransactions();
-        dd($zp);
+        $client = new \SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+        $ans = $client->GetUnverifiedTransactions(['MerchantID' => $merchantID]);
+
+        if ($ans->Status == 100)
+        {
+            if(json_decode($ans->Authorities)!=null)
+            {
+                foreach (json_decode($ans->Authorities) as $pay)
+                {
+                    $Authority = $pay->Authority;
+                    $onlinepayment = Onlinepayment::where('authority','=',$Authority)->firstOrFail();
+                    $result = Zarinpal::verify('OK',($onlinepayment->amount)/10,$onlinepayment->authority);
+                    $result = (object)$result;
+                    if ($result->Status == 'success' || $result->Status ==  'verified_before') {
+                        $onlinepayment->refid = $result->RefID;
+                        $onlinepayment->save();
+                        $payment = Payment::where('id','=',$onlinepayment->payment_id)->first();
+                        $payment->is_proved=1;
+                        $payment->proved_by=$result->RefID;
+                        $payment->save();
+                    }
+                }
+            }
+        }
+        return back();
     }
 
     public function show_edit($id)

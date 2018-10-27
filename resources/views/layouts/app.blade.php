@@ -107,6 +107,11 @@
 
                                     <a href="{{ route('register') }}">ثبت اطلاعات عضو</a>
 
+                                    <a href="{{ route('unverified') }}" onclick="return confirm(
+                                        'فرآیند به طور اتوماتیک هر 5 دقیقه انجام میشود اما الان دستی انجام شود؟' +
+                                         '    تا حد امکان دستی انجام نشود'
+                                    )">تایید تراکنش های زرین پال</a>
+
                                     <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                         دانلود دیتابیس
@@ -167,6 +172,8 @@
                                     <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}:امروز</a>
 
                                     <a href="#"><span class="glyphicon glyphicon-map-marker"></span>{{Request::getClientIp()}}:IP</a>
+
+                                    <a href="{{route('setpassword_form')}}" style="color: green">تغییر رمز عبور</a>
 
                                     <a style="color: red" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

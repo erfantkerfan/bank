@@ -133,7 +133,7 @@ class PaymentController extends Controller
                     'loan_payment'=> $request['loan_payment'],
                     'loan_payment_force'=> $request['loan_payment_force'],
                     'description' => $request['description'],
-                    'note' => 'زرین پال',
+                    'note' => 'پرداخت اینترنتی',
                     'creator' => $creator,
                 ]);
 

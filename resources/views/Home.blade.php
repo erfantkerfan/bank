@@ -203,7 +203,7 @@
                                         ثبت پرداخت
                                     </button>
 
-                                    <button name="online_payment" value="1" type="submit" class="btn btn-success" disabled="">
+                                    <button name="online_payment" value="1" type="submit" class="btn btn-success">
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                         پرداخت اینترنتی
                                     </button>
@@ -640,7 +640,15 @@
                                     @endif
                                 </th>
 
-                                <th class="text-center small">@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
+                                <th class="text-center small">@if ($payment->is_proved==0)
+                                        { تایید نشده }
+                                    @elseif(is_numeric($payment->proved_by))
+                                        زرین پال
+                                        {{$payment->proved_by}}
+                                    @else
+                                        {{$payment->proved_by}}
+                                    @endif
+                                </th>
                                 <th class="text-center">{{$payment->delay}}</th>
                                 <th class="text-center small">{{$payment->note}}</th>
                                 <th class="text-center small">{{$payment->description}}</th>

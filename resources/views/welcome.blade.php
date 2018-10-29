@@ -170,8 +170,8 @@
                     <div style="font-family:'Font'" class="modal-body">
                         <p>
                         <span class="fa fa-telegram"></span>
-                        <a style="text-decoration: none" href="https://t.me/er_gholizade">تلگرام</a>
-                        t.me/er_gholizade
+                        <a style="text-decoration: none" href="https://t.me/erfantkerfan">تلگرام</a>
+                        t.me/erfantkerfan
                         </p>
 
                         <p>

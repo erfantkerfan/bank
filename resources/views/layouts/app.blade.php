@@ -147,13 +147,36 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="{{ route('unproved') }}">
-                                    <div class="badge">
-                                        {{App\Payment::where('is_proved','=','0')->count()+App\Loan::where('is_proved','=','0')->count()}}
-                                    </div>
-                                    تایید تراکنش
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    تایید تراکنش ها <span class="caret"></span>
                                 </a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="text-center">
+
+                                        <a href="{{ route('unproved1') }}">
+                                            <div class="badge">
+                                                {{App\Payment::where('is_proved','=','0')->count()}}
+                                            </div>
+                                            پرداخت ها
+                                        </a>
+
+                                        <a href="{{ route('unproved2') }}">
+                                            <div class="badge">
+                                                {{App\Loan::where('is_proved','=','0')->count()}}
+                                            </div>
+                                            قرض الحسنه ها
+                                        </a>
+
+                                        <a href="{{ route('unproved3') }}">
+                                            <div class="badge">
+                                                {{App\Onlinepayment::all()->count()}}
+                                            </div>
+                                            تاخیر پرداخت آنلاین
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li><a href="{{ route('admin') }}">صفحه مدیریت</a></li>

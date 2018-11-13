@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Expense;
+use App\Onlinepayment;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Payment;
@@ -35,12 +36,31 @@ class AdminController extends Controller
             'permission'=>$permission,'requests'=>$requests]);
     }
 
-    public function unproved()
+    public function unproved1()
     {
         $payments = Payment::where('is_proved', '=', '0')->with('user')->get();
         Controller::NumberFormat($payments);
+        return view('unproved1')->with(['payments'=>$payments]);
+    }
+    public function unproved2()
+    {
         $loans = Loan::where('is_proved', '=', '0')->with('user')->get();
         Controller::NumberFormat($loans);
-        return view('unproved')->with(['payments'=>$payments, 'loans'=>$loans]);
+        return view('unproved2')->with(['loans'=>$loans]);
+    }
+    public function unproved3()
+    {
+        $onlines = Onlinepayment::with(['payment'])->get();
+        $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force','sum','fee'];
+        foreach ($array as $par){
+            foreach ($onlines as $var) {
+                if (isset($var->payment->$par)) {
+                    $var->payment->$par = number_format($var->payment->$par);
+                }
+            }
+        }
+        $onlines = (object)$onlines;
+//        Controller::NumberFormat($payments);
+        return view('unproved3')->with(['onlines'=>$onlines]);
     }
 }

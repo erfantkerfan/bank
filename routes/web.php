@@ -35,7 +35,9 @@ Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/slider','SliderController@index')->name('slider');
     Route::get('/admin','AdminController@index')->name('admin');
     Route::get('/admin/{id}','AdminController@user')->name('user');
-    Route::get('/unproved','AdminController@unproved')->name('unproved');
+    Route::get('/unproved1','AdminController@unproved1')->name('unproved1');
+    Route::get('/unproved2','AdminController@unproved2')->name('unproved2');
+    Route::get('/unproved3','AdminController@unproved3')->name('unproved3');
     Route::get('/notes','NoteController@index')->name('notes');
     Route::get('/notification','NotificationController@index')->name('notification');
     Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');

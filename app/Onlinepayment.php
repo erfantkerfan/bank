@@ -13,6 +13,10 @@ class Onlinepayment extends Model
     protected $fillable = [
         'payment_id','amount','authority','refid'
     ];
+    public function members()
+    {
+        return $this->belongsTo(user::class, payment::class);
+    }
     public function payment()
     {
         return $this->belongsTo(payment::class);

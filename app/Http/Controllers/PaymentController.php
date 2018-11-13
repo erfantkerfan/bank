@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Onlinepayment;
+use Carbon\Carbon;
 use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -26,6 +27,11 @@ class PaymentController extends Controller
     {
         $payment = Payment::FindOrFail($id);
         if (Auth::user()->is_super_admin == 1 || ($payment->user_id==Auth::user()->id && $payment->isproved==0)) {
+            if(count($payment->onlinepayment))
+            {
+                $onlinepayment = Onlinepayment::FindOrFail($payment->onlinepayment->first()->id);
+                $onlinepayment->delete();
+            }
             $payment->delete();
             return redirect()->back();
         } else {

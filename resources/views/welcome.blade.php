@@ -91,6 +91,7 @@
             <div class="text-center">
                 <div class="title">
                     <h2>
+                        <img src="/img/brand.gif" width="7%">
                         (صندوق قرض الحسنه حضرت قائم (عج
                         <br>
                         <br>

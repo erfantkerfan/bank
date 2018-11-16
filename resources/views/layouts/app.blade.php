@@ -171,7 +171,11 @@
 
                                         <a href="{{ route('unproved3') }}">
                                             <div class="badge">
-                                                {{App\Onlinepayment::all()->count()}}
+                                                {{App\Onlinepayment::with('payment')
+            ->whereHas('payment', function($query)
+            {
+                $query->whereNull('delay');
+            })->count()}}
                                             </div>
                                             تاخیر پرداخت آنلاین
                                         </a>

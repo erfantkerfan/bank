@@ -50,7 +50,13 @@ class AdminController extends Controller
     }
     public function unproved3()
     {
-        $onlines = Onlinepayment::with(['payment'])->get();
+//        $onlines = Onlinepayment::with(['payment3.user'])->where('delay','!=',null)->get();
+        $onlines =Onlinepayment::with('payment.user')
+            ->whereHas('payment', function($query)
+            {
+                $query->whereNull('delay');
+            })->get();
+//        Controller::NumberFormat($payments);
         $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force','sum','fee'];
         foreach ($array as $par){
             foreach ($onlines as $var) {
@@ -60,7 +66,7 @@ class AdminController extends Controller
             }
         }
         $onlines = (object)$onlines;
-//        Controller::NumberFormat($payments);
+
         return view('unproved3')->with(['onlines'=>$onlines]);
     }
 }

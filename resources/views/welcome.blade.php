@@ -88,8 +88,8 @@
         </div>
 
         <div>
-            <button type="button" class="float-right mt-4 btn btn-primary" data-toggle="modal" data-target="#San">
-                ساعات کاری صندوق
+            <button type="button" class="float-right mt-4 btn btn-success" data-toggle="modal" data-target="#San" style="margin: 1%">
+                تماس با ما
             </button>
         </div>
 
@@ -99,13 +99,39 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">ساعات کاری صندوق</h4>
+                        <h4 class="modal-title">تماس با ما</h4>
                     </div>
                     <div style="font-family:'Font'" class="modal-body text-center" dir="rtl">
                         <p>
-                            ساعات کاری صندوق
-                            روز های a و b
-                            از ساعت x تا y خواهد بود.
+                            شماره تلفن 73932203 و 77310039
+                            <br>
+                            ساعات کاری صندوق:
+                        <table class="table" dir="rtl">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col" class="text-center">روز هفته</th>
+                                <th scope="col" class="text-center">شروع زمان</th>
+                                <th scope="col" class="text-center">پایان زمان</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>یکشنبه</td>
+                                <td>7:45</td>
+                                <td>8:30</td>
+                            </tr>
+                            <tr>
+                                <td>دوشنبه</td>
+                                <td>14:30</td>
+                                <td>15:30</td>
+                            </tr>
+                            <tr>
+                                <td>یکشنبه</td>
+                                <td>7:45</td>
+                                <td>8:30</td>
+                            </tr>
+                            </tbody>
+                        </table>
                         </p>
                     </div>
                     <div class="modal-footer">

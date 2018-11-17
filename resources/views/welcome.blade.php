@@ -145,10 +145,8 @@
             <div class="text-center">
                 <div class="title">
                     <h2>
-                        <img src="/img/brand.gif" width="7%">
+                        <img src="/img/brand.gif" width="10%">
                         (صندوق قرض الحسنه حضرت قائم (عج
-                        <br>
-                        <br>
                     </h2>
                 </div>
             </div>

@@ -87,6 +87,34 @@
             </button>
         </div>
 
+        <div>
+            <button type="button" class="float-right mt-4 btn btn-primary" data-toggle="modal" data-target="#San">
+                ساعات کاری صندوق
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="San" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">ساعات کاری صندوق</h4>
+                    </div>
+                    <div style="font-family:'Font'" class="modal-body text-center" dir="rtl">
+                        <p>
+                            ساعات کاری صندوق
+                            روز های a و b
+                            از ساعت x تا y خواهد بود.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="flex-center">
             <div class="text-center">
                 <div class="title">

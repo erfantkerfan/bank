@@ -76,15 +76,15 @@
     <div class="container">
 
         <div>
-            <button type="button" class="float-right mt-4 btn btn-primary">
-                <span class="links">
+            {{--<button type="button">--}}
+                {{--<span class="links">--}}
                     @auth
-                        <a href="{{ route('home') }}">{{Auth::user()->username}}</a>
+                        <a class="float-right mt-4 btn btn-primary links" href="{{ route('home') }}">{{Auth::user()->username}}</a>
                     @else
-                        <a href="{{ route('login') }}">ورود اعضا</a>
+                        <a class="float-right mt-4 btn btn-primary links" href="{{ route('login') }}">ورود اعضا</a>
                     @endauth
-                </span>
-            </button>
+                {{--</span>--}}
+            {{--</button>--}}
         </div>
 
         <div>

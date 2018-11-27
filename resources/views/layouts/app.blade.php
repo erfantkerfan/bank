@@ -138,13 +138,30 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="{{ route('instalment') }}">
-                                    <div class="badge">
-                                        {{App\User::where('instalment','!=',null)->count()+App\User::where('instalment_force','!=',null)->count()}}
-                                    </div>
-                                    اقساط فعال
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    اقساط فعال <span class="caret"></span>
                                 </a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="text-center">
+
+                                        <a href="{{ route('instalment1') }}">
+                                            <div class="badge">
+                                                {{App\User::where('instalment','!=',null)->count()}}
+                                            </div>
+                                            عادی
+                                        </a>
+
+                                        <a href="{{ route('instalment2') }}">
+                                            <div class="badge">
+                                                {{App\User::where('instalment_force','!=',null)->count()}}
+                                            </div>
+                                            ضروری
+                                        </a>
+
+                                    </li>
+                                </ul>
                             </li>
 
                             <li class="dropdown">
@@ -172,10 +189,10 @@
                                         <a href="{{ route('unproved3') }}">
                                             <div class="badge">
                                                 {{App\Onlinepayment::with('payment')
-            ->whereHas('payment', function($query)
-            {
-                $query->whereNull('delay');
-            })->count()}}
+                                                ->whereHas('payment', function($query)
+                                                {
+                                                    $query->whereNull('delay');
+                                                })->count()}}
                                             </div>
                                             تاخیر پرداخت آنلاین
                                         </a>

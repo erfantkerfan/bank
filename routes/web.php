@@ -41,8 +41,10 @@ Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/notes','NoteController@index')->name('notes');
     Route::get('/notification','NotificationController@index')->name('notification');
     Route::get('/user/edit/{id}','UserController@edit')->name('user_edit');
-    Route::get('/user/instalment/acc_id','UserController@instalments')->name('instalment');
-    Route::get('/user/instalment/end_date','UserController@instalments_end_date')->name('instalment_end_date');
+    Route::get('/user/instalment1/acc_id','UserController@instalments1')->name('instalment1');
+    Route::get('/user/instalment1/end_date','UserController@instalments_end_date1')->name('instalment_end_date1');
+    Route::get('/user/instalment2/acc_id','UserController@instalments2')->name('instalment2');
+    Route::get('/user/instalment2/end_date','UserController@instalments_end_date2')->name('instalment_end_date2');
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['auth','SuperAdminAuth'])->group(function () {

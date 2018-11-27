@@ -43,18 +43,28 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function instalments()
+    public function instalments1()
     {
         $users = User::where('instalment', '!=', null)->OrderBy('acc_id')->paginate(30);
-        $users_force = User::where('instalment_force', '!=', null)->OrderBy('acc_id')->paginate(30);
-        return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
+        return view('instalments1')->with(['users'=>$users]);
     }
 
-    public function instalments_end_date()
+    public function instalments_end_date1()
     {
         $users = User::where('instalment', '!=', null)->OrderBy('end_date')->paginate(30);
+        return view('instalments1')->with(['users'=>$users]);
+    }
+
+    public function instalments2()
+    {
+        $users_force = User::where('instalment_force', '!=', null)->OrderBy('acc_id')->paginate(30);
+        return view('instalments2')->with(['users_force'=>$users_force]);
+    }
+
+    public function instalments_end_date2()
+    {
         $users_force = User::where('instalment_force', '!=', null)->OrderBy('end_date_force')->paginate(30);
-        return view('instalments')->with(['users'=>$users,'users_force'=>$users_force]);
+        return view('instalments2')->with(['users_force'=>$users_force]);
     }
 
     public function delete_instalment($id)

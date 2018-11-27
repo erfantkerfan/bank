@@ -167,7 +167,7 @@
                 <div class="carousel-inner">
                     @forelse($sliders as $slider)
                         <div class="item {{ $loop->first ? ' active' : '' }}">
-                            <img src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width:100%;">
+                            <img id="image" src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width: 100%;height: 400px">
                             <div class="carousel-caption" style="color: black">
                                 <h3>{{$slider->head}}</h3>
                                 <p>{{$slider->body}}</p>
@@ -179,6 +179,11 @@
                         </div>
                     @endforelse
                 </div>
+                <script>
+                    var img = document.getElementById('image');
+                    var width = img.clientWidth;
+                    document.getElementById("image").style.height = width;
+                </script>
 
                 <!-- Left and right controls -->
                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">

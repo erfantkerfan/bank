@@ -101,6 +101,8 @@
 
                                     <a href="{{ route('notification') }}">اعلان ها</a>
 
+                                    <a href="{{ route('config') }}">تماس با ما و قوانین</a>
+
                                     <a href="{{ route('slider') }}">اسلایدر</a>
 
                                     <a href="{{ route('expense') }}">هزینه های صندوق</a>
@@ -213,18 +215,18 @@
                             <ul class="dropdown-menu">
                                 <li class="text-center">
 
-                                    <a href="#"><span class="glyphicon glyphicon-time"></span>{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}:امروز</a>
+                                    <a href="#">{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}:امروز<span class="glyphicon glyphicon-time"></span></a>
 
-                                    <a href="#"><span class="glyphicon glyphicon-map-marker"></span>{{Request::getClientIp()}}:IP</a>
+                                    <a href="#">{{Request::getClientIp()}}:IP<span class="glyphicon glyphicon-map-marker"></span></a>
 
                                     <a href="{{route('setpassword_form')}}" style="color: green">تغییر رمز عبور</a>
 
                                     <a style="color: red" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                   document.getElementById('logout-form').submit();">
-                                        <span class="glyphicon glyphicon-log-out"></span>
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
                                         خروج
-                                            </a>
+                                        <span class="glyphicon glyphicon-log-out"></span>
+                                    </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     </form>

@@ -48,6 +48,9 @@ Route::middleware(['auth','AdminAuth'])->group(function () {
     Route::get('/expense','ExpenseController@index')->name('expense');
 });
 Route::middleware(['auth','SuperAdminAuth'])->group(function () {
+    Route::get('/config','ConfigController@show')->name('config');
+    Route::delete('/config','ConfigController@delete');
+    Route::post('/config','ConfigController@post');
     Route::get('/loan/edit/{id}','LoanController@show_edit')->name('edit_loan_form');
     Route::get('/payment/edit/{id}','PaymentController@show_edit')->name('edit_payment_form');
     Route::Post('/loan/edit/{id}','LoanController@edit')->name('edit_loan');

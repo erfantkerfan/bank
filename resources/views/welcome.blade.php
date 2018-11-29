@@ -93,7 +93,37 @@
             </button>
         </div>
 
+        <div>
+            <button type="button" class="float-right mt-4 btn btn-success" data-toggle="modal" data-target="#Law">
+                قوانین و مقررات
+            </button>
+        </div>
+
         <!-- Modal -->
+        <div class="modal fade" id="Law" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">قوانین و مقررات صندوق</h4>
+                    </div>
+                    <div style="font-family:'Font'" class="modal-body" dir="rtl">
+                        @foreach($config_laws as $law)
+                            <h4 class="text-center" style="color:#0056b3">
+                                {!! nl2br(e(str_before($law->text,','))) !!}
+                            </h4>
+                            <p class="text-right">
+                                {!! nl2br(e(str_after($law->text,','))) !!}
+                            </p>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade" id="San" role="dialog">
             <div class="modal-dialog">
                 <!-- Modal content-->
@@ -103,7 +133,7 @@
                     </div>
                     <div style="font-family:'Font'" class="modal-body text-center" dir="rtl">
                         <p>
-                            شماره تلفن 73932203 و 77310039
+                            {!! nl2br(e($config_top->text)) !!}
                             <br>
                             ساعات کاری صندوق:
                             <table class="table" dir="rtl">
@@ -115,25 +145,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>یکشنبه</td>
-                                    <td>8:00</td>
-                                    <td>9:00</td>
-                                </tr>
-                                {{--<tr>--}}
-                                    {{--<td>دوشنبه</td>--}}
-                                    {{--<td>14:30</td>--}}
-                                    {{--<td>15:30</td>--}}
-                                {{--</tr>--}}
-                                <tr>
-                                    <td>چهارشنبه</td>
-                                    <td>8:00</td>
-                                    <td>9:00</td>
-                                </tr>
+                                @forelse($config_hours as $hour)
+                                    <tr>
+                                        <td>{{str_before($hour->text,',')}}</td>
+                                        <td>{{str_before(str_after($hour->text,','),',')}}</td>
+                                        <td>{{str_after(str_after($hour->text,','),',')}}</td>
+                                    </tr>
+                                @empty
+                                @endforelse
                                 </tbody>
                             </table>
-                            با توجه به اولویت انجام کار دانشگاه، قبل از حضور، حتما هماهنگ شود
-                            .
+                            {!! nl2br(e($config_down->text)) !!}
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -143,16 +165,16 @@
             </div>
         </div>
 
-        <div class="flex-center">
+        {{--<div class="flex-center">--}}
             <div class="text-center">
                 <div class="title">
-                    <h2>
+                    <h2 dir="rtl">
+                        صندوق قرض الحسنه حضرت قائم (عج)
                         <img src="/img/brand.gif" width="10%">
-                        (صندوق قرض الحسنه حضرت قائم (عج
                     </h2>
                 </div>
             </div>
-        </div>
+        {{--</div>--}}
 
         <div class="col-md-7">
             <div id="myCarousel" data-interval="2500" class="carousel slide" data-ride="carousel">
@@ -182,7 +204,7 @@
                 <script>
                     var img = document.getElementById('image');
                     var width = img.clientWidth;
-                    document.getElementById("image").style.height = width;
+                    document.getElementById("image").style.height = width*0.3;
                 </script>
 
                 <!-- Left and right controls -->
@@ -196,7 +218,8 @@
                 </a>
             </div>
             <div class="text-center">
-                <script src="https://cdn.zarinpal.com/trustlogo/v1/trustlogo.js" type="text/javascript"></script>
+                {{--<script src="https://cdn.zarinpal.com/trustlogo/v1/trustlogo.js" type="text/javascript"></script>--}}
+                <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
             </div>
         </div>
 

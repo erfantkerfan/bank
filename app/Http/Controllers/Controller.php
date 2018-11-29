@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Config;
 use App\Notification;
 use App\Slider;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -29,6 +30,13 @@ class Controller extends BaseController
     {
         $sliders = Slider::all();
         $notifications = Notification::all()->sortByDesc('created_at');
-        return view('welcome')->with(['sliders'=>$sliders,'notifications'=>$notifications]);
+        $config_top =Config::where('type','=','top_h')->first();
+        $config_down =Config::where('type','=','down_h')->first();
+        $config_laws =Config::where('type','=','law')->get();
+        $config_hours =Config::where('type','=','hour')->get();
+        return view('welcome')->with([
+            'sliders'=>$sliders,'notifications'=>$notifications,'config_top'=>$config_top,'config_down'=>$config_down,
+            'config_laws'=>$config_laws,'config_hours'=>$config_hours
+        ]);
     }
 }

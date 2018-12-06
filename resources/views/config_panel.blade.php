@@ -75,7 +75,7 @@
                                     @if($config->type!='law')
                                         <input form="config_form{{$loop->iteration}}" type="text" class="form-control" name="text" id="text" value="{{$config->text}}">
                                     @else
-                                        <textarea form="config_form{{$loop->iteration}}" class="form-control" name="text" id="text" style="resize: vertical" dir="rtl">{!! nl2br(e($config->text)) !!}</textarea>
+                                        <textarea form="config_form{{$loop->iteration}}" class="form-control" name="text" id="text" style="resize: vertical" dir="rtl">{{$config->text}}</textarea>
                                     @endif
                                 </td>
                                 <td class="text-center">

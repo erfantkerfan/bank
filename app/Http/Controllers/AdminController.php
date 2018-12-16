@@ -47,6 +47,7 @@ class AdminController extends Controller
         $loans = Loan::where('is_proved', '=', '0')->where('force','0')->with('user')->get();
         $loans_force = Loan::where('is_proved', '=', '0')->where('force','1')->with('user')->get();
         Controller::NumberFormat($loans);
+        Controller::NumberFormat($loans_force);
         return view('unproved2')->with(['loans'=>$loans,'loans_force'=>$loans_force]);
     }
     public function unproved3()

@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 use App\Expense;
 use App\Onlinepayment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\User;
 use App\Payment;
 use App\Loan;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('acc_id')->get();
+        if ($request->sort == 'login'){
+            $users = User::orderBy('new_login','desc')->get();
+        }else{
+            $users = User::orderBy('acc_id')->get();
+        }
+
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
         return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary]);

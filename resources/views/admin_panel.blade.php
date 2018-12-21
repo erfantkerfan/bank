@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-14">
+            <div class="col-md-12">
 
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">خلاصه وضعیت صندوق</div>
@@ -75,9 +75,23 @@
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">دسترسی بازرسی</th>
                                 <th class="text-center">عضو فعال</th>
-                                <th class="text-center">آخرین فعالیت</th>
+                                <th class="text-center">
+                                    آخرین فعالیت
+                                    <a href="{{ route('admin',array('sort'=>'login')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                        </button>
+                                    </a>
+                                </th>
                                 <th class="text-center">ارتباط با عضو دیگر</th>
-                                <th class="text-center">شماره حساب</th>
+                                <th class="text-center">
+                                    شماره حساب
+                                    <a href="{{ route('admin',array('sort'=>'acc_id')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                        </button>
+                                    </a>
+                                </th>
                                 <th class="text-center">نام کاربری</th>
                                 <th class="text-center">نام خانوادگی</th>
                                 <th class="text-center">نام</th>

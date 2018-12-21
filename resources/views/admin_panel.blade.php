@@ -75,7 +75,7 @@
                                 <th class="text-center">دسترسی مدیریتی</th>
                                 <th class="text-center">دسترسی بازرسی</th>
                                 <th class="text-center">عضو فعال</th>
-                                <th class="text-center">آخرین ورود</th>
+                                <th class="text-center">آخرین فعالیت</th>
                                 <th class="text-center">ارتباط با عضو دیگر</th>
                                 <th class="text-center">شماره حساب</th>
                                 <th class="text-center">نام کاربری</th>

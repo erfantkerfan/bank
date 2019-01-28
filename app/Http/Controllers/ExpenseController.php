@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\Payment;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,11 @@ class ExpenseController extends Controller
         Controller::NumberFormat($expenses);
         $expense = Expense::all()->sum('expense');
         $payments_cost = Payment::where('is_proved','=','1')->sum('payment_cost');
-        return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost]);
+        $users = User::all();
+        foreach ($users as $user){
+            $user->payments_cost = number_format($user->hasMany(Payment::class)->where('is_proved','=','1')->sum('payment_cost'));
+        }
+        return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost,'users'=>$users]);
     }
 
     public function create(Request $request)

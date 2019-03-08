@@ -119,9 +119,7 @@ class UserController extends Controller
             'cheque' => 'nullable|string',
             'cheque_force' => 'nullable|string',
             'start_date' => 'nullable|string',
-            'end_date' => 'nullable|string',
             'start_date_force' => 'nullable|string',
-            'end_date_force' => 'nullable|string',
             'active' => 'nullable|boolean',
         ]);
 
@@ -155,9 +153,17 @@ class UserController extends Controller
         $data->cheque = $request['cheque'];
         $data->cheque_force = $request['cheque_force'];
         $data->start_date = $request['start_date'];
-        $data->end_date = $request['end_date'];
+        $end_date = null;
+        if($data['start_date']!=null && $data['period']!=null){
+            $end_date = str_replace('-','/',Verta::parse($data->start_date)->addMonths($data->period)->format('Y-n-j'));
+        }
+        $data->end_date = $end_date;
         $data->start_date_force = $request['start_date_force'];
-        $data->end_date_force = $request['end_date_force'];
+        $end_date_force = null;
+        if($data['start_date_force']!=null && $data['period_force']!=null){
+            $end_date_force = str_replace('-','/',Verta::parse($data->start_date_force)->addMonths($data->period_force)->format('Y-n-j'));
+        }
+        $data->end_date_force = $end_date_force;
         $data->active = $request['active'];
 
         $data->save();

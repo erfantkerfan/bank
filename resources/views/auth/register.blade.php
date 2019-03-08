@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('head')
+    <script type="text/javascript" src="/js/PersianDatePicker.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/PersianDatePicker.min.css">
+@endsection
+
 @section('content')
 <div class="container text-center">
     <div class="row">
@@ -270,25 +275,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
-                                <label for="period" class="col-md-4 control-label">دوره بازپرداخت</label>
-
-                                <div class="col-md-6">
-                                    <input id="period" class="form-control" type="text" name="period" autofocus value="{{ old('period') }}">
-
-                                    @if ($errors->has('period'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('period') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
                                 <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date" class="form-control" type="text" name="start_date" autofocus value="{{ old('start_date') }}">
+                                    <input id="start_date" class="form-control" type="text" name="start_date" autofocus value="{{ old('start_date') }}"
+                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
 
                                     @if ($errors->has('start_date'))
                                         <span class="help-block">
@@ -298,15 +290,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
-                                <label for="end_date" class="col-md-4 control-label">تاریخ پایان اقساط</label>
+                            <div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
+                                <label for="period" class="col-md-4 control-label">دوره بازپرداخت</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date" class="form-control" type="text" name="end_date" autofocus value="{{ old('end_date') }}">
+                                    <input id="period" class="form-control" type="text" name="period" autofocus value="{{ old('period') }}">
 
-                                    @if ($errors->has('end_date'))
+                                    @if ($errors->has('period'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('end_date') }}</strong>
+                                            <strong>{{ $errors->first('period') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -362,25 +354,12 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('period_force') ? ' has-error' : '' }}">
-                                <label for="period_force" class="col-md-4 control-label">دوره بازپرداخت</label>
-
-                                <div class="col-md-6">
-                                    <input id="period_force" class="form-control" type="text" name="period_force" autofocus value="{{ old('period_force') }}">
-
-                                    @if ($errors->has('period_force'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('period_force') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
                                 <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date_force" class="form-control" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}">
+                                    <input id="start_date_force" class="form-control" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}"
+                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
 
                                     @if ($errors->has('start_date_force'))
                                         <span class="help-block">
@@ -390,15 +369,15 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('end_date_force') ? ' has-error' : '' }}">
-                                <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان اقساط</label>
+                            <div class="form-group{{ $errors->has('period_force') ? ' has-error' : '' }}">
+                                <label for="period_force" class="col-md-4 control-label">دوره بازپرداخت</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date_force" class="form-control" type="text" name="end_date_force" autofocus value="{{ old('end_date_force') }}">
+                                    <input id="period_force" class="form-control" type="text" name="period_force" autofocus value="{{ old('period_force') }}">
 
-                                    @if ($errors->has('end_date_force'))
+                                    @if ($errors->has('period_force'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('end_date_force') }}</strong>
+                                            <strong>{{ $errors->first('period_force') }}</strong>
                                         </span>
                                     @endif
                                 </div>

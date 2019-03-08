@@ -57,7 +57,7 @@
             $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
         });
     </script>
-
+    @yield('head')
 </head>
 <body style="font-family:'Font'" class="bg">
     <nav class="navbar navbar-default"></nav>

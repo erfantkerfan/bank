@@ -43,6 +43,7 @@ class RegisterController extends Controller
      * Where to redirect users after registration.
      *
      * @var string
+     * @return string
      */
 
     public function redirectPath($user)
@@ -101,9 +102,7 @@ class RegisterController extends Controller
             'Cheque' => 'nullable|string',
             'Cheque_force' => 'nullable|string',
             'start_date' => 'nullable|string',
-            'end_date' => 'nullable|string',
             'start_date_force' => 'nullable|string',
-            'end_date_force' => 'nullable|string',
             'active' => 'nullable|boolean',
         ]);
     }
@@ -116,6 +115,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $end_date = null;
+        $end_date_force = null;
+        if($data['start_date']!=null && $data['period']!=null){
+            $end_date = str_replace('-','/',Verta::parse($data['start_date'])->addMonths($data['period'])->format('Y-n-j'));
+        }
+        if($data['start_date_force']!=null && $data['period_force']!=null){
+            $end_date_force = str_replace('-','/',Verta::parse($data['start_date_force'])->addMonths($data['period_force'])->format('Y-n-j'));
+        }
         $user = User::create([
             'username' => $data['username'],
             'acc_id' => $data{'acc_id'},
@@ -139,9 +146,9 @@ class RegisterController extends Controller
             'Cheque' => $data['Cheque'],
             'Cheque_force' => $data['Cheque_force'],
             'start_date' => $data['start_date'],
-            'end_date' => $data['end_date'],
+            'end_date' => $end_date,
             'start_date_force' => $data['start_date_force'],
-            'end_date_force' => $data['end_date_force'],
+            'end_date_force' => $end_date_force,
             'active' => $data['active'],
             'note_date' => Verta::now(),
         ]);

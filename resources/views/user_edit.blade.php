@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
+@section('head')
+    <script type="text/javascript" src="/js/PersianDatePicker.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/PersianDatePicker.min.css">
+@endsection
+
 @section('content')
+
 <div class="container text-center">
     <div class="row">
         <div class="col-md-12">
@@ -273,6 +279,21 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
+                                <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
+
+                                <div class="col-md-6">
+                                    <input id="start_date" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}"
+                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
+
+                                    @if ($errors->has('start_date'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('start_date') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('period') ? ' has-error' : '' }}">
                                 <label for="period" class="col-md-4 control-label">دوره بازپرداخت</label>
 
@@ -287,25 +308,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('start_date') ? ' has-error' : '' }}">
-                                <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
-
-                                <div class="col-md-6">
-                                    <input id="start_date" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}" >
-
-                                    @if ($errors->has('start_date'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('start_date') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('end_date') ? ' has-error' : '' }}">
                                 <label for="end_date" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date" type="text" class="form-control" name="end_date" value=" {{ $user->end_date }}" >
+                                    <input id="end_date" type="text" class="form-control" name="end_date" value=" {{ $user->end_date }}" disabled>
 
                                     @if ($errors->has('end_date'))
                                         <span class="help-block">
@@ -365,6 +372,21 @@
                                 </div>
                             </div>
 
+                            <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
+                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
+
+                                <div class="col-md-6">
+                                    <input id="start_date_force" type="text" class="form-control" name="start_date_force" value=" {{ $user->start_date_force }}"
+                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
+
+                                    @if ($errors->has('start_date_force'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('start_date_force') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('period_force') ? ' has-error' : '' }}">
                                 <label for="period_force" class="col-md-4 control-label">دوره بازپرداخت</label>
 
@@ -379,25 +401,11 @@
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('start_date_force') ? ' has-error' : '' }}">
-                                <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
-
-                                <div class="col-md-6">
-                                    <input id="start_date_force" type="text" class="form-control" name="start_date_force" value=" {{ $user->start_date_force }}" >
-
-                                    @if ($errors->has('start_date_force'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('start_date_force') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('end_date_force') ? ' has-error' : '' }}">
                                 <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date_force" type="text" class="form-control" name="end_date_force" value=" {{ $user->end_date_force }}" >
+                                    <input id="end_date_force" type="text" class="form-control" name="end_date_force" value=" {{ $user->end_date_force }}" disabled>
 
                                     @if ($errors->has('end_date_force'))
                                         <span class="help-block">

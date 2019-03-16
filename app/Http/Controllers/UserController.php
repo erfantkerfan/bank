@@ -155,7 +155,7 @@ class UserController extends Controller
         $data->start_date = $request['start_date'];
         $end_date = null;
         if($data['start_date']!=null && $data['period']!=null){
-            $end_date = str_replace('-','/',Verta::parse($data->start_date)->addMonths($data->period)->format('Y-n-j'));
+            $end_date = str_replace('-','/',Verta::parse($data->start_date)->addMonths(($data->period)-1)->format('Y-n-j'));
         }
         $data->end_date = $end_date;
         $data->start_date_force = $request['start_date_force'];

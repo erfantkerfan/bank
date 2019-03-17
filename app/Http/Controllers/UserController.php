@@ -161,7 +161,7 @@ class UserController extends Controller
         $data->start_date_force = $request['start_date_force'];
         $end_date_force = null;
         if($data['start_date_force']!=null && $data['period_force']!=null){
-            $end_date_force = str_replace('-','/',Verta::parse($data->start_date_force)->addMonths($data->period_force)->format('Y-n-j'));
+            $end_date_force = str_replace('-','/',Verta::parse($data->start_date_force)->addMonths(($data->period_force)-1)->format('Y-n-j'));
         }
         $data->end_date_force = $end_date_force;
         $data->active = $request['active'];

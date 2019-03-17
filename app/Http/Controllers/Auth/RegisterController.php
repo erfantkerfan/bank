@@ -118,7 +118,7 @@ class RegisterController extends Controller
         $end_date = null;
         $end_date_force = null;
         if($data['start_date']!=null && $data['period']!=null){
-            $end_date = str_replace('-','/',Verta::parse($data['start_date'])->addMonths($data['period'])->format('Y-n-j'));
+            $end_date = str_replace('-','/',Verta::parse($data['start_date'])->addMonths($data['period']-1)->format('Y-n-j'));
         }
         if($data['start_date_force']!=null && $data['period_force']!=null){
             $end_date_force = str_replace('-','/',Verta::parse($data['start_date_force'])->addMonths($data['period_force']-1)->format('Y-n-j'));

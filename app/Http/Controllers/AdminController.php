@@ -27,6 +27,16 @@ class AdminController extends Controller
     public function user($id)
     {
         $user = User::FindOrFail($id);
+        $next_user_acc_id = User::where('acc_id', '>', $user->acc_id)->min('acc_id');
+        $next_user = null;
+        if(!is_null($next_user_acc_id)){
+            $next_user = User::where('acc_id', '=', $next_user_acc_id)->first()->id;
+        }
+        $previous_user_acc_id = User::where('acc_id', '<', $user->acc_id)->max('acc_id');
+        $previous_user = null;
+        if(!is_null($previous_user_acc_id)){
+            $previous_user = User::where('acc_id', '=', $previous_user_acc_id)->first()->id;
+        }
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
@@ -39,7 +49,7 @@ class AdminController extends Controller
         Controller::NumberFormat($requests);
         $permission = 1;
         return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,
-            'permission'=>$permission,'requests'=>$requests]);
+            'permission'=>$permission,'requests'=>$requests,'next_user'=>$next_user,'previous_user'=>$previous_user]);
     }
 
     public function unproved1()

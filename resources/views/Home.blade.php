@@ -27,6 +27,10 @@
         <div class="row">
 
             <div dir="rtl" class="text-center">
+                @if($permission==1 && isset($previous_user))
+                    <a href="{{route('user',['id'=>$previous_user])}}"><button type="button" class="btn btn-sm btn-primary" dir="rtl">عضو قبلی</button></a>
+                                
+                @endif
                 حساب قرض الحسنه
                 @if($permission==1)
                     <a href="{{ route('user_edit',['id'=>$user->id]) }}">{{$user->f_name.' '.$user->l_name}}</a>
@@ -39,6 +43,10 @@
                 <span class="glyphicon glyphicon glyphicon-minus"></span>
                 آخرین ورود:
                 {{str_replace(' ','   ',str_replace('-','/',$user->old_login))}}
+                @if($permission==1 && isset($next_user))
+                                   
+                    <a href="{{ route('user',['id'=>$next_user]) }}"><button type="button" class="btn btn-sm btn-primary" dir="rtl">عضو بعدی</button></a>
+                @endif
             </div>
             <br>
 

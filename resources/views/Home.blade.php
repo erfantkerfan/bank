@@ -609,7 +609,7 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
-                            <th class="text-center"><a data-toggle="tooltip" title="منفی به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
+                            <th class="text-center"><a data-toggle="tooltip" title="منفی به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>امتیاز پرداخت به موقع</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مجموع پرداختی</th>

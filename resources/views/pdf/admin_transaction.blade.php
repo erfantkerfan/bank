@@ -34,102 +34,18 @@
 <table class="table">
     <thead>
     <tr class="bg-info" dir="rtl">
-        <th class="text-center">
-            بدهی قرض الحسنه جاری ضروری
-            <a href="{{ route('admin_transaction',array('sort'=>'debt_force')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            قرض الحسنه جاری ضروری
-            <a href="{{ route('admin_transaction',array('sort'=>'loan_force')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            بدهی قرض الحسنه جاری عادی
-            <a href="{{ route('admin_transaction',array('sort'=>'debt')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            قرض الحسنه جاری عادی
-            <a href="{{ route('admin_transaction',array('sort'=>'loan')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            مجموع امتیاز پرداخت به موقع
-            <a href="{{ route('admin_transaction',array('sort'=>'delays')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            کل پرداخت بابت هزینه های صندوق
-            <a href="{{ route('admin_transaction',array('sort'=>'payments_cost')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            کل بدهی
-            <a href="{{ route('admin_transaction',array('sort'=>'debt_all')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            کل قرض الحسنه دریافتی
-            <a href="{{ route('admin_transaction',array('sort'=>'loans_all_all')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            کل قرض الحسنه ضروری دریافتی
-            <a href="{{ route('admin_transaction',array('sort'=>'loans_force_all')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            کل قرض الحسنه عادی دریافتی
-            <a href="{{ route('admin_transaction',array('sort'=>'loans_all')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            سرمایه
-            <a href="{{ route('admin_transaction',array('sort'=>'payments')) }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
-        <th class="text-center">
-            شماره حساب
-            <a href="{{ route('admin_transaction') }}">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                </button>
-            </a>
-        </th>
+        <th class="text-center">بدهی قرض الحسنه جاری ضروری</th>
+        <th class="text-center">قرض الحسنه جاری ضروری</th>
+        <th class="text-center">بدهی قرض الحسنه جاری عادی</th>
+        <th class="text-center">قرض الحسنه جاری عادی</th>
+        <th class="text-center">مجموع امتیاز پرداخت به موقع</th>
+        <th class="text-center">کل پرداخت بابت هزینه های صندوق</th>
+        <th class="text-center">کل بدهی</th>
+        <th class="text-center">کل قرض الحسنه دریافتی</th>
+        <th class="text-center">کل قرض الحسنه ضروری دریافتی</th>
+        <th class="text-center">کل قرض الحسنه عادی دریافتی</th>
+        <th class="text-center">سرمایه</th>
+        <th class="text-center">شماره حساب</th>
         <th class="text-center">نام و نام خانوادگی</th>
     </tr>
     </thead>
@@ -160,7 +76,7 @@
             <td class="text-center">{{number_format($user->summary->loans_all)}}</td>
             <td class="bg-success text-center">{{number_format($user->summary->payments)}}</td>
             <td class="bg-success text-center">{{$user->acc_id}}</td>
-            <td class="bg-success text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name.' '.$user->l_name}}</a></td>
+            <td class="bg-success text-center">{{$user->f_name.' '.$user->l_name}}</td>
         </tr>
     @endforeach
     </tbody>

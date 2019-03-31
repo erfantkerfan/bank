@@ -30,7 +30,10 @@
     </style>
 </head>
 <body>
-<h2 style="text-align: center;">خلاصه تراکنش تمام اعضا</h2>
+<h2 style="text-align: center;" dir="rtl">
+    خلاصه تراکنش تمام اعضا
+    {{$date}}
+</h2>
 <table class="table">
     <thead>
     <tr class="bg-info" dir="rtl">

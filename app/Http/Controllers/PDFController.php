@@ -76,7 +76,8 @@ class PDFController extends Controller
         if ($request->has('sort')){
             $users = $users->sortByDesc('summary.'.$request->sort);
         }
-        $pdf = PDF::loadView('pdf.admin_transaction', compact('users'));
+        $date = Verta::now();
+        $pdf = PDF::loadView('pdf.admin_transaction', compact('users','date'));
         return $pdf->stream('document.pdf');
     }
 }

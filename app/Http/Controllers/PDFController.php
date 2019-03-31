@@ -64,4 +64,19 @@ class PDFController extends Controller
         $file_name = $user->f_name.' '.$user->l_name;
         return $pdf->stream($file_name);
     }
+
+    public function transaction(Request $request)
+    {
+        $users = User::orderBy('acc_id')->get();
+        foreach ($users as $user){
+            $user->summary = $user->summary();
+            $user->summary->delays = $user->delays();
+            $user->summary->debt_all = $user->summary->debt + $user->summary->debt_force;
+        }
+        if ($request->has('sort')){
+            $users = $users->sortByDesc('summary.'.$request->sort);
+        }
+        $pdf = PDF::loadView('pdf.admin_transaction', compact('users'));
+        return $pdf->stream('document.pdf');
+    }
 }

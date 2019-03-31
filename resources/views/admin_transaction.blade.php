@@ -41,12 +41,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt_force')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     قرض الحسنه جاری ضروری
                                     <a href="{{ route('admin_transaction',array('sort'=>'loan_force')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loan_force')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>
@@ -57,12 +67,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     قرض الحسنه جاری عادی
                                     <a href="{{ route('admin_transaction',array('sort'=>'loan')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loan')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>
@@ -73,12 +93,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'delays')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     کل پرداخت بابت هزینه های صندوق
                                     <a href="{{ route('admin_transaction',array('sort'=>'payments_cost')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'payments_cost')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>
@@ -89,12 +119,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt_all')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     کل قرض الحسنه دریافتی
                                     <a href="{{ route('admin_transaction',array('sort'=>'loans_all_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_all_all')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>
@@ -105,12 +145,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_force_all')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     کل قرض الحسنه عادی دریافتی
                                     <a href="{{ route('admin_transaction',array('sort'=>'loans_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_all')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>
@@ -121,12 +171,22 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
+                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'payments')) }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
+                                        </button>
+                                    </a>
                                 </th>
                                 <th class="text-center">
                                     شماره حساب
                                     <a href="{{ route('admin_transaction') }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                                        </button>
+                                    </a>
+                                    <a href="{{ route('pdf_admin_transaction') }}">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-file"></span>
                                         </button>
                                     </a>
                                 </th>

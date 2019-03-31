@@ -36,6 +36,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/slider','SliderController@index')->name('slider');
         Route::get('/admin','AdminController@index')->name('admin');
         Route::get('/admin/transaction','AdminController@transaction')->name('admin_transaction');
+        Route::get('/pdf/transaction','PDFController@transaction')->name('pdf_admin_transaction');
         Route::get('/admin/{id}','AdminController@user')->name('user');
         Route::get('/unproved1','AdminController@unproved1')->name('unproved1');
         Route::get('/unproved2','AdminController@unproved2')->name('unproved2');

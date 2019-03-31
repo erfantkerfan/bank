@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
-                    <div class="panel-heading text-center">لیست پرداخت های آنلاین بدون ثبت تاخیر</div>
+                    <div class="panel-heading text-center">لیست پرداخت های آنلاین بدون امتیاز پرداخت به موقع</div>
                     <div class="panel-body">
                         <table class="table table-striped">
                             <thead>
@@ -13,7 +13,7 @@
                                 <th class="text-center">ویرایش</th>
                                 <th class="text-center">توضیحات مدیر</th>
                                 <th class="text-center">توضیحات</th>
-                                <th class="text-center">روز های تاخیر</th>
+                                <th class="text-center">امتیاز پرداخت به موقع</th>
                                 <th class="text-center">هزینه صندوق</th>
                                 <th class="text-center">پرداخت اقساط ضروری</th>
                                 <th class="text-center">پرداخت اقساط عادی</th>

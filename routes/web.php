@@ -27,13 +27,15 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/payment/delete/{id}','PaymentController@delete')->name('payment_delete');
         Route::get('/request/delete/{id}','RequestController@delete')->name('request_delete');
         Route::post('/request/create','RequestController@create')->name('request_create');
-        Route::get('/pdf/{id}/{mode}/{date}','PDFController@pdf')->name('pdf');
+//        Route::get('/pdf/{id}/{mode}/{date}','PDFController@pdf')->name('pdf');
+        Route::get('/pdf/all/{id}/','PDFController@full_pdf')->name('full_pdf');
         Route::get('/setpassword','UserController@setpasswordform')->name('setpassword_form');
         Route::post('/setpassword','UserController@setpassword')->name('setpassword');
     });
     Route::middleware(['auth','AdminAuth'])->group(function () {
         Route::get('/slider','SliderController@index')->name('slider');
         Route::get('/admin','AdminController@index')->name('admin');
+        Route::get('/admin/transaction','AdminController@transaction')->name('admin_transaction');
         Route::get('/admin/{id}','AdminController@user')->name('user');
         Route::get('/unproved1','AdminController@unproved1')->name('unproved1');
         Route::get('/unproved2','AdminController@unproved2')->name('unproved2');

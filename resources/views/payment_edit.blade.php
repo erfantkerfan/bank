@@ -65,9 +65,9 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('delay') ? ' has-error' : '' }}">
-                                <label for="delay" class="control-label">:تعداد روزهای تاخیر</label>
+                                <label for="delay" class="control-label">:امتیاز پرداخت به موقع</label>
                                 <div class="col-md-7">
-                                    <input id="delay" type="text" class="form-control" name="delay" value="{{ $payment->delay }}" placeholder="مثبت به معنای تاخیر است و بالعکس" autofocus>
+                                    <input id="delay" type="text" class="form-control" name="delay" value="{{ $payment->delay }}" placeholder="منفی به معنای تاخیر است و بالعکس" autofocus>
 
                                     @if ($errors->has('delay'))
                                         <span class="help-block">
@@ -105,10 +105,13 @@
 
                             <div class="form-group">
                                 <div>
-                                    <button name="online_payment" value="0" type="submit" class="btn btn-primary">
+                                    <button name="online_payment" value="0" type="submit" class="btn btn-primary"
+                                        @if($payment->is_proved==1)
+                                            onclick="return confirm('پرداخت فوق تایید شده است. لطفا در تغییر آن دقت بیشتری داشته باشید.')"
+                                        @endif
+                                        >
                                         ویرایش پرداخت
                                     </button>
-
                                 </div>
                             </div>
 
@@ -120,5 +123,4 @@
 
         </div>
     </div>
-
 @endsection

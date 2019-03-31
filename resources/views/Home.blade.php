@@ -525,12 +525,19 @@
         <div class="col-md-12">
 
             <div class="panel panel-primary">
-                <div class="panel-heading text-center">خلاصه وضعیت با احتساب تراکنش های تایید شده</div>
+                <div class="panel-heading text-center">
+                    <a href="{{ route('full_pdf',['id'=>$user->id]) }}" style="text-decoration:none">
+                        <button type="button" class="btn btn-sm btn-success" dir="rtl">
+                            نسخه pdf تمام صفحات
+                        </button>
+                    </a>
+                    خلاصه وضعیت با احتساب تراکنش های تایید شده
+                </div>
                 <div class="panel-body">
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">مجموع روز های تاخیر</th>
+                            <th class="text-center">مجموع امتیاز پرداخت به موقع</th>
                             <th class="text-center">کل پرداخت بابت هزینه های صندوق</th>
                             <th class="text-center">کل بدهی</th>
                             <th class="text-center">کل قرض الحسنه ضروری دریافتی</th>
@@ -585,11 +592,11 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">
-                    <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'payment','date'=>'all']) }}" style="text-decoration:none">
-                        <button type="button" class="btn btn-sm btn-success" dir="rtl">
-                        نسخه pdf
-                        </button>
-                    </a>
+                    {{--<a href="{{ route('pdf',['id'=>$user->id,'mode'=>'payment','date'=>'all']) }}" style="text-decoration:none">--}}
+                        {{--<button type="button" class="btn btn-sm btn-success" dir="rtl">--}}
+                        {{--نسخه pdf--}}
+                        {{--</button>--}}
+                    {{--</a>--}}
                     پرداخت ها
                 </div>
                 <div class="panel-body">
@@ -602,7 +609,7 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
-                            <th class="text-center"><a data-toggle="tooltip" title="مثبت به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
+                            <th class="text-center"><a data-toggle="tooltip" title="منفی به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>تعداد روز تاخیر</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مجموع پرداختی</th>
@@ -678,11 +685,11 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">
-                    <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'loan','date'=>'all']) }}" style="text-decoration:none">
-                        <button type="button" class="btn btn-sm btn-success" dir="rtl">
-                            نسخه pdf
-                        </button>
-                    </a>
+                    {{--<a href="{{ route('pdf',['id'=>$user->id,'mode'=>'loan','date'=>'all']) }}" style="text-decoration:none">--}}
+                        {{--<button type="button" class="btn btn-sm btn-success" dir="rtl">--}}
+                            {{--نسخه pdf--}}
+                        {{--</button>--}}
+                    {{--</a>--}}
                     قرض الحسنه ها
                 </div>
                 <div class="panel-body">
@@ -757,11 +764,11 @@
             @if(!$requests->count()==0)
                 <div class="panel panel-danger">
                     <div class="panel-heading text-center">
-                        <a href="{{ route('pdf',['id'=>$user->id,'mode'=>'request','date'=>'all']) }}" style="text-decoration:none">
-                            <button type="button" class="btn btn-sm btn-danger" dir="rtl">
-                                نسخه pdf
-                            </button>
-                        </a>
+                        {{--<a href="{{ route('pdf',['id'=>$user->id,'mode'=>'request','date'=>'all']) }}" style="text-decoration:none">--}}
+                            {{--<button type="button" class="btn btn-sm btn-danger" dir="rtl">--}}
+                                {{--نسخه pdf--}}
+                            {{--</button>--}}
+                        {{--</a>--}}
                         درخواست ها
                     </div>
                     <div class="panel-body">

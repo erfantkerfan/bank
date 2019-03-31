@@ -196,13 +196,28 @@
                                                     $query->whereNull('delay');
                                                 })->count()}}
                                             </div>
-                                            تاخیر پرداخت آنلاین
+                                            امتیاز پرداخت به موقع آنلاین
                                         </a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li><a href="{{ route('admin') }}">صفحه مدیریت</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    صفحه مدیریت<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="text-center">
+
+                                        <a href="{{ route('admin') }}">مدیریت کاربران</a>
+
+                                        <a href="{{ route('admin_transaction') }}">مدیریت خلاصه تراکنش ها</a>
+
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li></li>
                         @endif
 
 

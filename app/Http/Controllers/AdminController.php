@@ -24,6 +24,15 @@ class AdminController extends Controller
         return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary]);
     }
 
+    public function transaction()
+    {
+        $users = User::orderBy('acc_id')->get();
+        foreach ($users as $user){
+            $user->summary = $user->summary();
+        }
+        return view('admin_transaction')->with(compact('users'));
+    }
+
     public function user($id)
     {
         $user = User::FindOrFail($id);

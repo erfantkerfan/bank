@@ -24,11 +24,16 @@ class AdminController extends Controller
         return view('admin_panel')->with(['users'=>$users, 'all_payment_summary'=>$all_payment_summary, 'all_loan_summary'=>$all_loan_summary]);
     }
 
-    public function transaction()
+    public function transaction(Request $request)
     {
         $users = User::orderBy('acc_id')->get();
         foreach ($users as $user){
             $user->summary = $user->summary();
+            $user->summary->delays = $user->delays();
+            $user->summary->debt_all = $user->summary->debt + $user->summary->debt_force;
+        }
+        if ($request->has('sort')){
+        $users = $users->sortByDesc('summary.'.$request->sort);
         }
         return view('admin_transaction')->with(compact('users'));
     }

@@ -70,6 +70,7 @@ class User extends Authenticatable
             ->where('is_proved','=','1')
             ->where('force','=','1')
             ->sum('loan');
+        $summary['loans_all_all'] = $summary['loans_force_all'] + $summary['loans_all'] ;
         $summary['loan']= $this->hasMany(Loan::class)
             ->where('is_proved','=','1')
             ->where('force','=','0')

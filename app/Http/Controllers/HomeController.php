@@ -16,9 +16,19 @@ class HomeController extends Controller
 
     public function index()
     {
-        $payments = Auth::user()->Payment()->OrderByDesc('date_time')->paginate(12);
+        $user = Auth::user();
+        $payments = $user->Payment()->OrderByDesc('date_time')->get();
+        $tote = $user->Payment()->sum('payment');
+        $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $momentary[$payment->id] = $tote - $sum ;
+            $sum = $payment->sum + $sum;
+        }
+        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        foreach ($payments as $payment){
+            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $payment -> momentary = $momentary[$payment->id] ;
         }
         Controller::NumberFormat($payments);
         $loans = Auth::user()->Loan()->OrderByDesc('date_time')->paginate(12);

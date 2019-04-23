@@ -15,7 +15,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     static function NumberFormat($vars)
     {
-        $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force','sum','fee','tote'];
+        $array = ['loan','payment','loan_payment','loan_payment_force','payment_cost','expense','instalment','instalment_force','sum','fee','momentary'];
         foreach ($array as $par){
             foreach ($vars as $var) {
                 if (isset($var->$par)) {
@@ -25,7 +25,6 @@ class Controller extends BaseController
         }
         return $vars;
     }
-
     public function welcome()
     {
         $sliders = Slider::all();

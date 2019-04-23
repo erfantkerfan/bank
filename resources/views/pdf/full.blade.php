@@ -95,6 +95,7 @@
             <th>امتیاز پرداخت به موقع</th>
             <th>توضیحات مدیر</th>
             <th>توضیحات</th>
+            <th>سرمایه لحظه ای</th>
             <th>مجموع پرداختی</th>
             <th>پرداخت هزینه صندوق</th>
             <th>پرداخت اقساط ضروری</th>
@@ -111,6 +112,7 @@
                 <th>{{$payment->delay}}</th>
                 <th>{{$payment->note}}</th>
                 <th>{{$payment->description}}</th>
+                <th>{{$payment->momentary}}</th>
                 <th>{{$payment->sum}}</th>
                 <th>{{$payment->payment_cost}}</th>
                 <th>{{$payment->loan_payment_force}}</th>

@@ -50,9 +50,13 @@ class PDFController extends Controller
         };
         $user = User::FindOrFail($id);
         $date = Verta::now();
-        $payments = User::FindOrFail($id)->Payment()->OrderByDesc('date_time')->get();
+        $payments = $user->Payment()->OrderByDesc('date_time')->get();
+        $tote = $user->Payment()->sum('payment');
+        $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $payment -> momentary = $tote - $sum ;
+            $sum = $payment->sum + $sum;
         }
         Controller::NumberFormat($payments);
         $loans = User::FindOrFail($id)->Loan()->OrderByDesc('date_time')->get();

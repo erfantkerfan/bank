@@ -51,18 +51,19 @@ class AdminController extends Controller
         if(!is_null($previous_user_acc_id)){
             $previous_user = User::where('acc_id', '=', $previous_user_acc_id)->first()->id;
         }
-        $payments = $user->Payment()->OrderByDesc('date_time');
-        $tote = 0 ;
-        foreach ($payments as $payment){
-            $tote = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment + $tote;
-        }
+        $payments = $user->Payment()->OrderByDesc('date_time')->get();
+        $tote = $user->Payment()->sum('payment');
         $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
-            $payment -> tote = $tote - $sum ;
+            $momentary[$payment->id] = $tote - $sum ;
             $sum = $payment->sum + $sum;
         }
-        $payments = $payments->paginate(12);
+        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        foreach ($payments as $payment){
+            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $payment -> momentary = $momentary[$payment->id] ;
+        }
         Controller::NumberFormat($payments);
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);
@@ -70,8 +71,8 @@ class AdminController extends Controller
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         $permission = 1;
-        return view('Home')->with(['user'=>$user, 'payments'=>$payments, 'summary'=>$summary, 'loans'=>$loans,
-            'permission'=>$permission,'requests'=>$requests,'next_user'=>$next_user,'previous_user'=>$previous_user]);
+        return view('Home')->with(compact('user','payments','summary','loans','permission','requests',
+            'next_user','previous_user','momentary'));
     }
 
     public function unproved1()

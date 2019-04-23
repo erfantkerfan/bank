@@ -51,10 +51,18 @@ class AdminController extends Controller
         if(!is_null($previous_user_acc_id)){
             $previous_user = User::where('acc_id', '=', $previous_user_acc_id)->first()->id;
         }
-        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        $payments = $user->Payment()->OrderByDesc('date_time');
+        $tote = 0 ;
+        foreach ($payments as $payment){
+            $tote = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment + $tote;
+        }
+        $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $payment -> tote = $tote - $sum ;
+            $sum = $payment->sum + $sum;
         }
+        $payments = $payments->paginate(12);
         Controller::NumberFormat($payments);
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);

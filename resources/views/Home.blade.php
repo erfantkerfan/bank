@@ -613,6 +613,7 @@
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">مجموع پرداختی</th>
+                            <th class="text-center">موجودی لحظه ای</th>
                             <th class="text-center">پرداخت هزینه صندوق</th>
                             <th class="text-center">پرداخت اقساط ضروری</th>
                             <th class="text-center">پرداخت اقساط عادی</th>
@@ -668,6 +669,7 @@
                                 <th class="text-center small">{{$payment->note}}</th>
                                 <th class="text-center small">{{$payment->description}}</th>
                                 <th class="text-center">{{$payment->sum}}</th>
+                                <th class="text-center">{{$payment->tote}}</th>
                                 <th class="text-center">{{$payment->payment_cost}}</th>
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
@@ -679,7 +681,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$payments->links()}} </div>
+                    {{--<div class="text-center"> {{$payments->links()}} </div>--}}
                 </div>
             </div>
 

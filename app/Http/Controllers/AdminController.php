@@ -57,7 +57,7 @@ class AdminController extends Controller
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $momentary[$payment->id] = $tote - $sum ;
-            $sum = $payment->sum + $sum;
+            $sum = $payment->payment + $sum;
         }
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
         foreach ($payments as $payment){

@@ -681,7 +681,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    {{--<div class="text-center"> {{$payments->links()}} </div>--}}
+                    <div class="text-center"> {{$payments->links()}} </div>
                 </div>
             </div>
 

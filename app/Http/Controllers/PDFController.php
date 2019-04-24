@@ -56,7 +56,7 @@ class PDFController extends Controller
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $payment -> momentary = $tote - $sum ;
-            $sum = $payment->sum + $sum;
+            $sum = $payment->payment + $sum;
         }
         Controller::NumberFormat($payments);
         $loans = User::FindOrFail($id)->Loan()->OrderByDesc('date_time')->get();

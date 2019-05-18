@@ -108,6 +108,13 @@
                         <h4 class="modal-title">قوانین و مقررات صندوق</h4>
                     </div>
                     <div style="font-family:'Font'" class="modal-body" dir="rtl">
+                        <h4 class="text-center" style="color:#0056b3">
+                            <a href="https://san-ghaem.sbu.ac.ir/اساسنامه صندوق قائم نهایی سال 98.pdf" style="color: inherit;">
+                                دانلود اساسنامه صندوق قائم نهایی سال 98
+                            </a>
+                            <br>
+                            <br>
+                        </h4>
                         @foreach($config_laws as $law)
                             <h4 class="text-center" style="color:#0056b3">
                                 {!! nl2br(e(str_before($law->text,','))) !!}

@@ -7,6 +7,7 @@ use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\payment;
 use Zarinpal\Laravel\Facade\Zarinpal;
@@ -27,6 +28,18 @@ class PaymentController extends Controller
     {
         $payment = Payment::FindOrFail($id);
         if (Auth::user()->is_super_admin == 1 || ($payment->user_id==Auth::user()->id && $payment->isproved==0)) {
+            $currentTime = Carbon::now();
+            $currentTime->modify('-30 minutes');
+            if($payment->updated_at >= $currentTime){
+                $alert = 'امکان حذف پرداخت ها به علت بررسی وضعیت تراکنش های آنلاین تا 30 دقیقه بعد از ثبت ممکن نیست.
+                '.
+                $currentTime->diffInMinutes($payment->updated_at)
+                .'
+                دقیقه دیگر اقدام به حذف کنید.
+                ';
+                Session::flash('alert', (string)$alert);
+                return back();
+            }
             if(count($payment->onlinepayment))
             {
                 $onlinepayment = Onlinepayment::FindOrFail($payment->onlinepayment->first()->id);

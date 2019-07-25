@@ -24,6 +24,20 @@
         });
     </script>
     <div class="container-fluid text-center">
+        @if(Session::has('alert'))
+            <div class="text-center col-md-12 align-items-center" dir="rtl">
+                <div class="text-center col-md-6 col-md-offset-3 mx-auto">
+                    <div class="alert alert-success alert-dismissible show" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">
+                        <span class="glyphicon glyphicon glyphicon glyphicon glyphicon-remove-circle float-right" style="color:red;">
+                        </span>
+                        </a>
+                        <h4 class="alert-heading">پیام سیستم:</h4>
+                        <p>{{Session::get('alert')}}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row">
 
             <div dir="rtl" class="text-center">

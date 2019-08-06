@@ -623,7 +623,7 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
-                            <th class="text-center"><a data-toggle="tooltip" title="امتیاز  پرداخت به موقع - منفی به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>امتیاز</th>
+                            <th class="text-center"><a style="font-family:'Font'" data-toggle="tooltip" title="امتیاز  پرداخت به موقع - منفی به معنای تاخیر است"><span class="glyphicon glyphicon-question-sign"></span></a>امتیاز</th>
                             <th class="text-center">توضیحات مدیر</th>
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">سرمایه لحظه ای</th>
@@ -774,6 +774,53 @@
                         </tbody>
                     </table>
                     <div class="text-center"> {{$loans->links()}} </div>
+                </div>
+            </div>
+
+            <div class="panel panel-warning">
+                <div class="panel-heading text-center">
+                    <a style="font-family:'Font'" data-toggle="tooltip" title="قسمت بایگانی در محاسبات حساب قرض الحسنه هیچ گونه تاثیری ندارد"><span class="glyphicon glyphicon-question-sign"></span></a>
+                    بایگانی قرض الحسنه ها
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr class="bg-info">
+                            @if($permission==1)
+                                <th class="text-center">حذف قرض الحسنه</th>
+                            @endif
+                            <th class="text-center">توضیحات مدیر</th>
+                            <th class="text-center">توضیحات</th>
+                            <th class="text-center">تاریخ مورد نیاز قرض الحسنه</th>
+                            <th class="text-center">مبلغ قرض الحسنه</th>
+                            <th class="text-center">نوع قرض الحسنه</th>
+                            <th class="text-center">ثبت کننده</th>
+                            <th class="text-center">تاریخ</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($loans_archive as $loan_archive)
+                            <tr class="text-center">
+                                @if($permission==1)
+                                    <th class="text-center small">
+                                        <a href="{{ route('loan_forcedelete',['id'=>$loan_archive->id]) }}"
+                                           onclick="return confirm('آیا از حذف قرض الحسنه اطمینان دارید؟')" >
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </a>
+                                    </th>
+                                @endif
+                                <th class="text-center small">{{$loan_archive->note}}</th>
+                                <th class="text-center small">{{$loan_archive->description}}</th>
+                                <th class="text-center small">{{$loan_archive->request_date}}</th>
+                                <th class="text-center">{{$loan_archive->loan}}</th>
+                                <th class="text-center small">@if ($loan_archive->force==0)عادی@else<span class="text-danger" >ضروری</span>@endif</th>
+                                <th class="text-center small">{{$loan_archive->creator}}</th>
+                                <th class="text-center small">{{Str_before($loan_archive->date_time,' ')}}</th>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    <div class="text-center"> {{$loans_archive->links()}} </div>
                 </div>
             </div>
 

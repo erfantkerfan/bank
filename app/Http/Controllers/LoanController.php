@@ -28,6 +28,16 @@ class LoanController extends Controller
             abort(403);
         }
     }
+    public function forcedelete($id)
+    {
+        $loan = Loan::onlyTrashed()->FindOrFail($id);
+        if (Auth::user()->is_super_admin == 1) {
+            $loan->forceDelete();
+            return redirect()->back();
+        } else {
+            abort(403);
+        }
+    }
 
     public function create(request $request)
     {

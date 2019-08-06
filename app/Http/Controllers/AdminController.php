@@ -67,12 +67,14 @@ class AdminController extends Controller
         Controller::NumberFormat($payments);
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);
+        $loans_archive = $user->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
+        Controller::NumberFormat($loans_archive);
         $summary = User::FindOrFail($id)->summary();
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         $permission = 1;
         return view('Home')->with(compact('user','payments','summary','loans','permission','requests',
-            'next_user','previous_user','momentary'));
+            'next_user','previous_user','momentary','loans_archive'));
     }
 
     public function unproved1()

@@ -33,12 +33,14 @@ class HomeController extends Controller
         Controller::NumberFormat($payments);
         $loans = Auth::user()->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);
+        $loans_archive = Auth::user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
+        Controller::NumberFormat($loans_archive);
         $summary = Auth::user()->summary();
         $user = Auth::User();
         $requests = Auth::User()->request()->get();
         Controller::NumberFormat($requests);
         $permission = 0;
         return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,
-            'permission'=>$permission,'requests'=>$requests]);
+            'permission'=>$permission,'requests'=>$requests,'loans_archive'=>$loans_archive]);
     }
 }

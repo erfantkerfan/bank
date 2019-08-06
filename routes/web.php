@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+#ToDo: paging problem when whole oage goes to next page
 Route::middleware(['logindate'])->group(function () {
     Route::get('/','Controller@welcome')->name('welcome');
     Route::get('/login','Auth\LoginController@showLoginForm')->name('login');
@@ -57,6 +59,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/loan/edit/{id}','LoanController@show_edit')->name('edit_loan_form');
         Route::get('/payment/edit/{id}','PaymentController@show_edit')->name('edit_payment_form');
         Route::Post('/loan/edit/{id}','LoanController@edit')->name('edit_loan');
+        Route::get('/loan/forcedelete/{id}','LoanController@forcedelete')->name('loan_forcedelete');
         Route::Post('/payment/edit/{id}','PaymentController@edit')->name('edit_payment');
         Route::get('/slider/delete/{id}','SliderController@delete')->name('delete_slider');
         Route::Post('/slider/create','SliderController@create')->name('create_slider');

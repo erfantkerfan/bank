@@ -18,12 +18,12 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $payments = $user->Payment()->OrderByDesc('date_time')->get();
-        $tote = $user->Payment()->sum('payment');
+        $tote = $user->summary()->payments;
         $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
-            $momentary[$payment->id] = $tote - $sum ;
-            $sum = $payment->payment + $sum;
+            $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote) ;
+            $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
         foreach ($payments as $payment){

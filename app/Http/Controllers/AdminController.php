@@ -54,6 +54,7 @@ class AdminController extends Controller
         $payments = $user->Payment()->OrderByDesc('date_time')->get();
         $tote = $user->summary()->payments;
         $sum = 0 ;
+        $momentary = [];
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote) ;

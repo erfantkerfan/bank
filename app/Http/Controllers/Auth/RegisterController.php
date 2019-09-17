@@ -151,6 +151,8 @@ class RegisterController extends Controller
             'end_date_force' => $end_date_force,
             'active' => $data['active'],
             'note_date' => Verta::now(),
+            'old_login' => Verta::now(),
+            'new_login' => Verta::now(),
         ]);
         return ($user);
     }

@@ -212,12 +212,13 @@ class PaymentController extends Controller
             {
                 foreach (json_decode($ans->Authorities) as $pay)
                 {
-                    $Authority = $pay->Authority;
-                    $onlinepayment = Onlinepayment::where('authority','=',$Authority)->firstOrFail();
+                    $Authority = str_pad($pay->Authority, 36, '0', STR_PAD_LEFT);
+                    $onlinepayment = Onlinepayment::where('authority','=',$Authority)->withTrashed()->firstOrFail();
                     $result = Zarinpal::verify('OK',($onlinepayment->amount)/10,$onlinepayment->authority);
                     $result = (object)$result;
                     if ($result->Status == 'success' || $result->Status ==  'verified_before') {
                         $onlinepayment->refid = $result->RefID;
+                        $onlinepayment->deleted_at = null;
                         $onlinepayment->save();
                         $payment = Payment::where('id','=',$onlinepayment->payment_id)->first();
                         $payment->is_proved=1;

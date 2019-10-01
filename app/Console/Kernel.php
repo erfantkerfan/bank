@@ -30,7 +30,7 @@ class Kernel extends ConsoleKernel
 //             ->appendOutputTo('/public/log.txt')
              ->timezone('Asia/Tehran');
         $schedule->call('App\Http\Controllers\PaymentController@unverified')
-            ->everyFiveMinutes();
+            ->everyFifteenMinutes();
     }
 
     /**

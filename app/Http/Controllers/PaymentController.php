@@ -65,26 +65,22 @@ class PaymentController extends Controller
         switch($request->online_payment) {
 
             case '0':
-                $proved_by = null;
-                if($request->is_proved==1){
-                    $proved_by = Auth::User()->l_name;
-                };
-
                 $user_id= basename(url()->previous());
-
                 if(($user_id)=='home'){
                     $user_id = Auth::user()->id;
                 }
-
                 if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$user_id){
                     abort(500);
                 };
-                if(($request->has('is_proved'))){
+                $is_proved=0;
+                if(($request->has('is_proved')) && Auth::User()->is_super_admin==1){
                     $is_proved = $request->is_proved;
                 }
-                else{
-                    $is_proved=0;
-                }
+                $proved_by = null;
+                if($is_proved==1){
+                    $proved_by = Auth::User()->l_name;
+                };
+
 
                 $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
 

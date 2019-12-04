@@ -21,6 +21,7 @@
                                 <th class="text-center">تاریخ ثبت</th>
                                 <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,7 @@
                                 <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
                                 <th class="text-center">{{$loan->creator}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
+                                <th class="text-center">{{$loop->iteration}}</th>
                             </tr>
                             @endforeach
                             </tbody>
@@ -75,6 +77,7 @@
                                 <th class="text-center">تاریخ ثبت</th>
                                 <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -106,6 +109,7 @@
                                     <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
                                     <th class="text-center">{{$loan->creator}}</th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
+                                    <th class="text-center">{{$loop->iteration}}</th>
                                 </tr>
                             @endforeach
                             </tbody>

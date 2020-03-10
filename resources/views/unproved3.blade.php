@@ -21,6 +21,7 @@
                                 <th class="text-center">تاریخ</th>
                                 <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -45,6 +46,7 @@
                                         {{$online['payment']['user']['f_name']." ".$online['payment']['user']['l_name']}}
                                     </a>
                                 </th>
+                                <th class="text-center">{{$loop->iteration}}</th>
                             </tr>
                             @endforeach
                             </tbody>

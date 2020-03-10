@@ -22,6 +22,7 @@
                                 <th class="text-center">تاریخ</th>
                                 <th class="text-center">ثبت کننده</th>
                                 <th class="text-center">نام عضو</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -55,6 +56,7 @@
                                 <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
                                 <th class="text-center">{{$payment->creator}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$payment->user->id]) }}">{{$payment->user->f_name." ".$payment->user->l_name}}</a></th>
+                                <th class="text-center">{{$loop->iteration}}</th>
                             </tr>
                             @endforeach
                             </tbody>

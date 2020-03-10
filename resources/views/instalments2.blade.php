@@ -32,6 +32,7 @@
                         <th class="text-center">تاریخ شروع اقساط</th>
                         <th class="text-center">مبلغ قسط</th>
                         <th class="text-center">نام عضو</th>
+                        <th class="text-center">#</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,7 @@
                             <th class="text-center">{{$user_force->start_date_force}}</th>
                             <th class="text-center">{{number_format($user_force->instalment_force)}}</th>
                             <th class="text-center"><a href="{{ route('user',['id'=>$user_force->id]) }}">{{$user_force->f_name." ".$user_force->l_name}}</a></th>
+                            <th class="text-center">{{$loop->iteration}}</th>
                         </tr>
                     @endforeach
                     </tbody>

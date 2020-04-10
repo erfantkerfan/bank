@@ -130,8 +130,8 @@
                                         @endif
                                     </th>
 {{--                                    <th class="text-center">{{str_replace(' ','   ',str_replace('-','/',$user->new_login))}}</th>--}}
-                                    <th class="text-center">{{$user->new_login ? \Hekmatinasser\Verta\Verta::parse($user->new_login)->formatDifference(\Hekmatinasser\Verta\Verta::now()) : "تا به حال لاگین نشده"}}</th>
-                                    <th class="text-center">{{$user->relation}}</th>
+                                    <th class="text-center" dir="rtl">{{$user->new_login ? \Hekmatinasser\Verta\Verta::parse($user->new_login)->formatDifference(\Hekmatinasser\Verta\Verta::now()) : "تا به حال لاگین نشده"}}</th>
+                                    <th class="text-center" dir="rtl">{{$user->relation}}</th>
                                     <th class="text-center">{{$user->acc_id}}</th>
                                     <th class="text-center">{{$user->username}}</th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->l_name}}</a></th>

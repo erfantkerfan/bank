@@ -9,10 +9,10 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $requests = \App\Request::with('user')->where('is_proved','=','0')
-            ->OrderBy('date_time','desc')->paginate(10);
+        $requests = \App\Request::with('user')->where('is_proved', '=', '0')
+            ->OrderBy('date_time', 'desc')->paginate(10);
         Controller::NumberFormat($requests);
-        return view('request')->with(['requests'=>$requests]);
+        return view('request')->with(['requests' => $requests]);
     }
 
     public function confirm($id)
@@ -20,14 +20,17 @@ class RequestController extends Controller
         $request = \App\Request::FindOrFail($id);
         $request->is_proved = 1;
         $request->proved_by = Auth::User()->l_name;
-        $request-> save();
+        $request->save();
 
         return redirect()->back();
     }
+
     public function create(Request $request)
     {
         $input = $request->all();
-        if($request->has('fee')){if($input["fee"]!=null){$input["fee"] = str_replace(",","",$input["fee"]);}}
+        if ($request->has('fee') && $input["fee"] != null) {
+            $input["fee"] = str_replace(",", "", $input["fee"]);
+        }
         $request->replace((array)$input);
 
         $user_id = basename(url()->previous());
@@ -40,7 +43,7 @@ class RequestController extends Controller
             abort(500);
         };
 
-        $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
+        $creator = Auth::User()->f_name . ' ' . Auth::User()->l_name;
 
         $date_time = verta();
 
@@ -65,7 +68,7 @@ class RequestController extends Controller
     public function delete($id)
     {
         $request = \App\Request::FindOrFail($id);
-        if (Auth::user()->is_super_admin == 1 || $request->user_id==Auth::user()->id) {
+        if (Auth::user()->is_super_admin == 1 || $request->user_id == Auth::user()->id) {
             $request->delete();
             return redirect()->back();
         } else {
@@ -77,15 +80,17 @@ class RequestController extends Controller
     {
         $request = \App\Request::FindOrFail($id);
         Controller::NumberFormat($request);
-        return view('request_edit')->with(['request'=>$request]);
+        return view('request_edit')->with(['request' => $request]);
     }
 
-    public function edit(request $request , $id)
+    public function edit(request $request, $id)
     {
         $requestfake = \App\Request::FindOrFail($id);
 
         $input = $request->all();
-        if($request->has('fee')){if($input["fee"]!=null){$input["fee"] = str_replace(",","",$input["fee"]);}}
+        if ($request->has('fee') && $input["fee"] != null) {
+            $input["fee"] = str_replace(",", "", $input["fee"]);
+        }
         $request->replace((array)$input);
 
         $this->Validate($request, [
@@ -100,6 +105,6 @@ class RequestController extends Controller
 
         $requestfake->save();
 
-        return redirect(route('user',['id'=>$requestfake->user_id]));
+        return redirect(route('user', ['id' => $requestfake->user_id]));
     }
 }

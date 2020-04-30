@@ -3639,16 +3639,16 @@
         },
         {
             "name": "imanghafoori/laravel-microscope",
-            "version": "v1.0.19",
+            "version": "v1.0.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imanghafoori1/laravel-microscope.git",
-                "reference": "e64fd0e13eff238dead0eb390b3f7960d2171a67"
+                "reference": "64547d9c80b3e273e14ec4803b20cdf8edb45969"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imanghafoori1/laravel-microscope/zipball/e64fd0e13eff238dead0eb390b3f7960d2171a67",
-                "reference": "e64fd0e13eff238dead0eb390b3f7960d2171a67",
+                "url": "https://api.github.com/repos/imanghafoori1/laravel-microscope/zipball/64547d9c80b3e273e14ec4803b20cdf8edb45969",
+                "reference": "64547d9c80b3e273e14ec4803b20cdf8edb45969",
                 "shasum": ""
             },
             "require": {
@@ -3688,7 +3688,7 @@
                 "laravel-microscope",
                 "laravel-testing"
             ],
-            "time": "2020-04-24T17:47:30+00:00"
+            "time": "2020-04-30T04:41:41+00:00"
         },
         {
             "name": "mockery/mockery",

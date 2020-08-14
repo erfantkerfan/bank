@@ -76,6 +76,7 @@
                                 <th class="text-center">مبلغ قرض الحسنه</th>
                                 <th class="text-center">تاریخ ثبت</th>
                                 <th class="text-center">ثبت کننده</th>
+                                <th class="text-center">شماره حساب</th>
                                 <th class="text-center">نام عضو</th>
                                 <th class="text-center">#</th>
                             </tr>
@@ -108,6 +109,7 @@
                                     <th class="text-center">{{$loan->loan}}</th>
                                     <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
                                     <th class="text-center">{{$loan->creator}}</th>
+                                    <th class="text-center">{{$loan->user->acc_id}}</th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
                                     <th class="text-center">{{$loop->iteration}}</th>
                                 </tr>

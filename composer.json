@@ -10,7 +10,7 @@
         "hekmatinasser/verta": "^1.8",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "niklasravnsborg/laravel-pdf": "^2.0",
+        "niklasravnsborg/laravel-pdf": "^4.0",
         "paulvl/backup": "3.*",
         "zarinpal/zarinpal": "^1.3"
     },

@@ -20,6 +20,7 @@
                                 <th class="text-center">افزایش سرمایه</th>
                                 <th class="text-center">تاریخ</th>
                                 <th class="text-center">ثبت کننده</th>
+                                <th class="text-center">شماره حساب</th>
                                 <th class="text-center">نام عضو</th>
                                 <th class="text-center">#</th>
                             </tr>
@@ -41,6 +42,7 @@
                                 <th class="text-center">{{$online['payment']['payment']}}</th>
                                 <th class="text-center">{{Str_before($online['date_time'],' ')}}</th>
                                 <th class="text-center">{{$online['payment']['creator']}}</th>
+                                <th class="text-center">{{$online['payment']['user']['acc_id']}}</th>
                                 <th class="text-center">
                                     <a href="{{ route('user',['id'=>$online['payment']['user']['id']]) }}">
                                         {{$online['payment']['user']['f_name']." ".$online['payment']['user']['l_name']}}

@@ -17,7 +17,7 @@ class PDFController extends Controller
 //        };
 //        switch ($mode){
 //            case 'payment':
-//                $payments = User::FindOrFail($id)->Payment()->OrderByDesc('date_time')->get();
+//                $payments = User::query()->findOrFail($id)->Payment()->OrderByDesc('date_time')->get();
 //                foreach ($payments as $payment){
 //                $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
 //                }
@@ -27,14 +27,14 @@ class PDFController extends Controller
 //            break;
 //
 //            case 'loan':
-//                $loans = User::FindOrFail($id)->Loan()->OrderByDesc('date_time')->get();
+//                $loans = User::query()->findOrFail($id)->Loan()->OrderByDesc('date_time')->get();
 //                Controller::NumberFormat($loans);
 //                $pdf = PDF::loadView('pdf.loan', compact('loans'));
 //                return $pdf->stream('customers.pdf');
 //            break;
 //
 //            case 'request':
-//                $requests = User::FindOrFail($id)->request()->OrderByDesc('date_time')->get();
+//                $requests = User::query()->findOrFail($id)->request()->OrderByDesc('date_time')->get();
 //                Controller::NumberFormat($requests);
 //                $pdf = PDF::loadView('pdf.request', compact('requests'));
 //                return $pdf->stream('customers.pdf');
@@ -48,7 +48,7 @@ class PDFController extends Controller
         if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$id){
             abort(403);
         };
-        $user = User::FindOrFail($id);
+        $user = User::query()->findOrFail($id);
         $date = Verta::now();
         $payments = $user->Payment()->OrderByDesc('date_time')->get();
         $tote = $user->Payment()->sum('payment');
@@ -59,9 +59,9 @@ class PDFController extends Controller
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
         Controller::NumberFormat($payments);
-        $loans = User::FindOrFail($id)->Loan()->OrderByDesc('date_time')->get();
+        $loans = User::query()->findOrFail($id)->Loan()->OrderByDesc('date_time')->get();
         Controller::NumberFormat($loans);
-        $requests = User::FindOrFail($id)->request()->OrderByDesc('date_time')->get();
+        $requests = User::query()->findOrFail($id)->request()->OrderByDesc('date_time')->get();
         Controller::NumberFormat($requests);
         $summary = $user->summary();
         $pdf = PDF::loadView('pdf.full', compact('payments','loans','requests','user','date','summary'));

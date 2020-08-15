@@ -18,7 +18,7 @@ class UserController extends Controller
 {
     public function edit($id)
     {
-        $user=User::FindOrFail($id);
+        $user=User::query()->findOrFail($id);
         return view('user_edit')->with(['user' => $user]);
     }
 
@@ -37,7 +37,7 @@ class UserController extends Controller
             'oldpassword' => 'required|old_password:' . Auth::user()->password,
             'password' => 'nullable|string|min:6|confirmed'
         ]);
-        $user = User::FindOrFail(Auth::user()->id);
+        $user = User::query()->findOrFail(Auth::user()->id);
         $user->password = bcrypt($request['password']);
         $user->save();
         return redirect(route('home'));
@@ -69,7 +69,7 @@ class UserController extends Controller
 
     public function delete_instalment($id)
     {
-        $user = User::FindOrFail($id);
+        $user = User::query()->findOrFail($id);
         $user->instalment = null;
         $user->period = null;
         $user->loan_row = null;
@@ -82,7 +82,7 @@ class UserController extends Controller
 
     public function delete_instalment_force($id)
     {
-        $user = User::FindOrFail($id);
+        $user = User::query()->findOrFail($id);
         $user->instalment_force = null;
         $user->period_force = null;
         $user->loan_row_force = null;
@@ -123,7 +123,7 @@ class UserController extends Controller
             'active' => 'nullable|boolean',
         ]);
 
-        $data = User::FindOrFail($id);
+        $data = User::query()->findOrFail($id);
 
         $data->username = $request['username'];
         $data->f_name = $request['f_name'];

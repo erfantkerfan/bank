@@ -15,9 +15,9 @@ class PaymentController extends Controller
 {
     public function confirm($id)
     {
-        $payment = Payment::FindOrFail($id);
+        $payment = Payment::query()->findOrFail($id);
         $payment->is_proved = 1;
-        $payment->proved_by = Auth::User()->l_name;
+        $payment->proved_by = auth()->user()->l_name;
         $payment->save();
 
         return redirect()->back();
@@ -25,7 +25,7 @@ class PaymentController extends Controller
 
     public function delete($id)
     {
-        $payment = Payment::FindOrFail($id);
+        $payment = Payment::query()->findOrFail($id);
         if (Auth::user()->is_super_admin == 1 || ($payment->user_id == Auth::user()->id && $payment->isproved == 0)) {
             $currentTime = Carbon::now();
             $currentTime->modify('-30 minutes');
@@ -40,7 +40,7 @@ class PaymentController extends Controller
                 return back();
             }
             if (count($payment->onlinepayment)) {
-                $onlinepayment = Onlinepayment::FindOrFail($payment->onlinepayment->first()->id);
+                $onlinepayment = Onlinepayment::query()->findOrFail($payment->onlinepayment->first()->id);
                 $onlinepayment->delete();
             }
             $payment->delete();
@@ -81,16 +81,16 @@ class PaymentController extends Controller
                     abort(500);
                 };
                 $is_proved = 0;
-                if (($request->has('is_proved')) && Auth::User()->is_super_admin == 1) {
+                if (($request->has('is_proved')) && auth()->user()->is_super_admin == 1) {
                     $is_proved = $request->is_proved;
                 }
                 $proved_by = null;
                 if ($is_proved == 1) {
-                    $proved_by = Auth::User()->l_name;
+                    $proved_by = auth()->user()->l_name;
                 };
 
 
-                $creator = Auth::User()->f_name . ' ' . Auth::User()->l_name;
+                $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
                 $date_time = verta();
 
@@ -133,7 +133,7 @@ class PaymentController extends Controller
                 };
                 $is_proved = 0;
 
-                $creator = Auth::User()->f_name . ' ' . Auth::User()->l_name;
+                $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
                 $date_time = verta();
 
@@ -238,13 +238,13 @@ class PaymentController extends Controller
 
     public function show_edit($id)
     {
-        $payment = Payment::FindOrFail($id);
+        $payment = Payment::query()->findOrFail($id);
         return view('payment_edit')->with(['payment' => $payment]);
     }
 
     public function edit(request $request, $id)
     {
-        $payment = Payment::FindOrFail($id);
+        $payment = Payment::findOrFail($id);
 
         $input = $request->all();
         if ($input["payment"] != null) {
@@ -273,7 +273,7 @@ class PaymentController extends Controller
         ]);
 
         if ($payment->is_proved == 1 && !is_numeric($payment->proved_by)) {
-            $payment->proved_by = Auth::User()->f_name . ' ' . Auth::User()->l_name;
+            $payment->proved_by = auth()->user()->f_name . ' ' . auth()->user()->l_name;
         }
         $payment->payment = $request->payment;
         $payment->payment_cost = $request->payment_cost;

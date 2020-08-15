@@ -36,8 +36,8 @@ class HomeController extends Controller
         $loans_archive = Auth::user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans_archive);
         $summary = Auth::user()->summary();
-        $user = Auth::User();
-        $requests = Auth::User()->request()->get();
+        $user = auth()->user();
+        $requests = auth()->user()->request()->get();
         Controller::NumberFormat($requests);
         $permission = 0;
         return view('Home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,

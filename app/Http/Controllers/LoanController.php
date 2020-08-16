@@ -20,7 +20,7 @@ class LoanController extends Controller
     public function delete($id)
     {
         $loan = Loan::query()->findOrFail($id);
-        if (Auth::user()->is_super_admin == 1 || ($loan->user_id==Auth::user()->id && $loan->isproved==0)) {
+        if (auth()->user()->is_super_admin == 1 || ($loan->user_id==auth()->id() && $loan->isproved==0)) {
             $loan->delete();
             return redirect()->back();
         } else {
@@ -31,7 +31,7 @@ class LoanController extends Controller
     public function forcedelete($id)
     {
         $loan = Loan::onlyTrashed()->FindOrFail($id);
-        if (Auth::user()->is_super_admin == 1) {
+        if (auth()->user()->is_super_admin == 1) {
             $loan->forceDelete();
             return redirect()->back();
         } else {
@@ -53,10 +53,10 @@ class LoanController extends Controller
         $user_id = basename(url()->previous());
 
         if (($user_id) == 'home') {
-            $user_id = Auth::user()->id;
+            $user_id = auth()->id();
         }
 
-        if (Auth::user()->is_super_admin == 0 && Auth::user()->id != $user_id) {
+        if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
             abort(500);
         };
 

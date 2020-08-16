@@ -16,7 +16,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $payments = $user->Payment()->OrderByDesc('date_time')->get();
         $tote = $user->summary()->payments;
         $sum = 0 ;
@@ -31,11 +31,11 @@ class HomeController extends Controller
             $payment -> momentary = $momentary[$payment->id] ;
         }
         Controller::NumberFormat($payments);
-        $loans = Auth::user()->Loan()->OrderByDesc('date_time')->paginate(12);
+        $loans = auth()->user()->Loan()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans);
-        $loans_archive = Auth::user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
+        $loans_archive = auth()->user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans_archive);
-        $summary = Auth::user()->summary();
+        $summary = auth()->user()->summary();
         $user = auth()->user();
         $requests = auth()->user()->request()->get();
         Controller::NumberFormat($requests);

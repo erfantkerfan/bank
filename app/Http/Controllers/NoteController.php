@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Hekmatinasser\Verta\Verta;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -15,8 +14,8 @@ class NoteController extends Controller
         $users = User::where('note', '!=', null)->orWhere('user_note', '!=', null)
             ->orderBy('user_note_date','desc')
             ->orderBy('note_date', 'desc')->paginate(20);
-        return view('notes')->with(['users'=>$users]);
 
+        return view('notes')->with(['users'=>$users]);
     }
 
     public function user_note(Request $request)
@@ -24,7 +23,7 @@ class NoteController extends Controller
         $user_id = basename(url()->previous());
 
         if (($user_id) == 'home') {
-            $user_id = Auth::user()->id;
+            $user_id = auth()->id();
         }
 
         $user = User::query()->findOrFail($user_id);

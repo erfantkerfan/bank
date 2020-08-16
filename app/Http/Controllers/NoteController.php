@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,8 @@ class NoteController extends Controller
 {
     public function index()
     {
-        $users = User::where('note', '!=', null)->orwhere('user_note', '!=', null)->OrderBy('user_note_date','desc')
+        $users = User::where('note', '!=', null)->orWhere('user_note', '!=', null)
+            ->orderBy('user_note_date','desc')
             ->orderBy('note_date', 'desc')->paginate(20);
         return view('notes')->with(['users'=>$users]);
 
@@ -25,28 +27,31 @@ class NoteController extends Controller
             $user_id = Auth::user()->id;
         }
 
-        $user = User::FindOrFail($user_id);
-        $user -> user_note = $request -> user_note;
-        $user -> user_note_date = Verta::now();
-        $user -> save();
+        $user = User::query()->findOrFail($user_id);
+        $user->user_note = $request->user_note;
+        $user->user_note_date = Verta::now();
+        $user->save();
+
         return back();
     }
 
     public function delete($id)
     {
-        $user = User::FindOrFail($id);
-        $user -> note = null;
-        $user -> note_date = null;
-        $user -> save();
+        $user = User::query()->findOrFail($id);
+        $user->note = null;
+        $user->note_date = null;
+        $user->save();
+
         return back();
     }
 
     public function delete_user($id)
     {
-        $user = User::FindOrFail($id);
-        $user -> user_note = null;
-        $user -> user_note_date = null;
-        $user -> save();
+        $user = User::query()->findOrFail($id);
+        $user->user_note = null;
+        $user->user_note_date = null;
+        $user->save();
+
         return back();
     }
 }

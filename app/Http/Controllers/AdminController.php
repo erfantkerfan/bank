@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function user($id)
     {
-        $user = User::FindOrFail($id);
+        $user = User::query()->findOrFail($id);
         $next_user_acc_id = User::where('acc_id', '>', $user->acc_id)->min('acc_id');
         $next_user = null;
         if(!is_null($next_user_acc_id)){
@@ -70,7 +70,7 @@ class AdminController extends Controller
         Controller::NumberFormat($loans);
         $loans_archive = $user->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
         Controller::NumberFormat($loans_archive);
-        $summary = User::FindOrFail($id)->summary();
+        $summary = User::query()->findOrFail($id)->summary();
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         $permission = 1;

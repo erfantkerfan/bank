@@ -41,7 +41,7 @@ class SliderController extends Controller
 
     public function delete($id)
     {
-        $slider = Slider::FindOrFail($id);
+        $slider = Slider::query()->findOrFail($id);
         $file_path = public_path('img/slider/').$slider->id.'.jpg';
         unlink($file_path);
         $slider -> delete();

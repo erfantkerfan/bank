@@ -1,18 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Loan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Loan;
-
 
 class LoanController extends Controller
 {
     public function confirm($id)
     {
-        $loan = Loan::FindOrFail($id);
+        $loan = Loan::query()->findOrFail($id);
         $loan->is_proved = 1;
-        $loan->proved_by = Auth::User()->l_name;
+        $loan->proved_by = auth()->user()->l_name;
         $loan-> save();
 
         return redirect()->route('user_edit',['id'=>$loan->user->id]);
@@ -20,7 +19,7 @@ class LoanController extends Controller
 
     public function delete($id)
     {
-        $loan = Loan::FindOrFail($id);
+        $loan = Loan::query()->findOrFail($id);
         if (Auth::user()->is_super_admin == 1 || ($loan->user_id==Auth::user()->id && $loan->isproved==0)) {
             $loan->delete();
             return redirect()->back();
@@ -28,6 +27,7 @@ class LoanController extends Controller
             abort(403);
         }
     }
+
     public function forcedelete($id)
     {
         $loan = Loan::onlyTrashed()->FindOrFail($id);
@@ -47,7 +47,7 @@ class LoanController extends Controller
 
         $proved_by = null;
         if($request->is_proved==1){
-            $proved_by = Auth::User()->l_name;
+            $proved_by = auth()->user()->l_name;
         };
 
         $user_id = basename(url()->previous());
@@ -67,7 +67,7 @@ class LoanController extends Controller
             $is_proved=0;
         }
 
-        $creator = Auth::User()->f_name.' '.Auth::User()->l_name;
+        $creator = auth()->user()->f_name.' '.auth()->user()->l_name;
 
         $date_time = verta();
 
@@ -97,21 +97,23 @@ class LoanController extends Controller
 
     public function show_edit($id)
     {
-        $loan = Loan::FindOrFail($id);
+        $loan = Loan::query()->findOrFail($id);
         return view('loan_edit')->with(['loan'=>$loan]);
     }
 
     public function edit(request $request , $id)
     {
-        $loan = Loan::FindOrFail($id);
+        $loan = Loan::query()->findOrFail($id);
 
         if ($loan->is_proved==1){
-            $loan->proved_by = Auth::User()->f_name.' '.Auth::User()->l_name;
+            $loan->proved_by = auth()->user()->f_name.' '.auth()->user()->l_name;
         }
 
         $input = $request->all();
-        if($input["loan"]!=null){$input["loan"] = str_replace(",","",$input["loan"]);}
-        $request->replace((array)$input);
+        if ($input["loan"] != null) {
+            $input["loan"] = str_replace(",", "", $input["loan"]);
+        }
+        $request->replace((array) $input);
 
         $this->Validate($request, [
             'loan' => 'nullable|integer',

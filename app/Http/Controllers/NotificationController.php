@@ -24,7 +24,7 @@ class NotificationController extends Controller
 
     public function delete($id)
     {
-        $notification = Notification::FindOrFail($id);
+        $notification = Notification::query()->findOrFail($id);
         $notification -> delete();
         return redirect()->back();
     }

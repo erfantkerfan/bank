@@ -17,9 +17,9 @@ class RequestController extends Controller
 
     public function confirm($id)
     {
-        $request = \App\Request::FindOrFail($id);
+        $request = \App\Request::query()->findOrFail($id);
         $request->is_proved = 1;
-        $request->proved_by = Auth::User()->l_name;
+        $request->proved_by = auth()->user()->l_name;
         $request->save();
 
         return redirect()->back();
@@ -43,7 +43,7 @@ class RequestController extends Controller
             abort(500);
         };
 
-        $creator = Auth::User()->f_name . ' ' . Auth::User()->l_name;
+        $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
         $date_time = verta();
 
@@ -67,7 +67,7 @@ class RequestController extends Controller
 
     public function delete($id)
     {
-        $request = \App\Request::FindOrFail($id);
+        $request = \App\Request::query()->findOrFail($id);
         if (Auth::user()->is_super_admin == 1 || $request->user_id == Auth::user()->id) {
             $request->delete();
             return redirect()->back();
@@ -78,14 +78,14 @@ class RequestController extends Controller
 
     public function form($id)
     {
-        $request = \App\Request::FindOrFail($id);
+        $request = \App\Request::query()->findOrFail($id);
         Controller::NumberFormat($request);
         return view('request_edit')->with(['request' => $request]);
     }
 
     public function edit(request $request, $id)
     {
-        $requestfake = \App\Request::FindOrFail($id);
+        $requestfake = \App\Request::query()->findOrFail($id);
 
         $input = $request->all();
         if ($request->has('fee') && $input["fee"] != null) {

@@ -29,7 +29,7 @@ class ExpenseController extends Controller
         if($input["expense"]!=null){$input["expense"] = str_replace(",","",$input["expense"]);}
         $request->replace((array)$input);
 
-        $user_id = Auth::User()->id;
+        $user_id = auth()->user()->id;
 
         $date_time = verta();
 
@@ -50,7 +50,7 @@ class ExpenseController extends Controller
 
     public function delete($id)
     {
-        $expense = Expense::FindOrFail($id);
+        $expense = Expense::query()->findOrFail($id);
         $expense -> delete();
         return redirect()->back();
     }

@@ -14,7 +14,7 @@ class ConfigController extends Controller
     }
     public function delete(Request $request)
     {
-        $config = Config::FindOrFail($request->id);
+        $config = Config::query()->findOrFail($request->id);
         $config->delete();
         return back();
     }
@@ -22,7 +22,7 @@ class ConfigController extends Controller
     public function post(Request $request)
     {
         if ($request->has('id')){
-            $config = Config::FindOrFail($request->id);
+            $config = Config::query()->findOrFail($request->id);
         }else{
             $config = new Config;
             $config->type = $request->type;

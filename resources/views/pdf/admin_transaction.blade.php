@@ -6,13 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
-        @font-face {
-            font-family:'Font';
-            src: url( {{asset('fonts/'.config('app.font'))}} );
-        }
-        body{
-            font-family: 'Font', sans-serif;
-        }
         table {
             width: 100%;
         }

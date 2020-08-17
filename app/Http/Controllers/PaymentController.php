@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Onlinepayment;
 use App\payment;
 use Carbon\Carbon;
+use App\Onlinepayment;
 use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Zarinpal\Laravel\Facade\Zarinpal;
+use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
 {
@@ -26,28 +26,29 @@ class PaymentController extends Controller
     public function delete($id)
     {
         $payment = Payment::query()->findOrFail($id);
-        if (Auth::user()->is_super_admin == 1 || ($payment->user_id == Auth::user()->id && $payment->isproved == 0)) {
-            $currentTime = Carbon::now();
-            $currentTime->modify('-30 minutes');
-            if ($payment->updated_at >= $currentTime) {
-                $alert = 'امکان حذف پرداخت ها به علت بررسی وضعیت تراکنش های آنلاین تا 30 دقیقه بعد از ثبت ممکن نیست.
-                ' .
-                    $currentTime->diffInMinutes($payment->updated_at)
-                    . '
-                دقیقه دیگر اقدام به حذف کنید.
-                ';
-                Session::flash('alert', (string)$alert);
-                return back();
-            }
-            if (count($payment->onlinepayment)) {
-                $onlinepayment = Onlinepayment::query()->findOrFail($payment->onlinepayment->first()->id);
-                $onlinepayment->delete();
-            }
-            $payment->delete();
-            return redirect()->back();
-        } else {
+        if (auth()->user()->is_super_admin != 1 && ($payment->user_id != auth()->id() || $payment->isproved != 0)) {
             abort(403);
         }
+
+        $currentTime = Carbon::now();
+        $currentTime->modify('-30 minutes');
+        if ($payment->updated_at >= $currentTime) {
+            $alert = 'امکان حذف پرداخت ها به علت بررسی وضعیت تراکنش های آنلاین تا 30 دقیقه بعد از ثبت ممکن نیست.
+                '.$currentTime->diffInMinutes($payment->updated_at).'
+                دقیقه دیگر اقدام به حذف کنید.
+                ';
+            Session::flash('alert', (string) $alert);
+
+            return back();
+        }
+
+        if (count($payment->onlinepayment)) {
+            $onlinepayment = Onlinepayment::query()->findOrFail($payment->onlinepayment->first()->id);
+            $onlinepayment->delete();
+        }
+        $payment->delete();
+
+        return redirect()->back();
     }
 
     public function create(request $request)
@@ -75,20 +76,21 @@ class PaymentController extends Controller
             case '0':
                 $user_id = basename(url()->previous());
                 if (($user_id) == 'home') {
-                    $user_id = Auth::user()->id;
+                    $user_id = auth()->id();
                 }
-                if (Auth::user()->is_super_admin == 0 && Auth::user()->id != $user_id) {
+                if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
                     abort(500);
-                };
+                }
+
                 $is_proved = 0;
                 if (($request->has('is_proved')) && auth()->user()->is_super_admin == 1) {
                     $is_proved = $request->is_proved;
                 }
+
                 $proved_by = null;
                 if ($is_proved == 1) {
                     $proved_by = auth()->user()->l_name;
-                };
-
+                }
 
                 $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
@@ -125,10 +127,10 @@ class PaymentController extends Controller
                 $user_id = basename(url()->previous());
 
                 if (($user_id) == 'home') {
-                    $user_id = Auth::user()->id;
+                    $user_id = auth()->id();
                 }
 
-                if (Auth::user()->is_super_admin == 0 && Auth::user()->id != $user_id) {
+                if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
                     abort(500);
                 };
                 $is_proved = 0;
@@ -183,25 +185,26 @@ class PaymentController extends Controller
 
     public function verify()
     {
-        if ($_GET['Status'] == 'OK') {
-            $Authority = $_GET['Authority'];
-            $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->firstOrFail();
-            $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
-            $result = (object)$result;
-            if ($result->Status == 'success' || $result->Status == 'verified_before') {
-                $onlinepayment->refid = $result->RefID;
-                $onlinepayment->save();
-                $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
-                $payment->is_proved = 1;
-                $payment->proved_by = $result->RefID;
-                $payment->save();
-                return redirect(route('home'));
-            } else {
-                return view('errors.payment');
-            }
-        } else {
+        if ($_GET['Status'] != 'OK') {
             return view('errors.payment');
         }
+
+        $Authority = $_GET['Authority'];
+        $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->firstOrFail();
+        $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
+        $result = (object) $result;
+        if ($result->Status != 'success' && $result->Status != 'verified_before') {
+            return view('errors.payment');
+        }
+
+        $onlinepayment->refid = $result->RefID;
+        $onlinepayment->save();
+        $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
+        $payment->is_proved = 1;
+        $payment->proved_by = $result->RefID;
+        $payment->save();
+
+        return redirect(route('home'));
     }
 
     public function unverified()
@@ -231,7 +234,6 @@ class PaymentController extends Controller
             $payment->save();
 
         }
-
 
         return back();
     }

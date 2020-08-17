@@ -12,7 +12,7 @@ class PDFController extends Controller
 {
 //    public function pdf($id , $mode , $date)
 //    {
-//        if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$id){
+//        if (auth()->user()->is_super_admin==0 && auth()->id()!=$id){
 //            abort(403);
 //        };
 //        switch ($mode){
@@ -45,7 +45,7 @@ class PDFController extends Controller
 
     public function full_pdf($id)
     {
-        if (Auth::user()->is_super_admin==0 && Auth::user()->id!=$id){
+        if (auth()->user()->is_super_admin==0 && auth()->id()!=$id){
             abort(403);
         };
         $user = User::query()->findOrFail($id);

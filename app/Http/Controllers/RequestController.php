@@ -36,10 +36,10 @@ class RequestController extends Controller
         $user_id = basename(url()->previous());
 
         if (($user_id) == 'home') {
-            $user_id = Auth::user()->id;
+            $user_id = auth()->id();
         }
 
-        if (Auth::user()->is_super_admin == 0 && Auth::user()->id != $user_id) {
+        if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
             abort(500);
         };
 

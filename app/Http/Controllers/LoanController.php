@@ -21,11 +21,12 @@ class LoanController extends Controller
     public function delete($id)
     {
         $loan = Loan::query()->findOrFail($id);
-        if (auth()->user()->is_super_admin != 1 && ($loan->user_id != auth()->id() || $loan->isproved != 0)) {
+        if (auth()->user()->is_super_admin == 1 || ($loan->user_id==auth()->id() && $loan->isproved==0)) {
+            $loan->delete();
+            return redirect()->back();
+        } else {
             abort(403);
         }
-        $loan->delete();
-        return redirect()->back();
     }
 
     public function forcedelete($id)

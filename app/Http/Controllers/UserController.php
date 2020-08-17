@@ -34,10 +34,10 @@ class UserController extends Controller
 
         });
         $this->Validate($request,[
-            'oldpassword' => 'required|old_password:' . Auth::user()->password,
+            'oldpassword' => 'required|old_password:' . auth()->user()->password,
             'password' => 'nullable|string|min:6|confirmed'
         ]);
-        $user = User::query()->findOrFail(Auth::user()->id);
+        $user = User::query()->findOrFail(auth()->id());
         $user->password = bcrypt($request['password']);
         $user->save();
         return redirect(route('home'));

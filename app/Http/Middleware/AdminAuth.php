@@ -19,7 +19,7 @@ class AdminAuth
         if (!Auth::check()) {
             abort(403);
         }
-        if (Auth::user()->is_admin == 1) {
+        if (auth()->user()->is_admin == 1) {
             return $next($request);
         }
         abort(403);

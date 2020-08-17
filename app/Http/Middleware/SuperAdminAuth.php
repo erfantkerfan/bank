@@ -20,7 +20,7 @@ class SuperAdminAuth
             abort(403);
             return;
         }
-        if (Auth::user()->is_super_admin == 1) {
+        if (auth()->user()->is_super_admin == 1) {
             return $next($request);
         }
         abort(403);

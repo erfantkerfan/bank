@@ -45,8 +45,6 @@ class RequestController extends Controller
 
         $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
-        $date_time = verta();
-
         $this->Validate($request, [
             'type' => 'integer',
             'fee' => 'nullable|string',
@@ -58,7 +56,7 @@ class RequestController extends Controller
             'type' => $request['type'],
             'fee' => $request['fee'],
             'description' => $request['description'],
-            'date_time' => $date_time,
+            'date_time' => verta(),
             'creator' => $creator,
         ]);
 
@@ -68,12 +66,11 @@ class RequestController extends Controller
     public function delete($id)
     {
         $request = \App\Request::query()->findOrFail($id);
-        if (auth()->user()->is_super_admin == 1 || $request->user_id == auth()->id()) {
-            $request->delete();
-            return redirect()->back();
-        } else {
+        if (auth()->user()->is_super_admin != 1 && $request->user_id != auth()->id()) {
             abort(403);
         }
+        $request->delete();
+        return redirect()->back();
     }
 
     public function form($id)

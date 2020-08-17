@@ -13,7 +13,7 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::all();
-        return view('slider')->with(['sliders'=>$sliders]);
+        return view('slider')->with(['sliders' => $sliders]);
     }
 
     public function create(Request $request)
@@ -33,7 +33,7 @@ class SliderController extends Controller
 
         $slider->save();
 
-        $file_name = $slider->id .'.jpg';
+        $file_name = $slider->id . '.jpg';
         $request->file('image')->move(public_path('img/slider/'), $file_name);
 
         return back();
@@ -42,9 +42,9 @@ class SliderController extends Controller
     public function delete($id)
     {
         $slider = Slider::query()->findOrFail($id);
-        $file_path = public_path('img/slider/').$slider->id.'.jpg';
+        $file_path = public_path('img/slider/') . $slider->id . '.jpg';
         unlink($file_path);
-        $slider -> delete();
+        $slider->delete();
         return back();
     }
 }

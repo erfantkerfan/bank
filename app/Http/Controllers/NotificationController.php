@@ -11,21 +11,21 @@ class NotificationController extends Controller
     public function index()
     {
         $notifications = Notification::all();
-        return view('notification')->with(['notifications'=>$notifications]);
+        return view('notification')->with(['notifications' => $notifications]);
     }
 
     public function create(request $request)
     {
         $notification = new Notification;
         $notification->text = $request->notification;
-        $notification -> save();
+        $notification->save();
         return redirect()->back();
     }
 
     public function delete($id)
     {
         $notification = Notification::query()->findOrFail($id);
-        $notification -> delete();
+        $notification->delete();
         return redirect()->back();
     }
 }

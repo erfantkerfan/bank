@@ -1,0 +1,8 @@
+th,
+td {
+    vertical-align: middle !important;
+}
+
+.red {
+    color: red;
+}

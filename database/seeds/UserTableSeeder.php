@@ -9,15 +9,15 @@ class UserTableSeeder extends Seeder
     {
         // Seeding for not traping outside
         \App\User::create([
-            'username' => 'Ghoreishi',
-            'f_name' =>'سید حسین',
-            'l_name' =>'قریشی',
-            'acc_id' => '102',
-            'phone_number' => '09126226459',
-            'email' => 'h_ghoreishi@sbu.ac.ir',
+            'username' => 'test',
+            'f_name' =>'عرفان',
+            'l_name' =>'قلی زاده',
+            'acc_id' => '1000',
+            'phone_number' => '09301234567',
+            'email' => 'test@sbu.ac.ir',
             'is_admin' => '1',
             'is_super_admin' => '1',
-            'password' => bcrypt('12589'),
+            'password' => bcrypt('123456'),
             'remember_token' => str_random(10),
         ]);
 

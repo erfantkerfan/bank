@@ -30,6 +30,17 @@
             background-repeat: repeat-y;
             background-size: cover;
         }
+
+        /*.panel-body {*/
+        /*    overflow-x: scroll;*/
+        /*    direction: rtl;*/
+        /*}*/
+
+        @media only screen and (max-width: 700px) {
+            .nav.navbar-nav.navbar-right {
+                padding-right: 0;
+            }
+        }
     </style>
 
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
@@ -79,7 +90,7 @@
                 </a>
             </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <div class="collapse navbar-collapse" id="app-navbar-collapse" style="direction: rtl; max-height: fit-content">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
 

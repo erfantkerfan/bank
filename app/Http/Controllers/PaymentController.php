@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\payment;
+use App\Payment;
 use Carbon\Carbon;
 use App\Onlinepayment;
 use ffb343\PHPZarinpal;

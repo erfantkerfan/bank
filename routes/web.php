@@ -11,7 +11,7 @@
 |
 */
 
-#ToDo: paging problem when whole oage goes to next page
+#ToDo: paging problem when whole page goes to next page
 Route::middleware(['logindate'])->group(function () {
     Route::get('/','Controller@welcome')->name('welcome');
     Route::get('/login','Auth\LoginController@showLoginForm')->name('login');

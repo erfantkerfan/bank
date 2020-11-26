@@ -48,15 +48,33 @@
         <tbody>
         @foreach($loans as $loan)
             <tr>
-                <th>@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
-                <th>@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
+                <th>
+                    @if ($loan->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{Str::before(Verta($loan->updated_at),' ')}}
+                    @endif
+                </th>
+                <th>
+                    @if ($loan->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{$loan->proved_by}}
+                    @endif
+                </th>
                 <th>{{$loan->note}}</th>
                 <th>{{$loan->description}}</th>
                 <th>{{$loan->request_date}}</th>
                 <th>{{$loan->loan}}</th>
-                <th>@if ($loan->force==0)عادی@else<span>ضروری</span>@endif</th>
+                <th>
+                    @if($loan->force==0)
+                        عادی
+                    @else
+                        <span>ضروری</span>
+                    @endif
+                </th>
                 <th>{{$loan->creator}}</th>
-                <th>{{Str_before($loan->date_time,' ')}}</th>
+                <th>{{Str::before($loan->date_time,' ')}}</th>
             </tr>
         @endforeach
         </tbody>

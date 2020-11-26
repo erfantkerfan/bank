@@ -234,7 +234,8 @@ return [
         //
         'verta' => Hekmatinasser\Verta\Verta::class,
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
-
+        'Arr' => Illuminate\Support\Arr::class,
+        'Str' => Illuminate\Support\Str::class,
     ],
 
 ];

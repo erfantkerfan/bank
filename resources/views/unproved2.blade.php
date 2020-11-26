@@ -51,7 +51,7 @@
                                 <th class="text-center">{{$loan->description}}</th>
                                 <th class="text-center">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
-                                <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
+                                <th class="text-center">{{Str::before($loan->date_time,' ')}}</th>
                                 <th class="text-center">{{$loan->creator}}</th>
                                 <th class="text-center">{{$loan->user->acc_id}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>
@@ -109,7 +109,7 @@
                                     <th class="text-center">{{$loan->description}}</th>
                                     <th class="text-center">{{$loan->request_date}}</th>
                                     <th class="text-center">{{$loan->loan}}</th>
-                                    <th class="text-center">{{Str_before($loan->date_time,' ')}}</th>
+                                    <th class="text-center">{{Str::before($loan->date_time,' ')}}</th>
                                     <th class="text-center">{{$loan->creator}}</th>
                                     <th class="text-center">{{$loan->user->acc_id}}</th>
                                     <th class="text-center"><a href="{{ route('user',['id'=>$loan->user->id]) }}">{{$loan->user->f_name." ".$loan->user->l_name}}</a></th>

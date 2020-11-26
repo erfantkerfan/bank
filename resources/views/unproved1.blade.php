@@ -54,7 +54,7 @@
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
-                                <th class="text-center">{{Str_before($payment->date_time,' ')}}</th>
+                                <th class="text-center">{{Str::before($payment->date_time,' ')}}</th>
                                 <th class="text-center">{{$payment->creator}}</th>
                                 <th class="text-center">{{$payment->user->acc_id}}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$payment->user->id]) }}">{{$payment->user->f_name." ".$payment->user->l_name}}</a></th>

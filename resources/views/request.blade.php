@@ -47,10 +47,22 @@
                                 </th>
                                 <th class="text-center">{{ $request->note }}</th>
                                 <th class="text-center">{{ $request->description }}</th>
-                                <th class="text-center">@if($request->fee!=null){{ $request->fee }}@else - @endif</th>
-                                <th class="text-center">@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
+                                <th class="text-center">
+                                    @if($request->fee!=null)
+                                        {{ $request->fee }}
+                                    @else
+                                        -
+                                    @endif
+                                </th>
+                                <th class="text-center">
+                                    @if($request->type==-1)
+                                        برداشت از سرمایه
+                                    @else
+                                        بستن حساب و تسویه
+                                    @endif
+                                </th>
                                 <th class="text-center">{{ $request->creator }}</th>
-                                <th class="text-center">{{ Str_before($request->date_time,' ') }}</th>
+                                <th class="text-center">{{ Str::before($request->date_time,' ') }}</th>
                                 <th class="text-center">{{ $request->user->acc_id }}</th>
                                 <th class="text-center"><a href="{{ route('user',['id'=>$request->user->id]) }}">{{$request->user->f_name." ".$request->user->l_name}}</a></th>
                                 <th class="text-center">{{$loop->iteration}}</th>

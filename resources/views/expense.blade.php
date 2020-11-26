@@ -104,7 +104,7 @@
                                 <th class="text-center">{{$expense->user->f_name.' '.$expense->user->l_name}}</th>
                                 <th class="text-center">{{$expense->description}}</th>
                                 <th class="text-center">{{$expense->expense}}</th>
-                                <th class="text-center">{{Str_before($expense->date_time,' ')}}</th>
+                                <th class="text-center">{{Str::before($expense->date_time,' ')}}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -139,7 +139,7 @@
                         @foreach($users as $user)
                             <tr>
                                 <th class="text-center">{{$user->payments_cost}}</th>
-                                <th class="text-center">{{str_replace(' ','   ',str_replace('-','/',$user->new_login))}}</th>
+                                <th class="text-center">{{Str::replaceArray(' ',['   '],str_replace('-','/',$user->new_login))}}</th>
                                 <th class="text-center">{{$user->relation}}</th>
                                 <th class="text-center">{{$user->acc_id}}</th>
                                 <th class="text-center">{{$user->username}}</th>

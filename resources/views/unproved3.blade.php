@@ -40,7 +40,7 @@
                                 <th class="text-center">{{$online['payment']['loan_payment_force']}}</th>
                                 <th class="text-center">{{$online['payment']['loan_payment']}}</th>
                                 <th class="text-center">{{$online['payment']['payment']}}</th>
-                                <th class="text-center">{{Str_before($online['date_time'],' ')}}</th>
+                                <th class="text-center">{{Str::before($online['date_time'],' ')}}</th>
                                 <th class="text-center">{{$online['payment']['creator']}}</th>
                                 <th class="text-center">{{$online['payment']['user']['acc_id']}}</th>
                                 <th class="text-center">

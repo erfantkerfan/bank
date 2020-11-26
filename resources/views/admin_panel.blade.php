@@ -129,8 +129,8 @@
                                             <span class="glyphicon glyphicon-ok" style="color:green"></span>
                                         @endif
                                     </th>
-{{--                                    <th class="text-center">{{str_replace(' ','   ',str_replace('-','/',$user->new_login))}}</th>--}}
-                                    <th class="text-center" dir="rtl">{{$user->new_login ? \Hekmatinasser\Verta\Verta::parse($user->new_login)->formatDifference(\Hekmatinasser\Verta\Verta::now()) : "تا به حال لاگین نشده"}}</th>
+{{--                                    <th class="text-center">{{Str::replaceArray(' ',['   '],str_replace('-','/',$user->new_login))}}</th>--}}
+                                    <th class="text-center" dir="rtl">{{$user->new_login ? Verta::parse($user->new_login)->formatDifference(\Hekmatinasser\Verta\Verta::now()) : "تا به حال لاگین نشده"}}</th>
                                     <th class="text-center" dir="rtl">{{$user->relation}}</th>
                                     <th class="text-center">{{$user->acc_id}}</th>
                                     <th class="text-center">{{$user->username}}</th>

@@ -37,7 +37,7 @@
                 {{$user->acc_id}}
                 <span class="glyphicon glyphicon glyphicon-minus"></span>
                 آخرین ورود:
-                {{str_replace(' ','   ',str_replace('-','/',$user->old_login))}}
+                {{Str::replaceArray(' ',['   '],str_replace('-','/',$user->old_login))}}
                 @if($permission==1 && isset($next_user))
                                
                     <a href="{{ route('user',['id'=>$next_user]) }}">
@@ -91,7 +91,7 @@
                         </a>
                         <span style="color:rgb(65, 150, 19)">
                             پیام مدیریت صندوق برای شما در تاریخ
-                            {{str_replace(' ','   ',str_replace('-','/',$user->note_date))}}
+                            {{Str::replaceArray(' ',['   '],str_replace('-','/',$user->note_date))}}
                         </span>
                         <br>
                         <strong> {!! nl2br(e($user->note)) !!} </strong>
@@ -677,7 +677,8 @@
                                     @endif
                                 </th>
 
-                                <th class="text-center small">@if ($payment->is_proved==0)
+                                <th class="text-center small">
+                                    @if ($payment->is_proved==0)
                                         { تایید نشده }
                                     @elseif(is_numeric($payment->proved_by))
                                         زرین پال
@@ -696,7 +697,7 @@
                                 <th class="text-center">{{$payment->loan_payment}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
                                 <th class="text-center small">{{$payment->creator}}</th>
-                                <th class="text-center small">{{Str_before($payment->date_time,' ')}}</th>
+                                <th class="text-center small">{{Str::before($payment->date_time,' ')}}</th>
 
                             </tr>
                         @endforeach
@@ -767,18 +768,33 @@
                                         ممکن نیست
                                     @endif
                                 </th>
-                                <th class="text-center small">@if ($loan->is_proved==0){ تایید نشده
-                                    }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
-                                <th class="text-center small">@if ($loan->is_proved==0){ تایید نشده
-                                    }@else{{$loan->proved_by}} @endif</th>
+                                <th class="text-center small">
+                                    @if($loan->is_proved==0)
+                                        تایید نشده
+                                    @else
+                                        {{Str::before(Verta($loan->updated_at),' ')}}
+                                    @endif
+                                </th>
+                                <th class="text-center small">
+                                    @if($loan->is_proved==0)
+                                       تایید نشده
+                                    @else
+                                        {{$loan->proved_by}}
+                                    @endif
+                                </th>
                                 <th class="text-center small">{{$loan->note}}</th>
                                 <th class="text-center small">{{$loan->description}}</th>
                                 <th class="text-center small">{{$loan->request_date}}</th>
                                 <th class="text-center">{{$loan->loan}}</th>
-                                <th class="text-center small">@if ($loan->force==0)عادی@else<span class="text-danger">ضروری</span>@endif
+                                <th class="text-center small">
+                                    @if($loan->force==0)
+                                        عادی
+                                    @else
+                                        <span class="text-danger">ضروری</span>
+                                    @endif
                                 </th>
                                 <th class="text-center small">{{$loan->creator}}</th>
-                                <th class="text-center small">{{Str_before($loan->date_time,' ')}}</th>
+                                <th class="text-center small">{{Str::before($loan->date_time,' ')}}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -825,10 +841,15 @@
                                 <th class="text-center small">{{$loan_archive->description}}</th>
                                 <th class="text-center small">{{$loan_archive->request_date}}</th>
                                 <th class="text-center">{{$loan_archive->loan}}</th>
-                                <th class="text-center small">@if ($loan_archive->force==0)عادی@else<span
-                                            class="text-danger">ضروری</span>@endif</th>
+                                <th class="text-center small">
+                                    @if($loan_archive->force==0)
+                                        عادی
+                                    @else
+                                        <span class="text-danger">ضروری</span>
+                                    @endif
+                                </th>
                                 <th class="text-center small">{{$loan_archive->creator}}</th>
-                                <th class="text-center small">{{Str_before($loan_archive->date_time,' ')}}</th>
+                                <th class="text-center small">{{Str::before($loan_archive->date_time,' ')}}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -902,12 +923,22 @@
                                             {{'لطفا حساب اینجانب بسته شود و تسویه حساب کامل صورت پذیرد.'.'-'.$request->description }}
                                         @endif
                                     </th>
-                                    <th class="text-center">@if($request->fee!=null){{ $request->fee }}@else
-                                            - @endif</th>
-                                    <th class="text-center small">@if($request->type==-1)برداشت از سرمایه@elseبستن حسابو
-                                        تسویه@endif</th>
+                                    <th class="text-center">
+                                        @if($request->fee!=null)
+                                            {{ $request->fee }}
+                                        @else
+                                            -
+                                        @endif
+                                    </th>
+                                    <th class="text-center small">
+                                        @if($request->type==-1)
+                                            برداشت از سرمایه
+                                        @else
+                                            بستن حساب و تسویه
+                                        @endif
+                                    </th>
                                     <th class="text-center small">{{ $request->creator }}</th>
-                                    <th class="text-center small">{{ Str_before($request->date_time,' ') }}</th>
+                                    <th class="text-center small">{{ Str::before($request->date_time,' ') }}</th>
                                 </tr>
                             @endforeach
 

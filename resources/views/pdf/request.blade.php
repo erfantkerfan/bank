@@ -53,10 +53,22 @@
                         {{'لطفا حساب اینجانب بسته شود و تسویه حساب کامل صورت پذیرد.'.'-'.$request->description }}
                     @endif
                 </th>
-                <th>@if($request->fee!=null){{ $request->fee }}@else - @endif</th>
-                <th >@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
-                <th >{{ $request->creator }}</th>
-                <th >{{ Str_before($request->date_time,' ') }}</th>
+                <th>
+                    @if($request->fee!=null)
+                        {{ $request->fee }}
+                    @else
+                        -
+                    @endif
+                </th>
+                <th>
+                    @if($request->type==-1)
+                        برداشت از سرمایه
+                    @else
+                        بستن حساب و تسویه
+                    @endif
+                </th>
+                <th>{{ $request->creator }}</th>
+                <th>{{ Str::before($request->date_time,' ') }}</th>
             </tr>
         @endforeach
         </tbody>

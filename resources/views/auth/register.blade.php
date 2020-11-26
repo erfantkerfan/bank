@@ -197,7 +197,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password"
-                                           required autofocus placeholder="بازیابی ندارد و توسط مدیران تجدید میشود">
+                                           required autofocus autocomplete="new-password" placeholder="بازیابی ندارد و توسط مدیران تجدید میشود">
 
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -280,7 +280,7 @@
 
                                 <div class="col-md-6">
                                     <input id="start_date" class="form-control" type="text" name="start_date" autofocus value="{{ old('start_date') }}"
-                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
+                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
 
                                     @if ($errors->has('start_date'))
                                         <span class="help-block">
@@ -359,7 +359,7 @@
 
                                 <div class="col-md-6">
                                     <input id="start_date_force" class="form-control" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}"
-                                           onclick="PersianDatePicker.Show(this, '{{str_replace('-','/',\Hekmatinasser\Verta\Verta::now()->format('Y-n-j'))}}');">
+                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
 
                                     @if ($errors->has('start_date_force'))
                                         <span class="help-block">

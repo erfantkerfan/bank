@@ -31,7 +31,7 @@
                             </a>
                         </th>
                         <th class="text-center col-md-1" style="border-right: 1px solid #337ab7;">
-                            {{str_replace(' ','   ',str_replace('-','/',$user->new_login))}}
+                            {{Str::replaceArray(' ',['   '],Str::replaceArray('-',['/'],$user->new_login))}}
                         </th>
                         <th class="text-center">
                             <a onclick="return confirm('از پاک کردن این پیام اطمینان دارید؟')"
@@ -39,7 +39,7 @@
                                 <span class="glyphicon glyphicon-trash" style="color:red"></span>
                             </a>
                         </th>
-                        <th class="text-center col-md-1">{{str_replace('-','/',$user->user_note_date)}}</th>
+                        <th class="text-center col-md-1">{{Str::replaceArray('-',['/'],$user->user_note_date)}}</th>
                         <th class="text-center" style="border-right: 1px solid #337ab7;">{{$user->user_note}}</th>
                         <th class="text-center">
                             <a onclick="return confirm('از پاک کردن این پیام اطمینان دارید؟')"
@@ -47,7 +47,7 @@
                                 <span class="glyphicon glyphicon-trash" style="color:red"></span>
                             </a>
                         </th>
-                        <th class="text-center col-md-1">{{str_replace('-','/',$user->note_date)}}</th>
+                        <th class="text-center col-md-1">{{Str::replaceArray('-',['/'],$user->note_date)}}</th>
                         <th class="text-center">{{$user->note}}</th>
                         <th class="text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name." ".$user->l_name}}</a></th>
                     </tr>

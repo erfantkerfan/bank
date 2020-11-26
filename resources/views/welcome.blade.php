@@ -120,10 +120,10 @@
                         </h4>
                         @foreach($config_laws as $law)
                             <h4 class="text-center" style="color:#0056b3">
-                                {!! nl2br(e(str_before($law->text,','))) !!}
+                                {!! nl2br(e(Str::before($law->text,','))) !!}
                             </h4>
                             <p class="text-right">
-                                {!! nl2br(e(str_after($law->text,','))) !!}
+                                {!! nl2br(e(Str::after($law->text,','))) !!}
                             </p>
                         @endforeach
                     </div>
@@ -157,9 +157,9 @@
                                 <tbody>
                                 @forelse($config_hours as $hour)
                                     <tr>
-                                        <td>{{str_before($hour->text,',')}}</td>
-                                        <td>{{str_before(str_after($hour->text,','),',')}}</td>
-                                        <td>{{str_after(str_after($hour->text,','),',')}}</td>
+                                        <td>{{Str::before($hour->text,',')}}</td>
+                                        <td>{{Str::before(Str::after($hour->text,','),',')}}</td>
+                                        <td>{{Str::after(Str::after($hour->text,','),',')}}</td>
                                     </tr>
                                 @empty
                                 @endforelse

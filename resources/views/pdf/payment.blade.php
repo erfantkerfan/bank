@@ -50,7 +50,13 @@
         <tbody>
         @foreach($payments as $payment)
             <tr>
-                <th>@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
+                <th>
+                    @if($payment->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{$payment->proved_by}}
+                    @endif
+                </th>
                 <th>{{$payment->delay}}</th>
                 <th>{{$payment->note}}</th>
                 <th>{{$payment->description}}</th>
@@ -60,7 +66,7 @@
                 <th>{{$payment->loan_payment}}</th>
                 <th>{{$payment->payment}}</th>
                 <th>{{$payment->creator}}</th>
-                <th>{{Str_before($payment->date_time,' ')}}</th>
+                <th>{{Str::before($payment->date_time,' ')}}</th>
             </tr>
         @endforeach
         </tbody>

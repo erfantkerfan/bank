@@ -237,7 +237,7 @@
                             <ul class="dropdown-menu">
                                 <li class="text-center">
 
-                                    <a href="#">{{str_before(\Hekmatinasser\Verta\Verta::now(),' ')}}:امروز<span class="glyphicon glyphicon-time"></span></a>
+                                    <a href="#">{{Str::before(Verta::now(),' ')}}:امروز<span class="glyphicon glyphicon-time"></span></a>
 
                                     <a href="#">{{Request::getClientIp()}}:IP<span class="glyphicon glyphicon-map-marker"></span></a>
 

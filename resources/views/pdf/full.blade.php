@@ -108,7 +108,13 @@
         <tbody>
         @foreach($payments as $payment)
             <tr>
-                <th>@if ($payment->is_proved==0){ تایید نشده }@else{{$payment->proved_by}} @endif</th>
+                <th>
+                    @if ($payment->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{$payment->proved_by}}
+                    @endif
+                </th>
                 <th>{{$payment->delay}}</th>
                 <th>{{$payment->note}}</th>
                 <th>{{$payment->description}}</th>
@@ -119,7 +125,7 @@
                 <th>{{$payment->loan_payment}}</th>
                 <th>{{$payment->payment}}</th>
                 <th>{{$payment->creator}}</th>
-                <th>{{Str_before($payment->date_time,' ')}}</th>
+                <th>{{Str::before($payment->date_time,' ')}}</th>
             </tr>
         @endforeach
         </tbody>
@@ -143,15 +149,33 @@
         <tbody>
         @foreach($loans as $loan)
             <tr>
-                <th>@if ($loan->is_proved==0){ تایید نشده }@else{{Str_before(Verta($loan->updated_at),' ')}} @endif</th>
-                <th>@if ($loan->is_proved==0){ تایید نشده }@else{{$loan->proved_by}} @endif</th>
+                <th>
+                    @if ($loan->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{Str::before(Verta($loan->updated_at),' ')}}
+                    @endif
+                </th>
+                <th>
+                    @if ($loan->is_proved==0)
+                        { تایید نشده }
+                    @else
+                        {{$loan->proved_by}}
+                    @endif
+                </th>
                 <th>{{$loan->note}}</th>
                 <th>{{$loan->description}}</th>
                 <th>{{$loan->request_date}}</th>
                 <th>{{$loan->loan}}</th>
-                <th>@if ($loan->force==0)عادی@else<span>ضروری</span>@endif</th>
+                <th>
+                    @if($loan->force==0)
+                        عادی
+                    @else
+                        <span>ضروری</span>
+                    @endif
+                </th>
                 <th>{{$loan->creator}}</th>
-                <th>{{Str_before($loan->date_time,' ')}}</th>
+                <th>{{Str::before($loan->date_time,' ')}}</th>
             </tr>
         @endforeach
         </tbody>
@@ -180,10 +204,22 @@
                         {{'لطفا حساب اینجانب بسته شود و تسویه حساب کامل صورت پذیرد.'.'-'.$request->description }}
                     @endif
                 </th>
-                <th>@if($request->fee!=null){{ $request->fee }}@else - @endif</th>
-                <th >@if($request->type==-1)برداشت از سرمایه@elseبستن حساب و تسویه@endif</th>
-                <th >{{ $request->creator }}</th>
-                <th >{{ Str_before($request->date_time,' ') }}</th>
+                <th>
+                    @if($request->fee!=null)
+                        {{ $request->fee }}
+                    @else
+                        -
+                    @endif
+                </th>
+                <th>
+                    @if($request->type==-1)
+                        برداشت از سرمایه
+                    @else
+                        بستن حساب و تسویه
+                    @endif
+                </th>
+                <th>{{ $request->creator }}</th>
+                <th>{{ Str::before($request->date_time,' ') }}</th>
             </tr>
         @endforeach
         </tbody>

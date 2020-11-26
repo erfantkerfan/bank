@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9960752e8d1f86ab8975fa7cf2c44cdb",
+    "content-hash": "5abcdde8784a2a09651ff1270962035f",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -4958,6 +4958,67 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
+        },
+        {
+            "name": "imanghafoori/laravel-microscope",
+            "version": "v1.0.138",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/imanghafoori1/laravel-microscope.git",
+                "reference": "060b5b475de84c508bf2be5d3ea6199ee5d93d07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/imanghafoori1/laravel-microscope/zipball/060b5b475de84c508bf2be5d3ea6199ee5d93d07",
+                "reference": "060b5b475de84c508bf2be5d3ea6199ee5d93d07",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*|6.*|7.*|8.*",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Imanghafoori\\LaravelMicroscope\\LaravelMicroscopeServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Imanghafoori\\LaravelMicroscope\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iman",
+                    "email": "imanghafoori1@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Auto test your laravel application",
+            "homepage": "https://github.com/imanghafoori1/laravel-microscope",
+            "keywords": [
+                "laravel-microscope",
+                "laravel-testing"
+            ],
+            "support": {
+                "issues": "https://github.com/imanghafoori1/laravel-microscope/issues",
+                "source": "https://github.com/imanghafoori1/laravel-microscope/tree/v1.0.138"
+            },
+            "time": "2020-11-09T16:35:23+00:00"
         },
         {
             "name": "mockery/mockery",

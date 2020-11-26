@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Payment;
 use Carbon\Carbon;
 use App\Onlinepayment;
-use ffb343\PHPZarinpal;
+//use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Zarinpal\Laravel\Facade\Zarinpal;

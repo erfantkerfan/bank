@@ -125,7 +125,7 @@ class RegisterController extends Controller
         }
         $user = User::create([
             'username' => $data['username'],
-            'acc_id' => $data{'acc_id'},
+            'acc_id' => $data['acc_id'],
             'password' => bcrypt($data['password']),
             'is_admin' => $data['is_admin'],
             'is_super_admin' => $data['is_super_admin'],

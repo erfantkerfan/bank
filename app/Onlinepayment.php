@@ -15,10 +15,10 @@ class Onlinepayment extends Model
     ];
     public function members()
     {
-        return $this->belongsTo(user::class, payment::class);
+        return $this->belongsTo(user::class, Payment::class);
     }
     public function payment()
     {
-        return $this->belongsTo(payment::class);
+        return $this->belongsTo(Payment::class);
     }
 }

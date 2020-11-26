@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class payment extends Model
+class Payment extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];

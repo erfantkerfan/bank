@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Notification;
-use App\payment;
+use App\Payment;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller

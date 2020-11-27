@@ -28,7 +28,6 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-#ToDo: paging problem when whole page goes to next page
 Route::middleware(['logindate'])->group(function () {
     Route::get('/',[Controller::class, 'welcome'])->name('welcome');
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('login');

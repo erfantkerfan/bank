@@ -25,15 +25,15 @@ class HomeController extends Controller
             $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote) ;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
-        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12);
+        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12, ['*'], 'payments');
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $payment -> momentary = $momentary[$payment->id] ;
         }
         Controller::NumberFormat($payments);
-        $loans = auth()->user()->Loan()->OrderByDesc('date_time')->paginate(12);
+        $loans = auth()->user()->Loan()->OrderByDesc('date_time')->paginate(12, ['*'], 'loans');
         Controller::NumberFormat($loans);
-        $loans_archive = auth()->user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12);
+        $loans_archive = auth()->user()->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12, ['*'], 'loans_archive');
         Controller::NumberFormat($loans_archive);
         $summary = auth()->user()->summary();
         $user = auth()->user();

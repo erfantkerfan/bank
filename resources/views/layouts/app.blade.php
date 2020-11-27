@@ -11,9 +11,9 @@
     <title dir="rtl">{{ config('app.name') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    <link href="{{ asset('css/app.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="preload" as="style" onload="this.rel='stylesheet'">
 
     <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
     <script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>

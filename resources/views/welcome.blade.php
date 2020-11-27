@@ -75,19 +75,15 @@
         {{--<script src="/js/jquery-3.2.1.slim.min.js"></script>--}}
         {{--<script src="/js/popper.min.js"></script>--}}
     </head>
-    <body style="font-family:'Font'" class="bg">
+    <body class="bg">
     <div class="container">
 
         <div>
-            {{--<button type="button">--}}
-                {{--<span class="links">--}}
-                    @auth
-                        <a class="float-right mt-4 btn btn-primary links" href="{{ route('home') }}">{{Auth::user()->username}}</a>
-                    @else
-                        <a class="float-right mt-4 btn btn-primary links" href="{{ route('login') }}">ورود اعضا</a>
-                    @endauth
-                {{--</span>--}}
-            {{--</button>--}}
+            @auth
+                <a class="float-right mt-4 btn btn-primary links" href="{{ route('home') }}">{{Auth::user()->username}}</a>
+            @else
+                <a class="float-right mt-4 btn btn-primary links" href="{{ route('login') }}">ورود اعضا</a>
+            @endauth
         </div>
 
         <div>

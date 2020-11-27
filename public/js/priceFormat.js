@@ -15,7 +15,3 @@ function numberWithCommas() {
         x = x.replace(pattern, "$1,$2");
     return x;
 }
-
-$(document).ready(function () {
-    $('[data-toggle="tooltip"]').tooltip();
-});

@@ -627,7 +627,7 @@
                             @endif
                             <th class="text-center">حذف پرداخت</th>
                             <th class="text-center">تایید توسط</th>
-                            <th class="text-center"><a style="font-family:'Font'" data-toggle="tooltip"
+                            <th class="text-center"><a data-toggle="tooltip"
                                                        title="امتیاز  پرداخت به موقع - منفی به معنای تاخیر است"><span
                                             class="glyphicon glyphicon-question-sign"></span></a>امتیاز
                             </th>

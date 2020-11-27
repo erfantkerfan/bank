@@ -74,7 +74,7 @@ class AdminController extends Controller
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         $permission = 1;
-        return view('Home')->with(compact('user', 'payments', 'summary', 'loans', 'permission', 'requests',
+        return view('home')->with(compact('user', 'payments', 'summary', 'loans', 'permission', 'requests',
             'next_user', 'previous_user', 'momentary', 'loans_archive'));
     }
 

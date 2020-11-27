@@ -39,12 +39,15 @@
         $(function($) {
             $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
         });
+
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
     @yield('head')
 </head>
 <body class="bg">
-    <nav class="navbar navbar-default"></nav>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-default navbar-inverse sticky-top">
         <div class="container-fluid">
             <div class="navbar-header">
 

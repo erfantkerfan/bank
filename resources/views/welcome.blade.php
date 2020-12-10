@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title dir="rtl">{{config('app.name')}}</title>
         <link rel="stylesheet" href="{{ asset('css/car-bootstrap.css') }}">
-        <link rel="icon" href="/img/icon.gif" type="image/gif">
+        <link rel="icon" href="/img/icon.webp" type="image/gif">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
 
         <!-- Styles -->
@@ -169,7 +169,7 @@
                 <div class="title">
                     <h2 dir="rtl">
                         صندوق قرض الحسنه حضرت قائم (عج)
-                        <img src="/img/brand.gif" width="10%">
+                        <img src="/img/brand.webp" width="10%">
                     </h2>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                 <div class="carousel-inner">
                     @forelse($sliders as $slider)
                         <div class="item {{ $loop->first ? ' active' : '' }}">
-                            <img id="image" src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width: 100%;height: 400px" onerror="this.src='/img/empty.jpg';">
+                            <img id="image" src="/img/slider/{{$slider->id}}.jpg" alt="{{$slider->nam}}" style="width: 100%;height: 400px" onerror="this.src='/img/empty.webp';">
                             <div class="carousel-caption" style="color: black">
                                 <h3>{{$slider->head}}</h3>
                                 <p>{{$slider->body}}</p>
@@ -196,7 +196,7 @@
                         </div>
                     @empty
                         <div class="item active">
-                            <img src="/img/empty.jpg" alt="empty" style="width:100%;">
+                            <img src="/img/empty.webp" alt="empty" style="width:100%;">
                         </div>
                     @endforelse
                 </div>

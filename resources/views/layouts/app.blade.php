@@ -7,7 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" href="/img/icon.gif" type="image/gif">
+    <link rel="icon" href="/img/icon.webp" type="image/gif">
     <title dir="rtl">{{ config('app.name') }}</title>
 
     <!-- Styles -->

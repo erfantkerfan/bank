@@ -56,9 +56,11 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/admin/transaction',[AdminController::class, 'transaction'])->name('admin_transaction');
         Route::get('/pdf/transaction',[PDFController::class, 'transaction'])->name('pdf_admin_transaction');
         Route::get('/admin/{id}',[AdminController::class, 'user'])->name('user');
+        # TODO: fix these namings
         Route::get('/unproved1',[AdminController::class, 'unproved1'])->name('unproved1');
         Route::get('/unproved2',[AdminController::class, 'unproved2'])->name('unproved2');
         Route::get('/unproved3',[AdminController::class, 'unproved3'])->name('unproved3');
+
         Route::get('/notes',[NoteController::class, 'index'])->name('notes');
         Route::get('/notification',[NotificationController::class, 'index'])->name('notification');
         Route::get('/user/edit/{id}',[UserController::class, 'edit'])->name('user_edit');

@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('head')
-    <script type="text/javascript" src="/js/PersianDatePicker.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="/css/PersianDatePicker.min.css">
+    <link rel="stylesheet" href="/css/persian-datepicker.min.css"/>
 @endsection
 
 @section('content')
@@ -279,8 +278,7 @@
                                 <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date" class="form-control" type="text" name="start_date" autofocus value="{{ old('start_date') }}"
-                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
+                                    <input id="start_date" class="form-control datePicker" type="text" name="start_date" autofocus value="{{ old('start_date') }}" autocomplete="off">
 
                                     @if ($errors->has('start_date'))
                                         <span class="help-block">
@@ -358,8 +356,7 @@
                                 <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date_force" class="form-control" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}"
-                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
+                                    <input id="start_date_force" class="form-control datePicker" type="text" name="start_date_force" autofocus value="{{ old('start_date_force') }}" autocomplete="off">
 
                                     @if ($errors->has('start_date_force'))
                                         <span class="help-block">
@@ -418,4 +415,29 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script src="/js/persian-date.min.js"></script>
+    <script src="/js/persian-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".datePicker").persianDatepicker(
+                {
+                    "inline": false,
+                    "format": "YYYY-MM-DD",
+                    "viewMode": "year",
+                    "initialValue": false,
+                    "autoClose": true,
+                    "position": "auto",
+                    "calendarType": "persian",
+                    calendar:{
+                        persian: {
+                            locale: 'en'
+                        }
+                    }
+                }
+            );
+        });
+    </script>
 @endsection

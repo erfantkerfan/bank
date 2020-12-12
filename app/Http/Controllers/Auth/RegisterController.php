@@ -118,10 +118,10 @@ class RegisterController extends Controller
         $end_date = null;
         $end_date_force = null;
         if($data['start_date']!=null && $data['period']!=null){
-            $end_date = str_replace('-','/',Verta::parse($data['start_date'])->addMonths($data['period']-1)->format('Y-n-j'));
+            $end_date = str_replace('-','/',Verta::parse($data['start_date'])->addMonths($data['period']-1)->format('Y-m-d'));
         }
         if($data['start_date_force']!=null && $data['period_force']!=null){
-            $end_date_force = str_replace('-','/',Verta::parse($data['start_date_force'])->addMonths($data['period_force']-1)->format('Y-n-j'));
+            $end_date_force = str_replace('-','/',Verta::parse($data['start_date_force'])->addMonths($data['period_force']-1)->format('Y-m-d'));
         }
         $user = User::create([
             'username' => $data['username'],
@@ -145,9 +145,9 @@ class RegisterController extends Controller
             'loan_row_force' => $data['loan_row_force'],
             'Cheque' => $data['Cheque'],
             'Cheque_force' => $data['Cheque_force'],
-            'start_date' => $data['start_date'],
+            'start_date' => $data['start_date']!=null ? Verta::parse($data['start_date'])->format('Y-m-d') : '',
             'end_date' => $end_date,
-            'start_date_force' => $data['start_date_force'],
+            'start_date_force' => $data['start_date']!=null ? Verta::parse($data['start_date_force'])->format('Y-m-d') : '',
             'end_date_force' => $end_date_force,
             'active' => $data['active'],
             'note_date' => Verta::now(),

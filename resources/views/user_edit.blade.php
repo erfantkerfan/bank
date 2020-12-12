@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('head')
-    <script type="text/javascript" src="/js/PersianDatePicker.min.js"></script>
-    <link type="text/css" rel="stylesheet" href="/css/PersianDatePicker.min.css">
+    <link rel="stylesheet" href="/css/persian-datepicker.min.css"/>
 @endsection
 
 @section('content')
-
 <div class="container text-center">
     <div class="row">
         <div class="col-md-12">
@@ -14,7 +12,7 @@
                 <div class="panel-heading">ویرایش اطلاعات عضو</div>
                 <div class="panel-body bg-success">
                     <form class="form-horizontal" method="POST" action="{{ route('user_edit',['id' => $user->id]) }}">
-                        {{ csrf_field() }}
+                       {{ csrf_field() }}
                         <div class="col-md-6">
                             <input name="url2" type="hidden" value="{{basename(url()->previous())}}">
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
@@ -269,7 +267,7 @@
                                 <label for="instalment" class="col-md-4 control-label">مبلغ اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="instalment" type="text" class="form-control" name="instalment" value=" {{ $user->instalment }}" >
+                                    <input id="instalment" type="text" class="form-control" name="instalment" value="{{ $user->instalment }}" >
 
                                     @if ($errors->has('instalment'))
                                         <span class="help-block">
@@ -283,8 +281,7 @@
                                 <label for="start_date" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date" type="text" class="form-control" name="start_date" value=" {{ $user->start_date }}"
-                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
+                                    <input id="start_date" type="text" class="form-control datePicker" name="start_date" value="{{ $user->start_date }}" autocomplete="off">
 
                                     @if ($errors->has('start_date'))
                                         <span class="help-block">
@@ -298,7 +295,7 @@
                                 <label for="period" class="col-md-4 control-label">دوره بازپرداخت</label>
 
                                 <div class="col-md-6">
-                                    <input id="period" type="text" class="form-control" name="period" value=" {{ $user->period }}" >
+                                    <input id="period" type="text" class="form-control" name="period" value="{{ $user->period }}" >
 
                                     @if ($errors->has('period'))
                                         <span class="help-block">
@@ -312,7 +309,7 @@
                                 <label for="end_date" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date" type="text" class="form-control" name="end_date" value=" {{ $user->end_date }}" disabled>
+                                    <input id="end_date" type="text" class="form-control" name="end_date" value="{{ $user->end_date }}" disabled>
 
                                     @if ($errors->has('end_date'))
                                         <span class="help-block">
@@ -326,7 +323,7 @@
                                 <label for="loan_row" class="col-md-4 control-label">شماره ردیف</label>
 
                                 <div class="col-md-6">
-                                    <input id="loan_row" type="text" class="form-control" name="loan_row" value=" {{ $user->loan_row }}" >
+                                    <input id="loan_row" type="text" class="form-control" name="loan_row" value="{{ $user->loan_row }}" >
 
                                     @if ($errors->has('loan_row'))
                                         <span class="help-block">
@@ -340,7 +337,7 @@
                                 <label for="cheque" class="col-md-4 control-label">شماره چک</label>
 
                                 <div class="col-md-6">
-                                    <input id="cheque" type="text" class="form-control" name="cheque" value=" {{ $user->cheque }}" >
+                                    <input id="cheque" type="text" class="form-control" name="cheque" value="{{ $user->cheque }}" >
 
                                     @if ($errors->has('cheque'))
                                         <span class="help-block">
@@ -362,7 +359,7 @@
                                 <label for="instalment_force" class="col-md-4 control-label">مبلغ اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="instalment_force" type="text" class="form-control" name="instalment_force" value=" {{ $user->instalment_force }}" >
+                                    <input id="instalment_force" type="text" class="form-control" name="instalment_force" value="{{ $user->instalment_force }}" >
 
                                     @if ($errors->has('instalment_force'))
                                         <span class="help-block">
@@ -376,8 +373,7 @@
                                 <label for="start_date_force" class="col-md-4 control-label">تاریخ شروع اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="start_date_force" type="text" class="form-control" name="start_date_force" value=" {{ $user->start_date_force }}"
-                                           onclick="PersianDatePicker.Show(this, '{{Str::replaceArray('-',['/'],Verta::now()->format('Y-n-j'))}}');">
+                                    <input id="start_date_force" type="text" class="form-control datePicker" name="start_date_force" value="{{ $user->start_date_force }}" autocomplete="off">
 
                                     @if ($errors->has('start_date_force'))
                                         <span class="help-block">
@@ -391,7 +387,7 @@
                                 <label for="period_force" class="col-md-4 control-label">دوره بازپرداخت</label>
 
                                 <div class="col-md-6">
-                                    <input id="period_force" type="text" class="form-control" name="period_force" value=" {{ $user->period_force }}" >
+                                    <input id="period_force" type="text" class="form-control" name="period_force" value="{{ $user->period_force }}" >
 
                                     @if ($errors->has('period_force'))
                                         <span class="help-block">
@@ -405,7 +401,7 @@
                                 <label for="end_date_force" class="col-md-4 control-label">تاریخ پایان اقساط</label>
 
                                 <div class="col-md-6">
-                                    <input id="end_date_force" type="text" class="form-control" name="end_date_force" value=" {{ $user->end_date_force }}" disabled>
+                                    <input id="end_date_force" type="text" class="form-control" name="end_date_force" value="{{ $user->end_date_force }}" disabled>
 
                                     @if ($errors->has('end_date_force'))
                                         <span class="help-block">
@@ -419,7 +415,7 @@
                                 <label for="loan_row_force" class="col-md-4 control-label">شماره ردیف</label>
 
                                 <div class="col-md-6">
-                                    <input id="loan_row_force" type="text" class="form-control" name="loan_row_force" value=" {{ $user->loan_row_force }}" >
+                                    <input id="loan_row_force" type="text" class="form-control" name="loan_row_force" value="{{ $user->loan_row_force }}" >
 
                                     @if ($errors->has('loan_row_force'))
                                         <span class="help-block">
@@ -433,7 +429,7 @@
                                 <label for="cheque_force" class="col-md-4 control-label">شماره چک</label>
 
                                 <div class="col-md-6">
-                                    <input id="cheque_force" type="text" class="form-control" name="cheque_force" value=" {{ $user->cheque_force }}" >
+                                    <input id="cheque_force" type="text" class="form-control" name="cheque_force" value="{{ $user->cheque_force }}" >
 
                                     @if ($errors->has('cheque_force'))
                                         <span class="help-block">
@@ -450,4 +446,29 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('js')
+    <script src="/js/persian-date.min.js"></script>
+    <script src="/js/persian-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".datePicker").persianDatepicker(
+                {
+                    "inline": false,
+                    "format": "YYYY-MM-DD",
+                    "viewMode": "year",
+                    "initialValue": false,
+                    "autoClose": true,
+                    "position": "auto",
+                    "calendarType": "persian",
+                    calendar:{
+                        persian: {
+                            locale: 'en'
+                        }
+                    }
+                }
+            );
+        });
+    </script>
 @endsection

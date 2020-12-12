@@ -104,14 +104,14 @@
 
                                     <li class="text-center">
 
-                                        <a href="{{ route('instalment1') }}">
+                                        <a href="{{ route('normal_instalments') }}">
                                             <div class="badge">
                                                 {{App\User::where('instalment','!=',null)->count()}}
                                             </div>
                                             عادی
                                         </a>
 
-                                        <a href="{{ route('instalment2') }}">
+                                        <a href="{{ route('force_instalments') }}">
                                             <div class="badge">
                                                 {{App\User::where('instalment_force','!=',null)->count()}}
                                             </div>

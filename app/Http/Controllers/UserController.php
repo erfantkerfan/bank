@@ -77,16 +77,16 @@ class UserController extends Controller
         return back();
     }
 
-    public function user_edit($id , request $request)
+    public function user_edit($id, request $request)
     {
-        $this->Validate($request,[
-            'username' => ['required','string','max:255',Rule::unique('users')->ignore($id)],
+        $this->Validate($request, [
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($id)],
             'password' => 'nullable|string|min:6|confirmed',
-            'acc_id'=> ['required','integer',Rule::unique('users')->ignore($id)],
+            'acc_id' => ['required', 'integer', Rule::unique('users')->ignore($id)],
             'is_admin' => 'required|boolean',
             'is_super_admin' => 'required|boolean',
-            'f_name' => 'required','string','max:225',
-            'l_name' => 'required','string','max:225',
+            'f_name' => 'required', 'string', 'max:225',
+            'l_name' => 'required', 'string', 'max:225',
             'phone_number' => 'required|digits:11',
             'faculty_number' => 'nullable|integer',
             'home_number' => 'nullable|integer',
@@ -113,7 +113,7 @@ class UserController extends Controller
         $data->f_name = $request['f_name'];
         $data->l_name = $request['l_name'];
         $data->acc_id = $request['acc_id'];
-        if (isset($request->password)){
+        if (isset($request->password)) {
             $data->password = bcrypt($request['password']);
         }
         $data->is_admin = $request['is_admin'];
@@ -123,7 +123,7 @@ class UserController extends Controller
         $data->home_number = $request['home_number'];
         $data->relation = $request['relation'];
         $data->email = $request['email'];
-        if($data->note != $request['note']){
+        if ($data->note != $request['note']) {
             $data->note_date = Verta::now();
         }
         $data->note = $request['note'];
@@ -136,34 +136,26 @@ class UserController extends Controller
         $data->loan_row_force = $request['loan_row_force'];
         $data->cheque = $request['cheque'];
         $data->cheque_force = $request['cheque_force'];
-        $data->start_date = $request['start_date'];
+        $data->start_date = $request['start_date'] ? Verta::parse($request['start_date'])->format('Y-m-d') : $request['start_date'];
         $end_date = null;
-        if($data['start_date']!=null && $data['period']!=null){
-            $end_date = str_replace('-','/',Verta::parse($data->start_date)->addMonths(($data->period)-1)->format('Y-n-j'));
+        if ($data['start_date'] != null && $data['period'] != null) {
+            $end_date = str_replace('-', '/', Verta::parse($data->start_date)->addMonths(($data->period) - 1)->format('Y-m-d'));
         }
         $data->end_date = $end_date;
-        $data->start_date_force = $request['start_date_force'];
+        $data->start_date_force = $request['start_date_force'] ? Verta::parse($request['start_date_force'])->format('Y-m-d') : $request['start_date_force'];
         $end_date_force = null;
-        if($data['start_date_force']!=null && $data['period_force']!=null){
-            $end_date_force = str_replace('-','/',Verta::parse($data->start_date_force)->addMonths(($data->period_force)-1)->format('Y-n-j'));
+        if ($data['start_date_force'] != null && $data['period_force'] != null) {
+            $end_date_force = str_replace('-', '/', Verta::parse($data->start_date_force)->addMonths(($data->period_force) - 1)->format('Y-m-d'));
         }
         $data->end_date_force = $end_date_force;
         $data->active = $request['active'];
 
         $data->save();
 
-        if($request['url2']=='admin'){
+        if ($request['url2'] == 'admin') {
             return redirect(route('admin'));
+        } else {
+            return redirect('/admin/' . $id);
         }
-        else{
-            return redirect('/admin/'.$id);
-        }
-
-
-    }
-
-    public function show_form()
-    {
-        return view('auth.register');
     }
 }

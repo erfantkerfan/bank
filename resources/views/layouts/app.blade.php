@@ -14,36 +14,6 @@
     <link href="{{ asset('css/app.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
     <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="preload" as="style" onload="this.rel='stylesheet'">
-
-    <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-    <script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>
-    <script type='text/javascript'>
-        $(function($) {
-            $('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-        $(function($) {
-            $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
-        });
-
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
     @yield('head')
 </head>
 <body class="bg">
@@ -242,8 +212,37 @@
     </nav>
     
         @yield('content')
-    <!-- Scripts -->
+        <script src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+        <script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>
+        <script type='text/javascript'>
+            $(function($) {
+                $('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+            $(function($) {
+                $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+            });
+
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
         <script src="{{ asset('js/app.js') }}"></script>
+        @yield('js')
 
 </body>
 </html>

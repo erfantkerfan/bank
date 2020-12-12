@@ -2,26 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Expense;
-use App\Onlinepayment;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\User;
-use App\Payment;
 use App\Loan;
+use App\Onlinepayment;
+use App\Payment;
+use App\User;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $user = User::query();
-        $users = $request->sort === 'login'
-            ? $user->orderBy('new_login', 'desc')
-            : $user->orderBy('acc_id');
-
+        $users = User::orderBy($request->sort ? $request->sort : 'acc_id', $request->sort_order ? $request->sort_order : 'asc')->get();
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
-        return view('admin_panel')->with(['users' => $users->get(), 'all_payment_summary' => $all_payment_summary, 'all_loan_summary' => $all_loan_summary]);
+        return view('admin_panel')->with(['users' => $users, 'all_payment_summary' => $all_payment_summary, 'all_loan_summary' => $all_loan_summary]);
     }
 
     public function transaction(Request $request)

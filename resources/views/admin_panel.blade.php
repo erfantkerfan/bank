@@ -77,7 +77,7 @@
                                 <th class="text-center">عضو فعال</th>
                                 <th class="text-center">
                                     آخرین فعالیت
-                                    <a href="{{ route('admin',array('sort'=>'login')) }}">
+                                    <a href="{{ route('admin',array('sort'=>'new_login','sort_order'=>'desc')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-sort-by-attributes"></span>
                                         </button>

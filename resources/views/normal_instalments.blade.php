@@ -12,27 +12,40 @@
                         <th class="text-center">ویرایش</th>
                         <th class="text-center">حذف قسط</th>
                         <th class="text-center">شماره چک</th>
-                        <th class="text-center">شماره ردیف</th>
                         <th class="text-center">
-                            @if(basename(URL::current())=='acc_id')
-                                <a href="{{ route('instalment_end_date1') }}">
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-sort-by-attributes"></span>
-                                    </button>
-                                </a>
-                            @elseif(basename(URL::current())=='end_date')
-                                <a href="{{ route('instalment1') }}">
-                                    <button type="button" class="btn btn-default btn-sm">
-                                        <span class="glyphicon glyphicon-sort-by-order"></span>
-                                    </button>
-                                </a>
-                            @endif
+                            <a href="{{ route('normal_instalments',array('sort'=>'loan_row')) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button>
+                            </a>
+                            شماره ردیف
+                        </th>
+                        <th class="text-center">
+                            <a href="{{ route('normal_instalments',array('sort'=>'end_date')) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button>
+                            </a>
                             تاریخ پایان اقساط
                         </th>
-                        <th class="text-center">تاریخ شروع اقساط</th>
+                        <th class="text-center">
+                            <a href="{{ route('normal_instalments',array('sort'=>'start_date')) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button>
+                            </a>
+                            تاریخ شروع اقساط
+                        </th>
                         <th class="text-center">مبلغ قسط</th>
                         <th class="text-center">نام عضو</th>
-                        <th class="text-center">#</th>
+                        <th class="text-center">
+                            <a href="{{ route('normal_instalments',array('sort'=>'acc_id')) }}">
+                                <button type="button" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                                </button>
+                            </a>
+                            #
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,7 +75,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="text-center"> {{$users->links()}} </div>
+                <div class="text-center"> {{$users->appends(request()->query())->links()}} </div>
             </div>
         </div>
     </div>

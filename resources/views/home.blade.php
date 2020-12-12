@@ -703,7 +703,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$payments->links()}} </div>
+                    <div class="text-center"> {{$payments->appends(request()->query())->links()}} </div>
                 </div>
             </div>
 
@@ -799,7 +799,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$loans->links()}} </div>
+                    <div class="text-center"> {{$loans->appends(request()->query())->links()}} </div>
                 </div>
             </div>
 
@@ -854,7 +854,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$loans_archive->links()}} </div>
+                    <div class="text-center"> {{$loans_archive->appends(request()->query())->links()}} </div>
                 </div>
             </div>
 

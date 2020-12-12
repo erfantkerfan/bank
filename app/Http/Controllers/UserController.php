@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -18,7 +13,7 @@ class UserController extends Controller
 {
     public function edit($id)
     {
-        $user=User::query()->findOrFail($id);
+        $user = User::query()->findOrFail($id);
         return view('user_edit')->with(['user' => $user]);
     }
 
@@ -26,6 +21,7 @@ class UserController extends Controller
     {
         return view('setpassword');
     }
+
     public function setpassword(request $request)
     {
         Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
@@ -33,7 +29,7 @@ class UserController extends Controller
             return Hash::check($value, current($parameters));
 
         });
-        $this->Validate($request,[
+        $this->Validate($request, [
             'oldpassword' => 'required|old_password:' . auth()->user()->password,
             'password' => 'nullable|string|min:6|confirmed'
         ]);
@@ -43,28 +39,16 @@ class UserController extends Controller
         return redirect(route('home'));
     }
 
-    public function instalments1()
+    public function normal_instalments(Request $request)
     {
-        $users = User::where('instalment', '!=', null)->OrderBy('acc_id')->paginate(30);
-        return view('instalments1')->with(['users'=>$users]);
+        $users = User::where('instalment', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
+        return view('normal_instalments')->with(['users' => $users]);
     }
 
-    public function instalments_end_date1()
+    public function force_instalments(Request $request)
     {
-        $users = User::where('instalment', '!=', null)->OrderBy('end_date')->paginate(30);
-        return view('instalments1')->with(['users'=>$users]);
-    }
-
-    public function instalments2()
-    {
-        $users_force = User::where('instalment_force', '!=', null)->OrderBy('acc_id')->paginate(30);
-        return view('instalments2')->with(['users_force'=>$users_force]);
-    }
-
-    public function instalments_end_date2()
-    {
-        $users_force = User::where('instalment_force', '!=', null)->OrderBy('end_date_force')->paginate(30);
-        return view('instalments2')->with(['users_force'=>$users_force]);
+        $users_force = User::where('instalment_force', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
+        return view('force_instalments')->with(['users_force' => $users_force]);
     }
 
     public function delete_instalment($id)

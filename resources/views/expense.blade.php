@@ -73,7 +73,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$expenses->links()}} </div>
+                    <div class="text-center"> {{$expenses->appends(request()->query())->links()}} </div>
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$expenses->links()}} </div>
+                    <div class="text-center"> {{$expenses->appends(request()->query())->links()}} </div>
                 </div>
             </div>
         </div>
@@ -150,7 +150,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$expenses->links()}} </div>
+                    <div class="text-center"> {{$expenses->appends(request()->query())->links()}} </div>
                 </div>
             </div>
         </div>

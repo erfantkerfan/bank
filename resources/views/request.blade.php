@@ -70,7 +70,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center"> {{$requests->links()}} </div>
+                    <div class="text-center"> {{$requests->appends(request()->query())->links()}} </div>
                 </div>
             </div>
         </div>

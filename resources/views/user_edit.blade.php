@@ -456,7 +456,7 @@
             $(".datePicker").persianDatepicker(
                 {
                     "inline": false,
-                    "format": "YYYY-MM-DD",
+                    "format": "YYYY/MM/DD",
                     "viewMode": "year",
                     "initialValue": false,
                     "autoClose": true,

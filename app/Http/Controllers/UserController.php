@@ -136,16 +136,16 @@ class UserController extends Controller
         $data->loan_row_force = $request['loan_row_force'];
         $data->cheque = $request['cheque'];
         $data->cheque_force = $request['cheque_force'];
-        $data->start_date = $request['start_date'] ? Verta::parse($request['start_date'])->format('Y-m-d') : $request['start_date'];
+        $data->start_date = $request['start_date'] ? Verta::parse($request['start_date'])->format('Y/m/d') : $request['start_date'];
         $end_date = null;
         if ($data['start_date'] != null && $data['period'] != null) {
-            $end_date = str_replace('-', '/', Verta::parse($data->start_date)->addMonths(($data->period) - 1)->format('Y-m-d'));
+            $end_date = Verta::parse($data->start_date)->addMonths(($data->period) - 1)->format('Y/m/d');
         }
         $data->end_date = $end_date;
-        $data->start_date_force = $request['start_date_force'] ? Verta::parse($request['start_date_force'])->format('Y-m-d') : $request['start_date_force'];
+        $data->start_date_force = $request['start_date_force'] ? Verta::parse($request['start_date_force'])->format('Y/m/d') : $request['start_date_force'];
         $end_date_force = null;
         if ($data['start_date_force'] != null && $data['period_force'] != null) {
-            $end_date_force = str_replace('-', '/', Verta::parse($data->start_date_force)->addMonths(($data->period_force) - 1)->format('Y-m-d'));
+            $end_date_force = Verta::parse($data->start_date_force)->addMonths(($data->period_force) - 1)->format('Y/m/d');
         }
         $data->end_date_force = $end_date_force;
         $data->active = $request['active'];

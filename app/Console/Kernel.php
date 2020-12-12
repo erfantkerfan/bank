@@ -19,15 +19,15 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('backup:mysql-dump Mysql_Backup_Ghaem')
+        $schedule->command('backup:mysql-dump Mysql_Backup_Ghaem')
 //             ->everyMinute()
-             ->dailyAt('2:00')
-             ->timezone('Asia/Tehran');
+            ->dailyAt('2:00')
+            ->timezone('Asia/Tehran');
         $schedule->call('App\Http\Controllers\PaymentController@unverified')
             ->everyFifteenMinutes();
     }
@@ -39,7 +39,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

@@ -256,11 +256,11 @@
                         t.me/erfantkerfan
                         </p>
 
-                        <p>
-                        <span class="fa fa-twitter"></span>
-                        <a style="text-decoration: none" href="https://twitter.com/erfantkerfan">توییتر</a>
-                        twitter.com/erfantkerfan
-                        </p>
+{{--                        <p>--}}
+{{--                        <span class="fa fa-twitter"></span>--}}
+{{--                        <a style="text-decoration: none" href="https://twitter.com/erfantkerfan">توییتر</a>--}}
+{{--                        twitter.com/erfantkerfan--}}
+{{--                        </p>--}}
 
                         <p>
                         <span class="fa fa-yahoo"></span>

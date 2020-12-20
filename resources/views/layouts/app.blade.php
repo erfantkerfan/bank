@@ -11,9 +11,9 @@
     <title dir="rtl">{{ config('app.name') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet'">
     @yield('head')
 </head>
 <body class="bg">

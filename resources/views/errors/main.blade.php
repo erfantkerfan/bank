@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="{{ asset('css/app.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" rel="preload" as="style" onload="this.rel='stylesheet'">
-    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{ asset('css/app.css') }}" rel="preload" rel="stylesheet" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet'">
+    <link href="{{ asset('fonts/vazir/font-face-FD.css') }}" rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet'">
 
     <title>{{config('app.name')}}</title>
 

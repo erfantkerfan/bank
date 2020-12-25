@@ -69,6 +69,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/expense',[ExpenseController::class, 'index'])->name('expense');
     });
     Route::middleware(['auth','SuperAdminAuth'])->group(function () {
+        Route::get('/database',[AdminController::class, 'database'])->name('database');
         Route::get('/config',[ConfigController::class, 'show'])->name('config');
         Route::delete('/config',[ConfigController::class, 'delete']);
         Route::post('/config',[ConfigController::class, 'post']);

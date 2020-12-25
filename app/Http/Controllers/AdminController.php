@@ -108,4 +108,10 @@ class AdminController extends Controller
 
         return view('unproved3')->with(['onlines' => $onlines]);
     }
+
+    public function database()
+    {
+        $filename = 'app/public/Mysql_Backup_Ghaem.sql';
+        return response()->download(storage_path($filename));
+    }
 }

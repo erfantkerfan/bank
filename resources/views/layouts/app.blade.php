@@ -70,7 +70,7 @@
                                          '    تا حد امکان دستی انجام نشود'
                                     )">تایید تراکنش های زرین پال</a>
 
-                                    <a href="{{ Storage::url('public/Mysql_Backup_Ghaem.sql') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
+                                    <a href="{{ route('database') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
                                         <span class="glyphicon glyphicon-download-alt"></span>
                                         دانلود دیتابیس
                                     </a>

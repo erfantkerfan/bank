@@ -24,9 +24,8 @@ class LoanController extends Controller
         if (auth()->user()->is_super_admin == 1 || ($loan->user_id==auth()->id() && $loan->isproved==0)) {
             $loan->delete();
             return redirect()->back();
-        } else {
-            abort(403);
         }
+        abort(403);
     }
 
     public function forcedelete($id)

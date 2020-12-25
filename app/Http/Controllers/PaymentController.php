@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Payment;
 use Carbon\Carbon;
 use App\Onlinepayment;
-//use ffb343\PHPZarinpal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SoapClient;
 use Zarinpal\Laravel\Facade\Zarinpal;
 use Illuminate\Support\Facades\Session;
 
@@ -210,7 +210,7 @@ class PaymentController extends Controller
     public function unverified()
     {
         $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
-        $client = new \SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
         $ans = $client->GetUnverifiedTransactions(['MerchantID' => $merchantID]);
 
         if (!($ans->Status == 100 && json_decode($ans->Authorities) != null)) {

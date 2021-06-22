@@ -14,7 +14,7 @@ class NotificationController extends Controller
         return view('notification')->with(['notifications' => $notifications]);
     }
 
-    public function create(request $request)
+    public function create(Request $request)
     {
         $notification = new Notification;
         $notification->text = $request->notification;

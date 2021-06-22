@@ -80,7 +80,7 @@ class RequestController extends Controller
         return view('request_edit')->with(['request' => $request]);
     }
 
-    public function edit(request $request, $id)
+    public function edit(Request $request, $id)
     {
         $requestfake = \App\Request::query()->findOrFail($id);
 

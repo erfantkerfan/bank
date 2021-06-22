@@ -51,7 +51,7 @@ class PaymentController extends Controller
         return redirect()->back();
     }
 
-    public function create(request $request)
+    public function create(Request $request)
     {
         $input = $request->all();
         if ($input["payment"] != null) {
@@ -244,7 +244,7 @@ class PaymentController extends Controller
         return view('payment_edit')->with(['payment' => $payment]);
     }
 
-    public function edit(request $request, $id)
+    public function edit(Request $request, $id)
     {
         $payment = Payment::findOrFail($id);
 

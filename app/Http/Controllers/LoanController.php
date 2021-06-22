@@ -38,7 +38,7 @@ class LoanController extends Controller
         return redirect()->back();
     }
 
-    public function create(request $request)
+    public function create(Request $request)
     {
         $input = $request->all();
         if ($input["loan"] != null) {
@@ -101,7 +101,7 @@ class LoanController extends Controller
         return view('loan_edit')->with(['loan' => $loan]);
     }
 
-    public function edit(request $request, $id)
+    public function edit(Request $request, $id)
     {
         $loan = Loan::query()->findOrFail($id);
 

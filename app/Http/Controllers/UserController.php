@@ -22,7 +22,7 @@ class UserController extends Controller
         return view('auth.passwords.change');
     }
 
-    public function setpassword(request $request)
+    public function setpassword(Request $request)
     {
         Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
 
@@ -77,7 +77,7 @@ class UserController extends Controller
         return back();
     }
 
-    public function user_edit($id, request $request)
+    public function user_edit($id, Request $request)
     {
         $this->Validate($request, [
             'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($id)],

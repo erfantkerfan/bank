@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.2.0",
         "ext-soap": "*",
+        "ext-json": "*",
         "doctrine/dbal": "2.*",
         "fideloper/proxy": "^4.0",
         "hekmatinasser/verta": "^1.8",

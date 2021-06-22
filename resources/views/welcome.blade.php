@@ -217,7 +217,6 @@
                 </a>
             </div>
             <div class="text-center">
-                {{--<script src="https://cdn.zarinpal.com/trustlogo/v1/trustlogo.js" type="text/javascript"></script>--}}
                 <script src="https://www.zarinpal.com/webservice/TrustCode" type="text/javascript"></script>
             </div>
         </div>

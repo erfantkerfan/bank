@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function setpasswordform()
     {
-        return view('setpassword');
+        return view('auth.passwords.change');
     }
 
     public function setpassword(request $request)

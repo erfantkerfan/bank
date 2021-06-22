@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -22,7 +24,6 @@ class UserTableSeeder extends Seeder
         ]);
 
 //        factory(\App\User::class,10)->create();
-
 
     }
 }

@@ -27,7 +27,8 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+//TODO: update doctrine/dbal and guzzlehttp/guzzle by removing zarinpal
+#TODO: update blade errors artisan vendor:publish --tag=laravel-errors
 Route::middleware(['logindate'])->group(function () {
     Route::get('/',[Controller::class, 'welcome'])->name('welcome');
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('login');

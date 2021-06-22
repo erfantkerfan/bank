@@ -20,6 +20,7 @@ class AdminController extends Controller
 
     public function transaction(Request $request)
     {
+        #TODO: this part make lots of queries!!! needs refactor
         $users = User::orderBy('acc_id')->get();
         foreach ($users as $user) {
             $user->summary = $user->summary();

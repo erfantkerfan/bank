@@ -16,6 +16,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        #TODO: this part make lots of queries!!! needs refactor
         $user = auth()->user();
         $payments = $user->Payment()->OrderByDesc('date_time')->get();
         $tote = $user->summary()->payments;

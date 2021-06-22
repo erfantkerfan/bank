@@ -18,6 +18,7 @@ class ExpenseController extends Controller
         $payments_cost = Payment::where('is_proved','=','1')->sum('payment_cost');
         $users = User::all();
         foreach ($users as $user){
+            #TODO: this creates lots of queries!!! needs refactor
             $user->payments_cost = number_format($user->hasMany(Payment::class)->where('is_proved','=','1')->sum('payment_cost'));
         }
         return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost,'users'=>$users]);

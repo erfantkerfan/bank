@@ -57,8 +57,7 @@ class RegisterController extends Controller
 
     public function redirectTo($user)
     {
-        $id = $user->id;
-        return '/admin/'.$id;
+        return '/admin/'.$user->id;
     }
 
     /**

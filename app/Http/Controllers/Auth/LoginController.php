@@ -39,9 +39,8 @@ class LoginController extends Controller
         auth()->user()->save();
         if (auth()->user()->is_admin==1) {
             return '/admin';
-        } else {
-            return '/home';
         }
+        return '/home';
     }
     /**
      * Create a new controller instance.

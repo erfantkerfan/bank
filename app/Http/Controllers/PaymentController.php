@@ -169,16 +169,15 @@ class PaymentController extends Controller
                     $creator . ' ' . $date_time
                 );
 
-                if ($results['Authority'] != null) {
-                    Onlinepayment::create([
-                        'payment_id' => $payment_data->id,
-                        'amount' => $amount * 10,
-                        'authority' => $results['Authority']
-                    ]);
-                    Zarinpal::redirect();
-                } else {
+                if ($results['Authority'] == null) {
                     return view('errors.payment');
                 }
+                Onlinepayment::create([
+                    'payment_id' => $payment_data->id,
+                    'amount' => $amount * 10,
+                    'authority' => $results['Authority']
+                ]);
+                Zarinpal::redirect();
                 break;
         }
     }

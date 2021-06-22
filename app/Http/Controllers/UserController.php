@@ -154,8 +154,7 @@ class UserController extends Controller
 
         if ($request['url2'] == 'admin') {
             return redirect(route('admin'));
-        } else {
-            return redirect('/admin/' . $id);
         }
+        return redirect('/admin/' . $id);
     }
 }

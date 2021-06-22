@@ -164,7 +164,6 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         //
-        Hekmatinasser\Verta\VertaServiceProvider::class,
         Backup\BackupServiceProvider::class,
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
         Zarinpal\Laravel\ZarinpalServiceProvider::class,

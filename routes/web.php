@@ -27,6 +27,8 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+//TODO: php artisan check:blade_queries use view:composer
+//TODO: user compact instead of with[]
 //TODO: update doctrine/dbal and guzzlehttp/guzzle by removing zarinpal
 #TODO: update blade errors artisan vendor:publish --tag=laravel-errors
 Route::middleware(['logindate'])->group(function () {

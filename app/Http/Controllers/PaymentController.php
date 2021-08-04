@@ -7,6 +7,9 @@ use Carbon\Carbon;
 use App\Onlinepayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Shetabit\Multipay\Invoice;
+use Shetabit\Payment\Facade\Payment as ZPayment;
+use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use SoapClient;
 use Zarinpal\Laravel\Facade\Zarinpal;
 use Illuminate\Support\Facades\Session;
@@ -163,79 +166,74 @@ class PaymentController extends Controller
                 ]);
 
                 $amount = ($request['payment'] + $request['payment_cost'] + $request['loan_payment'] + $request['loan_payment_force']) / 10;
-                $results = Zarinpal::request(
-                    route('verify'),
-                    $amount,
-                    $creator . ' ' . $date_time
-                );
 
-                if ($results['Authority'] == null) {
-                    return view('errors.payment');
-                }
-                Onlinepayment::create([
-                    'payment_id' => $payment_data->id,
-                    'amount' => $amount * 10,
-                    'authority' => $results['Authority']
-                ]);
-                Zarinpal::redirect();
+                $invoice = new Invoice;
+                $invoice->amount($amount);
+                $invoice->detail(['description' => $creator . ' ' . $date_time]);
+
+                $onlinepayment = new Onlinepayment;
+                $onlinepayment->payment_id = $payment_data->id;
+                $onlinepayment->amount = $amount * 10;
+
+                $bill = ZPayment::callbackUrl(route('verify'))->purchase($invoice, function($driver, $transactionId) {})->pay();
+
+                $onlinepayment->authority = $invoice->getTransactionId();
+                $onlinepayment->save();
+
+                return $bill->render();
                 break;
         }
     }
 
     public function verify()
     {
-        if ($_GET['Status'] != 'OK') {
+        $transaction_id = $_GET['Authority'];
+        $onlinepayment = Onlinepayment::where('authority', '=', $transaction_id)->firstOrFail();
+        try {
+            $receipt = ZPayment::amount(($onlinepayment->amount) / 10)->transactionId($onlinepayment->authority)->verify();
+        } catch (InvalidPaymentException $exception) {
             return view('errors.payment');
         }
-
-        $Authority = $_GET['Authority'];
-        $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->firstOrFail();
-        $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
-        $result = (object) $result;
-        if ($result->Status != 'success' && $result->Status != 'verified_before') {
-            return view('errors.payment');
-        }
-
-        $onlinepayment->refid = $result->RefID;
+        $onlinepayment->refid = $receipt->getReferenceId();
         $onlinepayment->save();
         $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
         $payment->is_proved = 1;
-        $payment->proved_by = $result->RefID;
+        $payment->proved_by = $receipt->getReferenceId();
         $payment->save();
 
         return redirect(route('home'));
     }
 
-    public function unverified()
-    {
-        $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
-        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
-        $ans = $client->GetUnverifiedTransactions(['MerchantID' => $merchantID]);
-
-        if (!($ans->Status == 100 && json_decode($ans->Authorities) != null)) {
-            return back();
-        }
-
-        foreach (json_decode($ans->Authorities) as $pay) {
-            $Authority = str_pad($pay->Authority, 36, '0', STR_PAD_LEFT);
-            $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->withTrashed()->firstOrFail();
-            $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
-            $result = (object)$result;
-            if (!($result->Status == 'success' || $result->Status == 'verified_before')) {
-                continue;
-            }
-            $onlinepayment->refid = $result->RefID;
-            $onlinepayment->deleted_at = null;
-            $onlinepayment->save();
-            $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
-            $payment->is_proved = 1;
-            $payment->proved_by = $result->RefID;
-            $payment->save();
-
-        }
-
-        return back();
-    }
+//    public function unverified()
+//    {
+//        $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
+//        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+//        $ans = $client->GetUnverifiedTransactions(['MerchantID' => $merchantID]);
+//
+//        if (!($ans->Status == 100 && json_decode($ans->Authorities) != null)) {
+//            return back();
+//        }
+//
+//        foreach (json_decode($ans->Authorities) as $pay) {
+//            $Authority = str_pad($pay->Authority, 36, '0', STR_PAD_LEFT);
+//            $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->withTrashed()->firstOrFail();
+//            $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
+//            $result = (object)$result;
+//            if (!($result->Status == 'success' || $result->Status == 'verified_before')) {
+//                continue;
+//            }
+//            $onlinepayment->refid = $result->RefID;
+//            $onlinepayment->deleted_at = null;
+//            $onlinepayment->save();
+//            $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
+//            $payment->is_proved = 1;
+//            $payment->proved_by = $result->RefID;
+//            $payment->save();
+//
+//        }
+//
+//        return back();
+//    }
 
     public function show_edit($id)
     {

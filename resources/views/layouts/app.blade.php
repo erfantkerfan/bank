@@ -65,10 +65,10 @@
 
                                     <a href="{{ route('register') }}">ثبت اطلاعات عضو</a>
 
-                                    <a href="{{ route('unverified') }}" onclick="return confirm(
-                                        'فرآیند به طور اتوماتیک هر 5 دقیقه انجام میشود اما الان دستی انجام شود؟' +
-                                         '    تا حد امکان دستی انجام نشود'
-                                    )">تایید تراکنش های زرین پال</a>
+{{--                                    <a href="{{ route('unverified') }}" onclick="return confirm(--}}
+{{--                                        'فرآیند به طور اتوماتیک هر 5 دقیقه انجام میشود اما الان دستی انجام شود؟' +--}}
+{{--                                         '    تا حد امکان دستی انجام نشود'--}}
+{{--                                    )">تایید تراکنش های زرین پال</a>--}}
 
                                     <a href="{{ route('database') }}" onclick="return confirm('آیا از دانلود دیتابیس اطمینان دارید؟')" >
                                         <span class="glyphicon glyphicon-download-alt"></span>

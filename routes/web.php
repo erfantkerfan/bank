@@ -37,7 +37,7 @@ Route::middleware(['logindate'])->group(function () {
     Route::Post('/login',[LoginController::class, 'login']);
     Route::Post('/logout',[LoginController::class, 'logout'])->name('logout');
     Route::get('/verify',[PaymentController::class, 'verify'])->name('verify');
-    Route::get('/unverified',[PaymentController::class, 'unverified'])->name('unverified');
+//    Route::get('/unverified',[PaymentController::class, 'unverified'])->name('unverified');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/home',[HomeController::class, 'index'])->name('home');

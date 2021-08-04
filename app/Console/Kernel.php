@@ -28,8 +28,8 @@ class Kernel extends ConsoleKernel
 //             ->everyMinute()
             ->dailyAt('2:00')
             ->timezone('Asia/Tehran');
-        $schedule->call('App\Http\Controllers\PaymentController@unverified')
-            ->everyFifteenMinutes();
+//        $schedule->call('App\Http\Controllers\PaymentController@unverified')
+//            ->everyFifteenMinutes();
     }
 
     /**

@@ -29,15 +29,14 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 //TODO: php artisan check:blade_queries use view:composer
 //TODO: user compact instead of with[]
-//TODO: update doctrine/dbal and guzzlehttp/guzzle by removing zarinpal
-#TODO: update blade errors artisan vendor:publish --tag=laravel-errors
+//TODO: update blade errors artisan vendor:publish --tag=laravel-errors
 Route::middleware(['logindate'])->group(function () {
     Route::get('/',[Controller::class, 'welcome'])->name('welcome');
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('login');
     Route::Post('/login',[LoginController::class, 'login']);
     Route::Post('/logout',[LoginController::class, 'logout'])->name('logout');
     Route::get('/verify',[PaymentController::class, 'verify'])->name('verify');
-//    Route::get('/unverified',[PaymentController::class, 'unverified'])->name('unverified');
+    Route::get('/unverified',[PaymentController::class, 'unverified'])->name('unverified');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('/home',[HomeController::class, 'index'])->name('home');

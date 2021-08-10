@@ -7,10 +7,10 @@ use Carbon\Carbon;
 use App\Onlinepayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment as ZPayment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use SoapClient;
 use Zarinpal\Laravel\Facade\Zarinpal;
 use Illuminate\Support\Facades\Session;
 
@@ -204,36 +204,40 @@ class PaymentController extends Controller
         return redirect(route('home'));
     }
 
-//    public function unverified()
-//    {
-//        $merchantID = config('services.zarinpal.merchantID', config('Zarinpal.merchantID'));
-//        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
-//        $ans = $client->GetUnverifiedTransactions(['MerchantID' => $merchantID]);
-//
-//        if (!($ans->Status == 100 && json_decode($ans->Authorities) != null)) {
-//            return back();
-//        }
-//
-//        foreach (json_decode($ans->Authorities) as $pay) {
-//            $Authority = str_pad($pay->Authority, 36, '0', STR_PAD_LEFT);
-//            $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->withTrashed()->firstOrFail();
-//            $result = Zarinpal::verify('OK', ($onlinepayment->amount) / 10, $onlinepayment->authority);
-//            $result = (object)$result;
-//            if (!($result->Status == 'success' || $result->Status == 'verified_before')) {
-//                continue;
-//            }
-//            $onlinepayment->refid = $result->RefID;
-//            $onlinepayment->deleted_at = null;
-//            $onlinepayment->save();
-//            $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
-//            $payment->is_proved = 1;
-//            $payment->proved_by = $result->RefID;
-//            $payment->save();
-//
-//        }
-//
-//        return back();
-//    }
+    public function unverified()
+    {
+        $response = Http::post(config('payment.drivers.zarinpal.unverifiedApiPurchaseUrl'), [
+            'merchant_id' => config('payment.drivers.zarinpal.merchantId'),
+        ]);
+        $alert = 'تراکنش تایید نشده ای از سمت زرین پال اعلام نشد';
+        if(
+            $response->successful() &&
+            isset(json_decode($response->body())->data) &&
+            json_decode($response->body())->data->code == 100 &&
+            !empty(json_decode($response->body())->data->authorities)
+        ){
+            foreach (json_decode($response->body())->data->authorities as $pay) {
+                $Authority = str_pad($pay->authority, 36, '0', STR_PAD_LEFT);
+                $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->withTrashed()->firstOrFail();
+                try {
+                    $receipt = ZPayment::amount(($onlinepayment->amount) / 10)->transactionId($onlinepayment->authority)->verify();
+                } catch (InvalidPaymentException $exception) {
+                    continue;
+                }
+                $onlinepayment->refid = $receipt->getReferenceId();
+                $onlinepayment->deleted_at = null;
+                $onlinepayment->save();
+                $payment = Payment::where('id', '=', $onlinepayment->payment_id)->first();
+                $payment->is_proved = 1;
+                $payment->proved_by = $receipt->getReferenceId();
+                $payment->save();
+            }
+            $alert = 'لیست تراکنش ها به رو رسانی شد';
+        }
+
+        Session::flash('alert', (string) $alert);
+        return back();
+    }
 
     public function show_edit($id)
     {

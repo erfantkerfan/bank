@@ -207,6 +207,9 @@ return [
             'apiPaymentUrl' => 'https://www.zarinpal.com/pg/StartPay/',
             'apiVerificationUrl' => 'https://api.zarinpal.com/pg/v4/payment/verify.json',
 
+            /* unverified api */
+            'unverifiedApiPurchaseUrl' => 'https://api.zarinpal.com/pg/v4/payment/unVerified.json',
+
             /* sandbox api */
             'sandboxApiPurchaseUrl' => 'https://sandbox.zarinpal.com/pg/services/WebGate/wsdl',
             'sandboxApiPaymentUrl' => 'https://sandbox.zarinpal.com/pg/StartPay/',

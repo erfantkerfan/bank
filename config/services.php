@@ -34,11 +34,4 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
-    'zarinpal' => [
-        'merchantID' => env('zarinpal_merchantID'),
-        'zarinGate' => false,
-        'sandbox' => false,
-    ],
-
 ];

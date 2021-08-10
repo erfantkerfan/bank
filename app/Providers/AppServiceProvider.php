@@ -14,7 +14,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // TODO: backward compatibility for bootstrap
         Paginator::useBootstrap();
     }
 

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment as ZPayment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Zarinpal\Laravel\Facade\Zarinpal;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller

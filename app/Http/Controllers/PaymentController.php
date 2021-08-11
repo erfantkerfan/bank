@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment as ZPayment;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
-use Zarinpal\Laravel\Facade\Zarinpal;
 use Illuminate\Support\Facades\Session;
 
 class PaymentController extends Controller
@@ -75,7 +74,7 @@ class PaymentController extends Controller
         $request->replace((array)$input);
 
         switch ($request->online_payment) {
-
+            #TODO: make separate routes for this switches
             case '0':
                 $user_id = basename(url()->previous());
                 if (($user_id) == 'home') {
@@ -122,7 +121,6 @@ class PaymentController extends Controller
                     'creator' => $creator,
                 ]);
                 return back();
-                break;
 
             case '1':
                 $proved_by = null;
@@ -181,13 +179,12 @@ class PaymentController extends Controller
                 $onlinepayment->save();
 
                 return $bill->render();
-                break;
         }
     }
 
     public function verify()
     {
-        $transaction_id = $_GET['Authority'];
+        $transaction_id = request()->input('Authority');
         $onlinepayment = Onlinepayment::where('authority', '=', $transaction_id)->firstOrFail();
         try {
             $receipt = ZPayment::amount(($onlinepayment->amount) / 10)->transactionId($onlinepayment->authority)->verify();

@@ -47,7 +47,6 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/payment/delete/{id}',[PaymentController::class, 'delete'])->name('payment_delete');
         Route::get('/request/delete/{id}',[RequestController::class, 'delete'])->name('request_delete');
         Route::post('/request/create',[RequestController::class, 'create'])->name('request_create');
-//        Route::get('/pdf/{id}/{mode}/{date}',[PDFController::class, 'pdf'])->name('pdf');
         Route::get('/pdf/all/{id}/',[PDFController::class, 'full_pdf'])->name('full_pdf');
         Route::get('/setpassword',[UserController::class, 'setpasswordform'])->name('setpassword_form');
         Route::post('/setpassword',[UserController::class, 'setpassword'])->name('setpassword');

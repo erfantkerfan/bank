@@ -10,39 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PDFController extends Controller
 {
-//    public function pdf($id , $mode , $date)
-//    {
-//        if (auth()->user()->is_super_admin==0 && auth()->id()!=$id){
-//            abort(403);
-//        };
-//        switch ($mode){
-//            case 'payment':
-//                $payments = User::query()->findOrFail($id)->Payment()->OrderByDesc('date_time')->get();
-//                foreach ($payments as $payment){
-//                $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
-//                }
-//                Controller::NumberFormat($payments);
-//                $pdf = PDF::loadView('pdf.payment', compact('payments'));
-//                return $pdf->stream('customers.pdf');
-//            break;
-//
-//            case 'loan':
-//                $loans = User::query()->findOrFail($id)->Loan()->OrderByDesc('date_time')->get();
-//                Controller::NumberFormat($loans);
-//                $pdf = PDF::loadView('pdf.loan', compact('loans'));
-//                return $pdf->stream('customers.pdf');
-//            break;
-//
-//            case 'request':
-//                $requests = User::query()->findOrFail($id)->request()->OrderByDesc('date_time')->get();
-//                Controller::NumberFormat($requests);
-//                $pdf = PDF::loadView('pdf.request', compact('requests'));
-//                return $pdf->stream('customers.pdf');
-//            break;
-//        }
-//
-//    }
-
     public function full_pdf($id)
     {
         if (auth()->user()->is_super_admin==0 && auth()->id()!=$id){

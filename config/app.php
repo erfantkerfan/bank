@@ -165,7 +165,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         //
         Backup\BackupServiceProvider::class,
-        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,7 +229,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         //
         'verta' => Hekmatinasser\Verta\Verta::class,
-        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Str' => Illuminate\Support\Str::class,
     ],

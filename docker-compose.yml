@@ -10,7 +10,6 @@ services:
         image: sail-8.0/app
         ports:
             - '${APP_PORT:-80}:80'
-            - '81:81'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
@@ -40,6 +39,19 @@ services:
             test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mariadb:mariadb
+        ports:
+            - ${ADMIN_DB_PORT:-8080}:80
+        environment:
+            MYSQL_USERNAME: "${DB_USERNAME}"
+            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            PMA_HOST: mariadb
+            UPLOAD_LIMIT: 300M
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge

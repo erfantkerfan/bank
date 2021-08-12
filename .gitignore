@@ -4,6 +4,7 @@
 /public/storage
 /public/temp
 /storage/*.key
+/storage/framework/laravel-excel/*
 /vendor
 /.idea
 /.vagrant

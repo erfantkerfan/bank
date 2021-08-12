@@ -552,7 +552,7 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading text-center">
-                    <a href="{{ route('full_pdf',['id'=>$user->id]) }}" style="text-decoration:none">
+                    <a href="{{ route('full_export',['id'=>$user->id]) }}" style="text-decoration:none">
                         <button type="button" class="btn btn-sm btn-success" dir="rtl">
                             نسخه pdf تمام صفحات
                         </button>

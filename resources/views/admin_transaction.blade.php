@@ -19,7 +19,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt_force')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'debt_force')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -32,7 +32,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loan_force')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'loan_force')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -45,7 +45,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'debt')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -58,7 +58,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loan')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'loan')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -71,7 +71,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'delays')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'delays')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -84,7 +84,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'payments_cost')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'payments_cost')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -97,7 +97,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'debt_all')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'debt_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -110,7 +110,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_all_all')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'loans_all_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -123,7 +123,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_force_all')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'loans_force_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -136,7 +136,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'loans_all')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'loans_all')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -149,7 +149,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction',array('sort'=>'payments')) }}">
+                                    <a href="{{ route('admin_transaction_export',array('sort'=>'payments')) }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>
@@ -162,7 +162,7 @@
                                             <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                                         </button>
                                     </a>
-                                    <a href="{{ route('pdf_admin_transaction') }}">
+                                    <a href="{{ route('admin_transaction_export') }}">
                                         <button type="button" class="btn btn-default btn-sm">
                                             <span class="glyphicon glyphicon-file"></span>
                                         </button>

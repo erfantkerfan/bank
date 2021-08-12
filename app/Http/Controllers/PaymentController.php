@@ -172,8 +172,7 @@ class PaymentController extends Controller
                 $onlinepayment = new Onlinepayment;
                 $onlinepayment->payment_id = $payment_data->id;
                 $onlinepayment->amount = $amount * 10;
-
-                $bill = ZPayment::callbackUrl(route('verify'))->purchase($invoice, function($driver, $transactionId) {})->pay();
+                $bill = ZPayment::callbackUrl(route('verify'))->purchase($invoice, function() {})->pay();
 
                 $onlinepayment->authority = $invoice->getTransactionId();
                 $onlinepayment->save();

@@ -31,8 +31,8 @@ class PDFController extends Controller
         $requests = User::query()->findOrFail($id)->request()->OrderByDesc('date_time')->get();
         Controller::NumberFormat($requests);
         $summary = $user->summary();
-        $pdf = PDF::loadView('pdf.full', compact('payments','loans','requests','user','date','summary'));
         $file_name = $user->f_name.' '.$user->l_name;
+        $pdf = PDF::loadView('pdf.full', compact('payments','loans','requests','user','date','summary'));
         return $pdf->stream($file_name);
     }
 

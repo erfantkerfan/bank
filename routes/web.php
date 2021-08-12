@@ -22,7 +22,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
@@ -46,7 +46,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/payment/delete/{id}',[PaymentController::class, 'delete'])->name('payment_delete');
         Route::get('/request/delete/{id}',[RequestController::class, 'delete'])->name('request_delete');
         Route::post('/request/create',[RequestController::class, 'create'])->name('request_create');
-        Route::get('/pdf/all/{id}/',[PDFController::class, 'full_pdf'])->name('full_pdf');
+        Route::get('/export/all/{id}/',[ExportController::class, 'full'])->name('full_export');
         Route::get('/setpassword',[UserController::class, 'setpasswordform'])->name('setpassword_form');
         Route::post('/setpassword',[UserController::class, 'setpassword'])->name('setpassword');
     });
@@ -54,7 +54,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/slider',[SliderController::class, 'index'])->name('slider');
         Route::get('/admin',[AdminController::class, 'index'])->name('admin');
         Route::get('/admin/transaction',[AdminController::class, 'transaction'])->name('admin_transaction');
-        Route::get('/pdf/transaction',[PDFController::class, 'transaction'])->name('pdf_admin_transaction');
+        Route::get('/export/transaction',[ExportController::class, 'transaction'])->name('admin_transaction_export');
         Route::get('/admin/{id}',[AdminController::class, 'user'])->name('user');
         # TODO: fix these namings
         Route::get('/unproved1',[AdminController::class, 'unproved1'])->name('unproved1');

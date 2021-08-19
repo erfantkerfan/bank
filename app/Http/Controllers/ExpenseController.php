@@ -21,7 +21,7 @@ class ExpenseController extends Controller
             #TODO: this creates lots of queries!!! needs refactor
             $user->payments_cost = number_format($user->hasMany(Payment::class)->where('is_proved','=','1')->sum('payment_cost'));
         }
-        return view('expense')->with(['expenses'=>$expenses,'expense'=>$expense,'payments_cost'=>$payments_cost,'users'=>$users]);
+        return view('expense', compact('expenses', 'expense', 'payments_cost', 'users'));
     }
 
     public function create(Request $request)

@@ -41,7 +41,6 @@ class HomeController extends Controller
         $requests = auth()->user()->request()->get();
         Controller::NumberFormat($requests);
         $permission = 0;
-        return view('home')->with(['payments'=> $payments ,'loans'=>$loans,'summary'=>$summary,'user'=>$user,
-            'permission'=>$permission,'requests'=>$requests,'loans_archive'=>$loans_archive]);
+        return view('home', compact('payments', 'loans', 'summary', 'user', 'permission', 'requests', 'loans_archive'));
     }
 }

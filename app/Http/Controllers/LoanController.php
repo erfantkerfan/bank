@@ -98,7 +98,7 @@ class LoanController extends Controller
     public function show_edit($id)
     {
         $loan = Loan::query()->findOrFail($id);
-        return view('loan_edit')->with(['loan' => $loan]);
+        return view('loan_edit', compact('loan'));
     }
 
     public function edit(Request $request, $id)

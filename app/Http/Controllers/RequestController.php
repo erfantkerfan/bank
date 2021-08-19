@@ -12,7 +12,7 @@ class RequestController extends Controller
         $requests = \App\Request::with('user')->where('is_proved', '=', '0')
             ->OrderBy('date_time', 'desc')->paginate(10);
         Controller::NumberFormat($requests);
-        return view('request')->with(['requests' => $requests]);
+        return view('request', compact('requests'));
     }
 
     public function confirm($id)
@@ -77,7 +77,7 @@ class RequestController extends Controller
     {
         $request = \App\Request::query()->findOrFail($id);
         Controller::NumberFormat($request);
-        return view('request_edit')->with(['request' => $request]);
+        return view('request_edit', compact('request'));
     }
 
     public function edit(Request $request, $id)

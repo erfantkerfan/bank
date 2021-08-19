@@ -33,9 +33,6 @@ class Controller extends BaseController
         $config_down =Config::where('type','=','down_h')->first();
         $config_laws =Config::where('type','=','law')->get();
         $config_hours =Config::where('type','=','hour')->get();
-        return view('welcome')->with([
-            'sliders'=>$sliders,'notifications'=>$notifications,'config_top'=>$config_top,'config_down'=>$config_down,
-            'config_laws'=>$config_laws,'config_hours'=>$config_hours
-        ]);
+        return view('welcome', compact('sliders', 'notifications', 'config_top','config_down', 'config_laws', 'config_hours'));
     }
 }

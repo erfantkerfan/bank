@@ -15,7 +15,7 @@ class AdminController extends Controller
         $users = User::orderBy($request->sort ? $request->sort : 'acc_id', $request->sort_order ? $request->sort_order : 'asc')->get();
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
-        return view('admin_panel')->with(['users' => $users, 'all_payment_summary' => $all_payment_summary, 'all_loan_summary' => $all_loan_summary]);
+        return view('admin_panel', compact('users', 'all_payment_summary', 'all_loan_summary'));
     }
 
     public function transaction(Request $request)
@@ -30,7 +30,7 @@ class AdminController extends Controller
         if ($request->has('sort')) {
             $users = $users->sortByDesc('summary.' . $request->sort);
         }
-        return view('admin_transaction')->with(compact('users'));
+        return view('admin_transaction', compact('users'));
     }
 
     public function user($id)
@@ -69,7 +69,7 @@ class AdminController extends Controller
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         $permission = 1;
-        return view('home')->with(compact('user', 'payments', 'summary', 'loans', 'permission', 'requests',
+        return view('home', compact('user', 'payments', 'summary', 'loans', 'permission', 'requests',
             'next_user', 'previous_user', 'momentary', 'loans_archive'));
     }
 
@@ -77,7 +77,7 @@ class AdminController extends Controller
     {
         $payments = Payment::where('is_proved', '=', '0')->with('user')->get();
         Controller::NumberFormat($payments);
-        return view('unproved1')->with(['payments' => $payments]);
+        return view('unproved1', compact('payments'));
     }
 
     public function unproved2()
@@ -86,17 +86,16 @@ class AdminController extends Controller
         $loans_force = Loan::where('is_proved', '=', '0')->where('force', '1')->with('user')->get();
         Controller::NumberFormat($loans);
         Controller::NumberFormat($loans_force);
-        return view('unproved2')->with(['loans' => $loans, 'loans_force' => $loans_force]);
+        return view('unproved2', compact('loans', 'loans_force'));
     }
 
     public function unproved3()
     {
-//        $onlines = Onlinepayment::with(['payment3.user'])->where('delay','!=',null)->get();
         $onlines = Onlinepayment::with('payment.user')
             ->whereHas('payment', function ($query) {
                 $query->whereNull('delay');
             })->get();
-//        Controller::NumberFormat($payments);
+        #TODO: duplicate code: make it compatible with Controller::NumberFormat()
         $array = ['loan', 'payment', 'loan_payment', 'loan_payment_force', 'payment_cost', 'expense', 'instalment', 'instalment_force', 'sum', 'fee'];
         foreach ($array as $par) {
             foreach ($onlines as $var) {
@@ -107,7 +106,7 @@ class AdminController extends Controller
         }
         $onlines = (object)$onlines;
 
-        return view('unproved3')->with(['onlines' => $onlines]);
+        return view('unproved3', compact('onlines'));
     }
 
     public function database()

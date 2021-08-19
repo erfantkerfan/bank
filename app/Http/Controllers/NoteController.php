@@ -15,7 +15,7 @@ class NoteController extends Controller
             ->orderBy('user_note_date','desc')
             ->orderBy('note_date', 'desc')->paginate(20);
 
-        return view('notes')->with(['users'=>$users]);
+        return view('notes', compact('users'));
     }
 
     public function user_note(Request $request)

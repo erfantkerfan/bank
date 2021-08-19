@@ -10,7 +10,7 @@ class ConfigController extends Controller
     public function show()
     {
         $configs = Config::all()->sortBy('type');
-        return view('config_panel')->with(['configs'=>$configs]);
+        return view('config_panel', compact('configs'));
     }
     public function delete(Request $request)
     {

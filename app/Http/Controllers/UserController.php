@@ -14,7 +14,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::query()->findOrFail($id);
-        return view('user_edit')->with(['user' => $user]);
+        return view('user_edit', compact('user'));
     }
 
     public function setpasswordform()
@@ -42,13 +42,13 @@ class UserController extends Controller
     public function normal_instalments(Request $request)
     {
         $users = User::where('instalment', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
-        return view('normal_instalments')->with(['users' => $users]);
+        return view('normal_instalments', compact('users'));
     }
 
     public function force_instalments(Request $request)
     {
         $users_force = User::where('instalment_force', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
-        return view('force_instalments')->with(['users_force' => $users_force]);
+        return view('force_instalments', compact('users_force'));
     }
 
     public function delete_instalment($id)

@@ -238,7 +238,7 @@ class PaymentController extends Controller
     public function show_edit($id)
     {
         $payment = Payment::query()->findOrFail($id);
-        return view('payment_edit')->with(['payment' => $payment]);
+        return view('payment_edit', compact('payment'));
     }
 
     public function edit(Request $request, $id)

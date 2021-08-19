@@ -28,7 +28,6 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 //TODO: php artisan check:blade_queries use view:composer
-//TODO: user compact instead of with[]
 //TODO: update blade errors artisan vendor:publish --tag=laravel-errors
 Route::middleware(['logindate'])->group(function () {
     Route::get('/',[Controller::class, 'welcome'])->name('welcome');

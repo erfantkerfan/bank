@@ -22,6 +22,7 @@ services:
             - sail
         depends_on:
             - mariadb
+            - redis
     mariadb:
         image: 'mariadb:10'
         ports:
@@ -38,6 +39,18 @@ services:
             - sail
         healthcheck:
             test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+            retries: 3
+            timeout: 5s
+    redis:
+        image: 'redis:alpine'
+        ports:
+            - '${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sailredis:/data'
+        networks:
+            - sail
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
             retries: 3
             timeout: 5s
     phpmyadmin:
@@ -58,4 +71,6 @@ networks:
         driver: bridge
 volumes:
     sailmariadb:
+        driver: local
+    sailredis:
         driver: local

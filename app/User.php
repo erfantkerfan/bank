@@ -121,4 +121,9 @@ class User extends Authenticatable
 
         return $summary;
     }
+
+    public function addTotalPayment():void
+    {
+        $this->payments_cost = array_sum($this->payment->pluck('payment_cost')->toArray());
+    }
 }

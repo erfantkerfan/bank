@@ -16,11 +16,12 @@ class ExpenseController extends Controller
         Controller::NumberFormat($expenses);
         $expense = Expense::all()->sum('expense');
         $payments_cost = Payment::where('is_proved','=','1')->sum('payment_cost');
-        $users = User::all();
-        foreach ($users as $user){
-            #TODO: this creates lots of queries!!! needs refactor
-            $user->payments_cost = number_format($user->hasMany(Payment::class)->where('is_proved','=','1')->sum('payment_cost'));
+        $users = User::with('payment')->get();
+        foreach ($users as $user)
+        {
+            $user->addTotalPayment();
         }
+
         return view('expense', compact('expenses', 'expense', 'payments_cost', 'users'));
     }
 

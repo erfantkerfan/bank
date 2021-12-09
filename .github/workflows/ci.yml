@@ -30,10 +30,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 1
+          
       - name: Setup NODEJS
         uses: actions/setup-node@v2
         with:
           node-version: '16.x'
+          
       - name: Setup MYSQL
         uses: mirromutth/mysql-action@v1.1
         with:
@@ -46,6 +48,8 @@ jobs:
           
       - name: Start Redis
         uses: supercharge/redis-github-action@1.2.0
+        with:
+          redis-version: '6'
           
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -64,7 +68,7 @@ jobs:
         run:  php artisan key:generate
 
       - name: Run migrations
-        run: php artisan migrate:fresh --seed --no-interaction --force
+        run: php artisan migrate:fresh --no-interaction --force
 
       - name: Run optimizations
         run: |

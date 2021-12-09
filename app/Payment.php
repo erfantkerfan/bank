@@ -37,6 +37,7 @@ class Payment extends Model
 
         return $all_payment_summary;
     }
+
     public function onlinepayment()
     {
         return $this->hasMany(Onlinepayment::class);

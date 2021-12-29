@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function delays()
     {
-        return $this->hasMany(Payment::class)->sum('delay');
+        return $this->Payment->sum('delay');
     }
 
     public function Loan()
@@ -56,45 +56,44 @@ class User extends Authenticatable
 
     public function summary()
     {
-        $summary['payments']= $this->hasMany(Payment::class)
+        $summary['payments']= $this->Payment
             ->where('is_proved','=','1')
             ->sum('payment');
-        $summary['payments_cost']= $this->hasMany(Payment::class)
+        $summary['payments_cost']= $this->Payment
             ->where('is_proved','=','1')
             ->sum('payment_cost');
-        $summary['loans_all']= $this->hasMany(Loan::class)
+        $summary['loans_all']= $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','0')
             ->sum('loan');
-        $summary['loans_force_all']= $this->hasMany(Loan::class)
+        $summary['loans_force_all']= $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','1')
             ->sum('loan');
         $summary['loans_all_all'] = $summary['loans_force_all'] + $summary['loans_all'] ;
-        $summary['loan']= $this->hasMany(Loan::class)
+        $summary['loan']= $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','0')
-            ->latest()->get()->first();
-        $summary['loan_force']= $this->hasMany(Loan::class)
+            ->first();
+        $summary['loan_force']= $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','1')
-            ->latest()->get()->first();
-        $summary['debt']=
-            $this->hasMany(Loan::class)
+            ->first();
+        $summary['debt']= $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','0')
             ->sum('loan')
             -
-            $this->hasMany(Payment::class)
+            $this->Payment
             ->where('is_proved','=','1')
             ->sum('loan_payment');
         $summary['debt_force']=
-            $this->hasMany(Loan::class)
+            $this->Loan
             ->where('is_proved','=','1')
             ->where('force','=','1')
             ->sum('loan')
             -
-            $this->hasMany(Payment::class)
+            $this->Payment
             ->where('is_proved','=','1')
             ->sum('loan_payment_force');
 

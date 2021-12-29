@@ -20,9 +20,9 @@ class AdminController extends Controller
 
     public function transaction(Request $request)
     {
-        #TODO: this part make lots of queries!!! needs refactor
-        $users = User::orderBy('acc_id')->get();
+        $users = User::with(['Payment', 'Loan'])->orderBy('acc_id')->paginate(20);
         foreach ($users as $user) {
+            /**@var User $user*/
             $user->summary = $user->summary();
             $user->summary->delays = $user->delays();
             $user->summary->debt_all = $user->summary->debt + $user->summary->debt_force;

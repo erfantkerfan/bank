@@ -20,7 +20,7 @@ class AdminController extends Controller
 
     public function transaction(Request $request)
     {
-        $users = User::with(['Payment', 'Loan'])->orderBy('acc_id')->paginate(20);
+        $users = User::with(['Payment', 'Loan'])->orderBy('acc_id')->get();
         foreach ($users as $user) {
             /**@var User $user*/
             $user->summary = $user->summary();

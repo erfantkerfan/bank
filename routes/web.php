@@ -34,8 +34,8 @@ Route::middleware(['logindate'])->group(function () {
     Route::get('/login',[LoginController::class, 'showLoginForm'])->name('login');
     Route::Post('/login',[LoginController::class, 'login']);
     Route::Post('/logout',[LoginController::class, 'logout'])->name('logout');
-    Route::get('/verify',[PaymentController::class, 'verify'])->middleware(['octane_request'])->name('verify');
-    Route::get('/unverified',[PaymentController::class, 'unverified'])->middleware(['octane_request'])->name('unverified');
+    Route::get('/verify',[PaymentController::class, 'verify'])->name('verify');
+    Route::get('/unverified',[PaymentController::class, 'unverified'])->name('unverified');
     Route::middleware(['auth'])->group(function () {
         Route::get('/home',[HomeController::class, 'index'])->name('home');
         Route::post('/payment/create',[PaymentController::class, 'create'])->name('payment_create');

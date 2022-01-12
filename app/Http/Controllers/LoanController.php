@@ -51,7 +51,7 @@ class LoanController extends Controller
             $proved_by = auth()->user()->l_name;
         };
 
-        $user_id = basename(url()->previous());
+        $user_id = strtok(basename(url()->previous()), '?');
 
         if (($user_id) == 'home') {
             $user_id = auth()->id();

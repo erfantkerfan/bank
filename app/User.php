@@ -56,8 +56,9 @@ class User extends Authenticatable
 
     public function summary()
     {
-        $summary['payments']= $this->totalPayments();
-
+        $summary['payments']= $this->Payment
+            ->where('is_proved','=','1')
+            ->sum('payment');
         $summary['payments_cost']= $this->Payment
             ->where('is_proved','=','1')
             ->sum('payment_cost');
@@ -123,11 +124,5 @@ class User extends Authenticatable
     public function addTotalPayment():void
     {
         $this->payments_cost = array_sum($this->payment->pluck('payment_cost')->toArray());
-    }
-
-    public function totalPayments()
-    {
-        return $this->Payment()->where('is_proved','=','1')
-            ->sum('payment');
     }
 }

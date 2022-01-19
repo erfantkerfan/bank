@@ -23,7 +23,7 @@ class HomeController extends Controller
         $sum = 0 ;
         foreach ($payments as $payment){
             $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
-            $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote) ; #TODO this logic has a big problem is returning $tote
+            $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12, ['*'], 'payments');

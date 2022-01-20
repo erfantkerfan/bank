@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -41,5 +42,15 @@ class Payment extends Model
     public function onlinepayment()
     {
         return $this->hasMany(Onlinepayment::class);
+    }
+
+    public function scopeProved(Builder $builder):Builder
+    {
+        return $builder->where('is_proved','=','1');
+    }
+
+    public function scopeAggregate(Builder $builder, string $aggregateFunction, string $field)
+    {
+        return $builder->{$aggregateFunction}($field);
     }
 }

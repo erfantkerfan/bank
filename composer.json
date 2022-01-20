@@ -22,15 +22,15 @@
         "shetabit/payment": "^4.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.3.6",
+        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "filp/whoops": "~2.0",
         "imanghafoori/laravel-microscope": "^1.0",
         "itsgoingd/clockwork": "^5.1",
-        "laravel/sail": "^1.9",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10"
     },
     "autoload": {
         "psr-4": {
@@ -50,7 +50,7 @@
             "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

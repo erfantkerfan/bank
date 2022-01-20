@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Hekmatinasser\Verta\Verta;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -14,29 +19,30 @@ class HomeController extends Controller
         #TODO: this part make lots of queries!!! needs refactor
         $permission = 0;
         $user = auth()->user();
-        $payments = $user->Payment()->get();
         $summary = $user->summary();
+        $payments = $user->Payment()->get();
         $tote = $summary->payments;
-        // -2 (6 -> 4)
-        $sum = 0;
+        $sum = 0 ;
 
-        foreach ($payments as $payment) {
-            $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
-            $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote);
+        foreach ($payments as $payment){
+            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
 
         $payments = $user->Payment()->paginate(12, ['*'], 'payments');
-        foreach ($payments as $payment) {
-            $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
-            $payment->momentary = $momentary[$payment->id];
+        foreach ($payments as $payment){
+            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
+            $payment -> momentary = $momentary[$payment->id] ;
         }
-
         Controller::NumberFormat($payments);
+
         $loans = $user->Loan()->paginate(12, ['*'], 'loans');
         Controller::NumberFormat($loans);
+
         $loans_archive = $user->Loan()->onlyTrashed()->paginate(12, ['*'], 'loans_archive');
         Controller::NumberFormat($loans_archive);
+
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
         return view('home', compact('payments', 'loans', 'summary', 'user', 'permission', 'requests', 'loans_archive'));

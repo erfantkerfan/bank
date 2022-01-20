@@ -33,7 +33,7 @@ class RequestController extends Controller
         }
         $request->replace((array)$input);
 
-        $user_id = basename(url()->previous());
+        $user_id = strtok(basename(url()->previous()), '?');
 
         if (($user_id) == 'home') {
             $user_id = auth()->id();

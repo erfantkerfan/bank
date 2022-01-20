@@ -63,6 +63,5 @@ class Kernel extends HttpKernel
         'AdminAuth' => \App\Http\Middleware\AdminAuth::class,
         'SuperAdminAuth' => \App\Http\Middleware\SuperAdminAuth::class,
         'logindate' => \App\Http\Middleware\Logindate::class,
-        'octane_request' => \App\Http\Middleware\OctaneRequestMiddleware::class,
     ];
 }

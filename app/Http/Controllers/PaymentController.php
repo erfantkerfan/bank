@@ -76,7 +76,7 @@ class PaymentController extends Controller
         switch ($request->online_payment) {
             #TODO: make separate routes for this switches
             case '0':
-                $user_id = basename(url()->previous());
+                $user_id = strtok(basename(url()->previous()), '?');
                 if (($user_id) == 'home') {
                     $user_id = auth()->id();
                 }
@@ -125,7 +125,7 @@ class PaymentController extends Controller
             case '1':
                 $proved_by = null;
 
-                $user_id = basename(url()->previous());
+                $user_id = strtok(basename(url()->previous()), '?');
 
                 if (($user_id) == 'home') {
                     $user_id = auth()->id();

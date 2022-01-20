@@ -14,7 +14,7 @@
                     <form class="form-horizontal" method="POST" action="{{ route('user_edit',['id' => $user->id]) }}">
                        {{ csrf_field() }}
                         <div class="col-md-6">
-                            <input name="url2" type="hidden" value="{{basename(url()->previous())}}">
+                            <input name="url2" type="hidden" value="{{strtok(basename(url()->previous()), '?')}}">
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label for="username" class="col-md-4 control-label">نام کاربری</label>
 

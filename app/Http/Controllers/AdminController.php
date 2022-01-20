@@ -35,6 +35,7 @@ class AdminController extends Controller
 
     public function user($id)
     {
+        # TODO: This part is like HomeController::index this must be factored the same way
         $user = User::query()->findOrFail($id);
         $next_user_acc_id = User::where('acc_id', '>', $user->acc_id)->min('acc_id');
         $next_user = null;
@@ -52,7 +53,7 @@ class AdminController extends Controller
         $momentary = [];
         foreach ($payments as $payment) {
             $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
-            $momentary[$payment->id] = ($payment->is_proved ? $tote - $sum : $tote);
+            $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
         $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12, ['*'], 'payments');

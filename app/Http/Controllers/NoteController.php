@@ -20,7 +20,7 @@ class NoteController extends Controller
 
     public function user_note(Request $request)
     {
-        $user_id = basename(url()->previous());
+        $user_id = strtok(basename(url()->previous()), '?');
 
         if (($user_id) == 'home') {
             $user_id = auth()->id();

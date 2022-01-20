@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
-class Loan extends BaseModel
+class Loan extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];

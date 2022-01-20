@@ -1,11 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Hekmatinasser\Verta\Verta;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -25,16 +20,15 @@ class HomeController extends Controller
         $sum = 0 ;
 
         foreach ($payments as $payment){
-            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
 
         $payments = $user->Payment()->paginate(12, ['*'], 'payments');
         foreach ($payments as $payment){
-            $payment -> sum = $payment->payment_cost+$payment->loan_payment_force+$payment->loan_payment+$payment->payment;
             $payment -> momentary = $momentary[$payment->id] ;
         }
+
         Controller::NumberFormat($payments);
 
         $loans = $user->Loan()->paginate(12, ['*'], 'loans');
@@ -45,6 +39,7 @@ class HomeController extends Controller
 
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
+
         return view('home', compact('payments', 'loans', 'summary', 'user', 'permission', 'requests', 'loans_archive'));
     }
 }

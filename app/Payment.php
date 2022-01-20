@@ -2,12 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 
 
-class Payment extends Model
+class Payment extends BaseModel
 {
     use SoftDeletes;
     protected $guarded = ['id'];
@@ -49,8 +48,4 @@ class Payment extends Model
         return $builder->where('is_proved','=','1');
     }
 
-    public function scopeAggregate(Builder $builder, string $aggregateFunction, string $field)
-    {
-        return $builder->{$aggregateFunction}($field);
-    }
 }

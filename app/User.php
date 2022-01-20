@@ -85,9 +85,7 @@ class User extends Authenticatable
             $summary['loan_force']='تسویه شده';
         }
 
-        $summary=(object)$summary;
-
-        return $summary;
+        return (object)$summary;
     }
 
     public function addTotalPayment():void

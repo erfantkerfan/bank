@@ -2,12 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
-class Loan extends Model
+class Loan extends BaseModel
 {
     use SoftDeletes;
     protected $guarded = ['id'];
@@ -50,8 +48,4 @@ class Loan extends Model
         return $builder->where('force','=','1');
     }
 
-    public function scopeAggregate(Builder $builder, string $aggregateFunction, string $field)
-    {
-        return $builder->{$aggregateFunction}($field);
-    }
 }

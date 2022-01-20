@@ -11,8 +11,6 @@ class HomeController extends Controller
 
     public function index()
     {
-        #TODO: this part make lots of queries!!! needs refactor
-        $permission = 0;
         $user = auth()->user();
         $summary = $user->summary();
         $payments = $user->Payment()->get();
@@ -39,7 +37,9 @@ class HomeController extends Controller
 
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
-
+        
+        $permission = 0;
+        
         return view('home', compact('payments', 'loans', 'summary', 'user', 'permission', 'requests', 'loans_archive'));
     }
 }

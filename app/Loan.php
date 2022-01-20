@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
@@ -31,5 +32,26 @@ class Loan extends Model
         $all_loan_summary=(object)$all_loan_summary;
 
         return $all_loan_summary;
+    }
+
+    //scopes
+    public function scopeProved(Builder $builder):Builder
+    {
+        return $builder->where('is_proved','=','1');
+    }
+
+    public function scopeNotForce(Builder $builder):Builder
+    {
+        return $builder->where('force','=','0');
+    }
+
+    public function scopeForce(Builder $builder):Builder
+    {
+        return $builder->where('force','=','1');
+    }
+
+    public function scopeAggregate(Builder $builder, string $aggregateFunction, string $field)
+    {
+        return $builder->{$aggregateFunction}($field);
     }
 }

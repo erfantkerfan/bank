@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 
 class Payment extends Model
@@ -41,5 +42,41 @@ class Payment extends Model
     public function onlinepayment()
     {
         return $this->hasMany(Onlinepayment::class);
+    }
+
+    // scopes
+    public function scopeProved(Builder $builder): Builder
+    {
+        return $builder->where('is_proved', '=', '1');
+    }
+
+    // accessors
+    public function getSumAttribute()
+    {
+        return $this->payment_cost +
+            $this->loan_payment_force +
+            $this->loan_payment +
+            $this->payment;
+    }
+
+    public function getPaymentCostAttribute()
+    {
+        return $this->payment_cost ?? 0;
+
+    }
+
+    public function getLoanPaymentForceAttribute()
+    {
+        return $this->loan_payment_force ?? 0;
+    }
+
+    public function getLoanPaymentAttribute()
+    {
+        return $this->loan_payment ?? 0;
+    }
+
+    public function getPaymentAttribute()
+    {
+        return $this->payment ?? 0;
     }
 }

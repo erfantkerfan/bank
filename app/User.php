@@ -56,37 +56,69 @@ class User extends Authenticatable
 
     public function summary()
     {
-        $provedPayments = $this->Payment()->proved()->get();
-        $notForceProvedLoans = $this->Loan()->proved()->notForce()->get();
-        $forceProvedLoans = $this->Loan()->proved()->force()->get();
-
-        $summary['payments']= $provedPayments->sum('payment');
-
-        $summary['payments_cost']=  $provedPayments->sum('payment_cost');
-
-        $summary['loans_all']= $notForceProvedLoans->sum('loan');
-
-        $summary['loans_force_all']= $forceProvedLoans->sum('loan');
-
+        $summary['payments']= $this->Payment
+            ->where('is_proved','=','1')
+            ->sum('payment');
+        $summary['payments_cost']= $this->Payment
+            ->where('is_proved','=','1')
+            ->sum('payment_cost');
+        $summary['loans_all']= $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','0')
+            ->sum('loan');
+        $summary['loans_force_all']= $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
+            ->sum('loan');
         $summary['loans_all_all'] = $summary['loans_force_all'] + $summary['loans_all'] ;
+        $summary['loan']= $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','0')
+            ->first();
+        $summary['loan_force']= $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
+            ->first();
+        $summary['debt']= $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','0')
+            ->sum('loan')
+            -
+            $this->Payment
+            ->where('is_proved','=','1')
+            ->sum('loan_payment');
+        $summary['debt_force']=
+            $this->Loan
+            ->where('is_proved','=','1')
+            ->where('force','=','1')
+            ->sum('loan')
+            -
+            $this->Payment
+            ->where('is_proved','=','1')
+            ->sum('loan_payment_force');
 
-        $summary['loan']= $notForceProvedLoans->first()?->loan ?? 0;
-
-        $summary['loan_force']= $forceProvedLoans->first()?->loan ?? 0;
-
-        $summary['debt']= $summary['loans_all'] - $provedPayments->sum('loan_payment');
-
-        $summary['debt_force']=$summary['loans_force_all'] - $provedPayments->sum('loan_payment_force');
-
+        if ($summary['loan'] == null){
+            $summary['loan']=0;
+        }else{
+            $summary['loan'] = $summary['loan']->loan;
+        }
         if($summary['debt']==0){
             $summary['loan']='تسویه شده';
         }
 
+
+        if ($summary['loan_force'] == null){
+            $summary['loan_force']=0;
+        }else{
+            $summary['loan_force'] = $summary['loan_force']->loan;
+        }
         if($summary['debt_force']==0){
             $summary['loan_force']='تسویه شده';
         }
 
-        return (object)$summary;
+        $summary=(object)$summary;
+
+        return $summary;
     }
 
     public function addTotalPayment():void

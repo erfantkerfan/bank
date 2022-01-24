@@ -53,30 +53,29 @@ class Payment extends Model
     // accessors
     public function getSumAttribute()
     {
-        return $this->payment_cost +
-            $this->loan_payment_force +
-            $this->loan_payment +
-            $this->payment;
+        return $this->loan_payment_force +
+               $this->payment_cost +
+               $this->loan_payment +
+               $this->payment;
     }
 
     public function getPaymentCostAttribute()
     {
-        return $this->payment_cost ?? 0;
-
+        return (int) $this->attributes['payment_cost'] ?? 0;
     }
 
     public function getLoanPaymentForceAttribute()
     {
-        return $this->loan_payment_force ?? 0;
+        return (int) $this->attributes['loan_payment_force'] ?? 0;
     }
 
     public function getLoanPaymentAttribute()
     {
-        return $this->loan_payment ?? 0;
+        return (int) $this->attributes['loan_payment'] ?? 0;
     }
 
     public function getPaymentAttribute()
     {
-        return $this->payment ?? 0;
+        return (int) $this->attributes['payment'] ?? 0;
     }
 }

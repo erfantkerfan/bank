@@ -72,8 +72,8 @@ jobs:
         run: |
           php artisan view:cache
           php artisan optimize
-#      - name: Run Testsuite
-#        run: vendor/bin/phpunit tests/
+      - name: Run Testsuite
+        run: php artisan optimize
 
       - name: Install front-end dependencies
         run: npm ci --production

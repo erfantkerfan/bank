@@ -33,9 +33,9 @@ class PaymentController extends Controller
         }
 
         $currentTime = Carbon::now();
-        $currentTime->modify('-30 minutes');
+        $currentTime->modify('-120 minutes');
         if ($payment->updated_at >= $currentTime && auth()->user()->is_super_admin != 1) {
-            $alert = 'امکان حذف پرداخت ها به علت بررسی وضعیت تراکنش های آنلاین تا 30 دقیقه بعد از ثبت ممکن نیست.
+            $alert = 'امکان حذف پرداخت ها به علت بررسی وضعیت تراکنش های آنلاین تا 2 ساعت بعد از ثبت ممکن نیست.
                 '.$currentTime->diffInMinutes($payment->updated_at).'
                 دقیقه دیگر اقدام به حذف کنید.
                 ';

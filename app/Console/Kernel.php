@@ -24,10 +24,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('backup:mysql-dump Mysql_Backup_Ghaem')
+        $schedule->command('database:backup')
 //             ->everyMinute()
             ->dailyAt('2:00')
             ->timezone('Asia/Tehran');
+
         $schedule->call('App\Http\Controllers\PaymentController@unverified')
             ->hourly();
     }

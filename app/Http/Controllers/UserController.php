@@ -24,13 +24,8 @@ class UserController extends Controller
 
     public function setpassword(Request $request)
     {
-        Validator::extend('old_password', function ($attribute, $value, $parameters, $validator) {
-
-            return Hash::check($value, current($parameters));
-
-        });
         $this->Validate($request, [
-            'oldpassword' => 'required|old_password:' . auth()->user()->password,
+            'oldpassword' => 'required|current_password:',
             'password' => 'nullable|string|min:6|confirmed'
         ]);
         $user = User::query()->findOrFail(auth()->id());

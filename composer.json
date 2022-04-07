@@ -5,32 +5,29 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.0.2",
         "ext-json": "*",
         "ext-soap": "*",
         "doctrine/dbal": "3.*",
-        "fideloper/proxy": "^4.0",
-        "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.3",
-        "hekmatinasser/verta": "^1.12",
-        "laravel/framework": "^8.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "hekmatinasser/verta": "^2.1",
+        "laravel/framework": "^9.2",
+        "laravel/sanctum": "^2.14.1",
         "laravel/octane": "^1.0",
-        "laravel/tinker": "^2.5",
+        "laravel/tinker": "^2.7",
         "laravel/ui": "^3.0",
         "maatwebsite/excel": "^3.1",
-        "paulvl/backup": "^4.0",
         "shetabit/payment": "^4.0"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "filp/whoops": "~2.0",
         "imanghafoori/laravel-microscope": "^1.0",
         "itsgoingd/clockwork": "^5.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -45,11 +42,11 @@
         }
     },
     "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+        "post-install-cmd": [
+            "@php -r \"@unlink('bootstrap/cache/packages.php');\""
         ],
         "post-update-cmd": [
+            "@php -r \"@unlink('bootstrap/cache/packages.php');\"",
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
@@ -57,6 +54,10 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
         ]
     },
     "extra": {

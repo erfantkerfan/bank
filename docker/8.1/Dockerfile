@@ -1,9 +1,10 @@
-FROM ubuntu:21.04
+FROM ubuntu:21.10
 
 LABEL maintainer="Taylor Otwell"
 
 ARG WWWGROUP
 ARG NODE_VERSION=16
+ARG POSTGRES_VERSION=14
 
 WORKDIR /var/www/html
 
@@ -17,9 +18,8 @@ RUN apt-get update \
     && mkdir -p ~/.gnupg \
     && chmod 600 ~/.gnupg \
     && echo "disable-ipv6" >> ~/.gnupg/dirmngr.conf \
-    && apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys E5267A6C \
-    && apt-key adv --homedir ~/.gnupg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C300EE8C \
-    && echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu hirsute main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
+    && apt-key adv --homedir ~/.gnupg --keyserver hkps://keyserver.ubuntu.com --recv-keys 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C \
+    && echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu impish main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     && apt-get update \
     && apt-get install -y php8.1-cli php8.1-dev \
        php8.1-pgsql php8.1-sqlite3 php8.1-gd \
@@ -30,12 +30,13 @@ RUN apt-get update \
        php8.1-ldap \
        php8.1-msgpack php8.1-igbinary php8.1-redis php8.1-swoole \
        php8.1-memcached php8.1-pcov php8.1-xdebug \
-    && php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
+    && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer \
     && curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-    && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
+    && echo "deb http://apt.postgresql.org/pub/repos/apt impish-pgdg main" > /etc/apt/sources.list.d/pgdg.list \
+    && curl --silent -o - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update \
     && apt-get install -y yarn \
     && apt-get install -y mysql-client \

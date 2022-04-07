@@ -24,7 +24,7 @@ class HomeController extends Controller
 
         $payments = $user->Payment()->paginate(12, ['*'], 'payments');
         foreach ($payments as $payment){
-            $payment -> momentary = $momentary[$payment->id] ;
+            $payment -> momentary = $momentary[$payment->id];
         }
 
         Controller::NumberFormat($payments);

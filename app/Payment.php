@@ -49,33 +49,4 @@ class Payment extends Model
     {
         return $builder->where('is_proved', '=', '1');
     }
-
-    // accessors
-    public function getSumAttribute()
-    {
-        return $this->loan_payment_force +
-               $this->payment_cost +
-               $this->loan_payment +
-               $this->payment;
-    }
-
-    public function getPaymentCostAttribute()
-    {
-        return (int) $this->attributes['payment_cost'] ?? 0;
-    }
-
-    public function getLoanPaymentForceAttribute()
-    {
-        return (int) $this->attributes['loan_payment_force'] ?? 0;
-    }
-
-    public function getLoanPaymentAttribute()
-    {
-        return (int) $this->attributes['loan_payment'] ?? 0;
-    }
-
-    public function getPaymentAttribute()
-    {
-        return (int) $this->attributes['payment'] ?? 0;
-    }
 }

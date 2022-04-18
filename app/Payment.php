@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 
 class Payment extends Model
@@ -41,5 +42,11 @@ class Payment extends Model
     public function onlinepayment()
     {
         return $this->hasMany(Onlinepayment::class);
+    }
+
+    // scopes
+    public function scopeProved(Builder $builder): Builder
+    {
+        return $builder->where('is_proved', '=', '1');
     }
 }

@@ -35,7 +35,6 @@ class AdminController extends Controller
 
     public function user($id)
     {
-        # TODO: This part is like HomeController::index this must be factored the same way
         $user = User::query()->findOrFail($id);
         $next_user_acc_id = User::where('acc_id', '>', $user->acc_id)->min('acc_id');
         $next_user = null;
@@ -47,29 +46,36 @@ class AdminController extends Controller
         if (!is_null($previous_user_acc_id)) {
             $previous_user = User::where('acc_id', '=', $previous_user_acc_id)->first()->id;
         }
-        $payments = $user->Payment()->OrderByDesc('date_time')->get();
-        $tote = $user->summary()->payments;
+        $summary = $user->summary();
+        $payments = $user->Payment()->get();
+        $tote = $summary->payments;
         $sum = 0;
-        $momentary = [];
         foreach ($payments as $payment) {
             $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
             $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
-        $payments = $user->Payment()->OrderByDesc('date_time')->paginate(12, ['*'], 'payments');
+        $payments = $user->Payment()->paginate(12, ['*'], 'payments');
         foreach ($payments as $payment) {
             $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
-            $payment->momentary = $momentary[$payment->id];
+            $payment -> momentary = $momentary[$payment->id];
         }
+
         Controller::NumberFormat($payments);
+
         $loans = $user->Loan()->OrderByDesc('date_time')->paginate(12, ['*'], 'loans');
         Controller::NumberFormat($loans);
+
         $loans_archive = $user->Loan()->onlyTrashed()->OrderByDesc('date_time')->paginate(12, ['*'], 'loans_archive');
         Controller::NumberFormat($loans_archive);
+
         $summary = User::query()->findOrFail($id)->summary();
+
         $requests = $user->request()->get();
         Controller::NumberFormat($requests);
+
         $permission = 1;
+
         return view('home', compact('user', 'payments', 'summary', 'loans', 'permission', 'requests',
             'next_user', 'previous_user', 'momentary', 'loans_archive'));
     }

@@ -73,7 +73,9 @@ jobs:
           php artisan view:cache
           php artisan optimize
       - name: Run Testsuite
-        run: php artisan optimize
+        run: |
+          php artisan optimize
+          php artisan test
 
       - name: Install front-end dependencies
         run: npm ci --production

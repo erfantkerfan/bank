@@ -51,11 +51,13 @@ class AdminController extends Controller
         $tote = $summary->payments;
         $sum = 0;
         foreach ($payments as $payment) {
+            $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
             $momentary[$payment->id] = $tote - $sum;
             $sum = ($payment->is_proved ? $payment->payment : 0) + $sum;
         }
         $payments = $user->Payment()->paginate(12, ['*'], 'payments');
         foreach ($payments as $payment) {
+            $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
             $payment -> momentary = $momentary[$payment->id];
         }
 

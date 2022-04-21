@@ -169,6 +169,7 @@
                                     </a>
                                 </th>
                                 <th class="text-center">نام و نام خانوادگی</th>
+                                <th class="text-center">#</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -199,6 +200,7 @@
                                 <td class="bg-success text-center">{{number_format($user->summary->payments)}}</td>
                                 <td class="bg-success text-center">{{$user->acc_id}}</td>
                                 <td class="bg-success text-center"><a href="{{ route('user',['id'=>$user->id]) }}">{{$user->f_name.' '.$user->l_name}}</a></td>
+                                <td class="bg-success text-center">{{$loop->iteration}}</td>
                             </tr>
                             @endforeach
                             </tbody>

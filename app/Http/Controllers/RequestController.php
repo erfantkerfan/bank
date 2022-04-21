@@ -10,7 +10,7 @@ class RequestController extends Controller
     public function index()
     {
         $requests = \App\Request::with('user')->where('is_proved', '=', '0')
-            ->OrderBy('date_time', 'desc')->paginate(10);
+            ->OrderBy('date_time')->paginate(10);
         Controller::NumberFormat($requests);
         return view('request', compact('requests'));
     }

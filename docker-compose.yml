@@ -60,7 +60,7 @@ services:
         links:
             - mariadb:mariadb
         ports:
-            - ${ADMIN_DB_PORT:-8080}:80
+            - ${ADMIN_DB_PORT:-8081}:80
         environment:
             MYSQL_USERNAME: "${DB_USERNAME}"
             MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"

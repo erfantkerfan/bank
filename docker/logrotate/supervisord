@@ -1,0 +1,10 @@
+/var/log/supervisor/*.log {
+    create 0644 nobody nogroup
+    missingok
+    daily
+    rotate 5
+    notifempty
+    compress
+    dateext
+    copytruncate
+}

@@ -1,0 +1,2 @@
+* * * * * /usr/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1
+0 2 * * * /usr/sbin/logrotate /etc/logrotate.conf -s /var/www/html/storage/logs/logrotate.status >> /dev/null 2>&1

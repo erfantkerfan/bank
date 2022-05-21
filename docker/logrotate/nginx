@@ -1,0 +1,13 @@
+/var/log/nginx/*log {
+    create 0644 nobody nogroup
+    daily
+    rotate 10
+    missingok
+    notifempty
+    compress
+    sharedscripts
+    dateext
+    postrotate
+        nginx -s reload
+    endscript
+}

@@ -2,7 +2,7 @@ FROM erfantkerfan/sail-php81:latest
 
 LABEL maintainer="Erfan Gholizade (erfantkerfan)"
 
-ARG WWWGROUP=1000
+ARG WWWGROUP
 
 RUN groupadd --force -g $WWWGROUP sail
 RUN useradd -ms /bin/bash --no-user-group -g $WWWGROUP -u 1337 sail

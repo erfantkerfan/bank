@@ -36,13 +36,13 @@ class UserController extends Controller
 
     public function normal_instalments(Request $request)
     {
-        $users = User::where('instalment', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
+        $users = User::where('instalment', '!=', null)->with('recentPayments')->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
         return view('normal_instalments', compact('users'));
     }
 
     public function force_instalments(Request $request)
     {
-        $users_force = User::where('instalment_force', '!=', null)->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
+        $users_force = User::where('instalment_force', '!=', null)->with('recentPayments')->OrderBy($request->sort ? $request->sort : 'acc_id')->paginate(30);
         return view('force_instalments', compact('users_force'));
     }
 

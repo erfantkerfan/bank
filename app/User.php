@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Verta;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,11 @@ class User extends Authenticatable
     public function Payment()
     {
         return $this->hasMany(Payment::class)->orderBy('date_time','desc');
+    }
+
+    public function recentPayments()
+    {
+        return $this->hasMany(Payment::class)->Proved()->where('date_time', '>', new Verta('-30 day'))->orderBy('date_time','desc');
     }
 
     public function summary()

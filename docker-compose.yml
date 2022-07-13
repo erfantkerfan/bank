@@ -60,8 +60,8 @@ services:
         ports:
             - ${ADMIN_DB_PORT:-8081}:80
         environment:
-            MYSQL_USERNAME: "${DB_USERNAME}"
-            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            PMA_USER: "${DB_USERNAME}"
+            PMA_PASSWORD: "${DB_PASSWORD}"
             PMA_HOST: mariadb
             UPLOAD_LIMIT: 300M
         networks:

@@ -11,6 +11,12 @@
                     <tr class="bg-info">
                         <th class="text-center">ویرایش</th>
                         <th class="text-center">حذف قسط</th>
+                        <th class="text-center">
+                            پرداخت اخیر
+                            <a data-toggle="tooltip" title="کاربر در ۳۰ روز اخیر پرداختی داشته است">
+                                <span class="glyphicon glyphicon-question-sign"></span>
+                            </a>
+                        </th>
                         <th class="text-center">شماره چک</th>
                         <th class="text-center">
                             <a href="{{ route('normal_instalments',array('sort'=>'loan_row')) }}">
@@ -63,6 +69,13 @@
                                href="{{route('delete_instalment',['id' => $user->id])}}">
                                 <span class="glyphicon glyphicon-trash" style="color:red"></span>
                             </a>
+                        </th>
+                        <th class="text-center">
+                            @if (count($user->recentPayments))
+                                <span class="glyphicon glyphicon-ok" style="color:green"></span>
+                            @else
+                                <span class="glyphicon glyphicon-remove" style="color:red"></span>
+                            @endif
                         </th>
                         <th class="text-center">{{$user->cheque}}</th>
                         <th class="text-center">{{$user->loan_row}}</th>

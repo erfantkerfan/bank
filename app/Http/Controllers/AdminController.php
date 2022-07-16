@@ -7,6 +7,7 @@ use App\Onlinepayment;
 use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
+use Verta;
 
 class AdminController extends Controller
 {
@@ -16,6 +17,15 @@ class AdminController extends Controller
         $all_payment_summary = Payment::all_payment_summary();
         $all_loan_summary = Loan::all_loan_summary();
         return view('admin_panel', compact('users', 'all_payment_summary', 'all_loan_summary'));
+    }
+
+    public function loan_report(Request $request)
+    {
+        $start_date = $request->start_date ? Verta::parse($request->start_date)->startDay()->format('Y-m-d') : Verta::parse('1397-01-01')->startDay()->format('Y-m-d');
+        $end_date = $request->end_date ? Verta::parse($request->end_date)->endDay()->format('Y-m-d') : Verta::now()->endDay()->format('Y-m-d');
+        $loans = Loan::Proved()->NotForce()->whereBetween('date_time', [$start_date, $end_date]);
+        $loans_force = Loan::Proved()->Force()->whereBetween('date_time', [$start_date, $end_date]);
+        return view('loan_report', compact('start_date','end_date','loans','loans_force'));
     }
 
     public function transaction(Request $request)

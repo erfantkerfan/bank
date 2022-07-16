@@ -169,6 +169,8 @@
 
                                         <a href="{{ route('admin_transaction') }}">مدیریت خلاصه تراکنش ها</a>
 
+                                        <a href="{{ route('loan_report') }}">گزارش وام های اعطایی</a>
+
                                     </li>
                                 </ul>
                             </li>

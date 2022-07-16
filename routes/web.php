@@ -54,6 +54,7 @@ Route::middleware(['logindate'])->group(function () {
         Route::get('/admin',[AdminController::class, 'index'])->name('admin');
         Route::get('/admin/transaction',[AdminController::class, 'transaction'])->name('admin_transaction');
         Route::get('/export/transaction',[ExportController::class, 'transaction'])->name('admin_transaction_export');
+        Route::get('/admin/report/loan',[AdminController::class, 'loan_report'])->name('loan_report');
         Route::get('/admin/{id}',[AdminController::class, 'user'])->name('user');
         # TODO: fix these namings
         Route::get('/unproved1',[AdminController::class, 'unproved1'])->name('unproved1');

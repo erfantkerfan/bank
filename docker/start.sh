@@ -1,5 +1,5 @@
 #!/bin/sh
 
-php /var/www/html/artisan optimize
+cd /var/www/html/ && php artisan optimize
 supervisord -c /etc/supervisord.conf
 exec nginx

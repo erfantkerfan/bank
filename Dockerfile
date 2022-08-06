@@ -4,8 +4,6 @@ LABEL maintainer="erfantkerfan"
 
 RUN mkdir -p /nobody /var/log/php
 
-COPY docker/alpine_mirrors /etc/apk/repositories
-
 RUN apk update \
     && apk add --no-cache \
     php81 \

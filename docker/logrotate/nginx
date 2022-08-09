@@ -5,6 +5,7 @@
     missingok
     notifempty
     compress
+    delaycompress
     sharedscripts
     dateext
     postrotate

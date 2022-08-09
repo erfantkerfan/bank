@@ -1,7 +1,7 @@
 #!/bin/bash
 
 docker service create \
-    --name test \
+    --name ghaem_production \
     --replicas=1 \
     --publish published=81,target=80,mode=ingress \
     --with-registry-auth \

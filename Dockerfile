@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.16
 
 LABEL maintainer="erfantkerfan"
 
@@ -70,8 +70,7 @@ WORKDIR /var/www/html
 
 COPY composer.* ./
 
-# RUN composer install --no-dev --optimize-autoloader --no-scripts --no-ansi
-RUN composer install --optimize-autoloader --no-scripts --no-ansi
+RUN composer install --no-dev --optimize-autoloader --no-scripts --no-ansi
 
 COPY . .
 

@@ -14,4 +14,4 @@ docker service create \
     --mount type=bind,source=/var/log/ghaem/laravel_storage,destination=/var/www/html/storage \
     --mount type=tmpfs,destination=/var/nginx/cache,tmpfs-size=10m \
     -u nobody \
-    $1
+    erfantkerfan/ghaem:$1

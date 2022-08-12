@@ -64,7 +64,7 @@ RUN cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime \
     && chmod 555 /start.sh \
     && chmod 644 /etc/logrotate.d/* \
     && ln -sf /usr/bin/php81 /usr/bin/php \
-    && sed -i 's/^variables_order=.*/variables_order = EGPCS/' /etc/php81/php.ini
+    && sed -i 's/^variables_order =.*/variables_order = EGPCS/' /etc/php81/php.ini
 
 WORKDIR /var/www/html
 

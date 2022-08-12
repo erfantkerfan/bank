@@ -6,6 +6,7 @@ docker service create \
     --publish published=81,target=80,mode=ingress \
     --with-registry-auth \
     --init \
+    --host host.machine:host-gateway \
     --mount type=bind,source=/var/log/ghaem/.env,destination=/var/www/html/.env \
     --mount type=bind,source=/var/log/ghaem/nginx,destination=/var/log/nginx \
     --mount type=bind,source=/var/log/ghaem/php,destination=/var/log/php \

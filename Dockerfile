@@ -36,7 +36,8 @@ RUN apk update \
     curl \
     tzdata \
     logrotate \
-    supervisor
+    supervisor \
+    mysql-client
 
 ENV SUPERCRONIC_URL=https://github.com/aptible/supercronic/releases/download/v0.1.12/supercronic-linux-amd64 \
     SUPERCRONIC=supercronic-linux-amd64 \

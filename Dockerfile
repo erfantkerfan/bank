@@ -40,11 +40,12 @@ RUN apk update \
     supercronic \
     mysql-client
 
-RUN php81 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && echo "55ce33d7678c5a611085589f1f3ddf8b3c52d662cd01d4ba75c0ee0459970c2200a51f492d557530c71c15d8dba01eae  composer-setup.php" | sha384sum -c - \
-    && php81 composer-setup.php \
-    && php81 -r "unlink('composer-setup.php');" \
-    && mv composer.phar /usr/local/bin/composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+ && echo "$(curl 'https://composer.github.io/installer.sig')  composer-setup.php" | sha384sum -c - \
+ && php composer-setup.php \
+ && php -r "unlink('composer-setup.php');" \
+ && mv composer.phar /usr/local/bin/composer.phar \
+ && ln -sf /usr/local/bin/composer.phar /usr/local/bin/composer
 
 COPY docker/crontab /etc/crontabs/crontab
 COPY docker/nginx.conf /etc/nginx/nginx.conf

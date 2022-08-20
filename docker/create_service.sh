@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker service rm ghaem_production
+
 docker service create \
     --name ghaem_production \
     --replicas=1 \

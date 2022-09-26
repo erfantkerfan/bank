@@ -10,7 +10,7 @@
         "ext-soap": "*",
         "doctrine/dbal": "3.*",
         "guzzlehttp/guzzle": "^7.2",
-        "hekmatinasser/verta": "^8.0",
+        "hekmatinasser/verta": "^2.1",
         "laravel/framework": "^9.2",
         "laravel/sanctum": "^3.0",
         "laravel/octane": "^1.0",

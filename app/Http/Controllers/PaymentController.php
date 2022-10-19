@@ -213,8 +213,8 @@ class PaymentController extends Controller
             !empty(json_decode($response->body())->data->authorities)
         ){
             foreach (json_decode($response->body())->data->authorities as $pay) {
-                $Authority = str_pad($pay->authority, 36, '0', STR_PAD_LEFT);
-                $onlinepayment = Onlinepayment::where('authority', '=', $Authority)->withTrashed()->firstOrFail();
+                $auth_number = str_pad($pay->authority, 36, '0', STR_PAD_LEFT);
+                $onlinepayment = Onlinepayment::where('authority', '=', $auth_number)->withTrashed()->firstOrFail();
                 try {
                     $receipt = ZPayment::amount(($onlinepayment->amount) / 10)->transactionId($onlinepayment->authority)->verify();
                 } catch (InvalidPaymentException $exception) {

@@ -218,7 +218,7 @@
                                         ثبت پرداخت
                                     </button>
 
-                                    <button name="online_payment" value="1" type="submit" class="btn btn-success">
+                                    <button name="online_payment" value="1" type="submit" class="btn btn-success disabled">
                                         <span class="glyphicon glyphicon-shopping-cart"></span>
                                         پرداخت اینترنتی
                                     </button>

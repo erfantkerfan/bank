@@ -123,61 +123,62 @@ class PaymentController extends Controller
                 return back();
 
             case '1':
-                $proved_by = null;
+                return back();
+                // $proved_by = null;
 
-                $user_id = strtok(basename(url()->previous()), '?');
+                // $user_id = strtok(basename(url()->previous()), '?');
 
-                if (($user_id) == 'home') {
-                    $user_id = auth()->id();
-                }
+                // if (($user_id) == 'home') {
+                //     $user_id = auth()->id();
+                // }
 
-                if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
-                    abort(500);
-                };
-                $is_proved = 0;
+                // if (auth()->user()->is_super_admin == 0 && auth()->id() != $user_id) {
+                //     abort(500);
+                // };
+                // $is_proved = 0;
 
-                $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
+                // $creator = auth()->user()->f_name . ' ' . auth()->user()->l_name;
 
-                $date_time = verta();
+                // $date_time = verta();
 
-                $this->Validate($request, [
-                    'payment' => 'required|integer',
-                    'payment_cost' => 'nullable|integer',
-                    'loan_payment' => 'nullable|integer',
-                    'loan_payment_force' => 'nullable|integer',
-                    'description' => 'nullable|string',
-                    'is_proved' => 'nullable|boolean',
-                ]);
+                // $this->Validate($request, [
+                //     'payment' => 'required|integer',
+                //     'payment_cost' => 'nullable|integer',
+                //     'loan_payment' => 'nullable|integer',
+                //     'loan_payment_force' => 'nullable|integer',
+                //     'description' => 'nullable|string',
+                //     'is_proved' => 'nullable|boolean',
+                // ]);
 
-                $payment_data = Payment::create([
-                    'user_id' => $user_id,
-                    'date_time' => $date_time,
-                    'is_proved' => $is_proved,
-                    'proved_by' => $proved_by,
-                    'payment' => $request['payment'],
-                    'payment_cost' => $request['payment_cost'],
-                    'loan_payment' => $request['loan_payment'],
-                    'loan_payment_force' => $request['loan_payment_force'],
-                    'description' => $request['description'],
-                    'note' => 'پرداخت اینترنتی',
-                    'creator' => $creator,
-                ]);
+                // $payment_data = Payment::create([
+                //     'user_id' => $user_id,
+                //     'date_time' => $date_time,
+                //     'is_proved' => $is_proved,
+                //     'proved_by' => $proved_by,
+                //     'payment' => $request['payment'],
+                //     'payment_cost' => $request['payment_cost'],
+                //     'loan_payment' => $request['loan_payment'],
+                //     'loan_payment_force' => $request['loan_payment_force'],
+                //     'description' => $request['description'],
+                //     'note' => 'پرداخت اینترنتی',
+                //     'creator' => $creator,
+                // ]);
 
-                $amount = ($request['payment'] + $request['payment_cost'] + $request['loan_payment'] + $request['loan_payment_force']) / 10;
+                // $amount = ($request['payment'] + $request['payment_cost'] + $request['loan_payment'] + $request['loan_payment_force']) / 10;
 
-                $invoice = new Invoice;
-                $invoice->amount($amount);
-                $invoice->detail(['description' => $creator . ' ' . $date_time]);
+                // $invoice = new Invoice;
+                // $invoice->amount($amount);
+                // $invoice->detail(['description' => $creator . ' ' . $date_time]);
 
-                $onlinepayment = new Onlinepayment;
-                $onlinepayment->payment_id = $payment_data->id;
-                $onlinepayment->amount = $amount * 10;
-                $bill = ZPayment::callbackUrl(route('verify'))->purchase($invoice, function() {})->pay();
+                // $onlinepayment = new Onlinepayment;
+                // $onlinepayment->payment_id = $payment_data->id;
+                // $onlinepayment->amount = $amount * 10;
+                // $bill = ZPayment::callbackUrl(route('verify'))->purchase($invoice, function() {})->pay();
 
-                $onlinepayment->authority = $invoice->getTransactionId();
-                $onlinepayment->save();
+                // $onlinepayment->authority = $invoice->getTransactionId();
+                // $onlinepayment->save();
 
-                return $bill->render();
+                // return $bill->render();
         }
     }
 

@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  ghaem_website:
+    image: erfantkerfan/ghaem:latest
+    ports:
+      - "81:80"
+    user: nobody
+    extra_hosts:
+      - host.machine:host-gateway
+    volumes:
+      - type: bind
+        source: /var/log/ghaem/.env
+        target: /var/www/html/.env
+      - type: bind
+        source: /var/log/ghaem/nginx
+        target: /var/log/nginx
+      - type: bind
+        source: /var/log/ghaem/php
+        target: /var/log/php
+      - type: bind
+        source: /var/log/ghaem/supervisor
+        target: /var/log/supervisor
+      - type: bind
+        source: /var/log/ghaem/laravel_storage
+        target: /var/www/html/storage
+      - type: bind
+        source: /var/log/ghaem/public/img/slider
+        target: /var/www/html/public/img/slider
+    tmpfs:
+      - /var/nginx/cache:size=10m
+    deploy:
+      replicas: 1
+

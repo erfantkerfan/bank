@@ -236,6 +236,8 @@
                 طراحی توسط
                 <span class="glyphicon glyphicon-copyright-mark"></span>
                 <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#Erfan_Gholizade">عرفان قلی زاده</button>
+                نسخه
+                {{config('app.version')}}
                 1397
             </strong>
         </footer>

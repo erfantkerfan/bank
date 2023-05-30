@@ -33,7 +33,7 @@ class DatabaseBackUp extends Command
         $password = config('database.connections.mysql.password');
         $database = config('database.connections.mysql.database');
 
-        $command = "mysqldump -C --single-transaction --skip-lock-tables --column-statistics=0 --user=" . $username ." --password=" . $password . " --host=" . $host . " " . $database . "  > " . storage_path() . "/app/public/" . $filename;
+        $command = "mysqldump -C --single-transaction --skip-lock-tables --no-tablespaces --user=" . $username ." --password=" . $password . " --host=" . $host . " " . $database . "  > " . storage_path() . "/app/public/" . $filename;
 
         $returnVar = NULL;
         $output  = NULL;

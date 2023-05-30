@@ -38,7 +38,8 @@ RUN apk update \
     logrotate \
     supervisor \
     supercronic \
-    mysql-client
+    mysql-client \
+    mariadb-connector-c
 
 RUN php81 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && echo "$(curl 'https://composer.github.io/installer.sig')  composer-setup.php" | sha384sum -c - \

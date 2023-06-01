@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'is_super_admin' => '0',
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
-        'relation' => str_random(10),
-        'note' => str_random(10),
+        'remember_token' => Str::random(10),
+        'relation' => Str::random(10),
+        'note' => Str::random(10),
     ];
 });

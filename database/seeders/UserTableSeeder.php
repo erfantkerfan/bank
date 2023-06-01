@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class UserTableSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class UserTableSeeder extends Seeder
             'is_admin' => '1',
             'is_super_admin' => '1',
             'password' => bcrypt('123456'),
-            'remember_token' => str_random(10),
+            'remember_token' => Str::random(10),
         ]);
 
 //        factory(\App\User::class,10)->create();

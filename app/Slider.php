@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Slider extends Model
 {
     use SoftDeletes;
-    protected $dates = ['deleted_at'];
+    protected $casts = ['deleted_at'];
     protected $fillable = ['name','head','body'];
 }

@@ -11,7 +11,7 @@ class Payment extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];
-    protected $dates = ['deleted_at'];
+    protected $casts = ['deleted_at'];
 
     protected $fillable = [
         'user_id','payment','payment_cost','loan_payment','loan_payment_force','description','date_time','is_proved',

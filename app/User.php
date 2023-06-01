@@ -13,7 +13,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $guarded = ['id'];
-    protected $dates = ['deleted_at'];
+    protected $casts = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *

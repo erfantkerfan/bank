@@ -9,7 +9,7 @@ class Onlinepayment extends Model
 {
     use SoftDeletes;
     protected $guarded = ['id'];
-    protected $dates = ['deleted_at'];
+    protected $casts = ['deleted_at'];
     protected $fillable = [
         'payment_id','amount','authority','refid'
     ];

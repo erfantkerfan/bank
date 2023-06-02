@@ -19,6 +19,18 @@ class CreateConfigsTable extends Migration
             $table->text('text');
             $table->timestamps();
         });
+        DB::table('configs')->insert(
+            array(
+                [
+                    'type' => 'top_h',
+                    'text' => 'hi'
+                ],
+                [
+                    'type' => 'down_h',
+                    'text' => 'bye'
+                ]
+            )
+        );
     }
 
     /**

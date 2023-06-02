@@ -60,6 +60,7 @@ class AdminController extends Controller
         $payments = $user->Payment()->get();
         $tote = $summary->payments;
         $sum = 0;
+        $momentary = null;
         foreach ($payments as $payment) {
             $payment->sum = $payment->payment_cost + $payment->loan_payment_force + $payment->loan_payment + $payment->payment;
             $momentary[$payment->id] = $tote - $sum;

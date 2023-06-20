@@ -40,3 +40,5 @@ jobs:
           push: true
           tags: erfantkerfan/ghaem:${{ env.RELEASE_VERSION }}, erfantkerfan/ghaem:latest, ghcr.io/erfantkerfan/ghaem:${{ env.RELEASE_VERSION }}, ghcr.io/erfantkerfan/ghaem:latest
           build-args: RELEASE_VERSION=${{ env.RELEASE_VERSION }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

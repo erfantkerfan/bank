@@ -7,7 +7,7 @@ use App\Onlinepayment;
 use App\Payment;
 use App\User;
 use Illuminate\Http\Request;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class AdminController extends Controller
 {

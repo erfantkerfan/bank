@@ -2,6 +2,7 @@ FROM erfantkerfan/sail-php81:latest
 
 LABEL maintainer="Erfan Gholizade (erfantkerfan)"
 
+ENV SUPERVISOR_PHP_COMMAND="/usr/bin/php -d variables_order=EGPCS /var/www/html/artisan octane:start --server=swoole --host=0.0.0.0 --port=80 --watch"
 ARG WWWGROUP
 
 RUN groupadd --force -g $WWWGROUP sail

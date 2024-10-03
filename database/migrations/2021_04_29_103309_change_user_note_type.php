@@ -14,8 +14,8 @@ class ChangeUserNoteType extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->longText('note')->change();
-            $table->longText('user_note')->change();
+            $table->longText('note')->nullable()->change();
+            $table->longText('user_note')->nullable()->change();
         });
     }
 
@@ -27,8 +27,8 @@ class ChangeUserNoteType extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('note')->change();
-            $table->text('user_note')->change();
+            $table->text('note')->nullable()->change();
+            $table->text('user_note')->nullable()->change();
         });
     }
 }

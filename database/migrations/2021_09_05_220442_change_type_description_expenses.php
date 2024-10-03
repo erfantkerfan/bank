@@ -14,7 +14,7 @@ class ChangeTypeDescriptionExpenses extends Migration
     public function up()
     {
         Schema::table('expenses', function (Blueprint $table) {
-            $table->mediumText('description')->change();
+            $table->mediumText('description')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ChangeTypeDescriptionExpenses extends Migration
     public function down()
     {
         Schema::table('expenses', function (Blueprint $table) {
-            $table->text('description')->change();
+            $table->text('description')->nullable()->change();
         });
     }
 }

@@ -14,7 +14,7 @@ class ChangeTypeNoteRequests extends Migration
     public function up()
     {
         Schema::table('requests', function (Blueprint $table) {
-            $table->mediumText('note')->change();
+            $table->mediumText('note')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ChangeTypeNoteRequests extends Migration
     public function down()
     {
         Schema::table('requests', function (Blueprint $table) {
-            $table->text('note')->change();
+            $table->text('note')->nullable()->change();
         });
     }
 }

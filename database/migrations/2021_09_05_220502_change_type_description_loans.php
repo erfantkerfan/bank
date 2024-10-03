@@ -14,7 +14,7 @@ class ChangeTypeDescriptionLoans extends Migration
     public function up()
     {
         Schema::table('loans', function (Blueprint $table) {
-            $table->mediumText('description')->change();
+            $table->mediumText('description')->nullable()->change();
         });
     }
 
@@ -26,7 +26,7 @@ class ChangeTypeDescriptionLoans extends Migration
     public function down()
     {
         Schema::table('loans', function (Blueprint $table) {
-            $table->text('description')->change();
+            $table->text('description')->nullable()->change();
         });
     }
 }

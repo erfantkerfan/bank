@@ -129,7 +129,10 @@ class AdminController extends Controller
 
     public function database()
     {
-        $filename = 'app/public/Mysql_Backup_Ghaem.sql';
-        return response()->download(storage_path($filename));
+        $filename = storage_path('app/public/Mysql_Backup_Ghaem.sql');
+        if (!file_exists($filename)) {
+            abort(500);
+        }
+        return response()->download($filename);
     }
 }

@@ -218,25 +218,25 @@
         <script src="{{ asset('js/autoNumeric-1.9.18.js') }}"></script>
         <script type='text/javascript'>
             $(function($) {
-                $('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#loan_payment').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#loan_payment_force').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#payment_cost').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#loan').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#expense').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
             $(function($) {
-                $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0 });
+                $('#fee').autoNumeric('init', {  lZero: 'deny', aSep: ',', mDec: 0, vMax: 999999999999 });
             });
 
             $(document).ready(function(){

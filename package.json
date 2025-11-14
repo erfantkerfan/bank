@@ -1,19 +1,16 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production"
+        "dev": "vite",
+        "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.8",
         "chokidar": "^3.5.2",
-        "laravel-mix": "^6.0.6",
+        "laravel-vite-plugin": "^2.0.1",
         "lodash": "^4.17.19",
-        "postcss": "^8.4.31"
-    }
+        "postcss": "^8.4.31",
+        "vite": "^7.2.2"
+    },
+    "type": "module"
 }

@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.22
 
 LABEL maintainer="erfantkerfan"
 
@@ -6,31 +6,31 @@ RUN mkdir -p /nobody /var/log/php
 
 RUN apk update \
     && apk add --no-cache \
-    php82 \
-    php82-bcmath \
-    php82-ctype \
-    php82-curl \
-    php82-json \
-    php82-mbstring \
-    php82-fileinfo \
-    php82-tokenizer \
-    php82-dom \
-    php82-iconv \
-    php82-openssl \
-    php82-pdo_mysql \
-    php82-xml \
-    php82-simplexml \
-    php82-xmlreader \
-    php82-xmlwriter \
-    php82-zip \
-    php82-soap \
-    php82-gd \
-    php82-phar \
-    php82-pcntl \
-    php82-posix \
-    php82-pecl-redis \
-    php82-pecl-imagick \
-    php82-pecl-swoole \
+    php84 \
+    php84-bcmath \
+    php84-ctype \
+    php84-curl \
+    php84-json \
+    php84-mbstring \
+    php84-fileinfo \
+    php84-tokenizer \
+    php84-dom \
+    php84-iconv \
+    php84-openssl \
+    php84-pdo_mysql \
+    php84-xml \
+    php84-simplexml \
+    php84-xmlreader \
+    php84-xmlwriter \
+    php84-zip \
+    php84-soap \
+    php84-gd \
+    php84-phar \
+    php84-pcntl \
+    php84-posix \
+    php84-pecl-redis \
+    php84-pecl-imagick \
+    php84-pecl-swoole \
     coreutils \
     nginx \
     curl \
@@ -41,10 +41,10 @@ RUN apk update \
     mysql-client \
     mariadb-connector-c
 
-RUN php82 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+RUN php84 -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
  && echo "$(curl 'https://composer.github.io/installer.sig')  composer-setup.php" | sha384sum -c - \
- && php82 composer-setup.php \
- && php82 -r "unlink('composer-setup.php');" \
+ && php84 composer-setup.php \
+ && php84 -r "unlink('composer-setup.php');" \
  && mv composer.phar /usr/local/bin/composer.phar \
  && ln -sf /usr/local/bin/composer.phar /usr/local/bin/composer
 
@@ -57,8 +57,8 @@ COPY docker/start.sh /start.sh
 RUN cp /usr/share/zoneinfo/Asia/Tehran /etc/localtime \
     && chmod 555 /start.sh \
     && chmod 644 /etc/logrotate.d/* \
-    && ln -sf /usr/bin/php82 /usr/bin/php \
-    && sed -i 's/^variables_order =.*/variables_order = EGPCS/' /etc/php82/php.ini
+    && ln -sf /usr/bin/php84 /usr/bin/php \
+    && sed -i 's/^variables_order =.*/variables_order = EGPCS/' /etc/php84/php.ini
 
 WORKDIR /var/www/html
 

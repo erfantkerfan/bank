@@ -5,18 +5,18 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "ext-json": "*",
         "ext-soap": "*",
         "guzzlehttp/guzzle": "^7.2",
-        "hekmatinasser/verta": "^8.3",
-        "laravel/framework": "^11.0",
+        "hekmatinasser/verta": "^8.5",
+        "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/octane": "^2.3",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1",
-        "shetabit/payment": "^5.0"
+        "shetabit/payment": "^6.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -2,10 +2,12 @@
 services:
     laravel.test:
         build:
-            context: ./docker/8.2
+            context: ./docker/8.4
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
         environment:
@@ -23,11 +25,12 @@ services:
             - mariadb
             - redis
     mariadb:
-        image: 'mariadb:10'
+        image: 'mariadb:11'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: "%"
             MYSQL_DATABASE: '${DB_DATABASE}'
             MYSQL_USER: '${DB_USERNAME}'
             MYSQL_PASSWORD: '${DB_PASSWORD}'
@@ -38,7 +41,7 @@ services:
         networks:
             - sail
         healthcheck:
-            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
             retries: 3
             timeout: 5s
     redis:

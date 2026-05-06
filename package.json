@@ -10,7 +10,7 @@
         "laravel-vite-plugin": "^2.0.1",
         "lodash": "^4.17.19",
         "postcss": "^8.4.31",
-        "vite": "^7.2.2"
+        "vite": "^7.3.2"
     },
     "type": "module"
 }

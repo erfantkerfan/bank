@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use SoftDeletes;
+
+    public const PAYMENT_TO_SCORE_DIVISOR = 10000000; // 1 Millions Tomans equal 1 point
+
     protected $guarded = ['id'];
     protected $casts = ['deleted_at'];
 

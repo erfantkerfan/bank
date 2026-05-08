@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('loan_payment') ? ' has-error' : '' }}">
-                                    <label for="loan_payment" class="control-label">:اقساط قرض الحسنه عادی</label>
+                                    <label for="loan_payment" class="control-label">:قسط قرض الحسنه عادی</label>
                                     <div class="col-md-7">
                                         <input id="loan_payment" type="text" class="form-control" name="loan_payment"
                                                value="{{ old('loan_payment') }}" placeholder="مبلغ به ریال" autofocus>
@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div class="form-group{{ $errors->has('loan_payment_force') ? ' has-error' : '' }}">
-                                    <label for="loan_payment_force" class="control-label">:اقساط قرض الحسنه
+                                    <label for="loan_payment_force" class="control-label">:قسط قرض الحسنه
                                         ضروری</label>
                                     <div class="col-md-7">
                                         <input id="loan_payment_force" type="text" class="form-control"
@@ -563,7 +563,9 @@
                     <table class="table">
                         <thead>
                         <tr class="bg-info">
-                            <th class="text-center">مجموع امتیاز پرداخت به موقع</th>
+                            <th class="text-center">مجموع امتیاز ها</th>
+                            <th class="text-center">امتیاز واریز</th>
+                            <th class="text-center">امتیاز پرداخت به موقع</th>
                             <th class="text-center">کل پرداخت بابت هزینه های صندوق</th>
                             <th class="text-center">کل بدهی</th>
                             <th class="text-center">کل قرض الحسنه ضروری دریافتی</th>
@@ -573,6 +575,12 @@
                         </thead>
                         <tbody>
                         <tr class="bg-warning">
+                            <td class="text-center">
+                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 1)}}
+                            </td>
+                            <td class="text-center">
+                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}
+                            </td>
                             <td class="text-center">{{$user->delays()}}</td>
                             <td class="text-center">{{number_format($summary->payments_cost)}}</td>
                             <td class="text-center">{{number_format($summary->debt_force+$summary->debt)}}
@@ -630,9 +638,9 @@
                             <th class="text-center">توضیحات</th>
                             <th class="text-center">سرمایه لحظه ای</th>
                             <th class="text-center">مجموع پرداختی</th>
-                            <th class="text-center">پرداخت هزینه صندوق</th>
-                            <th class="text-center">پرداخت اقساط ضروری</th>
-                            <th class="text-center">پرداخت اقساط عادی</th>
+                            <th class="text-center">قسط ضروری</th>
+                            <th class="text-center">قسط عادی</th>
+                            <th class="text-center">امتیاز واریز</th>
                             <th class="text-center">افزایش سرمایه</th>
                             <th class="text-center">ثبت کننده</th>
                             <th class="text-center">تاریخ</th>
@@ -686,10 +694,18 @@
                                 <th class="text-center small">{{$payment->note}}</th>
                                 <th class="text-center small">{{$payment->description}}</th>
                                 <th class="text-center">{{$payment->momentary}}</th>
+                                @if ($payment->payment_cost && $payment->payment_cost != 0)
+                                <th class="text-center">
+                                    <a data-toggle="tooltip" title="هزینه صندوق {{$payment->payment_cost}}">
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                    </a>{{$payment->sum}}
+                                </th>
+                                @else
                                 <th class="text-center">{{$payment->sum}}</th>
-                                <th class="text-center">{{$payment->payment_cost}}</th>
+                                @endif
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
+                                <th class="text-center">{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
                                 <th class="text-center small">{{$payment->creator}}</th>
                                 <th class="text-center small">{{Str::before($payment->date_time,' ')}}</th>

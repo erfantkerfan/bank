@@ -18,7 +18,10 @@
 <table>
     <thead>
     <tr>
-        <th style="font-weight: bold">مجموع امتیاز پرداخت به موقع</th>
+        <th style="font-weight: bold">مجموع امتیاز ها</th>
+        <th style="font-weight: bold">امتیاز واریز</th>
+        <th style="font-weight: bold">امتیاز واریز</th>
+        <th style="font-weight: bold">امتیاز پرداخت به موقع</th>
         <th style="font-weight: bold">کل پرداخت بابت هزینه های صندوق</th>
         <th style="font-weight: bold">کل بدهی</th>
         <th style="font-weight: bold">کل قرض الحسنه ضروری دریافتی</th>
@@ -28,6 +31,8 @@
     </thead>
     <tbody>
     <tr>
+        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 1)}}</td>
+        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</td>
         <td style="background-color: #dddddd">{{$user->delays()}}</td>
         <td style="background-color: #dddddd">{{number_format($summary->payments_cost)}}</td>
         <td style="background-color: #dddddd">{{number_format($summary->debt_force+$summary->debt)}}
@@ -80,9 +85,10 @@
         <th style="font-weight: bold">توضیحات</th>
         <th style="font-weight: bold">سرمایه لحظه ای</th>
         <th style="font-weight: bold">مجموع پرداختی</th>
-        <th style="font-weight: bold">پرداخت هزینه صندوق</th>
-        <th style="font-weight: bold">پرداخت اقساط ضروری</th>
-        <th style="font-weight: bold">پرداخت اقساط عادی</th>
+        <th style="font-weight: bold">هزینه صندوق</th>
+        <th style="font-weight: bold">قسط ضروری</th>
+        <th style="font-weight: bold">قسط عادی</th>
+        <th style="font-weight: bold">امتیاز واریز</th>
         <th style="font-weight: bold">افزایش سرمایه</th>
         <th style="font-weight: bold">ثبت کننده</th>
         <th style="font-weight: bold">تاریخ</th>
@@ -106,6 +112,7 @@
             <td>{{$payment->payment_cost}}</td>
             <td>{{$payment->loan_payment_force}}</td>
             <td>{{$payment->loan_payment}}</td>
+            <td>{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</td>
             <td>{{$payment->payment}}</td>
             <td>{{$payment->creator}}</td>
             <td>{{Str::before($payment->date_time,' ')}}</td>

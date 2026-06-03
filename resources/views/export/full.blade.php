@@ -31,8 +31,8 @@
     </thead>
     <tbody>
     <tr>
-        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 1)}}</td>
-        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</td>
+        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 2)}}</td>
+        <td style="background-color: #dddddd">{{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 2)}}</td>
         <td style="background-color: #dddddd">{{$user->delays()}}</td>
         <td style="background-color: #dddddd">{{number_format($summary->payments_cost)}}</td>
         <td style="background-color: #dddddd">{{number_format($summary->debt_force+$summary->debt)}}
@@ -112,7 +112,7 @@
             <td>{{$payment->payment_cost}}</td>
             <td>{{$payment->loan_payment_force}}</td>
             <td>{{$payment->loan_payment}}</td>
-            <td>{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</td>
+            <td>{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 2)}}</td>
             <td>{{$payment->payment}}</td>
             <td>{{$payment->creator}}</td>
             <td>{{Str::before($payment->date_time,' ')}}</td>

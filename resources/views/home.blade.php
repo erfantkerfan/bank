@@ -576,10 +576,10 @@
                         <tbody>
                         <tr class="bg-warning">
                             <td class="text-center">
-                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 1)}}
+                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR + str_replace(',', '', $user->delays()), 2)}}
                             </td>
                             <td class="text-center">
-                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}
+                                {{number_format(str_replace(',', '', $summary->payments) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 2)}}
                             </td>
                             <td class="text-center">{{$user->delays()}}</td>
                             <td class="text-center">{{number_format($summary->payments_cost)}}</td>
@@ -705,7 +705,7 @@
                                 @endif
                                 <th class="text-center">{{$payment->loan_payment_force}}</th>
                                 <th class="text-center">{{$payment->loan_payment}}</th>
-                                <th class="text-center">{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 1)}}</th>
+                                <th class="text-center">{{number_format(str_replace(',', '', $payment->payment) / APP\Payment::PAYMENT_TO_SCORE_DIVISOR, 2)}}</th>
                                 <th class="text-center">{{$payment->payment}}</th>
                                 <th class="text-center small">{{$payment->creator}}</th>
                                 <th class="text-center small">{{Str::before($payment->date_time,' ')}}</th>

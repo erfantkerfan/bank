@@ -7,10 +7,10 @@
     "devDependencies": {
         "axios": "^1.15",
         "chokidar": "^3.5.2",
-        "laravel-vite-plugin": "^2.0.1",
+        "laravel-vite-plugin": "^3.1.0",
         "lodash": "^4.18.1",
         "postcss": "^8.5.14",
-        "vite": "^7.3.2"
+        "vite": "^8.0.16"
     },
     "type": "module"
 }
